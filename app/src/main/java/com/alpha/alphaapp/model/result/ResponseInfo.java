@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.model.result;
 
+import com.alpha.lib_sdk.app.log.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -52,6 +53,8 @@ public class ResponseInfo {
             JSONObject jsonObject = new JSONObject(json);
             ResponseInfo newResponseInfo = new ResponseInfo();
 //            newResponseInfo.setSskey(jsonObject.getString("sskey"));
+            Log.e("res",jsonObject.getString("msg"));
+            Log.e("res",jsonObject.getString("result"));
             newResponseInfo.setMsg(jsonObject.getString("msg"));
             newResponseInfo.setResult(jsonObject.getInt("result"));
             return newResponseInfo;

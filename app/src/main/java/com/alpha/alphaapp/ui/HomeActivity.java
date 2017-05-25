@@ -24,10 +24,9 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         LoginInfo loginInfo = new LoginInfo();
         loginInfo.setAccount("account001");
-        loginInfo.setAccount_type(0);
         loginInfo.setPw("e10adc3949ba59abbe56e057f20f883e");
         loginInfo.setUser_ip("127.0.0.1");
-        loginInfo.setTerminal_type("PHONE");
+
 
         SharePLoginInfo.getInstance(this).saveLoginInfo(loginInfo);
         Log.e(TAG, "loginInfo=" + SharePLoginInfo.getInstance(this).getLoginInfo().toString());

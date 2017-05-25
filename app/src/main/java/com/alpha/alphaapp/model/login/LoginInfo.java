@@ -1,6 +1,7 @@
 package com.alpha.alphaapp.model.login;
 
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.DeviceConstants;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
 
 /**
@@ -12,10 +13,14 @@ import com.alpha.lib_sdk.app.arithmetic.MD5;
 public class LoginInfo {
     /**
      * 最近登录类型
+     * phone ,account ,auth
      */
     private int lastType;
-
-
+    /**
+     * 登录后返回的sesskey
+     * 可以保存24小时
+     */
+    private String sessKey;
 
     private String account;
     private int account_type;
@@ -31,9 +36,11 @@ public class LoginInfo {
     public int getLastType() {
         return lastType;
     }
+
     public void setLastType(int lastType) {
         this.lastType = lastType;
     }
+
     public String getAccount() {
         return account;
     }
@@ -42,13 +49,6 @@ public class LoginInfo {
         this.account = account;
     }
 
-    public int getAccount_type() {
-        return account_type;
-    }
-
-    public void setAccount_type(int account_type) {
-        this.account_type = account_type;
-    }
 
     public String getPw() {
         return pw;
@@ -66,13 +66,6 @@ public class LoginInfo {
         this.user_ip = user_ip;
     }
 
-    public String getTerminal_type() {
-        return terminal_type;
-    }
-
-    public void setTerminal_type(String terminal_type) {
-        this.terminal_type = terminal_type;
-    }
 
     public String getPhone_verify() {
         return phone_verify;
@@ -112,7 +105,7 @@ public class LoginInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
                 .append("\"pw\":").append("\"" + getPw() + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + getTerminal_type() + "\"")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
         return sb.toString();
     }
@@ -131,7 +124,7 @@ public class LoginInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + getTerminal_type() + "\",")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"tuiguang_id\":").append("\"" + getTuiguang_id() + "\"")
                 .append("}");
         return sb.toString();
@@ -151,7 +144,7 @@ public class LoginInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + getTerminal_type() + "\",")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"" + getPhone_verify() + "\"")
                 .append("}");
         return sb.toString();
@@ -171,7 +164,7 @@ public class LoginInfo {
         sb.append("{\"account\":").append("\"" + getOpenid_qq() + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + getTerminal_type() + "\"")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
         return sb.toString();
     }

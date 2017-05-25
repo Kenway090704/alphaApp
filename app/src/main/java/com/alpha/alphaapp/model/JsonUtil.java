@@ -31,12 +31,12 @@ public class JsonUtil {
             String sign = Base64Util.encodeToString(HMACSHA1.getSignature(APPID + data, APPKEY));
 
 
-
             StringBuffer sb = new StringBuffer();
             sb.append("{\"appid\":").append("\"" + APPID + "\",")
                     .append("\"sign\":").append("\"" + sign + "\",")
                     .append("\"data\":").append(data)
                     .append("}");
+            Log.e(TAG, "josn=" + sb.toString());
             return sb.toString();
         } catch (Exception e) {
             e.printStackTrace();

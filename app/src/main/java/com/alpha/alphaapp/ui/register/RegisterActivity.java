@@ -92,6 +92,7 @@ public class RegisterActivity extends BaseFragmentActivity {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
                 vp.setCurrentItem(tab.getPosition());
             }
 

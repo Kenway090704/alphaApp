@@ -7,15 +7,18 @@ import android.widget.Toast;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.DeviceConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.other.CheckAccoutInfo;
+import com.alpha.alphaapp.model.register.RegisterInfo;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
+import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -27,10 +30,9 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 public class AccountRegisterFragment extends BaseFragment {
     private static final String TAG = "AccountRegisterFragment";
-    private EditText et_accout, et_pw, et_insurepw, et_verify;
+    private EditText et_accout, et_pw, et_insurepw;
     private Button btn_register;
 
-    private boolean isAccountHad;
 
     @Override
     protected int getLayoutId() {
@@ -42,28 +44,16 @@ public class AccountRegisterFragment extends BaseFragment {
         et_accout = (EditText) root.findViewById(R.id.reg_ac_et_accout);
         et_pw = (EditText) root.findViewById(R.id.reg_ac__et_pw);
         et_insurepw = (EditText) root.findViewById(R.id.reg_ac_et_insurepw);
-        et_verify = (EditText) root.findViewById(R.id.reg_ac_et_insurepw);
         btn_register = (Button) root.findViewById(R.id.reg_ac_btn_register);
     }
 
     @Override
     protected void initEnvent() {
-        et_accout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    //判断是否符合帐号要求
-                    if (StringUtils.isAccountLine(et_accout.getText().toString())) {
 
-                    } else {
-                        ToastUtils.show(getActivity(), R.string.account_format, Toast.LENGTH_SHORT);
-                    }
-                }
-            }
-        });
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //帐号的判断
                 if (Util.isNullOrNil(et_accout.getText().toString())) {
                     ToastUtils.show(getActivity(), R.string.input_account, Toast.LENGTH_SHORT);
                     et_accout.setFocusable(true);
@@ -89,6 +79,44 @@ public class AccountRegisterFragment extends BaseFragment {
                                 et_accout.setFocusableInTouchMode(true);
                                 et_accout.requestFocus();
                                 KeyBoardUtils.openKeybord(et_accout, getActivity());
+                            } else {
+                                //密码为空
+                                if (Util.isNullOrNil(et_pw.getText().toString()) || Util.isNullOrNil(et_insurepw.getText().toString())) {
+                                    ToastUtils.showShort(getActivity(), R.string.pw_empty);
+                                }
+                                //判断两次密码是相同
+                                if (StringUtils.isPWLine(et_pw.getText().toString()) && StringUtils.isPWLine(et_insurepw.getText().toString())) {
+                                    if (et_pw.getText().toString().equals(et_insurepw.getText().toString())) {
+                                        //两次密码相同时注册该账号
+                                        RegisterInfo registerInfo = new RegisterInfo();
+                                        registerInfo.setAccount(et_accout.getText().toString());
+                                        registerInfo.setPw(et_pw.getText().toString());
+                                        registerInfo.setUser_ip(IPAdressUtils.getIpAdress(getContext()));
+                                        registerInfo.setTerminal_type(DeviceConstants.TERMINAL_TYPE.PHONE);
+                                        String data = registerInfo.getJsonStrforAccount();
+                                        String json = JsonUtil.getPostJsonSignString(data);
+                                        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+                                            @Override
+                                            public void onReqSuccess(String result) {
+                                                ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
+                                                if (responseInfo.getResult() == CommStants.CHECKOUT_ACCOUNT_RESULT.RESUTL_OK) {
+                                                    //注册成功
+                                                    ToastUtils.showLong(getContext(), R.string.register_success);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onReqFailed(String errorMsg) {
+                                                Log.e(TAG, "注册失败");
+                                            }
+                                        };
+                                        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.REGISTER, json, callBack);
+                                    } else {
+                                        ToastUtils.showShort(getActivity(), R.string.pw_different);
+                                    }
+                                } else {
+                                    ToastUtils.showShort(getActivity(), R.string.pw_format);
+                                }
                             }
                         }
 

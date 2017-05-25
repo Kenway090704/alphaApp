@@ -38,8 +38,10 @@ public class StringUtils {
         Matcher m = p.matcher(account);
         return m.matches();
     }
+
     /**
      * 帐号注册时的密码是否符合
+     * 密码判读有误
      */
     public static boolean isPWLine(String account) {
         Pattern p = Pattern
@@ -47,16 +49,31 @@ public class StringUtils {
         Matcher m = p.matcher(account);
         return m.matches();
     }
+
     /**
      * 判断是否是手机号
+     * @param mobiles
+     * @return
+     */
+    public static boolean isPhoneNum(String mobiles) {
+        Pattern p = Pattern
+                .compile("^(13[0-9]|15[0-9]|17[0-9]|18[0-9])\\d{8}$");
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+
+    /**
+     * 判断是否是手机验证码
+     * 手机验证码也存在问题
      *
      * @param mobiles
      * @return
      */
-    public static boolean isMobileNO(String mobiles) {
+    public static boolean isPhoneVerify(String mobiles) {
         Pattern p = Pattern
-                .compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+                .compile("\\d{6}");
         Matcher m = p.matcher(mobiles);
         return m.matches();
     }
+
 }

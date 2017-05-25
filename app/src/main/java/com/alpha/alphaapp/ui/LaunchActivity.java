@@ -7,9 +7,11 @@ import android.widget.ImageView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.login.LoginInfo;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.register.RegisterActivity;
+import com.alpha.lib_sdk.app.log.Log;
 
 
 /**
@@ -45,7 +47,10 @@ public class LaunchActivity extends AppCompatActivity {
             }
             HomeActivity.actionStart(LaunchActivity.this, null, null);
         } else {
+
+            Log.e("zk","is phone"+ StringUtils.isPhoneNum("13128914595"));
             RegisterActivity.actionStart(this);
+            finish();
         }
 
 
@@ -54,6 +59,7 @@ public class LaunchActivity extends AppCompatActivity {
 //            @Override
 //            public void run() {
 //                HomeActivity.actionStart(LaunchActivity.this, null, null);
+
 //            }
 //        }, 3000);
     }

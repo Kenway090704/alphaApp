@@ -109,4 +109,35 @@ public class CommStants {
          */
         int RESULT_PHONE_ERROR = 101;
     }
+
+    /**
+     * 获取手机验证码RESULT
+     */
+    public interface GET_PHONEVERIFY_RESULT {
+        /**
+         * 验证码已发送
+         */
+        int RESUTL_OK = 0;
+        /**
+         * 该手机号码已注册
+         */
+        int PHONE_HAD_REGISTER = 106;
+        /**
+         * 该手机号暂未注册
+         */
+        int PHONE_NO_REGISTER = 107;
+        /**
+         * 验证码已存在
+         */
+        int VERIFY_HAD = 108;
+        /**
+         * 手机号码错误
+         */
+        int PHOEN_ERROR = 109;
+        /**
+         * 超过每天获取短信条数
+         */
+        int TOO_MUCH_MESSAGE = 110;
+
+    }
 }
