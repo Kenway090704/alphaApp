@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">alphaApp</string>
+    <!-- 注册页面-->
+    <string name="alpha_account">奥飞帐号</string>
+    <string name="input_pw">输入密码</string>
+    <string name="insure_pw">确认密码</string>
+    <string name="tui_guang">推广员编号</string>
+    <string name="verify_code">验证码</string>
+    <string name="register">注册</string>
+    <string name="verify_code_phone">手机验证码</string>
+    <string name="input_account">请输入用户名</string>
+    <string name="account_had">该用户名已存在，请更换</string>
+    <string name="account_format">用户名格式须为小写字母开头，6-12位字符</string>
+
+
+    <string name="phone_number">手机号</string>
+    <string name="phone_verify">手机验证码</string>
+
+</resources>
