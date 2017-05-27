@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
+import com.alpha.alphaapp.ui.widget.TitleLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class RegisterActivity extends BaseFragmentActivity {
     private static final String TAG = "RegisterActivity";
-
+    private TitleLayout titlelayout;
     private TabLayout tabLayout;
     private ViewPager vp;
 
@@ -43,6 +44,8 @@ public class RegisterActivity extends BaseFragmentActivity {
 
     @Override
     protected void initView() {
+        titlelayout = (TitleLayout) findViewById(R.id.registetr_titlelayout);
+        titlelayout.setTitleText(R.string.register);
         tabLayout = (TabLayout) findViewById(R.id.register_tablayout);
         vp = (ViewPager) findViewById(R.id.register_vp);
     }

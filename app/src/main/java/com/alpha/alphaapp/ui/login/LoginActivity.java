@@ -11,6 +11,7 @@ import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
 import com.alpha.alphaapp.ui.register.AccountRegisterFragment;
 import com.alpha.alphaapp.ui.register.PhoneRegisterFragment;
+import com.alpha.alphaapp.ui.widget.TitleLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class LoginActivity extends BaseFragmentActivity {
     private static final String TAG = "LoginActivity";
+    private TitleLayout titlelayout;
     private TabLayout tabLayout;
     private ViewPager vp;
     private List<Fragment> fragments;
@@ -39,6 +41,8 @@ public class LoginActivity extends BaseFragmentActivity {
 
     @Override
     protected void initView() {
+        titlelayout = (TitleLayout) findViewById(R.id.login_titlelayout);
+        titlelayout.setTitleText(R.string.login);
         tabLayout = (TabLayout) findViewById(R.id.login_tablayout);
         vp = (ViewPager) findViewById(R.id.login_vp);
     }

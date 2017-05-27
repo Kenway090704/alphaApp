@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <!--加入标题栏-->
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/login_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/login_tablayout"

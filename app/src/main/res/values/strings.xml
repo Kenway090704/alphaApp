@@ -9,6 +9,7 @@
     <string name="tui_guang">推广员编号</string>
     <string name="verify_code">验证码</string>
     <string name="register">注册</string>
+    <string name="back">上一步</string>
     <string name="verify_code_phone">手机验证码</string>
     <string name="input_account">请输入用户名</string>
     <string name="account_had">该用户名已存在，请更换</string>

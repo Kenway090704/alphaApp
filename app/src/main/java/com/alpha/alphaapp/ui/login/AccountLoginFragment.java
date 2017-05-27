@@ -136,7 +136,12 @@ public class AccountLoginFragment extends BaseFragment {
                 }
             }
         });
+        tv_forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         iv_qq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
