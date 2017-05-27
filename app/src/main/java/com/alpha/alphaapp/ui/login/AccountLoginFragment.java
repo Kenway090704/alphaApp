@@ -11,6 +11,7 @@ import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.login.LoginInfo;
+import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.register.RegisterActivity;
@@ -19,6 +20,9 @@ import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
+
+import static com.alpha.alphaapp.comm.CommStants.LOGIN_RESULT.RESULT_ACCOUNT_OR_PW_ERROR;
+import static com.alpha.alphaapp.comm.CommStants.LOGIN_RESULT.RESULT_LOGIN_OK;
 
 /**
  * Created by kenway on 17/5/26 11:27
@@ -109,8 +113,17 @@ public class AccountLoginFragment extends BaseFragment {
                         @Override
                         public void onReqSuccess(String result) {
                             ToastUtils.showShort(getContext(), result);
-                            HomeActivity.actionStart(getContext(), null, null);
-                            //将密码帐号与登录,是什么登录存入sharedPerferrence
+                            ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+                            switch (info.getResult()) {
+                                case RESULT_ACCOUNT_OR_PW_ERROR:
+
+                                    break;
+                                case RESULT_LOGIN_OK:
+                                    HomeActivity.actionStart(getContext(), null, null);
+                                    //将密码帐号与登录,是什么登录存入sharedPerferrence
+                                    break;
+                            }
+
 
                         }
 
