@@ -12,7 +12,7 @@ import android.support.v4.view.ViewPager;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
-import com.alpha.alphaapp.ui.register.adapter.BaseFragmentPageAdapter;
+import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

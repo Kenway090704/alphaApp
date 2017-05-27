@@ -34,7 +34,7 @@ public class LaunchActivity extends AppCompatActivity {
         //在这里判断是否登录帐号和密码 true--HomeActivity   false---RegisterActivity
         LoginInfo loginInfo = SharePLoginInfo.getInstance(this).getLoginInfo();
         if (loginInfo == null) {
-            switch (loginInfo.getLastType()) {
+            switch (loginInfo.getLastLoginType()) {
                 case CommStants.ACCOUNT_TYPE.ACCOUNT:
 
                     break;

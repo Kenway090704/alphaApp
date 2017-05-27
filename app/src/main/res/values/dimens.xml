@@ -18,5 +18,6 @@
     <dimen name="register_item_5dp">5dp</dimen>
     <dimen name="register_item_text_sp">18sp</dimen>
     <dimen name="register_item_hint_sp">14sp</dimen>
+    <!--登录页面-->
 
 </resources>

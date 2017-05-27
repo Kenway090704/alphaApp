@@ -190,7 +190,7 @@ public class RegisterInfo {
     }
 
     /**
-     * 第三方授权注册  qq,微信,sina   account是openid
+     * 第三方授权注册  qq_logo,微信,sina   account是openid
      * <p>
      * {“account":AFGHR9080,"account_type":3,user_ip:"187.12.33.44",terminal_type:"PC"}
      * <p/>

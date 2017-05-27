@@ -1,7 +1,10 @@
 package com.alpha.alphaapp.model.other;
 
+import android.widget.EditText;
+
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -15,54 +18,25 @@ import java.util.List;
 /**
  * Created by kenway on 17/5/25 15:00
  * Email : xiaokai090704@126.com
+ * 获取手机验证码
  */
 
 public class GetPhoneVerifyInfo {
-
-
-    private String account;
-    private String user_ip;
-    private int ts;
-
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-
-
-    public String getUser_ip() {
-        return user_ip;
-    }
-
-    public void setUser_ip(String user_ip) {
-        this.user_ip = user_ip;
-    }
-
-
-    public int getTs() {
-        return ts;
-    }
-
-    public void setTs(int ts) {
-        this.ts = ts;
-    }
-
     /**
      * 注册时
      * 获取手机验证码时的数据
      *
      * @return
      */
-    public String getJsonStrPhoneVerifyForRegiser() {
+    public static String getJsonStrPhoneVerifyForRegiser(EditText et_phone) {
+        if (et_phone == null) {
+            return null;
+        }
+        String account = et_phone.getText().toString();
         StringBuffer sb = new StringBuffer();
-        sb.append("{\"account\":").append("\"" + getAccount() + "\",")
+        sb.append("{\"account\":").append("\"" + account + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
-                .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.REGISTER + ",")
                 .append("\"get_verify\":").append(System.currentTimeMillis())
@@ -73,14 +47,18 @@ public class GetPhoneVerifyInfo {
     /**
      * 登录时
      * 获取手机验证码时的数据
-     *
+     * @param et_phone 手机号输入框对象
      * @return
      */
-    public String getJsonStrPhoneVerifyForLogin() {
+    public static String getJsonStrPhoneVerifyForLogin(EditText et_phone) {
+        if (et_phone == null) {
+            return null;
+        }
+        String account = et_phone.getText().toString();
         StringBuffer sb = new StringBuffer();
-        sb.append("{\"account\":").append("\"" + getAccount() + "\",")
+        sb.append("{\"account\":").append("\"" + account + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
-                .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.LOGIN + ",")
                 .append("\"get_verify\":").append(System.currentTimeMillis())

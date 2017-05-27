@@ -1,8 +1,10 @@
 package com.alpha.alphaapp.ui.register;
 
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 import com.alpha.alphaapp.R;
@@ -30,7 +32,22 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 public class PhoneRegisterFragment extends BaseFragment {
     private static final String TAG = "PhoneRegisterFragment";
     private EditText et_phone, et_pw, et_insurepw, et_verify, et_phoneVerify;
-    private Button btn_register, btn_get_verify;
+    private Button btn_register, TextView;
+    private TextView tv_get_verify;
+    // 实现倒计时功能
+    CountDownTimer timer = new CountDownTimer(120000, 1000) {
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            tv_get_verify.setText(millisUntilFinished / 1000 + "秒");
+        }
+
+        @Override
+        public void onFinish() {
+            tv_get_verify.setEnabled(true);
+            tv_get_verify.setText("重新发送");
+        }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -44,40 +61,35 @@ public class PhoneRegisterFragment extends BaseFragment {
         et_insurepw = (EditText) root.findViewById(R.id.reg_ph_et_pw_insurepw);
         et_phoneVerify = (EditText) root.findViewById(R.id.reg_ph_et_phoneverify);
         btn_register = (Button) root.findViewById(R.id.reg_ph_btn_register);
-        btn_get_verify = (Button) root.findViewById(R.id.reg_ph_get_verify);
+        tv_get_verify = (TextView) root.findViewById(R.id.reg_ph_get_verify);
     }
 
     @Override
     protected void initEnvent() {
-        btn_get_verify.setOnClickListener(new View.OnClickListener() {
+        tv_get_verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (Util.isNullOrNil(et_phone.getText().toString()) || !StringUtils.isPhoneNum(et_phone.getText().toString())) {
                     //如果输入的手机号码为空或着无效的手机号码提示
                     Log.e(TAG, "phone=" + et_phone.getText().toString());
                     ToastUtils.showShort(getActivity(), R.string.input_valid_eleven_number);
                 } else {
+
+                    tv_get_verify.setEnabled(false);
+                    timer.start();
                     //获取验证码
-                    final GetPhoneVerifyInfo info = new GetPhoneVerifyInfo();
-                    info.setAccount(et_phone.getText().toString());
-                    info.setUser_ip(IPAdressUtils.getIpAdress(getContext()));
-                    final String data = info.getJsonStrPhoneVerifyForRegiser();
+                    final String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForRegiser(et_phone);
                     String json = JsonUtil.getPostJsonSignString(data);
                     ReqCallBack<String> callBack = new ReqCallBack<String>() {
                         @Override
                         public void onReqSuccess(String result) {
 
+
+
                             ResponseInfo info1 = ResponseInfo.getRespInfoFromJsonStr(result);
                             switch (info1.getResult()) {
                                 case CommStants.GET_PHONEVERIFY_RESULT.RESUTL_OK:
                                     //获取验证码成功
-                                    ThreadPool.postToMainThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            btn_get_verify.setText("验证码已发送");
-                                        }
-                                    });
                                     break;
                                 case CommStants.GET_PHONEVERIFY_RESULT.PHONE_HAD_REGISTER:
                                     //当手机号存在时怎么处理,跳转到登录页面
@@ -136,10 +148,10 @@ public class PhoneRegisterFragment extends BaseFragment {
                                     ReqCallBack<String> callBack = new ReqCallBack<String>() {
                                         @Override
                                         public void onReqSuccess(String result) {
-                                         ResponseInfo responseInfo=     ResponseInfo.getRespInfoFromJsonStr(result);
-                                            switch (responseInfo.getResult()){
+                                            ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
+                                            switch (responseInfo.getResult()) {
                                                 case CommStants.REGISTER_RESULT.RESULT_REGISTER_OK:
-                                                    ToastUtils.showLong(getContext(),R.string.register_success);
+                                                    ToastUtils.showLong(getContext(), R.string.register_success);
                                                     break;
                                             }
                                         }
@@ -169,5 +181,12 @@ public class PhoneRegisterFragment extends BaseFragment {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        timer.cancel();
     }
 }

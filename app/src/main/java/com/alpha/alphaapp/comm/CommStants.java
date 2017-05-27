@@ -54,8 +54,17 @@ public class CommStants {
          * 帐号或密码错误
          */
         int RESULT_ACCOUNT_OR_PW_ERROR = 2;
+        /**
+         * 错误次数太多
+         */
         int RESULT_TOO_ERROR = 13;
+        /**
+         * 帐号错误
+         */
         int RESULT_ACCOUNT_ERROR = 101;
+        /**
+         * 验证码错误
+         */
         int RESULT_VERIFY_ERROR_OR_EMPTY = 102;
     }
 

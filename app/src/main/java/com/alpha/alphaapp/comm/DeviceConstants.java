@@ -17,7 +17,28 @@ public class DeviceConstants {
     public interface GET_VERIFY {
         int LOGIN = 1;
         int REGISTER = 2;
+    }
 
+    /**
+     * 上次的登录类型
+     */
+    public interface LASTLOGIN_TYPE {
+        /**
+         * 快速登录
+         */
+        int PHONE_QUICK = 0;
+        /**
+         * 手机或者帐号登录
+         */
+        int PHONE_OR_ACCOUNT = 1;
+        /**
+         * 微信授权登录
+         */
+        int AUTH_WEXIN = 2;
+        /**
+         * QQ授权登录
+         */
+        int AUTH_QQ = 3;
     }
 
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/register_item_left_margin"
+        android:layout_marginTop="@dimen/register_item_top_margin">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:textSize="@dimen/register_item_text_sp" />
+
+        <EditText
+            android:id="@+id/log_fast_et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/register_item_5dp"
+            android:hint="@string/input_valid_eleven_number"
+            android:singleLine="true"
+            android:textSize="@dimen/register_item_hint_sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/register_item_left_margin"
+        android:layout_marginTop="@dimen/register_item_top_margin"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_verify"
+            android:textSize="@dimen/register_item_text_sp" />
+
+        <EditText
+            android:id="@+id/log_fast_et_phoneverify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/register_item_5dp"
+            android:layout_weight="1"
+            android:hint="@string/msg_verify"
+            android:singleLine="true"
+            android:textSize="@dimen/register_item_hint_sp" />
+
+        <TextView
+            android:id="@+id/log_fast_tv_getVerify"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shape_bg_round"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/get_msg_verify" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/log_fast_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_btn_bg_round"
+        android:text="@string/login"
+        android:textSize="20sp" />
+</LinearLayout>

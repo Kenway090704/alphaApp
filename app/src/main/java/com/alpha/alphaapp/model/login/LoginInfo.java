@@ -1,8 +1,11 @@
 package com.alpha.alphaapp.model.login;
 
+import android.widget.EditText;
+
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.DeviceConstants;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
+import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 
 /**
  * Created by kenway on 17/5/23 15:11
@@ -15,12 +18,20 @@ public class LoginInfo {
      * 最近登录类型
      * phone ,account ,auth
      */
-    private int lastType;
+    private int lastLoginType;
     /**
      * 登录后返回的sesskey
      * 可以保存24小时
      */
     private String sessKey;
+
+    public String getSessKey() {
+        return sessKey;
+    }
+
+    public void setSessKey(String sessKey) {
+        this.sessKey = sessKey;
+    }
 
     private String account;
     private int account_type;
@@ -33,12 +44,12 @@ public class LoginInfo {
     private String openid_qq;
 
 
-    public int getLastType() {
-        return lastType;
+    public int getLastLoginType() {
+        return lastLoginType;
     }
 
-    public void setLastType(int lastType) {
-        this.lastType = lastType;
+    public void setLastLoginType(int lastLoginType) {
+        this.lastLoginType = lastLoginType;
     }
 
     public String getAccount() {
@@ -103,9 +114,37 @@ public class LoginInfo {
         StringBuffer sb = new StringBuffer();
         sb.append("{\"account\":").append("\"" + getAccount() + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
-                .append("\"pw\":").append("\"" + getPw() + "\",")
+                .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
                 .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\"")
+                .append("}");
+        return sb.toString();
+    }
+
+    /**
+     * 手机号与密码登录
+     * <p>
+     * ex:{"account":"kenway","account_type":0,"pw":"123456","user_ip":"","terminal_type":""}
+     * </p>
+     *
+     * @param et_uesrname 用户名输入框架
+     * @param et_pw       密码输入框架
+     * @return
+     */
+    public static String getJsonStrforphoneInAccount(EditText et_uesrname, EditText et_pw) {
+        if (et_pw == null || et_uesrname == null) {
+            return null;
+        }
+
+        String account = et_uesrname.getText().toString();
+        String pw = et_pw.getText().toString();
+        StringBuffer sb = new StringBuffer();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"pw\":").append("\"" + MD5.getMD5FromStr(pw) + "\",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_uesrname.getContext()) + "\",")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"phone_verify\":").append("\"\"")
                 .append("}");
         return sb.toString();
     }
@@ -139,8 +178,9 @@ public class LoginInfo {
      * @return
      */
     public String getJsonStrforPhone() {
+
         StringBuffer sb = new StringBuffer();
-        sb.append("{\"account\":").append("\"" + getAccount() + "\",")
+        sb.append("{\"account\":").append("\"" + account + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
@@ -152,7 +192,7 @@ public class LoginInfo {
 
 
     /**
-     * 第三方登录  qq,微信,sina account是openid
+     * 第三方登录  qq_logo,微信,sina account是openid
      * <p>
      * {“account":AFGHR9080,"account_type":3,user_ip:"187.12.33.44",terminal_type:"PC"}
      * <p/>
@@ -173,7 +213,8 @@ public class LoginInfo {
     @Override
     public String toString() {
         return "LoginInfo{" +
-                "lastType=" + lastType +
+                "lastLoginType=" + lastLoginType +
+                ", sessKey='" + sessKey + '\'' +
                 ", account='" + account + '\'' +
                 ", account_type=" + account_type +
                 ", pw='" + pw + '\'' +

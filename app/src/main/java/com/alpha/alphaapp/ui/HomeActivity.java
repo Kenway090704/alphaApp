@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -65,5 +66,9 @@ public class HomeActivity extends BaseActivity {
         intent.putExtra("params", data1);
         intent.putExtra("params", data2);
         context.startActivity(intent);
+        if (context instanceof Activity) {
+            ((Activity) context).finish();
+        }
+
     }
 }

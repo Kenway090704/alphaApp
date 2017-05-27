@@ -129,7 +129,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@android:color/holo_red_light"
+        android:background="@drawable/shape_btn_bg_round"
         android:text="@string/register"
         android:textSize="20sp" />
 </LinearLayout>
