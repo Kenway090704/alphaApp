@@ -39,7 +39,7 @@ public class GetPhoneVerifyInfo {
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.REGISTER + ",")
-                .append("\"get_verify\":").append(System.currentTimeMillis())
+                .append("\"ts\":").append(System.currentTimeMillis())
                 .append("}");
         return sb.toString();
     }
@@ -61,7 +61,7 @@ public class GetPhoneVerifyInfo {
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.LOGIN + ",")
-                .append("\"get_verify\":").append(System.currentTimeMillis())
+                .append("\"ts\":").append(System.currentTimeMillis())
                 .append("}");
         return sb.toString();
     }

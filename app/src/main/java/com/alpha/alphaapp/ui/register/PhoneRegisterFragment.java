@@ -23,6 +23,7 @@ import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
+import com.alpha.lib_stub.model.CountDownManager;
 
 /**
  * Created by kenway on 17/5/24 16:39
@@ -34,20 +35,10 @@ public class PhoneRegisterFragment extends BaseFragment {
     private EditText et_phone, et_pw, et_insurepw, et_verify, et_phoneVerify;
     private Button btn_register, TextView;
     private TextView tv_get_verify;
-    // 实现倒计时功能
-    CountDownTimer timer = new CountDownTimer(120000, 1000) {
 
-        @Override
-        public void onTick(long millisUntilFinished) {
-            tv_get_verify.setText(millisUntilFinished / 1000 + "秒");
-        }
 
-        @Override
-        public void onFinish() {
-            tv_get_verify.setEnabled(true);
-            tv_get_verify.setText("重新发送");
-        }
-    };
+    private CountDownManager cdm;
+
 
     @Override
     protected int getLayoutId() {
@@ -62,6 +53,7 @@ public class PhoneRegisterFragment extends BaseFragment {
         et_phoneVerify = (EditText) root.findViewById(R.id.reg_ph_et_phoneverify);
         btn_register = (Button) root.findViewById(R.id.reg_ph_btn_register);
         tv_get_verify = (TextView) root.findViewById(R.id.reg_ph_get_verify);
+
     }
 
     @Override
@@ -76,14 +68,13 @@ public class PhoneRegisterFragment extends BaseFragment {
                 } else {
 
                     tv_get_verify.setEnabled(false);
-                    timer.start();
+                    cdm.start();
                     //获取验证码
                     final String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForRegiser(et_phone);
                     String json = JsonUtil.getPostJsonSignString(data);
                     ReqCallBack<String> callBack = new ReqCallBack<String>() {
                         @Override
                         public void onReqSuccess(String result) {
-
 
 
                             ResponseInfo info1 = ResponseInfo.getRespInfoFromJsonStr(result);
@@ -180,13 +171,14 @@ public class PhoneRegisterFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        cdm = new CountDownManager();
+        cdm.setTextView(tv_get_verify);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        timer.cancel();
+        cdm.cancel();
     }
 }

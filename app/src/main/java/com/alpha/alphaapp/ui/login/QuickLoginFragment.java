@@ -23,6 +23,7 @@ import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.DeviceUtils;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
+import com.alpha.lib_stub.model.CountDownManager;
 
 /**
  * Created by kenway on 17/5/26 11:28
@@ -34,6 +35,7 @@ public class QuickLoginFragment extends BaseFragment {
     private EditText et_phone, et_verify;
     private TextView tv_getVerify;
     private Button btn_login;
+    private CountDownManager cdm;
 
     @Override
     protected int getLayoutId() {
@@ -62,6 +64,7 @@ public class QuickLoginFragment extends BaseFragment {
                 //获取手机验证码
                 String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForLogin(et_phone);
                 String json = JsonUtil.getPostJsonSignString(data);
+                cdm.start();
                 RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.PHONEVERIFY, json, null);
 
 
@@ -119,6 +122,13 @@ public class QuickLoginFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        cdm = new CountDownManager();
+        cdm.setTextView(tv_getVerify);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cdm.cancel();
     }
 }
