@@ -99,10 +99,16 @@ public class URLConstans {
          *  解除好友关系
          */
         String DELFRIEND=URL_ROOT+"delFriend";
+
         /**
          * 查询好友关系
          */
         String GETFRIENDLIST=URL_ROOT+"getFriendList";
+
+        /**
+         *  通过密码修改密码
+         */
+        String CHANGEPWDBYPWD=URL_ROOT+"changepw";
 
     }
 }

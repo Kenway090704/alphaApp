@@ -12,6 +12,7 @@ import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.login.LoginInfo;
 import com.alpha.alphaapp.model.result.ResponseInfo;
+import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.register.RegisterActivity;
@@ -121,6 +122,8 @@ public class AccountLoginFragment extends BaseFragment {
                                 case RESULT_LOGIN_OK:
                                     HomeActivity.actionStart(getContext(), null, null);
                                     //将密码帐号与登录,是什么登录存入sharedPerferrence
+                                    ResponseInfo infoSskey = ResponseInfo.getRespInfoFromJsonStr(result, true);
+                                    SharePLoginInfo.getInstance(getContext()).saveSskey(infoSskey.getSskey());
                                     break;
                             }
 
