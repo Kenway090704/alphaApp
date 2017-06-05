@@ -54,8 +54,6 @@ public class RegisterActivity extends BaseFragmentActivity {
     public void initData() {
         initTabLayout();
         initFragments();
-
-
     }
 
     private void initFragments() {
