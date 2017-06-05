@@ -15,6 +15,7 @@ import com.alpha.alphaapp.model.other.CheckAccoutInfo;
 import com.alpha.alphaapp.model.register.RegisterInfo;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
+import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
@@ -102,6 +103,8 @@ public class AccountRegisterFragment extends BaseFragment {
                                                 if (responseInfo.getResult() == CommStants.CHECKOUT_ACCOUNT_RESULT.RESUTL_OK) {
                                                     //注册成功
                                                     ToastUtils.showLong(getContext(), R.string.register_success);
+
+                                                    HomeActivity.actionStartClearStack(getContext(), null, null);
                                                 }
                                             }
 

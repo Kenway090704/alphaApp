@@ -4,8 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_sign"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HomeActivity" />
+        android:text="@string/sign" />
+
+    <Button
+        android:id="@+id/btn_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recommend" />
+
+    <Button
+        android:id="@+id/btn_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/block" />
+
+    <Button
+        android:id="@+id/btn_shoppingmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shoppingmall" />
+
+    <Button
+        android:id="@+id/btn_mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mine" />
+
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings" />
+
 </LinearLayout>

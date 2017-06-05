@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.login.LoginInfo;
@@ -19,6 +21,8 @@ import com.alpha.lib_sdk.app.log.Log;
 
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
+
+    private Button btnSettings;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +45,14 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        btnSettings = (Button)findViewById(R.id.btn_settings);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -70,5 +81,13 @@ public class HomeActivity extends BaseActivity {
             ((Activity) context).finish();
         }
 
+    }
+
+    public static void actionStartClearStack(Context context, String data1, String data2) {
+        Intent intent = new Intent(context, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("params", data1);
+        intent.putExtra("params", data2);
+        context.startActivity(intent);
     }
 }

@@ -1,5 +1,7 @@
 package com.alpha.alphaapp.ui.login;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
+import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.register.AccountRegisterFragment;
 import com.alpha.alphaapp.ui.register.PhoneRegisterFragment;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
@@ -103,5 +106,13 @@ public class LoginActivity extends BaseFragmentActivity {
 
             }
         });
+    }
+
+    public static void actionStartClearStack(Context context, String data1, String data2) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("params", data1);
+        intent.putExtra("params", data2);
+        context.startActivity(intent);
     }
 }

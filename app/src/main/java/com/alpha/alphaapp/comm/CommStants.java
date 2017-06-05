@@ -149,4 +149,24 @@ public class CommStants {
         int TOO_MUCH_MESSAGE = 110;
 
     }
+
+    /**
+     * *通过密码修改密码
+     */
+    public interface CHANGE_PWD_BY_PWD_RESULT {
+        /**
+         * 修改密码成功
+         */
+        int RESULT_OK = 0;
+
+        /**
+         * 请重新登录
+         */
+        int RESULT_RELOGIN = 1;
+
+        /**
+         * 修改密码失败
+         */
+        int RESULT_FAIL_TO_MODIFY = 2;
+    }
 }

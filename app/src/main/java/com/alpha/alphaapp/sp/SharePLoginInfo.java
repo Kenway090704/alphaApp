@@ -26,6 +26,8 @@ public class SharePLoginInfo {
     private SharedPreferences preferencesData;
     private SharedPreferences.Editor editorData;
 
+    private static final String SSKEY = "sskey";
+
     /**
      * 获取单例
      *
@@ -106,6 +108,20 @@ public class SharePLoginInfo {
         String strJson = gson.toJson(loginInfo);
         editorData.putString(SHARED_TAG__NAME, strJson);
         editorData.commit();
+    }
+
+    public void saveSskey(String sskey) {
+        if (sskey == null) {
+            return;
+        }
+
+        editorData.putString(SSKEY, sskey);
+        editorData.commit();
+    }
+
+    public String getSskey() {
+        String sskey = preferencesData.getString(SSKEY, null);
+        return sskey;
     }
 
 

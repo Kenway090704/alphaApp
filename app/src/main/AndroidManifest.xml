@@ -21,7 +21,14 @@
         </activity>
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
-        <!--<activity android:name=".ui.login.LoginActivity"/>-->
+        <!-- <activity android:name=".ui.login.LoginActivity"/> -->
+        <activity android:name=".ui.SettingsActivity" />
+        <activity android:name=".ui.AboutUsActivity" />
+        <activity android:name=".ui.FeedbackActivity" />
+        <activity android:name=".ui.ScoreActivity" />
+        <activity android:name=".ui.AccountSecurityActivity" />
+        <activity android:name=".ui.CurrentAccountActivity" />
+        <activity android:name=".ui.ModifyPasswordActivity"></activity>
     </application>
 
 </manifest>
