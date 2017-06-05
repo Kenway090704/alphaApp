@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
- * 发现页面Viewpager的FragmentPagerAdapter
+ * Viewpager的FragmentPagerAdapter
  * Created by HanLei on 2016/8/8 0008.
  */
 public class BaseFragmentPageAdapter extends FragmentPagerAdapter {
