@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">alphaApp</string>
+    <string name="app_user_center">奥飞用户中心</string>
     <!-- 注册页面-->
     <string name="alpha_account">奥飞帐号</string>
     <string name="input_pw">输入密码</string>
@@ -23,8 +24,8 @@
     <string name="input_valid_eleven_number">请输入11位有效的手机号</string>
     <string name="phone_verify">手机验证码</string>
     <string name="msg_verify">短信验证码</string>
-    <string name="verify_error">验证格式错误</string>
-    <string name="input_verify">请输入验证码</string>
+    <string name="verify_form_error">验证格式错误</string>
+    <string name="input_verify">输入验证码</string>
     <string name="phone_had">该手机号已经注册</string>
     <string name="pw_error_format">密码格式需为6-12位字符</string>
     <string name="get_msg_verify">获取短信验证码</string>
@@ -33,11 +34,13 @@
     <string name="user_account">用户帐号</string>
     <string name="alpha_account_or_phonenumber">奥飞帐号\\\ 手机号</string>
     <string name="pw">密码</string>
-    <string name="forget_pw">忘记密码?</string>
+    <string name="forget_pw">忘记密码</string>
     <string name="free_register">免费注册</string>
+    <string name="i_want_register">我要注册</string>
     <string name="login">登录</string>
     <string name="login_success">登录成功</string>
     <string name="account_or_verify_error">手机号或者验证码格式不正确</string>
+    <string name="user_auth_login">使用其他登录方式</string>
     <!--Home Activity-->
     <string name="sign">签到</string>
     <string name="recommend">推荐</string>
@@ -76,5 +79,20 @@
     <string name="success_change_pwd">修改密码成功</string>
     <string name="please_relogin">请重新登录</string>
     <string name="fail_to_modify_pwd">修改密码失败</string>
+    <!--bind-->
+    <string name="bind_had_account">关联已有帐号</string>
+    <string name="no_bind">暂不关联,直接创建新帐号</string>
+    <string name="submit">提交</string>
+    <string name="insure_bind_account">确定关联该帐号么?</string>
+    <string name="bind_success_you_use_wechat_phone_login">关联成功,可用该手机号或者微信号登录。</string>
+    <string name="bind_success_you_use_wechat_account_login">关联成功,可用该帐号或者微信号登录。</string>
+    <!--forget_pw-->
+    <string name="find_pw">找回密码</string>
+    <string name="by_bind_phone_get">通过绑定的手机号找回</string>
+    <string name="by_bind_wechat_set">通过绑定的微信设置</string>
+    <string name="verify_msg">验证身份</string>
+    <string name="reset_pw">重设密码</string>
+    <string name="get_phone_verify">获取手机验证码</string>
+    <string name="pw_form">密码(6-12位字符)</string>
 
 </resources>

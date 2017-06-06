@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="error_red">#df422a</color>
+    <!--login-->
+    <color name="tv_bg_blue">#e6169bd5</color>
+    <!--bind-->
+    <color name="tv_black">#f3000000</color>
 </resources>

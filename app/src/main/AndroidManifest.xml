@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:name=".app.MyApplication"
@@ -28,7 +30,31 @@
         <activity android:name=".ui.ScoreActivity" />
         <activity android:name=".ui.AccountSecurityActivity" />
         <activity android:name=".ui.CurrentAccountActivity" />
-        <activity android:name=".ui.ModifyPasswordActivity"></activity>
+        <activity android:name=".ui.ModifyPasswordActivity" />
+        <activity android:name=".ui.bind.BindAccountActivity" />
+        <activity android:name=".ui.forgetpw.ForgetPWGuideActivity" />
+        <activity android:name=".ui.forgetpw.PhoneGetPwActivity1" />
+        <activity android:name=".ui.forgetpw.PhoneGetPwActivity2" />
+        <activity android:name=".ui.forgetpw.PhoneGetPwActivity3" />
+        <!--QQ授权登录-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--这里要添加在腾讯开发平台获取的appid,222222是测试用的appid-->
+                <data android:scheme="222222" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>

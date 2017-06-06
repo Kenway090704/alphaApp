@@ -17,4 +17,59 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--activity 的动画-->
+    <style name="Anim_tran" parent="android:Theme.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/fade</item>
+    </style>
+
+    <style name="fade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/out_to_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_to_left</item>
+    </style>
+    <!--**********控件使用的style***************-->
+    <!--btn通用样式-->
+    <style name="btn_com">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/shape_btn_bg_gray</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <!--et通用样式-->
+    <style name="et_com">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/register_item_5dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/shape_et_bg</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/register_item_hint_sp</item>
+        <item name="android:layout_marginRight">@dimen/register_item_5dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <!--et有验证码的通用样式通用样式-->
+    <style name="et_hasVerfiy_com">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/register_item_5dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/shape_et_bg</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/register_item_hint_sp</item>
+        <item name="android:layout_marginRight">@dimen/register_item_5dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <!--tv——error通用样式-->
+    <style name="tv_error_com">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/register_item_left_margin</item>
+        <item name="android:layout_marginTop">@dimen/register_item_top_margin</item>
+        <item name="android:textColor">@color/error_red</item>
+    </style>
+
 </resources>

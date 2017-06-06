@@ -48,67 +48,80 @@ public class URLConstans {
         /**
          * 渠道cdk检索
          */
-        String CHANNELCHECK=URL_ROOT+"channelCheck";
+        String CHANNELCHECK = URL_ROOT + "channelCheck";
         /**
          * 渠道提交用户领奖记录
          */
-        String AWARDLOG=URL_ROOT+"awardLog";
+        String AWARDLOG = URL_ROOT + "awardLog";
         /**
          * 获取收货地址
          */
-        String GETADDRESS=URL_ROOT+"getAddress";
+        String GETADDRESS = URL_ROOT + "getAddress";
         /**
-         *  添加收货地址
+         * 添加收货地址
          */
-        String ADDADDRESS=URL_ROOT+"addAddress";
+        String ADDADDRESS = URL_ROOT + "addAddress";
         /**
          * 编辑收货地址
          */
-        String EDITADDRESS=URL_ROOT+"editAddress";
+        String EDITADDRESS = URL_ROOT + "editAddress";
         /**
          * 删除收货地址
          */
-        String DELADDRESS=URL_ROOT+"delAddress";
+        String DELADDRESS = URL_ROOT + "delAddress";
         /**
          * 设置默认收货地址
          */
-        String DELADDEFAULTADDRESSDRESS=URL_ROOT+"defaultAddress";
+        String DELADDEFAULTADDRESSDRESS = URL_ROOT + "defaultAddress";
         /**
          * 获取头像列表
          */
-        String GETICONS=URL_ROOT+"getIcons";
+        String GETICONS = URL_ROOT + "getIcons";
         /**
          * 获取用户积分信息
          */
-        String GETSCOREINFO=URL_ROOT+"getScoreInfo";
+        String GETSCOREINFO = URL_ROOT + "getScoreInfo";
         /**
          * 获用户增加积分
          */
-        String ADDSCORE=URL_ROOT+"addScore";
+        String ADDSCORE = URL_ROOT + "addScore";
         /**
-         *  用户扣除积分
+         * 用户扣除积分
          */
-        String DELSCORE=URL_ROOT+"delScore";
+        String DELSCORE = URL_ROOT + "delScore";
 
         /**
-         *  添加好友关系
+         * 添加好友关系
          */
-        String ADDFRIEND=URL_ROOT+"addFriend";
+        String ADDFRIEND = URL_ROOT + "addFriend";
 
         /**
-         *  解除好友关系
+         * 解除好友关系
          */
-        String DELFRIEND=URL_ROOT+"delFriend";
+        String DELFRIEND = URL_ROOT + "delFriend";
 
         /**
          * 查询好友关系
          */
-        String GETFRIENDLIST=URL_ROOT+"getFriendList";
+        String GETFRIENDLIST = URL_ROOT + "getFriendList";
 
         /**
-         *  通过密码修改密码
+         * 通过密码修改密码
          */
-        String CHANGEPWDBYPWD=URL_ROOT+"changepw";
+        String CHANGEPWDBYPWD = URL_ROOT + "changepw";
 
+
+        /**
+         * 用户绑定手机号、账号、微信、QQ
+         */
+        String BIND_ACCOUNT = URL_ROOT + "bind";
+        /**
+         * L  手机号找回密码
+         */
+        String PHONE_FIND_PW = URL_ROOT + "phoneFindPw";
+        /**
+         * Z  忘记密码--通过手机验证修改密码
+         */
+        String PHONE_VERIFY_EDITPW = URL_ROOT + "phoneEditPw";
     }
 }

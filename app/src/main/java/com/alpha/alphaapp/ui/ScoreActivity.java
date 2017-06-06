@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.alpha.alphaapp.R;
 
+
 public class ScoreActivity extends AppCompatActivity {
 
     @Override

@@ -22,6 +22,15 @@ public class ResponseInfo {
     private int result;
     private String msg;
     private String sskey;
+    private String phone_verify;
+
+    public String getPhone_verify() {
+        return phone_verify;
+    }
+
+    public void setPhone_verify(String phone_verify) {
+        this.phone_verify = phone_verify;
+    }
 
     /**
      * 从返回的json字符串中获取result的值
@@ -77,6 +86,22 @@ public class ResponseInfo {
             ResponseInfo newResponseInfo = new ResponseInfo();
             if (hasSessKey) {
                 newResponseInfo.setSskey(jsonObject.getString("sskey"));
+            }
+            newResponseInfo.setMsg(jsonObject.getString("msg"));
+            newResponseInfo.setResult(jsonObject.getInt("result"));
+            return newResponseInfo;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ResponseInfo getRespInfoFromJsonStrHadVerify(String json, boolean hasVerify) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            ResponseInfo newResponseInfo = new ResponseInfo();
+            if (hasVerify) {
+                newResponseInfo.setPhone_verify(jsonObject.getString("phone_verify"));
             }
             newResponseInfo.setMsg(jsonObject.getString("msg"));
             newResponseInfo.setResult(jsonObject.getInt("result"));

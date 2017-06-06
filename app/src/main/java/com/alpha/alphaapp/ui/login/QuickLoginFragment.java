@@ -1,5 +1,8 @@
 package com.alpha.alphaapp.ui.login;
 
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,6 +74,53 @@ public class QuickLoginFragment extends BaseFragment {
             }
         });
 
+        et_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(et_verify.getText())) {
+                    btn_login.setEnabled(Boolean.FALSE);
+                    btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
+
+                } else {
+                    btn_login.setEnabled(Boolean.TRUE);
+                    btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        et_verify.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(et_verify.getText())) {
+                    btn_login.setEnabled(Boolean.FALSE);
+                    btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
+
+                } else {
+                    btn_login.setEnabled(Boolean.TRUE);
+                    btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

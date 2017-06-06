@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--加入标题栏-->
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/forget_pw_guide_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/forget_pw_guide_btn_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/by_bind_phone_get" />
+
+    <Button
+        android:id="@+id/forget_pw_guide_btn_weChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/by_bind_phone_get" />
+</LinearLayout>

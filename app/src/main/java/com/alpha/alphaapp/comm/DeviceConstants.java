@@ -12,11 +12,38 @@ public class DeviceConstants {
     }
 
     /**
-     * 获取手机验证码的时候使用
+     * 获取手机验证码
      */
     public interface GET_VERIFY {
+        /**
+         * 手机号登录
+         */
         int LOGIN = 1;
+        /**
+         * 手机号注册
+         */
         int REGISTER = 2;
+        /**
+         * 手机号找回密码
+         */
+        int GET_PW = 3;
+        /**
+         * 更换绑定手机号-验证旧手机号
+         */
+        int VERIFY_OLD_PHONE = 4;
+        /**
+         * 更换绑定手机号-绑定新手机号
+         */
+        int BIND_NEW_PHONE = 5;
+        /**
+         * 绑定手机号
+         */
+        int BIND_PHONE = 6;
+        /**
+         * 手机号修改密码
+         */
+        int PHONE_EDIT_PW = 7;
+
     }
 
     /**

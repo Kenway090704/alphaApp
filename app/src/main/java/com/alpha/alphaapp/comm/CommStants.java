@@ -13,6 +13,7 @@ public class CommStants {
         int ACCOUNT = 0;
         int PHONE = 1;
         int AUTH = 3;
+        int AUTH_WECHAT = 4;
     }
 
     /**
@@ -168,5 +169,105 @@ public class CommStants {
          * 修改密码失败
          */
         int RESULT_FAIL_TO_MODIFY = 2;
+    }
+
+    /**
+     * 用户绑定手机号,帐号,微信,qq
+     */
+    public interface BIND_ACOUNT_RESULT {
+        /**
+         * 绑定成功
+         */
+        int RESULT_OK = 0;
+
+        /**
+         * 请重新登录
+         */
+        int RESULT_RELOGIN = 1;
+
+        /**
+         * 手机号已绑定:手机已经被绑定,请重新输入
+         */
+        int RESULT_PHONE_HAD_BIND = 106;
+        /**
+         * 手机号输入错误或者为空:请输入 11 位有效的手机号
+         */
+        int RESULT_PHONE_IS_ERROR = 101;
+        /**
+         * 短信验证码错误或者为空:验证码输入错误
+         */
+        int RESULT_VERIFY_IS_ERROR = 101;
+        /**
+         * ”短信验证码获取超过次数:获取验证码过于频繁,请明天再试
+         */
+        int RESULT_GETVERIFY_TOO_MUCH = 102;
+        /**
+         * 账号已存在,请重新输入
+         */
+        int RESULT_ACCOUT_HAD = 114;
+    }
+
+    /**
+     * L 手机帐号找回密码
+     */
+
+    public interface BY_PHONE_FIND_PW {
+        /**
+         * 修改密码成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 验证码错误
+         */
+        int RESULT_VERIFY_ERROR = 1;
+        /**
+         * 手机号错误
+         */
+        int RESULT_PHONE_ERROR = 2;
+        /**
+         * 数据包错误
+         */
+        int RESULT_DATA_PACKAGE_ERROR = 3;
+        /**
+         * 密码格式错误
+         */
+        int RESULT_PW_FORM_ERROR = 4;
+        /**
+         * 验证码输入错误，请重新输入
+         */
+        int RESULT_VERIFY_INPUT_ERROR = 109;
+        /**
+         * 账号手机号输入错误：账号或手机号输入错误或未绑定，请重新输入
+         */
+        int RESULT_PHONE_INPUT_ERROR = 202;
+    }
+
+    /**
+     * Z  通过手机修改密码
+     */
+    public interface BY_PHONE_EDITPW_RESULT {
+        /**
+         * 密码修改成功
+         */
+        int RESULT_OK = 0;
+
+        /**
+         * 验证码错误
+         */
+        int RESULT_VERIFY_CODE_ERROR = 1;
+
+        /**
+         * 手机号错误
+         */
+        int RESULT_PHONE_ERROR = 2;
+        /**
+         * 数据包错误
+         */
+        int RESULT_DATA_PACKAGE_ERROR = 3;
+        /**
+         * 密码格式错误
+         */
+        int RESULT_PW_FORM_ERROR = 4;
+
     }
 }

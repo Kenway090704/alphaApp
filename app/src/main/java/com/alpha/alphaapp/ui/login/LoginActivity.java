@@ -15,6 +15,9 @@ import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.register.AccountRegisterFragment;
 import com.alpha.alphaapp.ui.register.PhoneRegisterFragment;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +80,6 @@ public class LoginActivity extends BaseFragmentActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 vp.setCurrentItem(tab.getPosition());
-                ;
             }
 
             @Override
@@ -115,4 +117,27 @@ public class LoginActivity extends BaseFragmentActivity {
         intent.putExtra("params", data2);
         context.startActivity(intent);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+         //qq授权登录使用
+        Tencent.onActivityResultData(requestCode, resultCode, data, new IUiListener() {
+            @Override
+            public void onComplete(Object o) {
+
+            }
+
+            @Override
+            public void onError(UiError uiError) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+    }
+
+
 }

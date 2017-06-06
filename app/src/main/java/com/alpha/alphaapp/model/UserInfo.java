@@ -22,7 +22,6 @@ public class UserInfo {
     private String uuid;           //uuid
     private String openid_qq;     //openid_qq
     private String openid_weixin; //weixin openid
-    private String openid_sina; //sina  openid
     private String mobile;      //手机
     private String country;    //国家
     private String privonce;   //省
@@ -121,13 +120,6 @@ public class UserInfo {
         this.openid_weixin = openid_weixin;
     }
 
-    public String getOpenid_sina() {
-        return openid_sina;
-    }
-
-    public void setOpenid_sina(String openid_sina) {
-        this.openid_sina = openid_sina;
-    }
 
     public String getMobile() {
         return mobile;

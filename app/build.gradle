@@ -1,15 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    //签名文件
-//    signingConfigs {
-//        config {
-//            keyAlias 'china'
-//            keyPassword '123456'
-//            storeFile file('/Users/xiaokai/Documents/Alpha gd project/keystore/alphaapp.jks')
-//            storePassword '123456'
-//        }
-//    }
+
+
+    aaptOptions {
+                cruncherEnabled = false
+                useNewCruncher = false
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {

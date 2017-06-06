@@ -35,8 +35,6 @@ public class PhoneRegisterFragment extends BaseFragment {
     private EditText et_phone, et_pw, et_insurepw, et_verify, et_phoneVerify;
     private Button btn_register, TextView;
     private TextView tv_get_verify;
-
-
     private CountDownManager cdm;
 
 
@@ -53,7 +51,6 @@ public class PhoneRegisterFragment extends BaseFragment {
         et_phoneVerify = (EditText) root.findViewById(R.id.reg_ph_et_phoneverify);
         btn_register = (Button) root.findViewById(R.id.reg_ph_btn_register);
         tv_get_verify = (TextView) root.findViewById(R.id.reg_ph_get_verify);
-
     }
 
     @Override
@@ -104,7 +101,6 @@ public class PhoneRegisterFragment extends BaseFragment {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
                     ToastUtils.showLong(getContext(), R.string.input_valid_eleven_number);
                 } else {
@@ -114,7 +110,7 @@ public class PhoneRegisterFragment extends BaseFragment {
                         return;
                     }
                     if (!StringUtils.isPhoneVerify(et_phoneVerify.getText().toString())) {
-                        ToastUtils.showLong(getContext(), R.string.verify_error);
+                        ToastUtils.showLong(getContext(), R.string.verify_form_error);
                     } else {
                         if (Util.isNullOrNil(et_pw.getText().toString()) || Util.isNullOrNil(et_insurepw.getText().toString())) {
                             ToastUtils.showLong(getContext(), R.string.input_pw);
@@ -143,6 +139,7 @@ public class PhoneRegisterFragment extends BaseFragment {
                                             switch (responseInfo.getResult()) {
                                                 case CommStants.REGISTER_RESULT.RESULT_REGISTER_OK:
                                                     ToastUtils.showLong(getContext(), R.string.register_success);
+                                                    //点击登录
                                                     break;
                                             }
                                         }

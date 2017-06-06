@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/phone_get_pw_1_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/layout_get_pw" />
+
+    <EditText
+        android:id="@+id/phone_get_pw_1_et_phone"
+        style="@style/et_com"
+        android:hint="@string/phone_number" />
+
+    <TextView
+        android:id="@+id/phone_get_pw_1_tv_error"
+        style="@style/tv_error_com" />
+
+    <Button
+        android:id="@+id/phone_get_pw_1_btn_getVerify"
+        style="@style/btn_com"
+        android:text="@string/get_phone_verify" />
+</LinearLayout>

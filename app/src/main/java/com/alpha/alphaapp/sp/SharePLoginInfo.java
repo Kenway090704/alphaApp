@@ -28,6 +28,12 @@ public class SharePLoginInfo {
 
     private static final String SSKEY = "sskey";
 
+
+    /**
+     * 是否绑定帐号
+     */
+    private static final String ISBIND = "isbind";
+
     /**
      * 获取单例
      *
@@ -63,17 +69,17 @@ public class SharePLoginInfo {
 
 
     /**
-     * 保存某一场比赛的结果与信息
+     * 保存最后一次的登录信息
      *
-     * @param com 当前场次比赛
+     * @param loginInfo 登录信息
      */
-    public void saveLoginInfo(LoginInfo com) {
-        if (null == com) {
+    public void saveLoginInfo(LoginInfo loginInfo) {
+        if (null == loginInfo) {
             return;
         }
         Gson gson = new Gson();
         //转换城json数据,再保存
-        String strJson = gson.toJson(com);
+        String strJson = gson.toJson(loginInfo);
         editorData.putString(SHARED_TAG__NAME, strJson);
         editorData.commit();
     }
@@ -99,7 +105,7 @@ public class SharePLoginInfo {
     }
 
     /**
-     * 清空所有比赛数据
+     * 清空登录数据
      */
     public void clear() {
         LoginInfo loginInfo = new LoginInfo();
@@ -122,6 +128,20 @@ public class SharePLoginInfo {
     public String getSskey() {
         String sskey = preferencesData.getString(SSKEY, null);
         return sskey;
+    }
+
+    public void saveIsBindAccount(Boolean isBind) {
+        if (isBind == null) {
+            return;
+        }
+
+        editorData.putBoolean(ISBIND, isBind);
+        editorData.commit();
+    }
+
+    public Boolean getIsBindAccount() {
+        boolean isbindac = preferencesData.getBoolean(ISBIND, true);
+        return isbindac;
     }
 
 

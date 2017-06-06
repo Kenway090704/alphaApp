@@ -13,10 +13,8 @@
         android:id="@+id/register_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:tabIndicatorColor="@android:color/holo_green_dark"
         app:tabSelectedTextColor="@android:color/holo_green_dark" />
-
     <android.support.v4.view.ViewPager
         android:id="@+id/register_vp"
         android:layout_width="match_parent"

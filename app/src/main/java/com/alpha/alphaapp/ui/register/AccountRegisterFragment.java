@@ -103,7 +103,7 @@ public class AccountRegisterFragment extends BaseFragment {
                                                 if (responseInfo.getResult() == CommStants.CHECKOUT_ACCOUNT_RESULT.RESUTL_OK) {
                                                     //注册成功
                                                     ToastUtils.showLong(getContext(), R.string.register_success);
-
+                                                      //点击登录
                                                     HomeActivity.actionStartClearStack(getContext(), null, null);
                                                 }
                                             }

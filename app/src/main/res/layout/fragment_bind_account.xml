@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/bind_ac_et_accout"
+        style="@style/et_com"
+        android:hint="@string/alpha_account_or_phonenumber" />
+    <EditText
+        android:id="@+id/bind_ac_et_pw"
+        style="@style/et_com"
+        android:hint="@string/pw" />
+
+    <TextView
+        android:id="@+id/bind_ac_tv_error"
+        style="@style/tv_error_com" />
+
+    <Button
+        android:id="@+id/bind_ac_btn_submit"
+        style="@style/btn_com"
+        android:text="@string/submit" />
+</LinearLayout>

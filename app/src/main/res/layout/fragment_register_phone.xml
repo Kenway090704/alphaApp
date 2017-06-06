@@ -19,12 +19,8 @@
 
         <EditText
             android:id="@+id/reg_ph_et_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/register_item_5dp"
-            android:hint="@string/eleven_number"
-            android:singleLine="true"
-            android:textSize="@dimen/register_item_hint_sp" />
+            style="@style/et_com"
+            android:hint="@string/eleven_number" />
     </LinearLayout>
 
     <LinearLayout
@@ -165,7 +161,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/shape_btn_bg_round"
+        android:background="@drawable/shape_btn_bg_blue"
         android:text="@string/register"
         android:textSize="20sp" />
 </LinearLayout>

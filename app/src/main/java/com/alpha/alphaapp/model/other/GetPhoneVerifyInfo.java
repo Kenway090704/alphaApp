@@ -47,6 +47,7 @@ public class GetPhoneVerifyInfo {
     /**
      * 登录时
      * 获取手机验证码时的数据
+     *
      * @param et_phone 手机号输入框对象
      * @return
      */
@@ -61,6 +62,51 @@ public class GetPhoneVerifyInfo {
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.LOGIN + ",")
+                .append("\"ts\":").append(System.currentTimeMillis())
+                .append("}");
+        return sb.toString();
+    }
+
+    /**
+     * qq或微信 绑定手机号
+     * 获取手机验证码时的数据
+     *
+     * @param et_phone 手机号输入框对象
+     * @return
+     */
+    public static String getJsonStrPhoneVerifyForBind(EditText et_phone) {
+        if (et_phone == null) {
+            return null;
+        }
+        String account = et_phone.getText().toString();
+        StringBuffer sb = new StringBuffer();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.BIND_PHONE + ",")
+                .append("\"ts\":").append(System.currentTimeMillis())
+                .append("}");
+        return sb.toString();
+    }
+
+    /**
+     * 手机号找回密码
+     * 获取手机验证码时的数据
+     * @param et_phone 手机号输入框对象
+     * @return
+     */
+    public static String getJsonStrPhoneVerifyForGetPW(EditText et_phone) {
+        if (et_phone == null) {
+            return null;
+        }
+        String account = et_phone.getText().toString();
+        StringBuffer sb = new StringBuffer();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.GET_PW + ",")
                 .append("\"ts\":").append(System.currentTimeMillis())
                 .append("}");
         return sb.toString();
