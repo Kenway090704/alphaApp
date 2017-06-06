@@ -48,7 +48,7 @@ public class ModifyPasswordActivity extends BaseFragmentActivity {
     private void initFragments() {
         fragmentList = new ArrayList<>();
         fragmentList.add(new ModifyPasswordByPasswordFragment());
-        fragmentList.add(new ModifyPasswordByPasswordFragment());
+        fragmentList.add(new ModifyPasswordByPhoneFragment());
         fragmentList.add(new ModifyPasswordByPasswordFragment());
 
 

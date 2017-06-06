@@ -12,6 +12,7 @@ public class AccountSecurityActivity extends AppCompatActivity {
 
     private Button btnCurrentAccount;
     private Button btnModifyPassword;
+    private Button btnBindPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,15 @@ public class AccountSecurityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AccountSecurityActivity.this, ModifyPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnBindPhoneNumber = (Button)findViewById(R.id.btnBindPhoneNumber);
+        btnBindPhoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AccountSecurityActivity.this, BindPhoneNumberActivity.class);
                 startActivity(intent);
             }
         });

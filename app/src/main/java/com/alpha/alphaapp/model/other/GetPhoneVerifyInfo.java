@@ -66,4 +66,44 @@ public class GetPhoneVerifyInfo {
         return sb.toString();
     }
 
+    /**
+     * When modifying the password,
+     * get the verify code from the server
+     */
+    public static String getJsonStrPhoneVerifyForModifyPwd(EditText et_phone) {
+        if (et_phone == null) {
+            return null;
+        }
+        String account = et_phone.getText().toString();
+        StringBuffer sb = new StringBuffer();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.MODIFY_PWD_BY_PHONE + ",")
+                .append("\"ts\":").append(System.currentTimeMillis())
+                .append("}");
+        return sb.toString();
+    }
+
+    /**
+     * When binding the phone number,
+     * get the verify code from the server
+     */
+    public static String getJsonStrPhoneVerifyForBindPhone(EditText et_phone) {
+        if (et_phone == null) {
+            return null;
+        }
+        String account = et_phone.getText().toString();
+        StringBuffer sb = new StringBuffer();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_phone.getContext()) + "\",")
+                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"get_verify\":").append("" + DeviceConstants.GET_VERIFY.BIND_PHONE + ",")
+                .append("\"ts\":").append(System.currentTimeMillis())
+                .append("}");
+        return sb.toString();
+    }
+
 }

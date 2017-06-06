@@ -17,6 +17,11 @@ public class DeviceConstants {
     public interface GET_VERIFY {
         int LOGIN = 1;
         int REGISTER = 2;
+        int FIND_PWD = 3;
+        int VERIFY_OLD_PHONE_IN_CHANGE_BINDING = 4;
+        int BINDING_NEW_PHONE_IN_CHANGE_BINDING = 5;
+        int BIND_PHONE = 6;
+        int MODIFY_PWD_BY_PHONE = 7;
     }
 
     /**

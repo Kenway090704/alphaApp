@@ -110,5 +110,20 @@ public class URLConstans {
          */
         String CHANGEPWDBYPWD=URL_ROOT+"changepw";
 
+        /**
+         * Find out the password by the verify code
+         */
+        String FINDPWDBYPHONE=URL_ROOT+"phoneFindPw";
+
+        /**
+         * Modify the password by the phone
+         */
+        String MODIFYPWDBYPHONE=URL_ROOT+"phoneEditPw";
+
+        /**
+         * Bind the phone number
+         */
+        String BINDPHONENUMBER = URL_ROOT + "bind";
+
     }
 }

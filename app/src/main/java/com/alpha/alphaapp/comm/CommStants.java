@@ -169,4 +169,27 @@ public class CommStants {
          */
         int RESULT_FAIL_TO_MODIFY = 2;
     }
+
+    /**
+     * Find out the new password by the phone verify code
+     */
+    public interface FIND_PWD_BY_PHONE_RESULT {
+        int RESULT_OK = 0;
+        int USER_NOT_EXIST = 1;
+        int PHONE_WRONG = 2;
+        int DATA_PACKAGE_WRONG = 3;
+        int PWD_FORMAT_WRONG = 4;
+    }
+
+    /**
+     * the result for binding the phone nubmer
+     */
+    public interface BIND_PHONE_NUMBER_RESULT {
+        int RESULT_OK = 0;
+        int PLZ_RELOGIN = 1;
+        int PHONE_BIND_ALREADY = 106;
+        int PHONE_NUMBER_WRONG = 101;
+        int VERIFY_CODE_EXCEED_MAX = 102;
+        int ACCOUNT_EXIST_ALREADY = 114;
+    }
 }
