@@ -79,6 +79,22 @@
     <string name="success_change_pwd">修改密码成功</string>
     <string name="please_relogin">请重新登录</string>
     <string name="fail_to_modify_pwd">修改密码失败</string>
+    <string name="sucess_send_verify_code">验证码已经发送，请注意查收</string>
+    <string name="phone_has_registered">该手机号码已经注册，请重新输入</string>
+    <string name="phone_not_registered">该手机号暂未注册</string>
+    <string name="verify_code_has_existed">验证码已经存在</string>
+    <string name="messages_exceed_max">超过每天获取短信条数</string>
+    <string name="plz_input_verify_code">请输入验证码</string>
+    <string name="user_not_exist">用户不存在</string>
+    <string name="data_package_wrong">数据包错误</string>
+    <string name="pwd_format_wrong">密码格式错误</string>
+    <string name="verify_code_wrong_input_again">验证码输入错误，请重新输入</string>
+    <string name="phone_number_wrong">手机号错误</string>
+    <string name="phone_number_wrong_input_again">手机号输入错误或者未绑定，请重新输入</string>
+    <!--Bind phone number-->
+    <string name="success_bind_phone_number">绑定成功</string>
+    <string name="phone_bind_already">手机号已经绑定，请重新输入！</string>
+    <string name="account_exist_already">账号已经存在，请重新输入</string>
     <!--bind-->
     <string name="bind_had_account">关联已有帐号</string>
     <string name="no_bind">暂不关联,直接创建新帐号</string>

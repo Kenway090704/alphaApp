@@ -116,12 +116,20 @@ public class URLConstans {
          */
         String BIND_ACCOUNT = URL_ROOT + "bind";
         /**
-         * L  手机号找回密码
+         * (L)  手机号找回密码
          */
         String PHONE_FIND_PW = URL_ROOT + "phoneFindPw";
+
+
         /**
-         * Z  忘记密码--通过手机验证修改密码
+         * (H) Bind the phone number
          */
-        String PHONE_VERIFY_EDITPW = URL_ROOT + "phoneEditPw";
+        String BINDPHONENUMBER = URL_ROOT + "bind";
+
+
+        /**
+         * (Z) Modify the password by the phone
+         */
+        String MODIFYPWDBYPHONE=URL_ROOT+"phoneEditPw";
     }
 }

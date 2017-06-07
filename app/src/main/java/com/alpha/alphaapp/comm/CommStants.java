@@ -172,6 +172,18 @@ public class CommStants {
     }
 
     /**
+     * (H) the result for binding the phone nubmer
+     */
+    public interface BIND_PHONE_NUMBER_RESULT {
+        int RESULT_OK = 0;
+        int PLZ_RELOGIN = 1;
+        int PHONE_BIND_ALREADY = 106;
+        int PHONE_NUMBER_WRONG = 101;
+        int VERIFY_CODE_EXCEED_MAX = 102;
+        int ACCOUNT_EXIST_ALREADY = 114;
+    }
+
+    /**
      * 用户绑定手机号,帐号,微信,qq
      */
     public interface BIND_ACOUNT_RESULT {
@@ -243,31 +255,13 @@ public class CommStants {
     }
 
     /**
-     * Z  通过手机修改密码
+     * (Z) Find out the new password by the phone verify code
      */
-    public interface BY_PHONE_EDITPW_RESULT {
-        /**
-         * 密码修改成功
-         */
+    public interface FIND_PWD_BY_PHONE_RESULT {
         int RESULT_OK = 0;
-
-        /**
-         * 验证码错误
-         */
-        int RESULT_VERIFY_CODE_ERROR = 1;
-
-        /**
-         * 手机号错误
-         */
-        int RESULT_PHONE_ERROR = 2;
-        /**
-         * 数据包错误
-         */
-        int RESULT_DATA_PACKAGE_ERROR = 3;
-        /**
-         * 密码格式错误
-         */
-        int RESULT_PW_FORM_ERROR = 4;
-
+        int USER_NOT_EXIST = 1;
+        int PHONE_WRONG = 2;
+        int DATA_PACKAGE_WRONG = 3;
+        int PWD_FORMAT_WRONG = 4;
     }
 }

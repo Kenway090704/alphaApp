@@ -42,7 +42,7 @@ public class DeviceConstants {
         /**
          * 手机号修改密码
          */
-        int PHONE_EDIT_PW = 7;
+        int MODIFY_PWD_BY_PHONE = 7;
 
     }
 
