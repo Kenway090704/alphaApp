@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.login;
 import android.widget.EditText;
 
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 
@@ -116,7 +116,7 @@ public class LoginInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\"")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
         return sb.toString();
     }
@@ -143,7 +143,7 @@ public class LoginInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(pw) + "\",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(et_uesrname.getContext()) + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"\"")
                 .append("}");
         return sb.toString();
@@ -163,7 +163,7 @@ public class LoginInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"tuiguang_id\":").append("\"" + getTuiguang_id() + "\"")
                 .append("}");
         return sb.toString();
@@ -184,7 +184,7 @@ public class LoginInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"" + getPhone_verify() + "\"")
                 .append("}");
         return sb.toString();
@@ -204,7 +204,7 @@ public class LoginInfo {
         sb.append("{\"account\":").append("\"" + getOpenid_qq() + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\"")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
         return sb.toString();
     }

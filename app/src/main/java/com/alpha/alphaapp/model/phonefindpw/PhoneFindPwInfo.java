@@ -1,7 +1,7 @@
 package com.alpha.alphaapp.model.phonefindpw;
 
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
@@ -26,7 +26,7 @@ public class PhoneFindPwInfo {
         sb.append("{\"account\":").append("\"" + phone + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"" + verify + "\",")
                 .append("\"newpw\":").append("\"" + MD5.getMD5FromStr(newPw) + "\"")
                 .append("}");

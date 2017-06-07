@@ -3,10 +3,10 @@ package com.alpha.alphaapp.comm;
 /**
  * Created by kenway on 17/5/25 14:11
  * Email : xiaokai090704@126.com
- * 关于设备的常数
+ * 包含获取验证码的类型,上次登录的类型
  */
 
-public class DeviceConstants {
+public class TypeConstants {
     public interface TERMINAL_TYPE {
         String PHONE = "PHONE";
     }

@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.logout.LoginOutInfo;
@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
                 LoginOutInfo logoutInfo = new LoginOutInfo();
                 logoutInfo.setSskey(SharePLoginInfo.getInstance(getBaseContext()).getSskey());
                 logoutInfo.setUser_ip(IPAdressUtils.getIpAdress(view.getContext()));
-                logoutInfo.setTerminal_type(DeviceConstants.TERMINAL_TYPE.PHONE);
+                logoutInfo.setTerminal_type(TypeConstants.TERMINAL_TYPE.PHONE);
 
                 String data = logoutInfo.getJSONStrforLoginOut();
                 Log.e(TAG, "logout data = " + data);

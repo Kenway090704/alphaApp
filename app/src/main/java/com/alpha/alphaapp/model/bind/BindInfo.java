@@ -1,7 +1,7 @@
 package com.alpha.alphaapp.model.bind;
 
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
@@ -39,7 +39,7 @@ public class BindInfo {
                 .append("\"account\":").append("\"" + account + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(pw) + "\"")
                 .append("}");
         return sb.toString();
@@ -51,7 +51,7 @@ public class BindInfo {
                 .append("\"account\":").append("\"" + phone + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"" + verifyCode + "\"")
                 .append("}");
         return sb.toString();
@@ -63,7 +63,7 @@ public class BindInfo {
                 .append("\"account\":").append("\"" + openid + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\"")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
         return sb.toString();
     }
@@ -74,7 +74,7 @@ public class BindInfo {
                 .append("\"account\":").append("\"" + wechatopneid + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH_WECHAT + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\"")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
         return sb.toString();
     }

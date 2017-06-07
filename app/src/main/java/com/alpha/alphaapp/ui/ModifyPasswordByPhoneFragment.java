@@ -4,20 +4,17 @@ package com.alpha.alphaapp.ui;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.modifyPassword.ModifyPwdByPhoneInfo;
-import com.alpha.alphaapp.model.modifyPassword.ModifyPwdByPwdInfo;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
-import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
@@ -127,7 +124,7 @@ public class ModifyPasswordByPhoneFragment extends BaseFragment {
                     info.setAccount(strPhoneNumber);
                     info.setAccountType(Integer.toString(CommStants.ACCOUNT_TYPE.PHONE));
                     info.setUserIP(IPAdressUtils.getIpAdress(view.getContext()));
-                    info.setTerminalType(DeviceConstants.TERMINAL_TYPE.PHONE);
+                    info.setTerminalType(TypeConstants.TERMINAL_TYPE.PHONE);
                     info.setPhoneVerifyCode(strVerifyCode);
                     info.setNewPwd(strNewPwd);
 

@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
@@ -93,7 +93,7 @@ public class AccountRegisterFragment extends BaseFragment {
                                         registerInfo.setAccount(et_accout.getText().toString());
                                         registerInfo.setPw(et_pw.getText().toString());
                                         registerInfo.setUser_ip(IPAdressUtils.getIpAdress(getContext()));
-                                        registerInfo.setTerminal_type(DeviceConstants.TERMINAL_TYPE.PHONE);
+                                        registerInfo.setTerminal_type(TypeConstants.TERMINAL_TYPE.PHONE);
                                         String data = registerInfo.getJsonStrforAccount();
                                         String json = JsonUtil.getPostJsonSignString(data);
                                         ReqCallBack<String> callBack = new ReqCallBack<String>() {

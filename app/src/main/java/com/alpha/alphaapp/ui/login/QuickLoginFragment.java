@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
@@ -20,10 +20,8 @@ import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
-import com.alpha.lib_sdk.app.tool.DeviceUtils;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.model.CountDownManager;
@@ -145,7 +143,7 @@ public class QuickLoginFragment extends BaseFragment {
                                 //登录成功
                                 //登录成功
                                 loginInfo.setSessKey(responseInfo.getSskey());
-                                loginInfo.setLastLoginType(DeviceConstants.LASTLOGIN_TYPE.PHONE_QUICK);
+                                loginInfo.setLastLoginType(TypeConstants.LASTLOGIN_TYPE.PHONE_QUICK);
                                 SharePLoginInfo.getInstance(getContext()).saveLoginInfo(loginInfo);
                                 ToastUtils.showLong(getContext(), R.string.login_success);
                                 //跳转到主页面,后面可携带参数

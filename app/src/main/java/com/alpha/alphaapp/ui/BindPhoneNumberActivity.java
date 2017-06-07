@@ -1,6 +1,5 @@
 package com.alpha.alphaapp.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,11 +8,10 @@ import android.widget.EditText;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.modifyPassword.ModifyPwdByPhoneInfo;
 import com.alpha.alphaapp.model.other.BindPhoneNumberInfo;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
 import com.alpha.alphaapp.model.result.ResponseInfo;
@@ -115,7 +113,7 @@ public class BindPhoneNumberActivity extends AppCompatActivity {
                 info.setAccount(strPhoneNumber);
                 info.setAccountType(Integer.toString(CommStants.ACCOUNT_TYPE.PHONE));
                 info.setUserIP(IPAdressUtils.getIpAdress(view.getContext()));
-                info.setTerminalType(DeviceConstants.TERMINAL_TYPE.PHONE);
+                info.setTerminalType(TypeConstants.TERMINAL_TYPE.PHONE);
                 info.setPhoneVerifyCode(strVerifyCode);
 
                 String data = info.getJsonBindPhoneNumberInfo();

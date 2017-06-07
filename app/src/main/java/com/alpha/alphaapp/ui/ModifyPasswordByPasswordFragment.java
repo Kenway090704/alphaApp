@@ -1,18 +1,12 @@
 package com.alpha.alphaapp.ui;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
@@ -66,7 +60,7 @@ public class ModifyPasswordByPasswordFragment extends BaseFragment {
                         info.setOldPwd(strOldPwd);
                         info.setNewPwd(strNewPwd);
                         info.setUserIP(IPAdressUtils.getIpAdress(view.getContext()));
-                        info.setTerminalType(DeviceConstants.TERMINAL_TYPE.PHONE);
+                        info.setTerminalType(TypeConstants.TERMINAL_TYPE.PHONE);
 
                         String rawData = info.getJsonModifyPwdByPwdInfo();
                         String json = JsonUtil.getPostJsonSignString(rawData);

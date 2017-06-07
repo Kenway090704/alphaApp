@@ -1,7 +1,7 @@
 package com.alpha.alphaapp.model.register;
 
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.DeviceConstants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -183,7 +183,7 @@ public class RegisterInfo {
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
                 .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
-                .append("\"terminal_type\":").append("\"" + DeviceConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"" + getPhone_verify() + "\"")
                 .append("}");
         return sb.toString();
