@@ -302,7 +302,7 @@ public class PhoneBindFragment extends BaseFragment {
 
             }
         };
-        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.BIND_ACCOUNT, json, callBack);
+        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.BIND, json, callBack);
     }
 
     @Override

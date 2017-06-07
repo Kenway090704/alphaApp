@@ -16,10 +16,14 @@
             android:layout_height="wrap_content"
             android:text="@string/phone_number"
             android:textSize="@dimen/register_item_text_sp" />
-
         <EditText
             android:id="@+id/reg_ph_et_phone"
-            style="@style/et_com"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/register_item_5dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textSize="@dimen/register_item_hint_sp"
             android:hint="@string/eleven_number" />
     </LinearLayout>
 

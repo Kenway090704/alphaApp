@@ -127,23 +127,23 @@ public class BindPhoneNumberActivity extends AppCompatActivity {
                         ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
                         int resultCode = responseInfo.getResult();
                         switch (resultCode) {
-                            case CommStants.BIND_PHONE_NUMBER_RESULT.RESULT_OK:
+                            case CommStants.BIND_ACOUNT_RESULT.RESULT_OK:
                                 ToastUtils.showLong(getBaseContext(), R.string.success_bind_phone_number);
                                 BindPhoneNumberActivity.this.finish();
                                 break;
-                            case CommStants.BIND_PHONE_NUMBER_RESULT.PLZ_RELOGIN:
+                            case CommStants.BIND_ACOUNT_RESULT.RESULT_RELOGIN:
                                 ToastUtils.showLong(getBaseContext(), R.string.please_relogin);
                                 break;
-                            case CommStants.BIND_PHONE_NUMBER_RESULT.PHONE_BIND_ALREADY:
+                            case CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_HAD_BIND:
                                 ToastUtils.showLong(getBaseContext(), R.string.phone_bind_already);
                                 break;
-                            case CommStants.BIND_PHONE_NUMBER_RESULT.PHONE_NUMBER_WRONG:
+                            case CommStants.BIND_ACOUNT_RESULT.RESULT_VERIFY_IS_ERROR:
                                 ToastUtils.showLong(getBaseContext(), R.string.phone_number_wrong);
                                 break;
-                            case CommStants.BIND_PHONE_NUMBER_RESULT.VERIFY_CODE_EXCEED_MAX:
+                            case CommStants.BIND_ACOUNT_RESULT.RESULT_GETVERIFY_TOO_MUCH:
                                 ToastUtils.showLong(getBaseContext(), R.string.messages_exceed_max);
                                 break;
-                            case CommStants.BIND_PHONE_NUMBER_RESULT.ACCOUNT_EXIST_ALREADY:
+                            case CommStants.BIND_ACOUNT_RESULT.RESULT_ACCOUT_HAD:
                                 ToastUtils.showLong(getBaseContext(), R.string.account_exist_already);
                                 break;
                             default:
@@ -159,7 +159,7 @@ public class BindPhoneNumberActivity extends AppCompatActivity {
                         Log.e(TAG, "修改密码时，发送到服务器失败！");
                     }
                 };
-                RequestManager.getInstance(getBaseContext()).requestPostByJsonAsyn(URLConstans.URL.BINDPHONENUMBER, json, callBack);
+                RequestManager.getInstance(getBaseContext()).requestPostByJsonAsyn(URLConstans.URL.BIND, json, callBack);
             }
         });
     }

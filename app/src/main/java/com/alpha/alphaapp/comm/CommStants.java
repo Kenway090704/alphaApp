@@ -17,7 +17,7 @@ public class CommStants {
     }
 
     /**
-     * 注册时返回的result类型
+     * (A)注册时返回的result类型
      */
     public interface REGISTER_RESULT {
         /**
@@ -43,7 +43,7 @@ public class CommStants {
     }
 
     /**
-     * 用户登录返回的RESULT
+     * (B)用户登录返回result
      */
     public interface LOGIN_RESULT {
         int RESULT_LOGIN_OK = 0;
@@ -70,7 +70,7 @@ public class CommStants {
     }
 
     /**
-     * 用户登出返回RESULT
+     * (C)用户登出返回RESULT
      */
     public interface LOGINOUT_RESULT {
         /**
@@ -80,7 +80,7 @@ public class CommStants {
     }
 
     /**
-     * 一般信息修改返回结果
+     * (D)一般信息修改返回结果
      */
     public interface ACCOUNTMODIFY_RESULT {
         int RESULT_MODIFY_OK = 0;
@@ -95,7 +95,27 @@ public class CommStants {
     }
 
     /**
-     * 检查帐号是否存在
+     * (F)通过密码修改密码
+     */
+    public interface CHANGE_PWD_BY_PWD_RESULT {
+        /**
+         * 修改密码成功
+         */
+        int RESULT_OK = 0;
+
+        /**
+         * 请重新登录
+         */
+        int RESULT_RELOGIN = 1;
+
+        /**
+         * 修改密码失败
+         */
+        int RESULT_FAIL_TO_MODIFY = 2;
+    }
+
+    /**
+     * (G)检查帐号是否存在
      */
     public interface CHECKOUT_ACCOUNT_RESULT {
         /**
@@ -120,71 +140,11 @@ public class CommStants {
         int RESULT_PHONE_ERROR = 101;
     }
 
-    /**
-     * 获取手机验证码RESULT
-     */
-    public interface GET_PHONEVERIFY_RESULT {
-        /**
-         * 验证码已发送
-         */
-        int RESUTL_OK = 0;
-        /**
-         * 该手机号码已注册
-         */
-        int PHONE_HAD_REGISTER = 106;
-        /**
-         * 该手机号暂未注册
-         */
-        int PHONE_NO_REGISTER = 107;
-        /**
-         * 验证码已存在
-         */
-        int VERIFY_HAD = 108;
-        /**
-         * 手机号码错误
-         */
-        int PHOEN_ERROR = 109;
-        /**
-         * 超过每天获取短信条数
-         */
-        int TOO_MUCH_MESSAGE = 110;
 
-    }
+
 
     /**
-     * *通过密码修改密码
-     */
-    public interface CHANGE_PWD_BY_PWD_RESULT {
-        /**
-         * 修改密码成功
-         */
-        int RESULT_OK = 0;
-
-        /**
-         * 请重新登录
-         */
-        int RESULT_RELOGIN = 1;
-
-        /**
-         * 修改密码失败
-         */
-        int RESULT_FAIL_TO_MODIFY = 2;
-    }
-
-    /**
-     * (H) the result for binding the phone nubmer
-     */
-    public interface BIND_PHONE_NUMBER_RESULT {
-        int RESULT_OK = 0;
-        int PLZ_RELOGIN = 1;
-        int PHONE_BIND_ALREADY = 106;
-        int PHONE_NUMBER_WRONG = 101;
-        int VERIFY_CODE_EXCEED_MAX = 102;
-        int ACCOUNT_EXIST_ALREADY = 114;
-    }
-
-    /**
-     * 用户绑定手机号,帐号,微信,qq
+     * (H)用户绑定手机号,帐号,微信,qq
      */
     public interface BIND_ACOUNT_RESULT {
         /**
@@ -220,7 +180,38 @@ public class CommStants {
     }
 
     /**
-     * L 手机帐号找回密码
+     * (K)获取手机验证码RESULT
+     */
+    public interface GET_PHONEVERIFY_RESULT {
+        /**
+         * 验证码已发送
+         */
+        int RESUTL_OK = 0;
+        /**
+         * 该手机号码已注册
+         */
+        int PHONE_HAD_REGISTER = 106;
+        /**
+         * 该手机号暂未注册
+         */
+        int PHONE_NO_REGISTER = 107;
+        /**
+         * 验证码已存在
+         */
+        int VERIFY_HAD = 108;
+        /**
+         * 手机号码错误
+         */
+        int PHOEN_ERROR = 109;
+        /**
+         * 超过每天获取短信条数
+         */
+        int TOO_MUCH_MESSAGE = 110;
+
+    }
+
+    /**
+     * (L) 手机帐号找回密码
      */
 
     public interface BY_PHONE_FIND_PW {
