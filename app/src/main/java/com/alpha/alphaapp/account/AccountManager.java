@@ -95,7 +95,6 @@ public class AccountManager {
 
     public void setSskey(String sskey) {
         this.sskey = sskey;
-        loadUserinfo();//加载用户信息
     }
 
     /**

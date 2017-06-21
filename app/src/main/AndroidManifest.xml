@@ -59,6 +59,10 @@
         <activity android:name=".ui.mine.MineInfoActivity" />
         <activity android:name=".ui.mine.addr.ModifyContactAddrActivity" />
         <activity android:name=".ui.mine.school.ModifySchoolActivity" />
+
+        <!--签到-->
+        <activity android:name=".ui.sign.SignActivity" />
+        <activity android:name=".ui.sign.MySignActivity" />
         <!--QQ授权登录-->
         <activity
             android:name="com.tencent.tauth.AuthActivity"

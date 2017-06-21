@@ -61,22 +61,7 @@ public class QuickLoginFragment extends BaseFragment {
         ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //获取验证码
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
-                    //验证手机号码格式是否正确
-                    tv_error.setText(R.string.input_valid_eleven_number);
-                    tv_error.setVisibility(View.VISIBLE);
-                    return;
-                }
-                ivet.start();//开始倒计时
-                //获取手机验证码
-                String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForLogin(et_phone.getText().toString());
-                String json = JsonUtil.getPostJsonSignString(data);
-
-                RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.PHONEVERIFY, json, null);
-
-
+                getPhoneVerify();
             }
         });
 
@@ -141,41 +126,61 @@ public class QuickLoginFragment extends BaseFragment {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString()) &&
-                        !StringUtils.isPhoneVerify(ivet.getText().toString())) {
-                    //验证手机号和验证码格式是否正确
-                    tv_error.setText(R.string.account_or_verify_error);
-                    tv_error.setVisibility(View.VISIBLE);
-                    return;
-                }
-
-                if (loadingDialog != null) {
-                    loadingDialog.show();
-                }
-                //快速登录
-                String data = LoginLogic.getJsonStrforQuickLogin(et_phone.getText().toString(), ivet.getText().toString());
-                String json = JsonUtil.getPostJsonSignString(data);
-                ReqCallBack<String> loginCallback = new ReqCallBack<String>() {
-                    @Override
-                    public void onReqSuccess(String result) {
-                        if (loadingDialog != null) {
-                            loadingDialog.dismiss();
-                        }
-                        doDealLoginNormal(result, TypeConstants.LOGIN_TYPE.PHONE_QUICK);
-                    }
-
-                    @Override
-                    public void onReqFailed(String errorMsg) {
-                        if (loadingDialog != null) {
-                            loadingDialog.dismiss();
-                        }
-                    }
-                };
-                RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, loginCallback);
-
-
+                doPhoneQuickLogin();
             }
         });
+    }
+
+    /**
+     * 获取手机验证码
+     */
+    private void getPhoneVerify() {
+        //获取验证码
+        if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+            //验证手机号码格式是否正确
+            tv_error.setText(R.string.input_valid_eleven_number);
+            tv_error.setVisibility(View.VISIBLE);
+            return;
+        }
+        ivet.start();//开始倒计时
+        //获取手机验证码
+        String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForLogin(et_phone.getText().toString());
+        String json = JsonUtil.getPostJsonSignString(data);
+        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.PHONEVERIFY, json, null);
+    }
+
+    /**
+     * 手机快速登录
+     */
+    private void doPhoneQuickLogin() {
+        if (!StringUtils.isPhoneNum(et_phone.getText().toString()) &&
+                !StringUtils.isPhoneVerify(ivet.getText().toString())) {
+            //验证手机号和验证码格式是否正确
+            tv_error.setText(R.string.account_or_verify_error);
+            tv_error.setVisibility(View.VISIBLE);
+            return;
+        }
+        if (loadingDialog != null) {
+            loadingDialog.show();
+        }
+        String phone = et_phone.getText().toString();
+        String vrerify = ivet.getText().toString();
+        LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
+            @Override
+            public void onLoginSuccessed(String sskey) {
+                if (loadingDialog != null) {
+                    loadingDialog.dismiss();
+                }
+                HomeActivity.actionStart(getContext(), null, null);
+            }
+
+            @Override
+            public void onLoginFailed(String errorMsg) {
+                tv_error.setText(errorMsg);
+                tv_error.setVisibility(View.VISIBLE);
+            }
+        };
+        LoginLogic.doLogin(phone, vrerify, TypeConstants.LOGIN_TYPE.PHONE_QUICK, callBack);
     }
 
     @Override
@@ -183,58 +188,13 @@ public class QuickLoginFragment extends BaseFragment {
 
     }
 
-    /**
-     * 帐号与手机登录返回不同结果处理
-     *
-     * @param result
-     */
-    private void doDealLoginNormal(String result, int typeLogin) {
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        switch (info.getResult()) {
-            case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
-                //将密码帐号与登录,是什么登录存入sharedPerferrence
-                info = ResponseInfo.getRespInfoFromJsonStr(result, true);
-                AccountManager.getInstance().setSskey(info.getSskey());
-                AccountManager.getInstance().setLoginType(typeLogin);
-                HomeActivity.actionStart(getContext(), null, null);
-                break;
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_NOHAD:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.LOGIN_RESULT.RESULT_TOO_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_OR_PW_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-            case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-        }
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (Util.isNull(ivet))
             ivet.cancel();
-
         if (loadingDialog != null)
             loadingDialog.dismiss();
-
     }
 
     @Override

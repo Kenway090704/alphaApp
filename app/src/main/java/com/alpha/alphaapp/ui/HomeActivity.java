@@ -40,12 +40,6 @@ public class HomeActivity extends BaseFragmentActivity {
 
     @Override
     public void initData() {
-        Log.e(TAG, "provinces===" + GetPCityAreaData.itme1datas.toString());
-        Log.e(TAG, "citys===" + GetPCityAreaData.item2datas.toString());
-        Log.e(TAG, "areas===" + GetPCityAreaData.item3datas.toString());
-
-
-
         initFragments();
     }
 

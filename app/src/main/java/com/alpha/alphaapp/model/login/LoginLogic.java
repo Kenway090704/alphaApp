@@ -125,7 +125,7 @@ public class LoginLogic {
      *
      * @return
      */
-    public static String getJsonStrforAccount(String account, String pw) {
+    private static String getJsonStrforAccount(String account, String pw) {
         StringBuffer sb = new StringBuffer();
         sb.append("{\"account\":").append("\"" + account + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
@@ -146,7 +146,7 @@ public class LoginLogic {
      * @param pw      密码输入框架
      * @return
      */
-    public static String getJsonStrforphoneInAccount(String account, String pw) {
+    private static String getJsonStrforphoneInAccount(String account, String pw) {
         if (Util.isNullOrBlank(account) || Util.isNullOrBlank(pw)) {
             return null;
         }
@@ -189,7 +189,7 @@ public class LoginLogic {
      *
      * @return
      */
-    public static String getJsonStrforQuickLogin(String phone, String verify) {
+    private static String getJsonStrforQuickLogin(String phone, String verify) {
 
         StringBuffer sb = new StringBuffer();
         sb.append("{\"account\":").append("\"" + phone + "\",")
@@ -211,7 +211,7 @@ public class LoginLogic {
      *
      * @return
      */
-    public static String getJsonStrforQQAuth(String openid) {
+    private static String getJsonStrforQQAuth(String openid) {
         StringBuffer sb = new StringBuffer();
         sb.append("{\"account\":").append("\"" + openid + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
@@ -230,7 +230,7 @@ public class LoginLogic {
      *
      * @return
      */
-    public static String getJsonStrforWXAuth(String openid) {
+    private static String getJsonStrforWXAuth(String openid) {
         StringBuffer sb = new StringBuffer();
         sb.append("{\"account\":").append("\"" + openid + "\",")
                 .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH_WECHAT + ",")
@@ -242,13 +242,19 @@ public class LoginLogic {
 
     /**
      * 登录操作
+     * <p>loginType</p>
+     * <p>TypeConstants.LOGIN_TYPE.ACCONUT_PW</p>
+     * <p>TypeConstants.LOGIN_TYPE.PHONE_PW</p>
+     * <p>TypeConstants.LOGIN_TYPE.PHONE_QUICK</p>
+     * <p>TypeConstants.LOGIN_TYPE.AUTH_WX</p>
+     * <p>TypeConstants.LOGIN_TYPE.AUTH_QQ</p>
      *
      * @param account_openid 帐号或者openid
      * @param pw_verify      密码或者验证码
      * @param loginType      登录类型
      * @param loginListener  登录监听
      */
-    public static void doLogin(String account_openid, String pw_verify, int loginType, final OnLoginListener loginListener) {
+    public static void doLogin(String account_openid, String pw_verify, int loginType, final OnLoginCallBack loginListener) {
         String data = null;
         switch (loginType) {
             case TypeConstants.LOGIN_TYPE.ACCONUT_PW:
@@ -289,21 +295,20 @@ public class LoginLogic {
      *
      * @param result
      */
-    private static void doDealLoginReqSuccess(String result, final OnLoginListener listener) {
+    private static void doDealLoginReqSuccess(String result, final OnLoginCallBack listener) {
         ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
         switch (info.getResult()) {
             case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
 
                 //将密码帐号与登录,是什么登录存入sharedPerferrence
-                info = ResponseInfo.getRespInfoFromJsonStr(result, true);
-                AccountManager.getInstance().setSskey(info.getSskey());
+                final ResponseInfo info2 = ResponseInfo.getRespInfoFromJsonStr(result, true);
+                AccountManager.getInstance().setSskey(info2.getSskey());
                 GetUserInfoLogic.OnGetUserInfoCallBack callBack = new GetUserInfoLogic.OnGetUserInfoCallBack() {
                     @Override
                     public void onGetUserInfoSuccuss(UserInfo info) {
                         AccountManager.getInstance().saveUserInfo(info);
-                        if (!Util.isNull(listener)) {
-                            listener.onLoginSuccessed();
-                        }
+                        if (!Util.isNull(listener))
+                            listener.onLoginSuccessed(info2.getSskey());
                     }
 
                     @Override
@@ -311,7 +316,7 @@ public class LoginLogic {
 
                     }
                 };
-                GetUserInfoLogic.doGetUserInfo(info.getSskey(), callBack);
+                GetUserInfoLogic.doGetUserInfo(info2.getSskey(), callBack);
                 break;
             case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_NOHAD:
                 if (!Util.isNull(listener))
@@ -352,8 +357,8 @@ public class LoginLogic {
                 '}';
     }
 
-    public interface OnLoginListener {
-        void onLoginSuccessed();
+    public interface OnLoginCallBack {
+        void onLoginSuccessed(String sskey);
 
         void onLoginFailed(String errorMsg);
     }

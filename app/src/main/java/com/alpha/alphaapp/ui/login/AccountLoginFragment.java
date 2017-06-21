@@ -17,6 +17,7 @@ import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
+import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.bind.firstbind.BindAccountActivity;
@@ -166,7 +167,7 @@ public class AccountLoginFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 //                loginQQAuth();
-                //此处暂时使用测试代码
+                //此处暂时使用测试代
                 debugQQFunc();
 
 
@@ -175,8 +176,6 @@ public class AccountLoginFragment extends BaseFragment {
         iv_weixin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.e(TAG, "授权微信登录登录");
                 loginWxAuth();
             }
         });
@@ -201,26 +200,7 @@ public class AccountLoginFragment extends BaseFragment {
             if (loadingDialog != null) {
                 loadingDialog.show();
             }
-            String data = LoginLogic.getJsonStrforphoneInAccount(aet_user.getText().toString(), aet_pw.getText().toString());
-            String json = JsonUtil.getPostJsonSignString(data);
-            ReqCallBack<String> callBack = new ReqCallBack<String>() {
-                @Override
-                public void onReqSuccess(String result) {
-                    if (loadingDialog != null) {
-                        loadingDialog.dismiss();
-                    }
-                    //手机登录
-                    doDealLoginNormal(result, TypeConstants.LOGIN_TYPE.PHONE_PW);
-                }
-
-                @Override
-                public void onReqFailed(String errorMsg) {
-                    if (loadingDialog != null) {
-                        loadingDialog.dismiss();
-                    }
-                }
-            };
-            RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
+            loginAccontPw(TypeConstants.LOGIN_TYPE.PHONE_PW);
 
         } else {
 
@@ -237,26 +217,38 @@ public class AccountLoginFragment extends BaseFragment {
             if (loadingDialog != null) {
                 loadingDialog.show();
             }
-            String data = LoginLogic.getJsonStrforAccount(aet_user.getText().toString(), aet_pw.getText().toString());
-            String json = JsonUtil.getPostJsonSignString(data);
-            ReqCallBack<String> callBack = new ReqCallBack<String>() {
-                @Override
-                public void onReqSuccess(String result) {
-                    if (loadingDialog != null) {
-                        loadingDialog.dismiss();
-                    }
-                    doDealLoginNormal(result, TypeConstants.LOGIN_TYPE.ACCONUT_PW);
-                }
 
-                @Override
-                public void onReqFailed(String errorMsg) {
-                    if (loadingDialog != null) {
-                        loadingDialog.dismiss();
-                    }
-                }
-            };
-            RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
+            loginAccontPw(TypeConstants.LOGIN_TYPE.ACCONUT_PW);
         }
+    }
+
+    /**
+     * 使用帐号_手机和密码登录
+     *
+     * @param loginTpe
+     */
+    private void loginAccontPw(int loginTpe) {
+        String account = aet_user.getText().toString();
+        String pw = aet_pw.getText().toString();
+        LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
+            @Override
+            public void onLoginSuccessed(String sskey) {
+                if (loadingDialog != null) {
+                    loadingDialog.dismiss();
+                }
+                HomeActivity.actionStart(getContext(), null, null);
+            }
+
+            @Override
+            public void onLoginFailed(String errorMsg) {
+                if (loadingDialog != null) {
+                    loadingDialog.dismiss();
+                }
+                tv_error.setText(errorMsg);
+                tv_error.setVisibility(View.VISIBLE);
+            }
+        };
+        LoginLogic.doLogin(account, pw, loginTpe, callBack);
     }
 
 
@@ -264,18 +256,26 @@ public class AccountLoginFragment extends BaseFragment {
      * 这是一个测试代码,后面要删除
      */
     private void debugQQFunc() {
-        String data = LoginLogic.getJsonStrforQQAuth("AFGHR9080");
-        String json = JsonUtil.getPostJsonSignString(data);
-        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+        String openid_qq = "AFGHR9080";
+        LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-                doDealAuthReqSuccess(result, TypeConstants.LOGIN_TYPE.AUTH_QQ);
+            public void onLoginSuccessed(String sskey) {
+                //判断是否在第一次授权中取消绑定帐号
+//                if (SharePLoginInfo.getInstance(getContext()).getIsBindAccount()) {
+                BindAccountActivity.actionStart(getActivity(), sskey, null);
+//                } else {
+//                    HomeActivity.actionStartClearStack(getActivity(), null, null);
+//                }
+
             }
+
             @Override
-            public void onReqFailed(String errorMsg) {
+            public void onLoginFailed(String errorMsg) {
+                tv_error.setText(errorMsg);
+                tv_error.setVisibility(View.VISIBLE);
             }
         };
-        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
+        LoginLogic.doLogin(openid_qq, null, TypeConstants.LOGIN_TYPE.AUTH_QQ, callBack);
     }
 
     @Override
@@ -392,20 +392,24 @@ public class AccountLoginFragment extends BaseFragment {
 
                 //使用获取的openid进行登录
                 if (!Util.isNullOrBlank(openId)) {
-                    String data = LoginLogic.getJsonStrforQQAuth(openId);
-                    String json = JsonUtil.getPostJsonSignString(data);
-                    ReqCallBack<String> callBack = new ReqCallBack<String>() {
+                    LoginLogic.OnLoginCallBack call = new LoginLogic.OnLoginCallBack() {
                         @Override
-                        public void onReqSuccess(String result) {
-                            doDealAuthReqSuccess(result, TypeConstants.LOGIN_TYPE.AUTH_QQ);
+                        public void onLoginSuccessed(String sskey) {
+                            //判断是否在第一次授权中取消绑定帐号
+                            if (SharePLoginInfo.getInstance(getContext()).getIsBindAccount()) {
+                                BindAccountActivity.actionStart(getActivity(), sskey, null);
+                            } else {
+                                HomeActivity.actionStartClearStack(getActivity(), null, null);
+                            }
                         }
 
                         @Override
-                        public void onReqFailed(String errorMsg) {
+                        public void onLoginFailed(String errorMsg) {
 
                         }
                     };
-                    RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
+                    LoginLogic.doLogin(openId, null, TypeConstants.LOGIN_TYPE.AUTH_QQ, call);
+
                 }
 
             }
@@ -494,117 +498,22 @@ public class AccountLoginFragment extends BaseFragment {
     private void userWxOpenidLogin(WxAccessTokenInfo info) {
         String wxopenid = info.getOpenId();
         if (!Util.isNullOrBlank(wxopenid)) {
-            String data = LoginLogic.getJsonStrforWXAuth(wxopenid);
-            String json = JsonUtil.getPostJsonSignString(data);
-            ReqCallBack<String> callBack = new ReqCallBack<String>() {
+            LoginLogic.OnLoginCallBack call = new LoginLogic.OnLoginCallBack() {
                 @Override
-                public void onReqSuccess(String result) {
-                    doDealAuthReqSuccess(result, TypeConstants.LOGIN_TYPE.AUTH_WX);
+                public void onLoginSuccessed(String sskey) {
+
                 }
 
                 @Override
-                public void onReqFailed(String errorMsg) {
+                public void onLoginFailed(String errorMsg) {
 
                 }
             };
-            RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
+            LoginLogic.doLogin(wxopenid, null, TypeConstants.LOGIN_TYPE.AUTH_WX, call);
         }
 
     }
 
-    /**
-     * 帐号与手机登录返回不同结果处理
-     *
-     * @param result
-     */
-    private void doDealLoginNormal(String result, int loginType) {
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        switch (info.getResult()) {
-            case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
-                //将密码帐号与登录,是什么登录存入sharedPerferrence
-                info = ResponseInfo.getRespInfoFromJsonStr(result, true);
-                AccountManager.getInstance().setLoginType(loginType);
-                AccountManager.getInstance().setSskey(info.getSskey());
-                //获取该帐号的用户信息
-                HomeActivity.actionStart(getContext(), null, null);
-                break;
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_NOHAD:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.LOGIN_RESULT.RESULT_TOO_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_OR_PW_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-            case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-        }
-    }
-
-
-    /**
-     * 第四步:注册到alpha服务器的回调处理
-     *
-     * @param result
-     */
-    private void doDealAuthReqSuccess(String result, int typeLogin) {
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        switch (info.getResult()) {
-            case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
-                //将密码帐号与登录,是什么登录存入sharedPerferrence
-                info = ResponseInfo.getRespInfoFromJsonStr(result, true);
-                AccountManager.getInstance().setSskey(info.getSskey());
-                //记录登录类型,此处后面要记得修改
-                AccountManager.getInstance().setLoginType(typeLogin);
-                //判断是否在第一次授权中取消绑定帐号
-//                if (SharePLoginInfo.getInstance(getContext()).getIsBindAccount()) {
-                BindAccountActivity.actionStart(getActivity(), info.getSskey(), null);
-//                } else {
-//                    HomeActivity.actionStartClearStack(getActivity(), null, null);
-//                }
-                break;
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_NOHAD:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.LOGIN_RESULT.RESULT_TOO_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-
-            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_OR_PW_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-            case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-
-        }
-    }
 
     @Override
     public void onPause() {

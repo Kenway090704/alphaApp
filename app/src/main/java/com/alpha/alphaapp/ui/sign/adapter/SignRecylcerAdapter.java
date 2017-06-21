@@ -1,4 +1,4 @@
-package com.alpha.alphaapp.ui.mine.adapter;
+package com.alpha.alphaapp.ui.sign.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -7,15 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
+import com.alpha.alphaapp.ui.mine.adapter.IconListAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 
@@ -27,13 +25,13 @@ import java.util.Map;
  * Email : xiaokai090704@126.com
  */
 
-public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapter.MyViewHolder> {
+public class SignRecylcerAdapter extends RecyclerView.Adapter<SignRecylcerAdapter.MyViewHolder> {
     private static final String TAG = "SignRecylcerAdapter";
     private Context context;
     private List<String> list;
     private Map<String, Boolean> map;
 
-    public IconRecylcerAdapter(Context context, GetIconBean.IconListBean.CategoryBean bean, Map<String, Boolean> map) {
+    public SignRecylcerAdapter(Context context, GetIconBean.IconListBean.CategoryBean bean, Map<String, Boolean> map) {
         this.context = context;
         this.list = bean.getIcons();
         this.map = map;
@@ -42,9 +40,9 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
     }
 
     @Override
-    public IconRecylcerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SignRecylcerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                context).inflate(R.layout.item_recycler_iv, parent,
+                context).inflate(R.layout.sign_item_recycler_iv, parent,
                 false));
         return holder;
     }
@@ -68,7 +66,7 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
         }
         //使用Glide展示图片
         final RequestBuilder<Drawable> thumbnailRequest = Glide.with(context).load(R.drawable.launcher);
-        Glide.with(context).load(URLConstans.GET_ICON.ICON60 + list.get(position)).thumbnail(thumbnailRequest).into(holder.iv);
+        Glide.with(context).load(URLConstans.GET_ICON.ICON100 + list.get(position)).thumbnail(thumbnailRequest).into(holder.iv);
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,9 +92,10 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
                     }
                 }
                 //获取每一个Adapter,然后通知这些刷新界面
-                List<RecyclerView> recyclerViews = IconListAdapter.recyclerViews;
-                for (int k = 0; k < recyclerViews.size(); k++) {
-                    recyclerViews.get(k).getAdapter().notifyDataSetChanged();
+                List<LinearLayout> layouts = LayoutAdapter.layouts;
+                for (int k = 0; k < layouts.size(); k++) {
+                    RecyclerView recyclerView = (RecyclerView) layouts.get(k).findViewById(R.id.sign_item_recyclerView);
+                    recyclerView.getAdapter().notifyDataSetChanged();
                 }
             }
         });

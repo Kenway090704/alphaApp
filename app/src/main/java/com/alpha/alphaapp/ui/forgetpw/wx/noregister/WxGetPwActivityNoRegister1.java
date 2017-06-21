@@ -53,9 +53,9 @@ public class WxGetPwActivityNoRegister1 extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //使用该微信open_id 进行登录,登录后再进入到第二个界面中
-                LoginLogic.OnLoginListener listener = new LoginLogic.OnLoginListener() {
+                LoginLogic.OnLoginCallBack listener = new LoginLogic.OnLoginCallBack() {
                     @Override
-                    public void onLoginSuccessed() {
+                    public void onLoginSuccessed(String sskey) {
                         //进入创建新帐号的界面中,
                         WxGetPwActivityNoAccount.actionStart(WxGetPwActivityNoRegister1.this);
                     }

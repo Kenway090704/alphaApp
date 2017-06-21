@@ -2,6 +2,7 @@ package com.alpha.alphaapp.ui.mine.logic;
 
 import android.content.Context;
 
+import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.bean.AreaBean;
 import com.alpha.alphaapp.bean.CityBean;
 import com.alpha.alphaapp.bean.ProviceBean;
@@ -26,7 +27,7 @@ public class GetPCityAreaData {
     public static final ArrayList<String> itme1datas = new ArrayList<>();
     public static final ArrayList<ArrayList<String>> item2datas = new ArrayList<>();
     public static final ArrayList<ArrayList<ArrayList<String>>> item3datas = new ArrayList<>();
-
+    private static GetPCityAreaData gpcad;
     //启动线程现在地址信息
     public void init(Context context) {
         this.context = context;
@@ -34,7 +35,28 @@ public class GetPCityAreaData {
 
     }
 
-    public Thread thread = new Thread();
+    private GetPCityAreaData() {
+
+    }
+
+    /**
+     * 获取省市区的数据单例
+     *
+     * @return
+     */
+    public static GetPCityAreaData getInstance() {
+        GetPCityAreaData inst = gpcad;
+        if (inst == null) {
+            synchronized (AccountManager.class) {
+                inst = gpcad;
+                if (inst == null) {
+                    inst = new GetPCityAreaData();
+                    gpcad = inst;
+                }
+            }
+        }
+        return inst;
+    }
 
     /**
      * 下载省
@@ -117,18 +139,4 @@ public class GetPCityAreaData {
         RequestManager.getInstance(context).requestPostByAsynWithForm(URLConstans.GET_ADDR_URL.AREA, map, callback);
 
     }
-
-
-    public ArrayList<String> getListProvince() {
-        return itme1datas;
-    }
-
-    public ArrayList<ArrayList<String>> getListCity() {
-        return item2datas;
-    }
-
-    public ArrayList<ArrayList<ArrayList<String>>> getListArea() {
-        return item3datas;
-    }
-
 }

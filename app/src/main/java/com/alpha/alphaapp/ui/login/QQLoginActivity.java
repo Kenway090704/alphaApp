@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
@@ -163,20 +164,18 @@ public class QQLoginActivity extends BaseActivity {
                 });
 
                 //使用获取的openid进行登
-                String data = LoginLogic.getJsonStrforQQAuth(openId);
-                String json = JsonUtil.getPostJsonSignString(data);
-                ReqCallBack<String> callBack = new ReqCallBack<String>() {
+                LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
                     @Override
-                    public void onReqSuccess(String result) {
-//                        doDealQQAuthReqSuccess(result);
+                    public void onLoginSuccessed(String sskey) {
+
                     }
 
                     @Override
-                    public void onReqFailed(String errorMsg) {
+                    public void onLoginFailed(String errorMsg) {
 
                     }
                 };
-//                RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
+                LoginLogic.doLogin(openId, null, TypeConstants.LOGIN_TYPE.AUTH_QQ, callBack);
             }
         } catch (Exception e) {
         }

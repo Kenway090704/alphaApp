@@ -39,6 +39,9 @@ public class GetPCityAreaLogic {
 
     public GetPCityAreaLogic(Context context) {
         this.context = context;
+        options1Items.addAll(GetPCityAreaData.itme1datas);
+        options2Items.addAll(GetPCityAreaData.item2datas);
+        options3Items.addAll(GetPCityAreaData.item3datas);
     }
 
     public void show() {
@@ -63,6 +66,7 @@ public class GetPCityAreaLogic {
      * 弹出选择器
      */
     private void ShowPickerView() {// 弹出选择器
+
         pvOptions = new OptionsPickerView.Builder(context, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
@@ -73,7 +77,7 @@ public class GetPCityAreaLogic {
 
             }
         })
-                .setLayoutRes(R.layout.widget_options_pca, new CustomListener() {
+            .setLayoutRes(R.layout.widget_options_pca, new CustomListener() {
                     @Override
                     public void customLayout(View v) {
                         final Button btn_save = (Button) v.findViewById(R.id.dialog_opt_pca_btn_save);
@@ -91,7 +95,7 @@ public class GetPCityAreaLogic {
                 .setOutSideCancelable(true)// default is true
                 .build();
 
-        pvOptions.setPicker(GetPCityAreaData.itme1datas, GetPCityAreaData.item2datas, GetPCityAreaData.item3datas);//三级选择器
+        pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器
         pvOptions.show();
     }
 

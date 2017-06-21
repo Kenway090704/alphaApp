@@ -173,7 +173,7 @@
     <string name="launch_wx">拉起微信授权</string>
     <string name="wechat_not_installed">未安装微信</string>
     <!--mine fragement-->
-    <string name="sign">签到</string>
+
     <string name="no_sign">您今天还未签到</string>
     <!--mineinfo activity-->
     <string name="my_info">我的资料</string>
@@ -190,5 +190,23 @@
     <string name="province_city_area">省、市、区</string>
     <string name="street">街道</string>
     <string name="plz_input_detail_addr">请填写详细地址</string>
+    <!--签到-->
+    <string name="sign">签到</string>
+    <string name="now_sign">立即签到</string>
+    <string name="need_help_msg">需要帮忙吗?我可以挖洞!你们也许需要我的钻头!转圈!转圈!再转圈!</string>
+    <string name="sign_success">签到成功!</string>
+    <string name="get_1_exprience">获得1点经验值</string>
+    <string name="sign_days">已经签到天数</string>
+    <string name="i_kown">我知道了</string>
+    <string name="look_out_sign_record">查看签到记录</string>
 
+    <!--我的签到-->
+    <string name="my_sign">我的签到</string>
+    <string name="my_empirical_value">我的经验值</string>
+    <string name="sign_total_days">已累计签到天数 </string>
+    <string name="day">天</string>
+    <string name="sign_rule">签到规则</string>
+    <string name="sign_rule_declare">签到规则说明</string>
+    <string name="sign_rule_1">1、每天可签到一次,每次可获得1点经验值</string>
+    <string name="sign_rule_2">2、累计的经验值后期可获取相关特权或礼品,敬请期待!</string>
 </resources>

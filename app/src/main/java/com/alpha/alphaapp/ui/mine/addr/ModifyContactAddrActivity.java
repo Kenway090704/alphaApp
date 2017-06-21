@@ -191,7 +191,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
         ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
             @Override
             public void onEditInfoSuccuss() {
-                ToastUtils.showShort(ModifyContactAddrActivity.this, "修改信息成功");
+                ToastUtils.showShort(ModifyContactAddrActivity.this, "修改地址信息成功");
             }
 
             @Override

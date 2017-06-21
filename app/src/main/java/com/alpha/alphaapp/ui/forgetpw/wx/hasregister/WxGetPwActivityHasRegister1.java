@@ -55,9 +55,9 @@ public class WxGetPwActivityHasRegister1 extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //使用该微信open_id 进行登录,登录后判断是否有英文帐号,再判断进入到哪个界面
-                LoginLogic.OnLoginListener listener = new LoginLogic.OnLoginListener() {
+                LoginLogic.OnLoginCallBack listener = new LoginLogic.OnLoginCallBack() {
                     @Override
-                    public void onLoginSuccessed() {
+                    public void onLoginSuccessed(String sskey) {
                         UserInfo info = AccountManager.getInstance().getUserInfo();
                         if (!Util.isNullOrBlank(info.getAccount())) {
                             WxGetPwActivityHasAccount.actionStart(WxGetPwActivityHasRegister1.this, null, null);

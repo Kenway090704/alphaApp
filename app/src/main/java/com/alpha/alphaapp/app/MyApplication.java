@@ -49,8 +49,7 @@ public class MyApplication extends Application {
         //glide初始化
 
         //加载网络地址数据
-        GetPCityAreaData getPCityAreaData = new GetPCityAreaData();
-        getPCityAreaData.init(this);
+        GetPCityAreaData.getInstance().init(this);
 
     }
 

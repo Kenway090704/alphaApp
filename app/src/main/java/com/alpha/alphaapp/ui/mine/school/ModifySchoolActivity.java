@@ -11,6 +11,7 @@ import com.alpha.alphaapp.bean.SchoolBean;
 import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.mine.MineInfoActivity;
+import com.alpha.alphaapp.ui.mine.addr.ModifyContactAddrActivity;
 import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.mine.logic.GetSchoolLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
@@ -115,7 +116,7 @@ public class ModifySchoolActivity extends BaseActivity {
         ModifyUserInfoLogic.EditInfoCallBack callback = new ModifyUserInfoLogic.EditInfoCallBack() {
             @Override
             public void onEditInfoSuccuss() {
-
+                ToastUtils.showShort(ModifySchoolActivity.this, "修改学校信息成功");
 
             }
 
