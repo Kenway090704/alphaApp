@@ -122,7 +122,6 @@ public class IPAdressUtils {
         } catch (Exception e) {
 //            ExceptoinHandler.handleException(e);
         }
-        Log.e("IpAdressUtils", "ip==" + ip);
         return ip;
     }
 }

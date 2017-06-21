@@ -1,42 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/bind_phone_et_phone"
-        style="@style/et_com"
-        android:hint="@string/input_valid_eleven_number" />
-
-    <LinearLayout
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/bind_phone_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/register_item_left_margin"
-        android:layout_marginTop="@dimen/register_item_top_margin"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        app:hint="@string/input_valid_eleven_number"
+        app:icon_type="@drawable/icon_phone" />
 
-        <EditText
-            android:id="@+id/bind_phone_et_phoneverify"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/register_item_5dp"
-            android:layout_weight="1"
-            android:hint="@string/msg_verify"
-            android:singleLine="true"
-            android:textSize="@dimen/register_item_hint_sp" />
-
-        <TextView
-            android:id="@+id/bind_phone_tv_getVerify"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/shape_bg_round"
-            android:clickable="true"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/get_msg_verify" />
-    </LinearLayout>
+    <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
+        android:id="@+id/bind_phone_ivet"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/bind_phone_tv_error"
@@ -44,6 +25,6 @@
 
     <Button
         android:id="@+id/bind_phone_btn_submit"
-        style="@style/btn_com"
+        style="@style/btn_com_gray"
         android:text="@string/submit" />
 </LinearLayout>

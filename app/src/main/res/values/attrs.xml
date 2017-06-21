@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TitleLayout">
+        <attr name="txt_title" format="string|reference" />
+    </declare-styleable>
+    <declare-styleable name="SetingItemView">
+        <attr name="left_icon" format="reference" />
+        <attr name="text" format="string|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="OneTwoThreeItemView">
+        <attr name="icon_first" format="reference" />
+        <attr name="icon_second" format="reference" />
+        <attr name="icon_third" format="reference" />
+        <attr name="txt_first" format="string|reference" />
+        <attr name="txt_second" format="string|reference" />
+        <attr name="txt_third" format="string|reference" />
+        <attr name="curent_select" format="integer" />
+    </declare-styleable>
+    <!--帐号绑定页面的控件-->
+    <declare-styleable name="AccountBindItemView">
+        <attr name="txt_left" format="string|reference" />
+        <attr name="txt_right" format="string|reference" />
+        <attr name="bg_right" format="color|reference" />
+    </declare-styleable>
+
+    <!--修改个人信息页面控件-->
+    <declare-styleable name="ModifyInfoItemView">
+        <attr name="txt_item" format="string|reference" />
+    </declare-styleable>
+    <!--修改有输入框控件的属性-->
+    <declare-styleable name="ModifyInfoETItemView">
+        <attr name="mieiv_txt_left" format="string|reference" />
+    </declare-styleable>
+    <!--修改性别控件属性-->
+    <declare-styleable name="ModifySexView">
+        <attr name="msv_txt_left" format="string|reference" />
+    </declare-styleable>
+
+    <!--帐号验证码EditText-->
+    <declare-styleable name="AccountEditText">
+        <attr name="hint" format="string|reference" />
+        <attr name="icon_type" format="reference" />
+        <attr name="input_type" format="string" />
+    </declare-styleable>
+
+</resources>

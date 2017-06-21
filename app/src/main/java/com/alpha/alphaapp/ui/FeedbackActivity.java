@@ -6,23 +6,26 @@ import android.view.View;
 import android.widget.Button;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.ui.widget.TitleLayout;
 
-public class FeedbackActivity extends AppCompatActivity {
-
-    private Button btnSubmit;
+public class FeedbackActivity extends BaseActivity {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_feedback;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback);
+    protected void initView() {
+        TitleLayout titleLayout = (TitleLayout) findViewById(R.id.feedback_titlelayout);
+    }
 
-        btnSubmit = (Button)findViewById(R.id.submit_button);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public void initData() {
 
-                //submit the feedback to the website.
-            }
-        });
+    }
+
+    @Override
+    protected void initListener() {
+
     }
 }

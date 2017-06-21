@@ -5,26 +5,26 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.login.LoginInfo;
+import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
 import com.alpha.alphaapp.model.result.ResponseInfo;
-import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
+import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
+import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
-import com.alpha.lib_sdk.app.tool.IPAdressUtils;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
-import com.alpha.lib_stub.model.CountDownManager;
+import com.alpha.lib_sdk.app.tool.Util;
 
 /**
  * Created by kenway on 17/5/26 11:28
@@ -33,10 +33,13 @@ import com.alpha.lib_stub.model.CountDownManager;
 
 public class QuickLoginFragment extends BaseFragment {
     private static final String TAG = "QuickLoginFragment";
-    private EditText et_phone, et_verify;
-    private TextView tv_getVerify;
+    private AccountEditText et_phone;
+    private InputVerifyEditText ivet;
+    private TextView tv_error;
     private Button btn_login;
-    private CountDownManager cdm;
+
+
+    private CustomLoadingDialog loadingDialog;
 
     @Override
     protected int getLayoutId() {
@@ -45,34 +48,39 @@ public class QuickLoginFragment extends BaseFragment {
 
     @Override
     protected void initViews(View root) {
-        et_phone = (EditText) root.findViewById(R.id.log_fast_et_phone);
-        et_verify = (EditText) root.findViewById(R.id.log_fast_et_phoneverify);
-        tv_getVerify = (TextView) root.findViewById(R.id.log_fast_tv_getVerify);
+        et_phone = (AccountEditText) root.findViewById(R.id.log_fast_aet_phone);
+        ivet = (InputVerifyEditText) root.findViewById(R.id.log_fast_ivet);
+        tv_error = (TextView) root.findViewById(R.id.log_fast_tv_error);
         btn_login = (Button) root.findViewById(R.id.log_fast_btn_login);
-
+        loadingDialog = new CustomLoadingDialog(getActivity());
+        loadingDialog.setCancelable(false);
     }
 
     @Override
     protected void initEnvent() {
-        tv_getVerify.setOnClickListener(new View.OnClickListener() {
+        ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //获取验证码
                 if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
                     //验证手机号码格式是否正确
-                    ToastUtils.showLong(getContext(), R.string.input_valid_eleven_number);
+                    tv_error.setText(R.string.input_valid_eleven_number);
+                    tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
+                ivet.start();//开始倒计时
                 //获取手机验证码
-                String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForLogin(et_phone);
+                String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForLogin(et_phone.getText().toString());
                 String json = JsonUtil.getPostJsonSignString(data);
-                cdm.start();
+
                 RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.PHONEVERIFY, json, null);
 
 
             }
         });
 
-        et_phone.addTextChangedListener(new TextWatcher() {
+        et_phone.setWatcherListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -80,15 +88,20 @@ public class QuickLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(et_verify.getText())) {
+                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(ivet.getText())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
-
                 } else {
                     btn_login.setEnabled(Boolean.TRUE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
-
                 }
+
+                if (Util.isNullOrBlank(et_phone.getText().toString())) {
+                    et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
+                } else {
+                    et_phone.getImageViewRight().setVisibility(View.VISIBLE);
+                }
+                tv_error.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -96,7 +109,7 @@ public class QuickLoginFragment extends BaseFragment {
 
             }
         });
-        et_verify.addTextChangedListener(new TextWatcher() {
+        ivet.setWatcherListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -104,14 +117,20 @@ public class QuickLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(et_verify.getText())) {
+                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(ivet.getText())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
-
                 } else {
                     btn_login.setEnabled(Boolean.TRUE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
+
                 }
+                if (Util.isNullOrBlank(ivet.getText().toString())) {
+                    ivet.getImageViewRight().setVisibility(View.INVISIBLE);
+                } else {
+                    ivet.getImageViewRight().setVisibility(View.VISIBLE);
+                }
+                tv_error.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -122,43 +141,34 @@ public class QuickLoginFragment extends BaseFragment {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString()) && !StringUtils.isPhoneVerify(et_verify.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getText().toString()) &&
+                        !StringUtils.isPhoneVerify(ivet.getText().toString())) {
                     //验证手机号和验证码格式是否正确
-                    ToastUtils.showLong(getContext(), R.string.account_or_verify_error);
+                    tv_error.setText(R.string.account_or_verify_error);
+                    tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                //登录帐号
-                final LoginInfo loginInfo = new LoginInfo();
-                loginInfo.setUser_ip(IPAdressUtils.getIpAdress(getContext()));
-                loginInfo.setPhone_verify(et_verify.getText().toString());
-                loginInfo.setAccount(et_phone.getText().toString());
-                String data = loginInfo.getJsonStrforPhone();
+
+                if (loadingDialog != null) {
+                    loadingDialog.show();
+                }
+                //快速登录
+                String data = LoginLogic.getJsonStrforQuickLogin(et_phone.getText().toString(), ivet.getText().toString());
                 String json = JsonUtil.getPostJsonSignString(data);
                 ReqCallBack<String> loginCallback = new ReqCallBack<String>() {
                     @Override
                     public void onReqSuccess(String result) {
-                        ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
-                        switch (responseInfo.getResult()) {
-                            case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
-                                //登录成功
-                                //登录成功
-                                loginInfo.setSessKey(responseInfo.getSskey());
-                                loginInfo.setLastLoginType(TypeConstants.LASTLOGIN_TYPE.PHONE_QUICK);
-                                SharePLoginInfo.getInstance(getContext()).saveLoginInfo(loginInfo);
-                                ToastUtils.showLong(getContext(), R.string.login_success);
-                                //跳转到主页面,后面可携带参数
-                                HomeActivity.actionStart(getContext(), null, null);
-                                break;
-                            case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
-                                //验证码错误
-                                ToastUtils.showLong(getContext(), responseInfo.getMsg());
-                                break;
+                        if (loadingDialog != null) {
+                            loadingDialog.dismiss();
                         }
+                        doDealLoginNormal(result, TypeConstants.LOGIN_TYPE.PHONE_QUICK);
                     }
 
                     @Override
                     public void onReqFailed(String errorMsg) {
-
+                        if (loadingDialog != null) {
+                            loadingDialog.dismiss();
+                        }
                     }
                 };
                 RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, loginCallback);
@@ -170,13 +180,68 @@ public class QuickLoginFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        cdm = new CountDownManager();
-        cdm.setTextView(tv_getVerify);
+
+    }
+
+    /**
+     * 帐号与手机登录返回不同结果处理
+     *
+     * @param result
+     */
+    private void doDealLoginNormal(String result, int typeLogin) {
+        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+        switch (info.getResult()) {
+            case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
+                //将密码帐号与登录,是什么登录存入sharedPerferrence
+                info = ResponseInfo.getRespInfoFromJsonStr(result, true);
+                AccountManager.getInstance().setSskey(info.getSskey());
+                AccountManager.getInstance().setLoginType(typeLogin);
+                HomeActivity.actionStart(getContext(), null, null);
+                break;
+            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_NOHAD:
+                tv_error.setText(info.getMsg());
+                tv_error.setVisibility(View.VISIBLE);
+                break;
+            case CommStants.LOGIN_RESULT.RESULT_TOO_ERROR:
+                tv_error.setText(info.getMsg());
+                tv_error.setVisibility(View.VISIBLE);
+                break;
+
+            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_ERROR:
+                tv_error.setText(info.getMsg());
+                tv_error.setVisibility(View.VISIBLE);
+                break;
+
+
+            case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_OR_PW_ERROR:
+                tv_error.setText(info.getMsg());
+                tv_error.setVisibility(View.VISIBLE);
+                break;
+
+            case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
+                tv_error.setText(info.getMsg());
+                tv_error.setVisibility(View.VISIBLE);
+                break;
+
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        cdm.cancel();
+        if (Util.isNull(ivet))
+            ivet.cancel();
+
+        if (loadingDialog != null)
+            loadingDialog.dismiss();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (loadingDialog != null) {
+            loadingDialog.dismiss();
+        }
     }
 }

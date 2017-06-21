@@ -82,12 +82,12 @@ public class CommStants {
     /**
      * (D)一般信息修改返回结果
      */
-    public interface ACCOUNTMODIFY_RESULT {
+    public interface ACCOUNT_MODIFY_RESULT {
         int RESULT_MODIFY_OK = 0;
         /**
          * 请重新登录
          */
-        int RESULT_AGAIN_LOGIN = 1;
+        int RESULT_RELOGIN = 1;
         /**
          * 更新失败
          */
@@ -126,21 +126,7 @@ public class CommStants {
          * 账号不存在
          */
         int RESULT_ACCOUNT_NOHAD = 1;
-        /**
-         * 请输入一个您想检测的用户名
-         */
-        int RESULT_INPUT_ACCOUNT = 2;
-        /**
-         * 账号输入错误,须为字母开头,6-12 位字母或数字
-         */
-        int RESULT_ACCOUNT_ERROR = 101;
-        /**
-         * 手机号输入错误或者为空:请输入 11 位有效手机号
-         */
-        int RESULT_PHONE_ERROR = 101;
     }
-
-
 
 
     /**
@@ -177,6 +163,51 @@ public class CommStants {
          * 账号已存在,请重新输入
          */
         int RESULT_ACCOUT_HAD = 114;
+    }
+
+    /**
+     * (I)用户绑定或者修改account(这里是当使用手机+密码登录时绑定未注册的英文帐号)
+     */
+    public interface BIND_OR_EDIT_ACCOUNT_RESULT {
+        /**
+         * 绑定成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int RESULT_RELOGIN = 1;
+        /**
+         * 帐号存在
+         */
+        int RESULT_ACCOUNT_HAD = 2;
+    }
+
+    /**
+     * (J)	获取用户信息
+     */
+    public interface GET_USETINFO_RESULT {
+        /**
+         * ok
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int RESULT_PLZ_RELOGIN = 1;
+        /**
+         * XX账号+用户不存在
+         */
+        int RESULT_THE_ACCOUNT_NO_HAD = 2;
+        /**
+         * 不存在的用户
+         */
+        int RESULT_ACCOUNT_NO_HAD = 3;
+        /**
+         * 数据错误
+         */
+        int RESULT_DATA_ERROR = 4;
+
     }
 
     /**
@@ -246,13 +277,83 @@ public class CommStants {
     }
 
     /**
+     * (M) 更换绑定手机号--验证旧手机号
+     */
+
+    public interface CHANGE_BIND_PHONE_VERIFY_OLD_PHONE {
+
+        int RESULT_OK = 0;
+        /**
+         * 验证码错误
+         */
+        int RESULT_VERIFY_ERROR = 1;
+        /**
+         * 手机号错误
+         */
+        int RESULT_PHONE_ERROR = 2;
+        /**
+         * 数据包错误
+         */
+        int RESULT_DATA_PACKAGE_ERROR = 3;
+    }
+
+    /**
+     * (N) 更换绑定手机号-绑定新手机号
+     */
+    public interface CHANGE_BIND_PHONE_BIND_NEW_PHONE {
+        int RESULT_OK = 0;
+        /**
+         * 验证码错误
+         */
+        int RESULT_VERIFY_ERROR = 1;
+        /**
+         * 手机号错误
+         */
+        int RESULT_PHONE_ERROR = 2;
+        /**
+         * 数据包错误
+         */
+        int RESULT_DATA_PACKAGE_ERROR = 3;
+    }
+
+    /**
+     * (Y)获取头像列表
+     */
+    public interface GET_ICON_LIST_RESULT {
+        /**
+         * 获取列表成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int RESULT_RELOGIN = 1;
+
+    }
+
+    /**
      * (Z) Find out the new password by the phone verify code
      */
     public interface FIND_PWD_BY_PHONE_RESULT {
         int RESULT_OK = 0;
-        int USER_NOT_EXIST = 1;
+        int RESULT_VERIFY_ERROR = 1;
         int PHONE_WRONG = 2;
         int DATA_PACKAGE_WRONG = 3;
         int PWD_FORMAT_WRONG = 4;
     }
+
+    /**
+     * (AF)重置密码
+     */
+    public interface RESET_PW_RESULT {
+        /**
+         * 重置密码成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 用户不存在
+         */
+        int RESULT_ACCOUNT_NOHAD = 1;
+    }
+
 }

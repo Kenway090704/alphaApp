@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/bind_ac_et_accout"
-        style="@style/et_com"
-        android:hint="@string/alpha_account_or_phonenumber" />
-    <EditText
-        android:id="@+id/bind_ac_et_pw"
-        style="@style/et_com"
-        android:hint="@string/pw" />
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/bind_ac_aet_accout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:hint="@string/alpha_account"
+        app:icon_type="@drawable/icon_user" />
+
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/bind_ac_aet_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:hint="@string/pw"
+        app:icon_type="@drawable/icon_lock" />
+
 
     <TextView
         android:id="@+id/bind_ac_tv_error"
@@ -19,6 +28,6 @@
 
     <Button
         android:id="@+id/bind_ac_btn_submit"
-        style="@style/btn_com"
+        style="@style/btn_com_gray"
         android:text="@string/submit" />
 </LinearLayout>

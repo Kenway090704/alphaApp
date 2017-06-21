@@ -3,7 +3,7 @@ package com.alpha.alphaapp.sp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.alpha.alphaapp.model.login.LoginInfo;
+import com.alpha.alphaapp.model.login.LoginLogic;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,13 +20,11 @@ public class SharePLoginInfo {
     private static final String TAG = "SharePLoginInfo";
 
     private static final String SHARED_PREFES_NAME = "userinfo-data";
-    private static final String SHARED_TAG__NAME = "userinfo";
+    private static final String SHARED_TAG_NAME = "userinfo";
     private static SharePLoginInfo pre;
     private static Context mContext;
     private SharedPreferences preferencesData;
     private SharedPreferences.Editor editorData;
-
-    private static final String SSKEY = "sskey";
 
 
     /**
@@ -73,14 +71,14 @@ public class SharePLoginInfo {
      *
      * @param loginInfo 登录信息
      */
-    public void saveLoginInfo(LoginInfo loginInfo) {
+    public void saveLoginInfo(LoginLogic loginInfo) {
         if (null == loginInfo) {
             return;
         }
         Gson gson = new Gson();
         //转换城json数据,再保存
         String strJson = gson.toJson(loginInfo);
-        editorData.putString(SHARED_TAG__NAME, strJson);
+        editorData.putString(SHARED_TAG_NAME, strJson);
         editorData.commit();
     }
 
@@ -90,16 +88,16 @@ public class SharePLoginInfo {
      * @param
      * @return
      */
-    public LoginInfo getLoginInfo() {
+    public LoginLogic getLoginInfo() {
 
-        String strJson = preferencesData.getString(SHARED_TAG__NAME, null);
+        String strJson = preferencesData.getString(SHARED_TAG_NAME, null);
         if (null == strJson) {
             return null;
         }
-        Type listType = new TypeToken<LoginInfo>() {
+        Type listType = new TypeToken<LoginLogic>() {
         }.getType();
         Gson gson = new Gson();
-        LoginInfo loginInfo = gson.fromJson(strJson, listType);
+        LoginLogic loginInfo = gson.fromJson(strJson, listType);
 
         return loginInfo;
     }
@@ -108,28 +106,20 @@ public class SharePLoginInfo {
      * 清空登录数据
      */
     public void clear() {
-        LoginInfo loginInfo = new LoginInfo();
+        LoginLogic loginInfo = new LoginLogic();
         Gson gson = new Gson();
         //转换城json数据,再保存
         String strJson = gson.toJson(loginInfo);
-        editorData.putString(SHARED_TAG__NAME, strJson);
+        editorData.putString(SHARED_TAG_NAME, "");
         editorData.commit();
     }
 
-    public void saveSskey(String sskey) {
-        if (sskey == null) {
-            return;
-        }
 
-        editorData.putString(SSKEY, sskey);
-        editorData.commit();
-    }
-
-    public String getSskey() {
-        String sskey = preferencesData.getString(SSKEY, null);
-        return sskey;
-    }
-
+    /**
+     * 判断首次授权登录的时候是否,绑定帐号
+     *
+     * @param isBind
+     */
     public void saveIsBindAccount(Boolean isBind) {
         if (isBind == null) {
             return;

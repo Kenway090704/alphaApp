@@ -67,7 +67,7 @@ public class PhoneRegisterFragment extends BaseFragment {
                     tv_get_verify.setEnabled(false);
                     cdm.start();
                     //获取验证码
-                    final String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForRegiser(et_phone);
+                    final String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForRegiser(et_phone.getText().toString());
                     String json = JsonUtil.getPostJsonSignString(data);
                     ReqCallBack<String> callBack = new ReqCallBack<String>() {
                         @Override

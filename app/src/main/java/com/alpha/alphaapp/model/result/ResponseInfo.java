@@ -1,15 +1,7 @@
 package com.alpha.alphaapp.model.result;
 
-import com.alpha.lib_sdk.app.log.Log;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kenway on 17/5/23 15:52
@@ -33,25 +25,6 @@ public class ResponseInfo {
     }
 
     /**
-     * 从返回的json字符串中获取result的值
-     *
-     * @param json
-     * @return result
-     */
-    public static int getFromJsonResult(String json) {
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            int result = jsonObject.getInt("result");
-
-            return result;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //10000可以代表字段不存在
-        return 10000;
-    }
-
-    /**
      * 将返回的json 数据转换为ResponseInfo1对象
      *
      * @param json
@@ -61,9 +34,6 @@ public class ResponseInfo {
         try {
             JSONObject jsonObject = new JSONObject(json);
             ResponseInfo newResponseInfo = new ResponseInfo();
-//            newResponseInfo.setSskey(jsonObject.getString("sskey"));
-            Log.e("res",jsonObject.getString("msg"));
-            Log.e("res",jsonObject.getString("result"));
             newResponseInfo.setMsg(jsonObject.getString("msg"));
             newResponseInfo.setResult(jsonObject.getInt("result"));
             return newResponseInfo;
@@ -72,7 +42,6 @@ public class ResponseInfo {
         }
         return null;
     }
-
     /**
      * postjson数据后返回的数据解析为ResponseInfo1
      *
@@ -96,6 +65,12 @@ public class ResponseInfo {
         return null;
     }
 
+    /**
+     * 获取有验证码的响应
+     * @param json
+     * @param hasVerify
+     * @return
+     */
     public static ResponseInfo getRespInfoFromJsonStrHadVerify(String json, boolean hasVerify) {
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -112,36 +87,7 @@ public class ResponseInfo {
         return null;
     }
 
-    public static ResponseInfo objectFromData(String str, String key) {
 
-        try {
-            JSONObject jsonObject = new JSONObject(str);
-
-            return new Gson().fromJson(jsonObject.getJSONObject(key).toString(), ResponseInfo.class);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public static List<ResponseInfo> arrayRegitsterRespInfoFromData(String str, String key) {
-
-        try {
-            JSONObject jsonObject = new JSONObject(str);
-            Type listType = new TypeToken<ArrayList<ResponseInfo>>() {
-            }.getType();
-
-            return new Gson().fromJson(jsonObject.getJSONArray(key).toString(), listType);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return new ArrayList();
-
-
-    }
 
     public int getResult() {
         return result;

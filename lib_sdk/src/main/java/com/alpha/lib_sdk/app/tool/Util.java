@@ -121,6 +121,19 @@ public class Util {
     }
 
     /**
+     * 判断是否为零
+     *
+     * @param data
+     * @return
+     */
+    public static boolean isZore(int data) {
+        if (data == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Get the suffix of the given file name.
      *
      * @param fileName

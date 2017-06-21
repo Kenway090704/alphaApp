@@ -2,22 +2,20 @@ package com.alpha.alphaapp.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.bean.ProviceBean;
+import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
-import com.alpha.alphaapp.ui.HomeActivity;
-import com.alpha.alphaapp.ui.register.AccountRegisterFragment;
-import com.alpha.alphaapp.ui.register.PhoneRegisterFragment;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.tencent.tauth.IUiListener;
+import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.net.RequestManager;
+import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +32,6 @@ public class LoginActivity extends BaseFragmentActivity {
     private ViewPager vp;
     private List<Fragment> fragments;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     protected int getLayoutId() {
@@ -58,6 +51,8 @@ public class LoginActivity extends BaseFragmentActivity {
         initFragments();
         initTabLayout();
     }
+
+
 
     private void initFragments() {
         fragments = new ArrayList<>();
@@ -84,7 +79,6 @@ public class LoginActivity extends BaseFragmentActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
@@ -120,23 +114,8 @@ public class LoginActivity extends BaseFragmentActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-         //qq授权登录使用
-        Tencent.onActivityResultData(requestCode, resultCode, data, new IUiListener() {
-            @Override
-            public void onComplete(Object o) {
-
-            }
-
-            @Override
-            public void onError(UiError uiError) {
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-        });
+        //qq授权登录使用
+        Tencent.onActivityResultData(requestCode, resultCode, data, ((AccountLoginFragment) fragments.get(0)).getQQIUiListener());
     }
 
 

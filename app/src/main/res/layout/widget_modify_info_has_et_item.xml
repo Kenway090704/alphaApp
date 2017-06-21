@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/mod_info_has_et_layout_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_gray"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/mod_info_has_et_layout_one_tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/tv_black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mod_info_has_et_layout_one_tv_msg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:gravity="center_vertical"
+            android:textColor="@color/tv_black"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/mod_info_has_et_layout_one_iv_right"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:src="@drawable/icon_user"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mod_info_has_et_layout_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_et_bg_gray"
+        android:orientation="horizontal"
+        android:padding="7dp"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/mod_info_has_et_layout_two_et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:maxLength="30"
+            android:singleLine="true"
+            android:textColor="@color/tv_black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/mod_info_has_et_layout_two_iv_del"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:src="@drawable/et_del"
+            android:visibility="invisible" />
+    </LinearLayout>
+</FrameLayout>

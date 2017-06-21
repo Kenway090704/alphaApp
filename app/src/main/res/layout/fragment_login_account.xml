@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <EditText
-        android:id="@+id/log_ac_et_accout"
-        style="@style/et_com"
-        android:hint="@string/alpha_account_or_phonenumber" />
-
-
-    <LinearLayout
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/log_ac_aet_accout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/register_item_left_margin"
-        android:layout_marginTop="@dimen/register_item_top_margin">
+        app:hint="@string/alpha_account_or_phonenumber"
+        app:icon_type="@drawable/icon_user" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/input_pw"
-            android:textSize="@dimen/register_item_text_sp" />
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/log_ac_aet_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:hint="@string/input_pw"
+        app:icon_type="@drawable/icon_lock"
+        app:input_type="password" />
 
-        <EditText
-            android:id="@+id/log_ac_et_pw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/register_item_5dp"
-            android:hint="@string/pw"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textSize="@dimen/register_item_hint_sp" />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/log_ac_tv_error"
@@ -41,37 +29,40 @@
 
     <Button
         android:id="@+id/log_ac_btn_login"
-        style="@style/btn_com"
+        style="@style/btn_com_gray"
         android:text="@string/login" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/log_ac_tv_forgetpw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:gravity="center"
+            android:gravity="left"
             android:text="@string/forget_pw"
-            android:textColor="@color/tv_bg_blue"
-            android:textSize="20sp" />
+            android:textColor="@color/tv_blue"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/log_ac_tv_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:gravity="center"
+            android:gravity="right"
             android:text="@string/i_want_register"
-            android:textColor="@color/tv_bg_blue"
-            android:textSize="20sp" />
+            android:textColor="@color/tv_blue"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -82,30 +73,61 @@
             android:id="@+id/log_ac_auth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/log_ac_iv_auth_weixin"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
                 android:clickable="true"
-                android:src="@drawable/weixin_logo" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/weixin_logo"
+                app:riv_oval="true" />
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/log_ac_iv_auth_qq"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
                 android:clickable="true"
-                android:src="@drawable/qq_logo" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/qq_logo"
+                app:riv_oval="true" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/log_ac_tv_auth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/log_ac_auth"
             android:gravity="center"
             android:text="@string/user_auth_login" />
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_above="@+id/log_ac_auth"
+            android:layout_alignLeft="@+id/log_ac_tv_auth"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/line_gray"
+            android:gravity="center" />
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_above="@+id/log_ac_auth"
+            android:layout_alignRight="@+id/log_ac_tv_auth"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/line_gray"
+            android:gravity="center" />
     </RelativeLayout>
 
 </LinearLayout>

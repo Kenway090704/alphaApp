@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/change_phone_bind_1_titlelayout"
+        android:layout_width="match_parent"
+        app:txt_title="@string/phone_bind"
+        android:layout_height="wrap_content" />
+
+    <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:curent_select="1"
+        app:icon_first="@drawable/one"
+        app:icon_second="@drawable/two"
+        app:icon_third="@drawable/three"
+        app:txt_first="@string/verify_msg"
+        app:txt_second="@string/submit_bind_phone"
+        app:txt_third="@string/success_bind_phone_number" />
+
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/change_phone_bind_1_aet_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hint="@string/phone_number"
+        app:icon_type="@drawable/icon_phone" />
+
+    <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
+        android:id="@+id/change_phone_bind_1_ivet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/change_phone_bind_1_tv_error"
+        style="@style/tv_error_com" />
+
+    <Button
+        android:id="@+id/change_phone_bind_1_btn_next"
+        style="@style/btn_com_gray"
+        android:text="@string/next" />
+</LinearLayout>

@@ -38,13 +38,14 @@ public class FileUtils {
         }
         return false;
     }
+
     /**
      * Create a new file if it is not exists. If parent {@link File}s are not
      * exists that it will make them automatically.
      *
      * @param file
-     * @see #createNewFile(File)
      * @return true : if a new file was created, false : otherwise.
+     * @see #createNewFile(File)
      */
     public static boolean createFileIfNeed(File file) {
         if (file != null) {
@@ -54,6 +55,8 @@ public class FileUtils {
                     if (parent != null) {
                         parent.mkdirs();
                     }
+
+                    //这里存在一个异常
                     file.createNewFile();
                     return true;
                 }
@@ -66,11 +69,12 @@ public class FileUtils {
 
     /**
      * Whether the file exist or not
+     *
      * @param filePath
      * @return
      */
     public static boolean isFileExist(String filePath) {
-        if(Util.isNullOrBlank(filePath)) {
+        if (Util.isNullOrBlank(filePath)) {
             return false;
         }
         File file = new File(filePath);

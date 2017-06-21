@@ -1,68 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:costum="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <!--加入标题栏-->
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/seting_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/account_security"
+    <com.alpha.alphaapp.ui.widget.set.SetingItemView
+        android:id="@+id/seting_siv_bindset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/account_security" />
+        costum:left_icon="@drawable/icon_user"
+        costum:text="@string/settings_account_bind_set" />
 
-    <Button
-        android:id="@+id/message_settings"
+    <com.alpha.alphaapp.ui.widget.set.SetingItemView
+        android:id="@+id/seting_siv_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/message_settings" />
+        costum:left_icon="@drawable/icon_user"
+        costum:text="@string/feedback" />
 
-    <Button
-        android:id="@+id/general_settings"
+    <com.alpha.alphaapp.ui.widget.set.SetingItemView
+        android:id="@+id/seting_siv_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/general_settings" />
+        costum:left_icon="@drawable/icon_user"
+        costum:text="@string/score" />
 
-    <Button
-        android:id="@+id/clear_cache"
+    <com.alpha.alphaapp.ui.widget.set.SetingItemView
+        android:id="@+id/seting_siv_aboutus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/clear_cache" />
-
+        costum:left_icon="@drawable/icon_user"
+        costum:text="@string/about_us" />
     <Button
-        android:id="@+id/clear_history"
+        android:id="@+id/seting_btn_exit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/clear_history" />
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_btn_bg_red"
+        android:text="@string/exit_account"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/clear_draft"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/clear_draft" />
-
-    <Button
-        android:id="@+id/score"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/score" />
-
-    <Button
-        android:id="@+id/feedback"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/feedback" />
-
-    <Button
-        android:id="@+id/about_us"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/about_us" />
-
-    <Button
-        android:id="@+id/exit_session"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/exit_session" />
 </LinearLayout>

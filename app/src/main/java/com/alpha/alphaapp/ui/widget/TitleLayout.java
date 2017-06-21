@@ -2,6 +2,7 @@ package com.alpha.alphaapp.ui.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.tool.Util;
 
 /**
  * Created by kenway on 17/5/27 14:53
@@ -23,9 +25,14 @@ public class TitleLayout extends LinearLayout {
 
     public TitleLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.TitleLayout);
+        String title = array.getString(R.styleable.TitleLayout_txt_title);
+        array.recycle();
         LayoutInflater.from(context).inflate(R.layout.widget_titlelayout, this);
         btn_back = (Button) findViewById(R.id.title_btn_back);
         tv_title = (TextView) findViewById(R.id.title_tv_title);
+        if (!Util.isNullOrBlank(title))
+        tv_title.setText(title);
         setOnBackListener(null);
 
     }
@@ -58,11 +65,11 @@ public class TitleLayout extends LinearLayout {
         btn_back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onBackListener!=null){
+                if (onBackListener != null) {
                     onBackListener.onBackLister();
-                }else {
+                } else {
 
-                    ( (Activity) btn_back.getContext()).finish();
+                    ((Activity) btn_back.getContext()).finish();
                 }
 
 
@@ -73,7 +80,7 @@ public class TitleLayout extends LinearLayout {
     /**
      * btn_back接口
      */
-    public  interface OnBackListener {
+    public interface OnBackListener {
         void onBackLister();
     }
 }

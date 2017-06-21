@@ -43,15 +43,16 @@ public class StringUtils {
      * 帐号注册时的密码是否符合
      * 密码判读有误
      */
-    public static boolean isPWLine(String account) {
+    public static boolean isPWLine(String pw) {
         Pattern p = Pattern
                 .compile("[A-Za-z0-9]{6,12}");
-        Matcher m = p.matcher(account);
+        Matcher m = p.matcher(pw);
         return m.matches();
     }
 
     /**
      * 判断是否是手机号
+     *
      * @param mobiles
      * @return
      */
@@ -73,6 +74,18 @@ public class StringUtils {
         Pattern p = Pattern
                 .compile("\\d{6}");
         Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+
+    /**
+     * 验证是否为qq号
+     * @param qq
+     * @return
+     */
+    public static boolean isQQ(String qq) {
+        Pattern p = Pattern
+                .compile("^[1-9][0-9]{4,9}");
+        Matcher m = p.matcher(qq);
         return m.matches();
     }
 

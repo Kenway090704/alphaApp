@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 
     <application
@@ -17,25 +19,46 @@
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
-        <!-- <activity android:name=".ui.login.LoginActivity"/> -->
-        <activity android:name=".ui.SettingsActivity" />
+        <!--<activity android:name=".ui.login.LoginActivity"/>-->
+        <activity android:name=".ui.set.SettingsActivity" />
+        <activity android:name=".ui.modifypw.ModifyPwByPwActivity" />
+        <activity android:name=".ui.modifypw.phone.ModifyPwByPhoneActivity1" />
+        <activity android:name=".ui.modifypw.phone.ModifyPwByPhoneActivity2" />
+        <activity android:name=".ui.modifypw.phone.ModifyPwByPhoneActivity3" />
         <activity android:name=".ui.AboutUsActivity" />
         <activity android:name=".ui.FeedbackActivity" />
         <activity android:name=".ui.ScoreActivity" />
-        <activity android:name=".ui.AccountSecurityActivity" />
-        <activity android:name=".ui.CurrentAccountActivity" />
-        <activity android:name=".ui.ModifyPasswordActivity" />
-        <activity android:name=".ui.bind.BindAccountActivity" />
+        <activity
+            android:name=".ui.set.AccountSecurityActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".ui.bind.firstbind.BindAccountActivity" />
         <activity android:name=".ui.forgetpw.ForgetPWGuideActivity" />
-        <activity android:name=".ui.forgetpw.PhoneGetPwActivity1" />
-        <activity android:name=".ui.forgetpw.PhoneGetPwActivity2" />
-        <activity android:name=".ui.forgetpw.PhoneGetPwActivity3" />
+        <activity android:name=".ui.forgetpw.phone.PhoneGetPwActivity1" />
+        <activity android:name=".ui.forgetpw.phone.PhoneGetPwActivity2" />
+        <activity android:name=".ui.forgetpw.phone.PhoneGetPwActivity3" />
+        <!--找回密码-->
+        <activity android:name=".ui.forgetpw.wx.WxGetPwActivity3" />
+        <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityHasRegister1" />
+        <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityHasAccount" />
+        <activity android:name=".ui.forgetpw.wx.noregister.WxGetPwActivityNoRegister1" />
+        <activity android:name=".ui.forgetpw.wx.noregister.WxGetPwActivityNoAccount" />
+        <!--bind phone-->
+        <activity android:name=".ui.bind.phone.first.NewPhoneBindActvity1" />
+        <activity android:name=".ui.bind.phone.first.NewPhoneBindActvity2" />
+        <activity android:name=".ui.bind.phone.change.ChangePhoneBindActvity1" />
+        <activity android:name=".ui.bind.phone.change.ChangePhoneBindActvity2" />
+        <!--set en_account-->
+        <activity android:name=".ui.bind.account.EnAccountSetingHasPwActivity" />
+        <activity android:name=".ui.bind.account.EnAccountSetingNoPwActivity" />
+        <!--修改个人信息-->
+        <activity android:name=".ui.mine.MineInfoActivity" />
+        <activity android:name=".ui.mine.addr.ModifyContactAddrActivity" />
+        <activity android:name=".ui.mine.school.ModifySchoolActivity" />
         <!--QQ授权登录-->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
@@ -55,6 +78,12 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--wechat授权登录-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:id="@+id/phone_get_pw_3_titlelayout"
+        app:txt_title="@string/reset_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <include layout="@layout/layout_get_pw" />
+    <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:curent_select="3"
+        app:icon_first="@drawable/one"
+        app:icon_second="@drawable/two"
+        app:icon_third="@drawable/three"
+        app:txt_first="@string/verify_msg"
+        app:txt_second="@string/input_verify"
+        app:txt_third="@string/reset_pw" />
 
     <EditText
         android:id="@+id/phone_get_pw_3_et_pw"
@@ -22,6 +33,6 @@
 
     <Button
         android:id="@+id/phone_get_pw_3_btn_submit"
-        style="@style/btn_com"
+        style="@style/btn_com_gray"
         android:text="@string/submit" />
 </LinearLayout>

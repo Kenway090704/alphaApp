@@ -6,7 +6,13 @@
 
     <color name="error_red">#df422a</color>
     <!--login-->
-    <color name="tv_bg_blue">#e6169bd5</color>
+    <color name="tv_blue">#e6169bd5</color>
     <!--bind-->
-    <color name="tv_black">#f3000000</color>
+    <color name="tv_black">#f3333333</color>
+    <color name="bg_gray">#f2f2f2</color>
+    <color name="btn_red">#f3bb261a</color>
+    <color name="white">#FFF</color>
+    <color name="itme_bg_gray">#f2f2f2</color>
+
+    <color name="line_gray">#dad5d5</color>
 </resources>

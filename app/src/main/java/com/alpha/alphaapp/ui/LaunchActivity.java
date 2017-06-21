@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.login.LoginInfo;
+import com.alpha.alphaapp.comm.TypeConstants;
+import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.register.RegisterActivity;
-import com.alpha.lib_sdk.app.log.Log;
 
 
 /**
@@ -21,8 +19,6 @@ import com.alpha.lib_sdk.app.log.Log;
  */
 
 public class LaunchActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,23 +28,27 @@ public class LaunchActivity extends AppCompatActivity {
         imageView.setImageResource(R.drawable.launcher);
         setContentView(imageView);
         //在这里判断是否登录帐号和密码 true--HomeActivity   false---RegisterActivity
-        LoginInfo loginInfo = SharePLoginInfo.getInstance(this).getLoginInfo();
+        LoginLogic loginInfo = SharePLoginInfo.getInstance(this).getLoginInfo();
         if (loginInfo == null) {
             switch (loginInfo.getLastLoginType()) {
-                case CommStants.ACCOUNT_TYPE.ACCOUNT:
+                case TypeConstants.LOGIN_TYPE.ACCONUT_PW:
 
                     break;
-                case CommStants.ACCOUNT_TYPE.AUTH:
+                case TypeConstants.LOGIN_TYPE.PHONE_PW:
 
                     break;
-                case CommStants.ACCOUNT_TYPE.PHONE:
+                case TypeConstants.LOGIN_TYPE.PHONE_QUICK:
+
+                    break;
+                case TypeConstants.LOGIN_TYPE.AUTH_QQ:
+
+                    break;
+                case TypeConstants.LOGIN_TYPE.AUTH_WX:
 
                     break;
             }
             HomeActivity.actionStart(LaunchActivity.this, null, null);
         } else {
-
-            Log.e("zk","is phone"+ StringUtils.isPhoneNum("13128914595"));
             RegisterActivity.actionStart(this);
             finish();
         }
@@ -58,7 +58,7 @@ public class LaunchActivity extends AppCompatActivity {
 //        ThreadPool.post(new Runnable() {
 //            @Override
 //            public void run() {
-//                HomeActivity.actionStart(LaunchActivity.this, null, null);
+//                HomeActivity.actionStartClearStack(LaunchActivity.this, null, null);
 
 //            }
 //        }, 3000);

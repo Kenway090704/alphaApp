@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/mod_school_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:txt_title="@string/now_school" />
+
+    <com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView
+        android:id="@+id/mod_school_miiv_pca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:txt_item="@string/province_city_area" />
+
+    <com.alpha.alphaapp.ui.widget.LineView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView
+        android:id="@+id/mod_school_miiv_school"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:txt_item="@string/school" />
+
+    <com.alpha.alphaapp.ui.widget.LineView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -20,8 +20,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // 初始化数据
-        initData();
+
     }
 
     @Nullable
@@ -36,6 +35,14 @@ public abstract class BaseFragment extends Fragment {
         initEnvent();
 
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // 初始化数据
+        initData();
     }
 
     /**

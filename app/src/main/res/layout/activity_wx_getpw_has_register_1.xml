@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/wx_getpw_has_register_1_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:txt_title="@string/find_pw" />
+
+    <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:curent_select="1"
+        app:icon_first="@drawable/one"
+        app:icon_second="@drawable/two"
+        app:icon_third="@drawable/three"
+        app:txt_first="@string/verify_msg"
+        app:txt_second="@string/insure_account"
+        app:txt_third="@string/reset_pw" />
+
+    <TextView
+        android:id="@+id/wx_getpw_has_register_1_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="@string/wx_has_login_alpha"
+        android:textColor="@color/tv_black" />
+
+    <Button
+        android:id="@+id/wx_getpw_has_register_1_btn_loginset"
+        style="@style/btn_com_blue"
+        android:text="@string/look_wx_bind_account" />
+</LinearLayout>

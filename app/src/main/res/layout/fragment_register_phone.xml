@@ -56,7 +56,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:background="@drawable/shape_bg_round"
+            android:background="@drawable/shape_tv_getverify_bg_gray"
             android:clickable="true"
             android:gravity="center"
             android:padding="3dp"

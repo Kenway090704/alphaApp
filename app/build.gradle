@@ -4,14 +4,14 @@ android {
 
 
     aaptOptions {
-                cruncherEnabled = false
-                useNewCruncher = false
+        cruncherEnabled = false
+        useNewCruncher = false
     }
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.alpha.alphaapp"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -32,10 +32,14 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:+'
+    //微信
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'com.contrarywind:Android-PickerView:3.2.5'
     testCompile 'junit:junit:4.12'
     compile project(':lib_sdk')
     compile project(':lib_stub')
     compile files('libs/open_sdk_r5788_lite.jar')
+    compile files('libs/bottomView.jar')
 }

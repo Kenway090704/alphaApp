@@ -3,15 +3,14 @@ package com.alpha.alphaapp.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
+import android.support.v4.app.FragmentTransaction;
+import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.model.login.LoginInfo;
-import com.alpha.alphaapp.sp.SharePLoginInfo;
+import com.alpha.alphaapp.ui.mine.MineFragment;
+import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaData;
+import com.alpha.alphaapp.ui.recom.RecomFragment;
+import com.alpha.alphaapp.ui.score.ScoreFragment;
 import com.alpha.lib_sdk.app.log.Log;
 
 /**
@@ -19,51 +18,102 @@ import com.alpha.lib_sdk.app.log.Log;
  * Email : xiaokai090704@126.com
  */
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseFragmentActivity {
     private static final String TAG = "HomeActivity";
+    private RadioGroup radioGroup;
+    private BaseFragment[] fragments;
+    private int lastIndex = 2;
 
-    private Button btnSettings;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        LoginInfo loginInfo = new LoginInfo();
-        loginInfo.setAccount("account001");
-        loginInfo.setPw("e10adc3949ba59abbe56e057f20f883e");
-        loginInfo.setUser_ip("127.0.0.1");
-
-
-        SharePLoginInfo.getInstance(this).saveLoginInfo(loginInfo);
-        Log.e(TAG, "loginInfo=" + SharePLoginInfo.getInstance(this).getLoginInfo().toString());
-
-    }
 
     @Override
     protected int getLayoutId() {
+
         return R.layout.activity_home;
     }
 
     @Override
     protected void initView() {
-        btnSettings = (Button)findViewById(R.id.btn_settings);
-        btnSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
+        radioGroup = (RadioGroup) findViewById(R.id.home_rg);
+
     }
+
 
     @Override
     public void initData() {
+        Log.e(TAG, "provinces===" + GetPCityAreaData.itme1datas.toString());
+        Log.e(TAG, "citys===" + GetPCityAreaData.item2datas.toString());
+        Log.e(TAG, "areas===" + GetPCityAreaData.item3datas.toString());
 
+
+
+        initFragments();
     }
 
     @Override
     protected void initListener() {
+        // 监听底部RadioButton
+        initRadioButton();
+    }
+
+    /**
+     * 初始化fragment
+     */
+    private void initFragments() {
+        fragments = new BaseFragment[]{
+                new RecomFragment(), new ScoreFragment(), new MineFragment()
+        };
+        FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
+        ;
+
+        for (int i = 0; i < fragments.length; i++) {
+            tran.add(R.id.home_content, fragments[i]);
+            tran.hide(fragments[i]);
+        }
+        // 默认显示第一个
+        tran.show(fragments[2]);
+        // 提交事务
+        tran.commit();
+
 
     }
+
+    private void initRadioButton() {
+        if (radioGroup != null) {
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    int index = -1;
+                    switch (checkedId) {
+                        case R.id.home_rb_recom:
+                            index = 0;
+                            break;
+                        case R.id.home_rb_score:
+                            index = 1;
+                            break;
+                        case R.id.home_rb_mine:
+                            index = 2;
+                            break;
+                    }
+                    //判断若点击的是上一次的页面则不操作
+                    if (index == lastIndex) {
+                        return;
+                    }
+                    FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
+                    //隐藏上一个
+                    if (lastIndex != -1) {
+                        tran.hide(fragments[lastIndex]);
+                    }
+                    //显示点击的framment
+                    tran.show(fragments[index]);
+                    tran.commit();
+                    //记录上一个索引
+                    lastIndex = index;
+
+                }
+            });
+        }
+    }
+
 
     /**
      * 从其它页面跳转到HomeActivity

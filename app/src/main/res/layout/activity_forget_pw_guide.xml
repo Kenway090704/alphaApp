@@ -8,15 +8,47 @@
         android:id="@+id/forget_pw_guide_titlelayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
+
+    <LinearLayout
         android:id="@+id/forget_pw_guide_btn_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/by_bind_phone_get" />
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
-    <Button
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:src="@drawable/phone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/by_bind_phone_get" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/forget_pw_guide_btn_weChat"
         android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
         android:layout_height="wrap_content"
-        android:text="@string/by_bind_phone_get" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:src="@drawable/weixin_logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/by_bind_wx_get" />
+    </LinearLayout>
+
+
 </LinearLayout>

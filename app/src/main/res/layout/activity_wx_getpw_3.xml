@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/wx_getpw3_titlelayout"
+        android:layout_width="match_parent"
+        app:txt_title="@string/find_pw"
+        android:layout_height="wrap_content" />
+
+    <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:curent_select="3"
+        app:icon_first="@drawable/one"
+        app:icon_second="@drawable/two"
+        app:icon_third="@drawable/three"
+        app:txt_first="@string/verify_msg"
+        app:txt_second="@string/insure_account"
+        app:txt_third="@string/reset_pw" />
+
+    <EditText
+        android:id="@+id/wx_getpw3_et_pw"
+        style="@style/et_com"
+        android:hint="@string/pw_format"
+       />
+
+    <TextView
+        android:id="@+id/wx_getpw3_tv_error"
+        style="@style/tv_error_com"
+        android:maxLines="2"
+    />
+
+    <Button
+        android:id="@+id/wx_getpw3_btn_submit"
+        style="@style/btn_com_gray"
+        android:text="@string/submit"
+        />
+</LinearLayout>

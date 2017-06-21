@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/shape_et_bg_gray"
+    android:orientation="horizontal"
+    android:padding="7dp">
+    <ImageView
+        android:id="@+id/verify_edit_iv_lock"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:src="@drawable/icon_lock" />
+    <EditText
+        android:id="@+id/verify_edit_et"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="@string/msg_verify"
+        android:maxLength="30"
+        android:singleLine="true"
+        android:textColor="@color/tv_black"
+        android:textSize="14sp" />
+    <ImageView
+        android:id="@+id/verify_edit_iv_del"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
+        android:src="@drawable/et_del"
+        android:visibility="invisible" />
+    <TextView
+        android:id="@+id/verify_edit_tv_getVerify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/shape_tv_getverify_bg_gray"
+        android:clickable="true"
+        android:gravity="center"
+        android:paddingBottom="3dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="3dp"
+        android:text="@string/get_msg_verify"
+        android:textColor="@color/tv_black"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/aboutus_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/launcher"
+        app:riv_border_color="@color/btn_red"
+        app:riv_border_width="2dp"
+        app:riv_oval="true" />
 
     <TextView
-        android:id="@+id/about_us_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/about_us_copyright" />
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/app_user_center"
+        android:textColor="@color/tv_black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/version"
+        android:textColor="@color/tv_black"
+        android:textSize="10sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/line_gray" />
 </LinearLayout>

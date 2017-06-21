@@ -11,7 +11,7 @@ import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.other.CheckAccoutInfo;
+import com.alpha.alphaapp.model.check.CheckAccoutLogic;
 import com.alpha.alphaapp.model.register.RegisterInfo;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
@@ -64,76 +64,78 @@ public class AccountRegisterFragment extends BaseFragment {
                     et_accout.setFocusable(true);
                 } else {
                     //判断是否存在该帐号
-                    CheckAccoutInfo checkAccoutInfo = new CheckAccoutInfo();
-                    checkAccoutInfo.setAccount(et_accout.getText().toString());
-                    checkAccoutInfo.setAccount_type(CommStants.ACCOUNT_TYPE.ACCOUNT);
-                    String data = checkAccoutInfo.getJsonStrCheckAccout();
-                    String json = JsonUtil.getPostJsonSignString(data);
-                    ReqCallBack<String> callBack = new ReqCallBack<String>() {
+                    String account = et_accout.getText().toString();
+                    int type = CommStants.ACCOUNT_TYPE.ACCOUNT;
+
+                    CheckAccoutLogic.OnCheckAccountListener listener = new CheckAccoutLogic.OnCheckAccountListener() {
                         @Override
-                        public void onReqSuccess(String result) {
-                            ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
-                            if (responseInfo.getResult() == CommStants.CHECKOUT_ACCOUNT_RESULT.RESUTL_OK) {
-                                ToastUtils.showLong(getContext(), R.string.account_had);
-                                //当用户名存在的时候,获取焦点并弹出软件盘
+                        public void checkSucessed(boolean isHas, String result) {
+                            if (isHas) {
                                 et_accout.setFocusable(true);
                                 et_accout.setFocusableInTouchMode(true);
                                 et_accout.requestFocus();
                                 KeyBoardUtils.openKeybord(et_accout, getActivity());
                             } else {
-                                //密码为空
-                                if (Util.isNullOrNil(et_pw.getText().toString()) || Util.isNullOrNil(et_insurepw.getText().toString())) {
-                                    ToastUtils.showShort(getActivity(), R.string.pw_empty);
-                                }
-                                //判断两次密码是相同
-                                if (StringUtils.isPWLine(et_pw.getText().toString()) && StringUtils.isPWLine(et_insurepw.getText().toString())) {
-                                    if (et_pw.getText().toString().equals(et_insurepw.getText().toString())) {
-                                        //两次密码相同时注册该账号
-                                        RegisterInfo registerInfo = new RegisterInfo();
-                                        registerInfo.setAccount(et_accout.getText().toString());
-                                        registerInfo.setPw(et_pw.getText().toString());
-                                        registerInfo.setUser_ip(IPAdressUtils.getIpAdress(getContext()));
-                                        registerInfo.setTerminal_type(TypeConstants.TERMINAL_TYPE.PHONE);
-                                        String data = registerInfo.getJsonStrforAccount();
-                                        String json = JsonUtil.getPostJsonSignString(data);
-                                        ReqCallBack<String> callBack = new ReqCallBack<String>() {
-                                            @Override
-                                            public void onReqSuccess(String result) {
-                                                ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
-                                                if (responseInfo.getResult() == CommStants.CHECKOUT_ACCOUNT_RESULT.RESUTL_OK) {
-                                                    //注册成功
-                                                    ToastUtils.showLong(getContext(), R.string.register_success);
-                                                      //点击登录
-                                                    HomeActivity.actionStartClearStack(getContext(), null, null);
-                                                }
-                                            }
+                                doRegisterAccount();
 
-                                            @Override
-                                            public void onReqFailed(String errorMsg) {
-                                                Log.e(TAG, "注册失败");
-                                            }
-                                        };
-                                        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.REGISTER, json, callBack);
-                                    } else {
-                                        ToastUtils.showShort(getActivity(), R.string.pw_different);
-                                    }
-                                } else {
-                                    ToastUtils.showShort(getActivity(), R.string.pw_format);
-                                }
                             }
                         }
 
                         @Override
-                        public void onReqFailed(String errorMsg) {
+                        public void checkFailed(String errorMsg) {
 
                         }
                     };
-                    RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL
-                            .CHECKACCOUT, json, callBack);
+                    CheckAccoutLogic.checkAccountIsHas(account, type, listener);
                 }
 
             }
         });
+    }
+
+    /**
+     * 注册该帐号
+     */
+    private void doRegisterAccount() {
+        //密码为空
+        if (Util.isNullOrNil(et_pw.getText().toString()) || Util.isNullOrNil(et_insurepw.getText().toString())) {
+            ToastUtils.showShort(getActivity(), R.string.pw_empty);
+        }
+        //判断两次密码是相同
+        if (StringUtils.isPWLine(et_pw.getText().toString()) && StringUtils.isPWLine(et_insurepw.getText().toString())) {
+            if (et_pw.getText().toString().equals(et_insurepw.getText().toString())) {
+                //两次密码相同时注册该账号
+                RegisterInfo registerInfo = new RegisterInfo();
+                registerInfo.setAccount(et_accout.getText().toString());
+                registerInfo.setPw(et_pw.getText().toString());
+                registerInfo.setUser_ip(IPAdressUtils.getIpAdress(getContext()));
+                registerInfo.setTerminal_type(TypeConstants.TERMINAL_TYPE.PHONE);
+                String data = registerInfo.getJsonStrforAccount();
+                String json = JsonUtil.getPostJsonSignString(data);
+                ReqCallBack<String> callBack = new ReqCallBack<String>() {
+                    @Override
+                    public void onReqSuccess(String result) {
+                        ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
+                        if (responseInfo.getResult() == CommStants.CHECKOUT_ACCOUNT_RESULT.RESUTL_OK) {
+                            //注册成功
+                            ToastUtils.showLong(getContext(), R.string.register_success);
+                            //点击登录
+                            HomeActivity.actionStartClearStack(getContext(), null, null);
+                        }
+                    }
+
+                    @Override
+                    public void onReqFailed(String errorMsg) {
+                        Log.e(TAG, "注册失败");
+                    }
+                };
+                RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.REGISTER, json, callBack);
+            } else {
+                ToastUtils.showShort(getActivity(), R.string.pw_different);
+            }
+        } else {
+            ToastUtils.showShort(getActivity(), R.string.pw_format);
+        }
     }
 
     @Override

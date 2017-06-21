@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/set_acc_haspw_titlelayout"
+        android:layout_width="match_parent"
+        app:txt_title="@string/en_account_set"
+        android:layout_height="wrap_content" />
+
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/set_acc_haspw_aet_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:hint="@string/account_alpha_format"
+        app:icon_type="@drawable/icon_user" />
+
+    <TextView
+        android:id="@+id/set_acc_haspw_tv_error"
+        style="@style/tv_error_com" />
+
+    <Button
+        android:id="@+id/set_acc_haspw_btn_save"
+        style="@style/btn_com_gray"
+        android:text="@string/save" />
+</LinearLayout>

@@ -28,48 +28,127 @@
         <item name="android:activityCloseEnterAnimation">@anim/in_from_right</item>
         <item name="android:activityCloseExitAnimation">@anim/out_to_left</item>
     </style>
+
+
+    <!--正在加载中的对话框样式-->
+    <style name="dialog_loading" parent="android:Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <!--提示对话框样式-->
+    <style name="dialog_alert" parent="android:Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/shape_dialog_bg_white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
     <!--**********控件使用的style***************-->
     <!--btn通用样式-->
-    <style name="btn_com">
+    <style name="btn_com_gray">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
         <item name="android:layout_margin">10dp</item>
         <item name="android:background">@drawable/shape_btn_bg_gray</item>
         <item name="android:enabled">false</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="btn_com_blue">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/shape_btn_bg_blue</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
     <!--et通用样式-->
     <style name="et_com">
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/register_item_5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginTop">20dp</item>
-        <item name="android:background">@drawable/shape_et_bg</item>
+        <item name="android:background">@drawable/shape_et_bg_gray</item>
         <item name="android:singleLine">true</item>
+        <item name="android:maxLength">30</item>
         <item name="android:textSize">@dimen/register_item_hint_sp</item>
-        <item name="android:layout_marginRight">@dimen/register_item_5dp</item>
+        <item name="android:layout_marginRight">10dp</item>
         <item name="android:padding">10dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:drawableStart">@drawable/icon_user</item>
     </style>
-    <!--et有验证码的通用样式通用样式-->
-    <style name="et_hasVerfiy_com">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/register_item_5dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:background">@drawable/shape_et_bg</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:textSize">@dimen/register_item_hint_sp</item>
-        <item name="android:layout_marginRight">@dimen/register_item_5dp</item>
-        <item name="android:padding">10dp</item>
-    </style>
-    <!--tv——error通用样式-->
+
+    <!--tv_error通用样式-->
     <style name="tv_error_com">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/register_item_left_margin</item>
-        <item name="android:layout_marginTop">@dimen/register_item_top_margin</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/error_red</item>
     </style>
+    <!--dialog_custom样式-->
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <!--底部弹出框样式-->
+    <!--半透明背景Theme-->
+    <style name="BottomViewTheme_Defalut">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--性别对话框-->
+    <style name="BottomViewTheme_Sex"  parent="@android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Dialog进入及退出动画 -->
+    </style>
+
+    <style name="BottomViewTheme_Transparent">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- Transparent -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:backgroundDimEnabled">false</item>
+
+
+
+    </style>
+
+    <style name="BottomToTopAnim" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/anim_bottomview_enter</item>
+        <item name="@android:windowExitAnimation">@anim/anim_bottomview_exit</item>
+    </style>
+
 
 </resources>

@@ -16,12 +16,14 @@ public class CountDownManager {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            tv.setText(millisUntilFinished / 1000 + "秒");
+            tv.setClickable(false);
+            tv.setText(millisUntilFinished / 1000 + "秒后重新发送");
+
         }
 
         @Override
         public void onFinish() {
-            tv.setEnabled(true);
+            tv.setClickable(true);
             tv.setText("重新发送");
         }
     };
@@ -31,11 +33,12 @@ public class CountDownManager {
     }
 
     public void start() {
-
         timer.start();
     }
 
     public void cancel() {
         timer.cancel();
     }
+
+
 }
