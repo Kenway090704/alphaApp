@@ -3,7 +3,16 @@
     <string name="app_user_center">奥飞用户中心</string>
     <string name="version">v1.0</string>
     <!-- 注册页面-->
+    <string name="account_register">帐号注册</string>
+    <string name="phone_register">手机号注册</string>
+    <string name="input_alpha_account">输入奥飞帐号</string>
+    <string name="set_pw_register_success">设置密码,注册成功</string>
+    <string name="register_and_login">注册并登录</string>
+    <string name="register_and_agree_alpha_rules">注册即同意奥飞用户协议</string>
     <string name="alpha_account">奥飞帐号</string>
+    <string name="already_has_account">已有帐号</string>
+    <string name="register_one_account_can_user_for_all">注册一号通行奥飞旗下产品</string>
+    <string name="get_verify">获取验证码</string>
     <string name="input_pw">输入密码</string>
     <string name="insure_pw">确认密码</string>
     <string name="pw_empty">请确认密码</string>
@@ -58,7 +67,7 @@
     <string name="feedback">意见反馈</string>
     <string name="score">欢迎评分</string>
     <string name="about_us">关于我们</string>
-
+<string name="account_bing_set">帐号和绑定设置</string>
     <string name="exit_account">退出当前账号</string>
     <string name="account_security">账号安全</string>
     <string name="message_settings">消息设置</string>
@@ -102,7 +111,7 @@
     <string name="success_change_pwd">修改密码成功</string>
     <string name="please_relogin">请重新登录</string>
     <string name="fail_to_modify_pwd">修改密码失败</string>
-    <string name="input_phone">请输入手机号</string>
+    <string name="input_phone">输入手机号</string>
     <string name="set_pw">设置密码</string>
     <string name="sucess_send_verify_code">验证码已经发送，请注意查收</string>
     <string name="phone_has_registered">该手机号码已经注册，请重新输入</string>
@@ -163,6 +172,8 @@
     <string name="account_alpha_format">奥飞帐号(小写字母为开头,6-12未字符)</string>
     <string name="your_alpha_account_format">您的奥飞英文帐号为:</string>
     <string name="wx_no_set_alpha_account">该微信号未设置英文帐号,请立即设置。设置成功后,点击下方按钮。</string>
+    <string name="we_already">我们已经向</string>
+    <string name="send_phone_verify_plz_look">下发了手机验证码,请及时查收并输入</string>
     <string name="pw_isnot_empty">密码不能为空</string>
     <!--微信授权-->
     <string name="errcode_success">发送成功</string>
@@ -179,6 +190,7 @@
     <string name="my_info">我的资料</string>
     <string name="avatar">头像</string>
     <string name="nickname">昵称</string>
+    <string name="user_msg">个人信息></string>
     <string name="name">姓名</string>
     <string name="sex">性别</string>
     <string name="birthday">出生日期</string>

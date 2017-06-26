@@ -79,6 +79,7 @@ public class StringUtils {
 
     /**
      * 验证是否为qq号
+     *
      * @param qq
      * @return
      */
@@ -88,5 +89,26 @@ public class StringUtils {
         Matcher m = p.matcher(qq);
         return m.matches();
     }
+
+    /**
+     * 隐藏手机的中间四位的字符串
+     *
+     * @param phone
+     * @return
+     */
+    public static String getHideMidPhone(String phone) {
+        char[] chars = phone.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < chars.length; i++) {
+            if (i > 2 & i < 7) {
+                sb.append("*");
+            } else {
+                sb.append(chars[i]);
+            }
+
+        }
+        return sb.toString();
+    }
+
 
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.check.CheckAccoutLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
@@ -95,7 +96,7 @@ public class WxGetPwActivityNoAccount extends BaseActivity {
             tv_error.setText(R.string.account_format);
             tv_error.setVisibility(View.VISIBLE);
         }
-        CheckAccoutLogic.OnCheckAccountListener listener = new CheckAccoutLogic.OnCheckAccountListener() {
+        CheckAccoutLogic.OnCheckAccountCallBack listener = new CheckAccoutLogic.OnCheckAccountCallBack() {
             @Override
             public void checkSucessed(boolean isHas, String result) {
                 if (isHas) {
@@ -111,7 +112,7 @@ public class WxGetPwActivityNoAccount extends BaseActivity {
 
             }
         };
-        CheckAccoutLogic.checkAccountIsHas(et_account.getText().toString(), CommStants.ACCOUNT_TYPE.ACCOUNT, listener);
+        CheckAccoutLogic.checkAccountIsHas(et_account.getText().toString(), TypeConstants.ACCOUNT_TYPE.ACCOUNT, listener);
     }
 
     public static void actionStart(Context context) {

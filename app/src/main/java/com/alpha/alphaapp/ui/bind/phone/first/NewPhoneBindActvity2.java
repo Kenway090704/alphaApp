@@ -10,20 +10,14 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
 import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -87,75 +81,33 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
                     return;
                 }
                 String sskey = AccountManager.getInstance().getSskey();
-                String data = BindLogic.getJsonforBindPhone(sskey, phone, ivet.getText().toString());
-                String json = JsonUtil.getPostJsonSignString(data);
-                ReqCallBack<String> callBack = new ReqCallBack<String>() {
+                String verify = ivet.getText().toString();
+                BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
                     @Override
-                    public void onReqSuccess(String result) {
-                        doRespone(result);
-
+                    public void onBindSuccessed() {
+                        //弹出对话框架提示绑定成功,然后重新加载一次信息
+                        AccountManager.getInstance().loadUserinfo();
+                        dialog.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                AccountSecurityActivity.actionStar(NewPhoneBindActvity2.this, null, null);
+                                finish();
+                            }
+                        });
+                        dialog.show();
                     }
 
                     @Override
-                    public void onReqFailed(String errorMsg) {
-
+                    public void onBindFailed(String failMsg) {
+                        tv_error.setText(failMsg);
+                        tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                RequestManager.getInstance(getApplicationContext()).requestPostByJsonAsyn(URLConstans.URL.BIND, json, callBack);
+                BindLogic.doBindAccountOrPhone(sskey, phone, verify, TypeConstants.ACCOUNT_TYPE.PHONE, call);
             }
         });
 
-    }
-
-
-    private void doRespone(String result) {
-        //如果绑定成功,弹出对话框
-
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        switch (info.getResult()) {
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_OK:
-                //弹出对话框架提示绑定成功,然后重新加载一次信息
-                AccountManager.getInstance().loadUserinfo();
-                dialog.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AccountSecurityActivity.actionStartClearStack(NewPhoneBindActvity2.this, null, null);
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-
-
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_ACCOUT_HAD:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //帐号已经存在
-                Log.e(TAG, result);
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_RELOGIN:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //请重新登录
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_GETVERIFY_TOO_MUCH:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-//                        手机验证码手机号错误
-                break;
-//                    case  CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_IS_ERROR:
-//                        break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_VERIFY_IS_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //验证码错误
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_HAD_BIND:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //手机号已经绑定
-                break;
-        }
     }
 
     public static void actionStart(Context context, String phone, String data2) {

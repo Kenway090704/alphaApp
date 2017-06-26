@@ -10,9 +10,6 @@
     </declare-styleable>
 
     <declare-styleable name="OneTwoThreeItemView">
-        <attr name="icon_first" format="reference" />
-        <attr name="icon_second" format="reference" />
-        <attr name="icon_third" format="reference" />
         <attr name="txt_first" format="string|reference" />
         <attr name="txt_second" format="string|reference" />
         <attr name="txt_third" format="string|reference" />

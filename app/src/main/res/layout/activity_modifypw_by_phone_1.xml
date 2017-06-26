@@ -14,9 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:curent_select="1"
-        app:icon_first="@drawable/one"
-        app:icon_second="@drawable/two"
-        app:icon_third="@drawable/three"
         app:txt_first="@string/input_phone"
         app:txt_second="@string/input_verify"
         app:txt_third="@string/set_pw" />

@@ -8,15 +8,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.login.LoginLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
@@ -25,12 +20,10 @@ import com.alpha.alphaapp.ui.forgetpw.ForgetPWGuideActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.alphaapp.wxapi.WXManager;
-import com.alpha.alphaapp.ui.register.RegisterActivity;
+import com.alpha.alphaapp.ui.register.RegisterGuideActivity;
 import com.alpha.alphaapp.wxapi.WechatAuthCallBack;
 import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.tencent.connect.UserInfo;
@@ -85,7 +78,7 @@ public class AccountLoginFragment extends BaseFragment {
         tv_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterActivity.actionStart(getContext());
+                RegisterGuideActivity.actionStart(getContext());
             }
         });
         aet_user.setWatcherListener(new TextWatcher() {
@@ -168,15 +161,14 @@ public class AccountLoginFragment extends BaseFragment {
             public void onClick(View v) {
 //                loginQQAuth();
                 //此处暂时使用测试代
-                debugQQFunc();
-
-
+                debugQQFunc(TypeConstants.LOGIN_TYPE.AUTH_QQ);
             }
         });
         iv_weixin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginWxAuth();
+//                loginWxAuth();
+                debugQQFunc(TypeConstants.LOGIN_TYPE.AUTH_WX);
             }
         });
     }
@@ -255,8 +247,8 @@ public class AccountLoginFragment extends BaseFragment {
     /**
      * 这是一个测试代码,后面要删除
      */
-    private void debugQQFunc() {
-        String openid_qq = "AFGHR9080";
+    private void debugQQFunc(int loginType) {
+        String openid_qq = "AFGHR9188";
         LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
             @Override
             public void onLoginSuccessed(String sskey) {
@@ -264,9 +256,8 @@ public class AccountLoginFragment extends BaseFragment {
 //                if (SharePLoginInfo.getInstance(getContext()).getIsBindAccount()) {
                 BindAccountActivity.actionStart(getActivity(), sskey, null);
 //                } else {
-//                    HomeActivity.actionStartClearStack(getActivity(), null, null);
+//                    HomeActivity.actionStar(getActivity(), null, null);
 //                }
-
             }
 
             @Override
@@ -275,7 +266,7 @@ public class AccountLoginFragment extends BaseFragment {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        LoginLogic.doLogin(openid_qq, null, TypeConstants.LOGIN_TYPE.AUTH_QQ, callBack);
+        LoginLogic.doLogin(openid_qq, null, loginType, callBack);
     }
 
     @Override

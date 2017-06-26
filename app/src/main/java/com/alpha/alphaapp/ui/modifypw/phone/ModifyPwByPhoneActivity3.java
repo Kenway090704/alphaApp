@@ -12,20 +12,17 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.modifyPassword.ModifyPwdInfo;
+import com.alpha.alphaapp.model.modifyPassword.ModifyPwdLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
-import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
-import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
@@ -88,50 +85,21 @@ public class ModifyPwByPhoneActivity3 extends BaseActivity implements TextWatche
             return;
         }
         String sskey = AccountManager.getInstance().getSskey();
-        String data = ModifyPwdInfo.getJsonModifyPwdByPhone(sskey, phone, verify, et_pw.getText().toString());
-        String json = JsonUtil.getPostJsonSignString(data);
-
-        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+        ModifyPwdLogic.OnModifyPwCallBack callBack = new ModifyPwdLogic.OnModifyPwCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-                ResponseInfo responseInfo = ResponseInfo.getRespInfoFromJsonStr(result);
-                int resultCode = responseInfo.getResult();
-                switch (resultCode) {
-                    case CommStants.FIND_PWD_BY_PHONE_RESULT.RESULT_OK:
-                        ToastUtils.showShort(ModifyPwByPhoneActivity3.this, "密码修改成功");
-                        AccountManager.getInstance().exitLogin(ModifyPwByPhoneActivity3.this);
-                        finish();
-                        break;
-                    case CommStants.FIND_PWD_BY_PHONE_RESULT.RESULT_VERIFY_ERROR:
-                        tv_error.setText(R.string.user_not_exist);
-                        tv_error.setVisibility(View.VISIBLE);
-                        break;
-                    case CommStants.FIND_PWD_BY_PHONE_RESULT.PHONE_WRONG:
-                        tv_error.setText(R.string.phone_number_wrong);
-                        tv_error.setVisibility(View.VISIBLE);
-                        break;
-                    case CommStants.FIND_PWD_BY_PHONE_RESULT.DATA_PACKAGE_WRONG:
-                        tv_error.setText(R.string.data_package_wrong);
-                        tv_error.setVisibility(View.VISIBLE);
-                        break;
-                    case CommStants.FIND_PWD_BY_PHONE_RESULT.PWD_FORMAT_WRONG:
-                        tv_error.setText(R.string.pwd_format_wrong);
-                        tv_error.setVisibility(View.VISIBLE);
-                        break;
-                    default:
-                        tv_error.setText(responseInfo.getMsg());
-                        tv_error.setVisibility(View.VISIBLE);
-                        break;
-
-                }
+            public void modifyPwSuccess() {
+                ToastUtils.showShort(ModifyPwByPhoneActivity3.this, "密码修改成功");
+                AccountManager.getInstance().exitLogin(ModifyPwByPhoneActivity3.this);
+                finish();
             }
-
             @Override
-            public void onReqFailed(String errorMsg) {
-                Log.e(TAG, "修改密码时，发送到服务器失败！");
+            public void modifyPwFailed(String failMsg) {
+                tv_error.setText(failMsg);
+                tv_error.setVisibility(View.VISIBLE);
             }
         };
-        RequestManager.getInstance(ApplicationContext.getCurrentContext()).requestPostByJsonAsyn(URLConstans.URL.MODIFY_PWD_BY_PHONE, json, callBack);
+        ModifyPwdLogic.doModifyPwByPhone(sskey,phone,verify,et_pw.getText().toString(),callBack);
+
     }
 
 

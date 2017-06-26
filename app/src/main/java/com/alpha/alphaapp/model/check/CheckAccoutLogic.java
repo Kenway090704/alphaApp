@@ -26,7 +26,7 @@ public class CheckAccoutLogic {
      * @return
      */
     private static String getJsonStrCheckAccout(String account, int accountType) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"account\":").append("\"" + account + "\",")
                 .append("\"account_type\":").append(accountType)
                 .append("}");
@@ -36,21 +36,23 @@ public class CheckAccoutLogic {
     /**
      * 检测帐号是否存在
      * <p> accountType:</p>
-     * <p>CommStants.ACCOUNT_TYPE.ACCOUNT</p>
-     * <p>CommStants.ACCOUNT_TYPE.PHONE</p>
-     * <p> CommStants.ACCOUNT_TYPE.AUTH</p>
-     * <p>CommStants.ACCOUNT_TYPE.AUTH_WECHAT</p>
+     * <p>TypeContansts.ACCOUNT_TYPE.ACCOUNT</p>
+     * <p>TypeContansts.ACCOUNT_TYPE.PHONE</p>
+     * <p> TypeContansts.ACCOUNT_TYPE.AUTH_QQ</p>
+     * <p>TypeContansts.ACCOUNT_TYPE.AUTH_WECHAT</p>
+     *
      * @param account     帐号
      * @param accountType 帐号类型
      * @return
      */
-    public static void checkAccountIsHas(String account, int accountType, final OnCheckAccountListener listener) {
+    public static void checkAccountIsHas(String account, int accountType, final OnCheckAccountCallBack listener) {
         String data = getJsonStrCheckAccout(account, accountType);
         String json = JsonUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
                 ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+                if (Util.isNull(info)) return;
                 switch (info.getResult()) {
                     case CommStants.CHECKOUT_ACCOUNT_RESULT.RESUTL_OK:
                         if (!Util.isNull(listener))
@@ -58,7 +60,6 @@ public class CheckAccoutLogic {
                             listener.checkSucessed(true, info.getMsg());
                         break;
                     case CommStants.CHECKOUT_ACCOUNT_RESULT.RESULT_ACCOUNT_NOHAD:
-
                         if (!Util.isNull(listener))
                             listener.checkSucessed(false, info.getMsg());
                         break;
@@ -75,7 +76,7 @@ public class CheckAccoutLogic {
     }
 
 
-    public interface OnCheckAccountListener {
+    public interface OnCheckAccountCallBack {
         /**
          * @param isHas 帐号是否存在 true 已存在   false--不存在
          */

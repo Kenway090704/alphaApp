@@ -2,17 +2,11 @@ package com.alpha.alphaapp.ui.widget.mine;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,19 +14,9 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
-import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
-import com.alpha.alphaapp.ui.mine.adapter.IconListAdapter;
-import com.alpha.alphaapp.ui.mine.adapter.IconRecylcerAdapter;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.tandong.bottomview.view.BottomView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kenway on 17/6/15 13:37

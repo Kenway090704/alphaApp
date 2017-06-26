@@ -7,11 +7,10 @@ import android.view.View;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
-import com.alpha.alphaapp.bean.SchoolBean;
+import com.alpha.alphaapp.ui.mine.logic.bean.SchoolBean;
 import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.mine.MineInfoActivity;
-import com.alpha.alphaapp.ui.mine.addr.ModifyContactAddrActivity;
 import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.mine.logic.GetSchoolLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
@@ -26,19 +25,15 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 public class ModifySchoolActivity extends BaseActivity {
     private static final String TAG = "ModifySchoolActivity";
-    public static final int RESQUEST_CODE = 1;
-    public static final String SCHOOL = "school";
     private TitleLayout titleLayout;
     private ModifyInfoItemView miiv_pca, miiv_school;
     private GetPCityAreaLogic logic_pca;
     private GetSchoolLogic logic_school;
-
     private SchoolBean school;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_modify_school;
-
     }
 
     @Override
@@ -60,9 +55,6 @@ public class ModifySchoolActivity extends BaseActivity {
         titleLayout.setOnBackListener(new TitleLayout.OnBackListener() {
             @Override
             public void onBackLister() {
-                Intent intent = new Intent();
-                intent.putExtra(SCHOOL, miiv_school.getMsg());
-                setResult(1, intent);
                 finish();
             }
 
@@ -129,11 +121,9 @@ public class ModifySchoolActivity extends BaseActivity {
         ModifyUserInfoLogic.doModifyUserInfo(sskey, info, ModifyUserInfoLogic.MODIFY_SCHOOL, callback);
     }
 
-    public static void actionStart(Context context, int request_code, String data2) {
+    public static void actionStart(Context context) {
         Intent intent = new Intent(context, ModifySchoolActivity.class);
-        intent.putExtra("params", data2);
-        ((MineInfoActivity) context).startActivityForResult(intent, request_code);
-
+        context.startActivity(intent);
     }
 
 

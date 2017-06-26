@@ -2,7 +2,6 @@ package com.alpha.alphaapp.ui.sign;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,21 +13,14 @@ import android.widget.LinearLayout;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.alpha.alphaapp.model.geticons.GetIconListLogic;
-import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.mine.MineInfoActivity;
-import com.alpha.alphaapp.ui.mine.adapter.IconListAdapter;
-import com.alpha.alphaapp.ui.mine.adapter.IconRecylcerAdapter;
-import com.alpha.alphaapp.ui.sign.adapter.LayoutAdapter;
+import com.alpha.alphaapp.ui.sign.adapter.LayoutVPAdapter;
 import com.alpha.alphaapp.ui.sign.adapter.SignRecylcerAdapter;
 import com.alpha.alphaapp.ui.widget.dialog.SignDialog;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,12 +57,10 @@ public class SignActivity extends BaseActivity {
         signDialog = new SignDialog(this);
 
     }
-
     @Override
     public void initData() {
         map = new HashMap<>();
         initTabs();
-
         initVps();
 
     }
@@ -83,8 +73,7 @@ public class SignActivity extends BaseActivity {
     }
 
     /**
-     * 模拟获取图片后的签到
-     *
+     * 模拟获取图片后的签到,这个模拟的
      * @param context
      */
     private void getIconList(final Context context) {
@@ -93,19 +82,18 @@ public class SignActivity extends BaseActivity {
             public void onGetIconListSuccuss(String baseUrl, List<GetIconBean.IconListBean.CategoryBean> list) {
                 List<LinearLayout> layouts = new ArrayList<>();
                 for (int i = 0; i < 4; i++) {
-                    LinearLayout layout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.widget_sign_item, null);
+                    LinearLayout layout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.widget_sign_item,null);
                     RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.sign_item_recyclerView);
                     recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
                     SignRecylcerAdapter adapter = new SignRecylcerAdapter(context, list.get(i), map);
                     recyclerView.setAdapter(adapter);
                     layouts.add(layout);
-
                     //遍历每一个图片的名字
                     for (int j = 0; j < list.get(i).getIcons().size(); j++) {
                         map.put(list.get(i).getIcons().get(j), false);
                     }
                 }
-                LayoutAdapter adapter = new LayoutAdapter(layouts);
+                LayoutVPAdapter adapter = new LayoutVPAdapter(layouts);
                 vp.setAdapter(adapter);
 
             }
@@ -156,7 +144,10 @@ public class SignActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                tab.getTabAt(position).select();
+                TabLayout.Tab tablayout = tab.getTabAt(position );
+                if (!Util.isNull(tab))
+                    tablayout.select();
+
             }
 
             @Override
@@ -167,20 +158,18 @@ public class SignActivity extends BaseActivity {
         btn_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 for (final String str : map.keySet()) {
                     //map.keySet()返回的是所有key的值
                     Boolean isSelect = map.get(str);//得到每个key对应value的值
-                    if (isSelect == true) {
+                    if (isSelect) {
                         if (!Util.isNull(signDialog)) {
                             signDialog.setSignIcon(URLConstans.GET_ICON.ICON100 + str);
                             signDialog.show();
-
                             signDialog.setBtnLookOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     signDialog.dismiss();
-                                    MySignActivity.actionStart(SignActivity.this,str);
+                                    MySignActivity.actionStart(SignActivity.this, str);
                                 }
                             });
                         }
@@ -189,14 +178,9 @@ public class SignActivity extends BaseActivity {
 
             }
         });
-
         signDialog.setBtnLookOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Util.isNull(signDialog)) {
-
-
-                }
 
             }
         });

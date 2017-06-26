@@ -15,9 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:curent_select="2"
-        app:icon_first="@drawable/one"
-        app:icon_second="@drawable/two"
-        app:icon_third="@drawable/three"
         app:txt_first="@string/verify_msg"
         app:txt_second="@string/submit_bind_phone"
         app:txt_third="@string/success_bind_phone_number" />

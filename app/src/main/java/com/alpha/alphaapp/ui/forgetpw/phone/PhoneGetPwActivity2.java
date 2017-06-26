@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
@@ -27,26 +29,28 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
 
     private static final String TAG = "PhoneGetPwActivity1";
     private TitleLayout titleLayout;
+    private TextView tv_msg;
     private InputVerifyEditText ivet;
     private TextView tv_error;
     private Button btn_resetpw;
 
     //从第一个页面中获取的phone,verify
-    private String phone, verify;
+    private String phone;
 
     @Override
     protected int getLayoutId() {
         phone = getIntent().getStringExtra("phone");
-        verify = getIntent().getStringExtra("verify");
         return R.layout.activity_phone_getpw_2;
     }
 
     @Override
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.phone_get_pw_2_titlelayout);
+        tv_msg = (TextView) findViewById(R.id.phone_get_pw_2_tv_msg);
+
 
         ivet = (InputVerifyEditText) findViewById(R.id.phone_get_pw_2_ivet);
-        ivet.start();
+
         tv_error = (TextView) findViewById(R.id.phone_get_pw_2_tv_error);
         btn_resetpw = (Button) findViewById(R.id.phone_get_pw_2_btn_resetpw);
 
@@ -54,7 +58,10 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
 
     @Override
     public void initData() {
-
+        ivet.start();
+        String left = getResources().getString(R.string.we_already);
+        String right = getResources().getString(R.string.send_phone_verify_plz_look);
+        tv_msg.setText(left + StringUtils.getHideMidPhone(phone) + right);
     }
 
     @Override
@@ -64,7 +71,7 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
         ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //再次获取验证码
+                getVerify();
             }
         });
         btn_resetpw.setOnClickListener(new View.OnClickListener() {
@@ -76,30 +83,36 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                if (ivet.getText().toString().equals(verify)) {
-                    PhoneGetPwActivity3.actionStart(PhoneGetPwActivity2.this, phone, ivet.getText().toString());
-                } else {
-                    tv_error.setText(R.string.verify_code_error);
-                    tv_error.setVisibility(View.VISIBLE);
-                }
-
+                PhoneGetPwActivity3.actionStart(PhoneGetPwActivity2.this, phone, ivet.getText().toString());
             }
         });
     }
 
-    public static void actionStart(Context context, String phone, String verifycode) {
+    public static void actionStart(Context context, String phone) {
         Intent intent = new Intent(context, PhoneGetPwActivity2.class);
         intent.putExtra("phone", phone);
-        intent.putExtra("verify", verifycode);
         context.startActivity(intent);
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (Util.isNull(ivet))
-            ivet.cancel();
+    /**
+     * 获取验证码
+     */
+    private void getVerify() {
+        //重新获取验证码
+        GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
+            @Override
+            public void onGetVerifySuccess() {
+                ivet.start();
+            }
+
+            @Override
+            public void onGetVerifyFailed(String failMsg) {
+                tv_error.setText(failMsg);
+                tv_error.setVisibility(View.VISIBLE);
+            }
+        };
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.REGISTER, callBack);
     }
 
     @Override
@@ -125,4 +138,13 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
     public void afterTextChanged(Editable s) {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (Util.isNull(ivet))
+            ivet.cancel();
+    }
+
+
 }

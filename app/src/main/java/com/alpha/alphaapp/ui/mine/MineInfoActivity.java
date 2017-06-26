@@ -2,6 +2,7 @@ package com.alpha.alphaapp.ui.mine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.alpha.alphaapp.model.geticons.GetIconListLogic;
 import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
+import com.alpha.alphaapp.ui.AccountChangeActivity;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.mine.addr.ModifyContactAddrActivity;
 import com.alpha.alphaapp.ui.mine.school.ModifySchoolActivity;
@@ -37,7 +39,7 @@ import java.util.Map;
  * Email : xiaokai090704@126.com
  */
 
-public class MineInfoActivity extends BaseActivity {
+public class MineInfoActivity extends AccountChangeActivity {
     private static final String TAG = "MineInfoActivity";
     private TitleLayout titleLayout;
     private ModifyIconView mod_icon;
@@ -141,8 +143,6 @@ public class MineInfoActivity extends BaseActivity {
                 GetIconListLogic.GetIconCallBack callBack = new GetIconListLogic.GetIconCallBack() {
                     @Override
                     public void onGetIconListSuccuss(String baseUrl, List<GetIconBean.IconListBean.CategoryBean> list) {
-
-
                         mod_icon.setBottomViewData(list, map);
                         mod_icon.show(true);
                         mod_icon.setBtnSaveOnClickListnenr(new View.OnClickListener() {
@@ -152,7 +152,7 @@ public class MineInfoActivity extends BaseActivity {
                                 for (final String str : map.keySet()) {
                                     //map.keySet()返回的是所有key的值
                                     Boolean isSelect = map.get(str);//得到每个key对应value的值
-                                    if (isSelect == true) {
+                                    if (isSelect) {
                                         //提交选中的图片
                                         final String sskey = AccountManager.getInstance().getSskey();
                                         ModifyUserInfoLogic.EditInfoCallBack callBack1 = new ModifyUserInfoLogic.EditInfoCallBack() {
@@ -168,9 +168,8 @@ public class MineInfoActivity extends BaseActivity {
                                         };
                                         UserInfo userInfo = new UserInfo();
                                         //这里需要提交图片的名字
-                                        String icon = str;
                                         Log.e(TAG, str);
-                                        userInfo.setIcon(icon);
+                                        userInfo.setIcon(str);
                                         ModifyUserInfoLogic.doModifyUserInfo(sskey, userInfo, ModifyUserInfoLogic.MODIFY_ICON, callBack1);
                                     }
                                 }
@@ -209,13 +208,13 @@ public class MineInfoActivity extends BaseActivity {
         mod_contact_addr.setIvRightOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ModifyContactAddrActivity.actionStart(MineInfoActivity.this, ModifyContactAddrActivity.RESQUEST_CODE, null);
+                ModifyContactAddrActivity.actionStart(MineInfoActivity.this);
             }
         });
         mod_school.setIvRightOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ModifySchoolActivity.actionStart(MineInfoActivity.this, ModifySchoolActivity.RESQUEST_CODE, null);
+                ModifySchoolActivity.actionStart(MineInfoActivity.this);
             }
         });
     }
@@ -234,7 +233,6 @@ public class MineInfoActivity extends BaseActivity {
      * 修改生日
      */
     private void doModifyBirthday() {
-
         boolean[] type = new boolean[]{true, true, true, false, false, false};
         TimePickerView pvTime = new TimePickerView.Builder(MineInfoActivity.this, new TimePickerView.OnTimeSelectListener() {
             @Override
@@ -263,6 +261,8 @@ public class MineInfoActivity extends BaseActivity {
             }
         })
                 .setType(type)
+                .setCancelColor(Color.RED)
+                .setSubmitColor(Color.RED)
                 .setCancelText("取消")//取消按钮文字
                 .setSubmitText("确认")//确认按钮文字
                 .setContentSize(18)//滚轮文字大小
@@ -283,24 +283,19 @@ public class MineInfoActivity extends BaseActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ModifyContactAddrActivity.RESQUEST_CODE) {
-            String addr = data.getStringExtra(ModifyContactAddrActivity.CONTACT);
-            if (!Util.isNullOrBlank(addr))
-                mod_contact_addr.setMsg(addr);
-        }
-        if (requestCode == ModifySchoolActivity.RESQUEST_CODE) {
-            String school = data.getStringExtra(ModifySchoolActivity.SCHOOL);
-            if (!Util.isNullOrBlank(school))
-                mod_school.setMsg(school);
-        }
+    public void onAccountUpdate(UserInfo info) {
+        //当用户修改数据时回调修改页面数据
+        Log.e(TAG, info.toString());
+        this.info = info;
+        setViewData();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        msv_sex.dismiss();
-        mod_icon.dismiss();
+        if (!Util.isNull(msv_sex))
+            msv_sex.dismiss();
+        if (!Util.isNull(mod_icon))
+            mod_icon.dismiss();
     }
 }

@@ -1,32 +1,19 @@
 package com.alpha.alphaapp.ui.modifypw.phone;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.forgetpw.phone.PhoneGetPwActivity2;
-import com.alpha.alphaapp.ui.forgetpw.phone.PhoneGetPwActivity3;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.model.CountDownManager;
 
 /**

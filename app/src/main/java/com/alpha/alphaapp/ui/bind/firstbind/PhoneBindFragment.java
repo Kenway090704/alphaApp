@@ -13,11 +13,12 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
-import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
+import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
@@ -38,7 +39,6 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 public class PhoneBindFragment extends BaseFragment {
     private static final String TAG = "PhoneBindFragment";
     private AccountEditText et_phone;
-
     private InputVerifyEditText ivet;
     private TextView tv_error;
     private Button btn_submit;
@@ -146,23 +146,21 @@ public class PhoneBindFragment extends BaseFragment {
             return;
         }
         //获取手机验证码
-        String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForBind(et_phone.getText().toString());
-        String json = JsonUtil.getPostJsonSignString(data);
-
-        ReqCallBack<String> callback = new ReqCallBack<String>() {
+        String phone = et_phone.getText().toString();
+        GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-                dealgetVerifyRep(result);
+            public void onGetVerifySuccess() {
+                //启动多少秒内不可获取验证码
+                ivet.start();
             }
 
             @Override
-            public void onReqFailed(String errorMsg) {
-
+            public void onGetVerifyFailed(String failMsg) {
+                tv_error.setText(failMsg);
+                tv_error.setVisibility(View.VISIBLE);
             }
         };
-        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.PHONEVERIFY, json, callback);
-
-
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.BIND_PHONE, callBack);
     }
 
 
@@ -175,8 +173,8 @@ public class PhoneBindFragment extends BaseFragment {
      * 绑定帐号
      */
     private void userPhonePwBind() {
-        if (!StringUtils.isAccountLine(et_phone.getText().toString())) {
-            tv_error.setText(R.string.account_format);
+        if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+            tv_error.setText(R.string.input_valid_eleven_number);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
@@ -186,8 +184,6 @@ public class PhoneBindFragment extends BaseFragment {
             return;
         }
         showNormalDialog();
-
-
     }
 
     /**
@@ -216,114 +212,34 @@ public class PhoneBindFragment extends BaseFragment {
     }
 
     /**
-     * 处理获取验证码的的响应
-     */
-
-
-    private void dealgetVerifyRep(String result) {
-        Log.e(TAG, result);
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        switch (info.getResult()) {
-            case CommStants.GET_PHONEVERIFY_RESULT.RESUTL_OK:
-                ivet.start();//启动多少秒内不可获取验证码
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.PHOEN_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示手机号码错误
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.PHONE_HAD_REGISTER:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示手机号码已经注册
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.PHONE_NO_REGISTER:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示手机号码没有注册
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.VERIFY_HAD:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示验证码已经存在
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.TOO_MUCH_MESSAGE:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示获取验证码次数太多
-                break;
-        }
-    }
-
-    /**
      * 提交绑定信息后返回对应的字段进行处理
      */
     private void doDealRepSuccess() {
         String sskey = AccountManager.getInstance().getSskey();
-        String data = BindLogic.getJsonforBindAccount(sskey, et_phone.getText().toString(), ivet
-                .getText().toString());
-        String json = JsonUtil.getPostJsonSignString(data);
-        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+        String phone = et_phone.getText().toString();
+        String verify = ivet.getText().toString();
+        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-                doRespone(result);
-
-
-            }
-
-            @Override
-            public void onReqFailed(String errorMsg) {
-
-            }
-        };
-        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.BIND, json, callBack);
-    }
-
-    private void doRespone(String result) {
-        //如果绑定成功,弹出对话框
-
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        switch (info.getResult()) {
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_OK:
+            public void onBindSuccessed() {
                 //弹出对话框架提示绑定成功
                 ToastUtils.showShort(getContext(), R.string.bind_success_you_use_wechat_account_login);
                 HomeActivity.actionStart(getActivity(), null, null);
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_ACCOUT_HAD:
-                tv_error.setText(info.getMsg());
+            }
+
+            @Override
+            public void onBindFailed(String failMsg) {
+                tv_error.setText(failMsg);
                 tv_error.setVisibility(View.VISIBLE);
                 //帐号已经存在
-                Log.e(TAG, result);
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_RELOGIN:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //请重新登录
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_GETVERIFY_TOO_MUCH:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-//                        手机验证码手机号错误
-                break;
-//                    case  CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_IS_ERROR:
-//                        break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_VERIFY_IS_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //验证码错误
-                break;
-            case CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_HAD_BIND:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //手机号已经绑定
-                break;
-        }
+            }
+        };
+        BindLogic.doBindAccountOrPhone(sskey, phone, verify, TypeConstants.ACCOUNT_TYPE.PHONE, call);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(ivet))
+        if (!Util.isNull(ivet))
             ivet.cancel();
     }
 }

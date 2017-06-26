@@ -13,7 +13,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.changebindphone.ChangeBindPhoneLogic;
-import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
+import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
@@ -125,7 +125,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                GetPhoneVerifyInfo.CallBack callBack = new GetPhoneVerifyInfo.CallBack() {
+                GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
                     @Override
                     public void onGetVerifySuccess() {
                         ivet.start();
@@ -137,7 +137,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyInfo.getPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.VERIFY_OLD_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.VERIFY_OLD_PHONE, callBack);
             }
         });
         btn_next.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +182,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(ivet))
+        if (!Util.isNull(ivet))
             ivet.cancel();
     }
 }

@@ -6,21 +6,12 @@ import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.logout.LoginOutLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
+import com.alpha.lib_sdk.app.tool.Util;
 
 /**
  * Created by kenway on 17/5/23 15:19
@@ -48,12 +39,12 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifyIcon(String sskey, String icon) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"icon\":").append("\"" + icon + "\"")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -68,12 +59,12 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifyNickName(String sskey, String nickname) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"name\":").append("\"" + nickname + "\"")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -88,12 +79,12 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifyTrueName(String sskey, String true_name) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"true_name\":").append("\"" + true_name + "\"")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -108,12 +99,12 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifySex(String sskey, int sex) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"sex\":").append(sex)
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -130,7 +121,7 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifyBirthday(String sskey, int birth_day, int birth_month, int birth_year) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         //这里的日期需要进行拆分
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
@@ -139,7 +130,7 @@ public class ModifyUserInfoLogic {
                 .append("\"birthday_mon\":").append("" + birth_month + ",")
                 .append("\"birthday_day\":").append("" + birth_day + "")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -154,13 +145,13 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifySchool(String sskey, String school) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"school\":").append("\"" + school + "\"")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -175,13 +166,13 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifyQQ(String sskey, String qq) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"qq\":").append("\"" + qq + "\"")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -196,13 +187,13 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifyContactPhone(String sskey, String contact_phone) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"contact_phone\":").append("\"" + contact_phone + "\"")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -217,13 +208,13 @@ public class ModifyUserInfoLogic {
      * @return
      */
     private static String getJsonStrModifyContactAddr(String sskey, String contact_addr) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"user_info\":{")
                 .append("\"contact_addr\":").append("\"" + contact_addr + "\"")
                 .append("},")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -274,23 +265,24 @@ public class ModifyUserInfoLogic {
             public void onReqSuccess(String result) {
                 ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
                 //不论sskey是否过期都可以回到登录页面
+                if (Util.isNull(info)) return;
                 switch (info.getResult()) {
                     case CommStants.ACCOUNT_MODIFY_RESULT.RESULT_MODIFY_OK:
                         //修改信息完成后要重新加载信息
                         AccountManager.getInstance().loadUserinfo();
-                        if (back != null)
+                        if (!Util.isNull(back))
                             back.onEditInfoSuccuss();
                         break;
                     case CommStants.ACCOUNT_MODIFY_RESULT.RESULT_RELOGIN:
-                        if (back != null)
+                        if (!Util.isNull(back))
                             back.onEditInfoFailed(info.getMsg());
                         break;
                     case CommStants.ACCOUNT_MODIFY_RESULT.RESULT_MODIFY_FAILED:
-                        if (back != null)
+                        if (!Util.isNull(back))
                             back.onEditInfoFailed(info.getMsg());
                         break;
                     default:
-                        if (back != null)
+                        if (!Util.isNull(back))
                             back.onEditInfoFailed(info.getMsg());
                         break;
                 }
@@ -298,7 +290,7 @@ public class ModifyUserInfoLogic {
 
             @Override
             public void onReqFailed(String errorMsg) {
-                if (back != null)
+                if (!Util.isNull(back))
                     back.onEditInfoFailed(errorMsg);
             }
         };

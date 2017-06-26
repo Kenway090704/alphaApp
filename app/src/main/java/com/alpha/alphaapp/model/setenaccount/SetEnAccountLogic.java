@@ -32,10 +32,10 @@ public class SetEnAccountLogic {
         if (Util.isNullOrBlank(account) && Util.isNullOrBlank(sskey)) {
             return null;
         }
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"account\":").append("\"" + account + "\",")
-                .append("\"account_type\":").append("\"" + CommStants.ACCOUNT_TYPE.ACCOUNT + "\",")
+                .append("\"account_type\":").append("\"" + TypeConstants.ACCOUNT_TYPE.ACCOUNT + "\",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -53,10 +53,10 @@ public class SetEnAccountLogic {
     private static String getJsonStrSetEnAccuontForNoPw(String sskey, String account, String pw) {
         if (Util.isNullOrBlank(sskey) && Util.isNullOrBlank(account) && Util.isNullOrBlank(pw))
             return null;
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"account\":").append("\"" + account + "\",")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.ACCOUNT + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(pw) + "\"")
@@ -111,7 +111,8 @@ public class SetEnAccountLogic {
     }
 
     /**
-     *  当使用第三方授权登录时,设置未注册的英文帐号
+     * 当使用第三方授权登录时,设置未注册的英文帐号
+     *
      * @param sskey
      * @param phone
      * @param pw
@@ -124,6 +125,7 @@ public class SetEnAccountLogic {
             @Override
             public void onReqSuccess(String result) {
                 ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+                if (Util.isNull(info))return;
                 switch (info.getResult()) {
                     case CommStants.BIND_OR_EDIT_ACCOUNT_RESULT.RESULT_OK:
                         back.onSetEnAccountSuccuss();
@@ -146,15 +148,12 @@ public class SetEnAccountLogic {
                 back.onSetEnAccountFailed(errorMsg);
             }
         };
-
-
         RequestManager.getInstance(ApplicationContext.getCurrentContext()).requestPostByJsonAsyn(URLConstans.URL.BIND, json, callBack);
     }
 
 
     public interface SetEnAccountCallBack {
         void onSetEnAccountSuccuss();
-
         void onSetEnAccountFailed(String failMsg);
     }
 

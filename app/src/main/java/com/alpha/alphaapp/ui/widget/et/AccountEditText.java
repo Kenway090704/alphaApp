@@ -35,6 +35,7 @@ public class AccountEditText extends LinearLayout {
     private String input_type;
 
 
+
     public AccountEditText(Context context) {
         super(context);
     }
@@ -65,7 +66,9 @@ public class AccountEditText extends LinearLayout {
         }
         return et.getText();
     }
-
+    public EditText getEditText() {
+        return et;
+    }
 
     private void initViews() {
 

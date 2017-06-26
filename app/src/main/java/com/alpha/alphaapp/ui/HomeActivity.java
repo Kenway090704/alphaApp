@@ -7,11 +7,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.ui.mine.MineFragment;
 import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaData;
 import com.alpha.alphaapp.ui.recom.RecomFragment;
 import com.alpha.alphaapp.ui.score.ScoreFragment;
+import com.alpha.lib_sdk.app.app.EnvirenmentArgsHolder;
 import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/5/24 14:59
@@ -34,7 +37,6 @@ public class HomeActivity extends BaseFragmentActivity {
     @Override
     protected void initView() {
         radioGroup = (RadioGroup) findViewById(R.id.home_rg);
-
     }
 
 
@@ -47,6 +49,8 @@ public class HomeActivity extends BaseFragmentActivity {
     protected void initListener() {
         // 监听底部RadioButton
         initRadioButton();
+
+
     }
 
     /**
@@ -57,17 +61,14 @@ public class HomeActivity extends BaseFragmentActivity {
                 new RecomFragment(), new ScoreFragment(), new MineFragment()
         };
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
-        ;
-
-        for (int i = 0; i < fragments.length; i++) {
-            tran.add(R.id.home_content, fragments[i]);
-            tran.hide(fragments[i]);
+        for (BaseFragment frag : fragments) {
+            tran.add(R.id.home_content, frag);
+            tran.hide(frag);
         }
         // 默认显示第一个
         tran.show(fragments[2]);
         // 提交事务
         tran.commit();
-
 
     }
 

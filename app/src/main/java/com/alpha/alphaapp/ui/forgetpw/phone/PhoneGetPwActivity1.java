@@ -11,10 +11,11 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
+import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
@@ -91,21 +92,21 @@ public class PhoneGetPwActivity1 extends BaseActivity {
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-
-                String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForGetPW(et_phone.getText().toString());
-                String json = JsonUtil.getPostJsonSignString(data);
-                ReqCallBack<String> callBack = new ReqCallBack<String>() {
+                String phone=et_phone.getText().toString();
+                GetPhoneVerifyLogic.OnGetVerifyCallBack callBack =new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
                     @Override
-                    public void onReqSuccess(String result) {
-                        dealgetVerifyRep(result);
+                    public void onGetVerifySuccess() {
+                        PhoneGetPwActivity2.actionStart(PhoneGetPwActivity1.this, et_phone.getText().toString());
                     }
 
                     @Override
-                    public void onReqFailed(String errorMsg) {
-
+                    public void onGetVerifyFailed(String failMsg) {
+                        tv_error.setText(failMsg);
+                        tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                RequestManager.getInstance(getApplicationContext()).requestPostByJsonAsyn(URLConstans.URL.PHONEVERIFY, json, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.GET_PW,callBack);
+
             }
         });
     }
@@ -117,40 +118,4 @@ public class PhoneGetPwActivity1 extends BaseActivity {
         context.startActivity(intent);
     }
 
-    private void dealgetVerifyRep(String result) {
-        Log.e(TAG, result);
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-
-        switch (info.getResult()) {
-            case CommStants.GET_PHONEVERIFY_RESULT.RESUTL_OK:
-                info = ResponseInfo.getRespInfoFromJsonStrHadVerify(result, true);
-                PhoneGetPwActivity2.actionStart(this, et_phone.getText().toString(), info.getPhone_verify());
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.PHOEN_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示手机号码错误
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.PHONE_HAD_REGISTER:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示手机号码已经注册
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.PHONE_NO_REGISTER:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示手机号码没有注册
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.VERIFY_HAD:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示验证码已经存在
-                break;
-            case CommStants.GET_PHONEVERIFY_RESULT.TOO_MUCH_MESSAGE:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                //提示获取验证码次数太多
-                break;
-        }
-    }
 }

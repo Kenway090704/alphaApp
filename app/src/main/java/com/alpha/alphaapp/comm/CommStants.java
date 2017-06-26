@@ -6,15 +6,6 @@ package com.alpha.alphaapp.comm;
  */
 
 public class CommStants {
-    /**
-     * 注册与登录类型
-     */
-    public interface ACCOUNT_TYPE {
-        int ACCOUNT = 0;
-        int PHONE = 1;
-        int AUTH = 3;
-        int AUTH_WECHAT = 4;
-    }
 
     /**
      * (A)注册时返回的result类型

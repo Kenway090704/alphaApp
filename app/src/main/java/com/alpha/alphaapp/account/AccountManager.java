@@ -4,6 +4,8 @@ import android.app.Activity;
 
 import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
 import com.alpha.alphaapp.ui.login.LoginActivity;
+import com.alpha.lib_sdk.app.core.event.RxEventBus;
+import com.alpha.lib_sdk.app.core.event.acc.AccountUpdataEvent;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -78,6 +80,8 @@ public class AccountManager {
                 @Override
                 public void onGetUserInfoSuccuss(UserInfo info) {
                     saveUserInfo(info);
+                    //通知相关的注册页面进行用户信息更新
+                    RxEventBus.getBus().publish(new AccountUpdataEvent());
                 }
 
                 @Override
@@ -103,7 +107,7 @@ public class AccountManager {
      *
      * @param activity 当前页面
      */
-    public static boolean isSskeyIsNul(Activity activity) {
+    public  boolean isSskeyIsNul(Activity activity) {
         if (Util.isNullOrBlank(getInstance().getSskey())) {
             //弹出对话框提示
             LoginActivity.actionStartClearStack(activity, null, null);

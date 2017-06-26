@@ -7,9 +7,11 @@ import android.widget.Button;
 
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.logout.LoginOutLogic;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.AboutUsActivity;
+import com.alpha.alphaapp.ui.AccountChangeActivity;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.FeedbackActivity;
 import com.alpha.alphaapp.ui.ScoreActivity;
@@ -50,7 +52,7 @@ public class SettingsActivity extends BaseActivity {
         siv_bindset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AccountSecurityActivity.actionStartClearStack(SettingsActivity.this, null, null);
+                AccountSecurityActivity.actionStar(SettingsActivity.this, null, null);
             }
         });
         siv_feedback.setOnClickListener(new View.OnClickListener() {

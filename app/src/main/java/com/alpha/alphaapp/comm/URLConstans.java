@@ -80,7 +80,7 @@ public class URLConstans {
         /**
          * (F)	用户密码修改
          */
-        String CHANGEPWDBYPWD = URL_ROOT + "changepw";
+        String CHANGE_PWD_BY_PWD = URL_ROOT + "changepw";
 
         /**
          * (G)	检查账户是否存在

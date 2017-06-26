@@ -26,8 +26,6 @@ public class AccountBindItemView extends LinearLayout {
     private TextView tv_msg;
 
 
-    private boolean isGray;//是否已经设置了
-
     public AccountBindItemView(Context context) {
         super(context);
     }

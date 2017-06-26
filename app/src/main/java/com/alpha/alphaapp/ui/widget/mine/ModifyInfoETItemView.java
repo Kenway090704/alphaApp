@@ -183,7 +183,7 @@ public class ModifyInfoETItemView extends LinearLayout {
             ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
                 @Override
                 public void onEditInfoSuccuss() {
-                    setMsg(nickname);
+//                    setMsg(nickname);
                 }
 
                 @Override

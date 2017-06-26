@@ -3,9 +3,9 @@ package com.alpha.alphaapp.ui.mine.logic;
 import android.content.Context;
 
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.bean.AreaBean;
-import com.alpha.alphaapp.bean.CityBean;
-import com.alpha.alphaapp.bean.ProviceBean;
+import com.alpha.alphaapp.ui.mine.logic.bean.AreaBean;
+import com.alpha.alphaapp.ui.mine.logic.bean.CityBean;
+import com.alpha.alphaapp.ui.mine.logic.bean.ProviceBean;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
@@ -14,7 +14,6 @@ import com.alpha.lib_sdk.app.tool.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by kenway on 17/6/20 18:51
@@ -32,7 +31,6 @@ public class GetPCityAreaData {
     public void init(Context context) {
         this.context = context;
         downProvince();
-
     }
 
     private GetPCityAreaData() {

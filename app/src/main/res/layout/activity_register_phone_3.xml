@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:txt_title="@string/phone_register" />
+
+    <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:curent_select="3"
+        app:txt_first="@string/input_phone"
+        app:txt_second="@string/input_verify"
+        app:txt_third="@string/set_pw" />
+
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+        android:id="@+id/reg_phone_3_aet_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:hint="@string/pw_form"
+        app:icon_type="@drawable/icon_lock" />
+
+    <TextView
+        android:id="@+id/reg_phone_3_tv_error"
+        style="@style/tv_error_com" />
+
+    <Button
+        android:id="@+id/reg_phone_3_btn_register"
+        style="@style/btn_com_gray"
+        android:text="@string/register_and_login" />
+</LinearLayout>

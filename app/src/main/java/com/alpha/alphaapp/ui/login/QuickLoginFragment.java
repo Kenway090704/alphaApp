@@ -7,22 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.login.LoginLogic;
-import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
-import com.alpha.alphaapp.model.result.ResponseInfo;
+import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -64,7 +60,6 @@ public class QuickLoginFragment extends BaseFragment {
                 getPhoneVerify();
             }
         });
-
         et_phone.setWatcherListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -144,9 +139,19 @@ public class QuickLoginFragment extends BaseFragment {
         }
         ivet.start();//开始倒计时
         //获取手机验证码
-        String data = GetPhoneVerifyInfo.getJsonStrPhoneVerifyForLogin(et_phone.getText().toString());
-        String json = JsonUtil.getPostJsonSignString(data);
-        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.PHONEVERIFY, json, null);
+        String phone = et_phone.getText().toString();
+        GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
+            @Override
+            public void onGetVerifySuccess() {
+
+            }
+
+            @Override
+            public void onGetVerifyFailed(String failMsg) {
+
+            }
+        };
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.LOGIN, callBack);
     }
 
     /**
@@ -188,20 +193,19 @@ public class QuickLoginFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (Util.isNull(ivet))
-            ivet.cancel();
-        if (loadingDialog != null)
-            loadingDialog.dismiss();
-    }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (loadingDialog != null) {
+        if (!Util.isNull(loadingDialog) ) {
             loadingDialog.dismiss();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (!Util.isNull(ivet))
+            ivet.cancel();
     }
 }

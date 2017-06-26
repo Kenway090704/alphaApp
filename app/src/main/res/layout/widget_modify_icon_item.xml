@@ -39,6 +39,6 @@
         android:layout_marginRight="10dp"
         android:clickable="true"
         android:gravity="center"
-        android:src="@drawable/icon_user"
+        android:src="@drawable/icon_set_arrow_right"
         android:textSize="12sp" />
 </LinearLayout>

@@ -41,25 +41,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="小袁姐" />
+                    android:text="@string/nickname"
+                    android:textColor="@color/tv_black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="个人信息>" />
+                    android:text="@string/user_msg"
+                    android:textColor="@color/tv_black" />
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/frag_mine_tv_set"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/frag_mine_iv_set"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
             android:clickable="true"
-            android:text="@string/settings" />
+            android:src="@drawable/icon_set" />
     </RelativeLayout>
 
     <View
@@ -76,26 +78,28 @@
         android:padding="5dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_user" />
+            android:src="@drawable/icon_sign" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="@string/sign" />
+            android:text="@string/sign"
+            android:textColor="@color/tv_black" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:gravity="right"
+            android:gravity="end"
             android:text="@string/no_sign" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:background="@color/line_gray"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/line_gray" />
 </LinearLayout>

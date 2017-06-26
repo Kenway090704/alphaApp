@@ -2,6 +2,7 @@ package com.alpha.alphaapp.ui.mine;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
+import com.alpha.alphaapp.ui.AccountChangeFragment;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.set.SettingsActivity;
 import com.alpha.alphaapp.ui.sign.SignActivity;
@@ -24,16 +26,13 @@ import com.makeramen.roundedimageview.RoundedImageView;
  * Email : xiaokai090704@126.com
  */
 
-public class MineFragment extends BaseFragment {
+public class MineFragment extends AccountChangeFragment {
     private LinearLayout layout_userinfo, layout_sign;
     private RoundedImageView riv_icon;
     private TextView tv_name;
-    private TextView tv_set;
-    private UserInfo info;
-
+    private ImageView iv_set;
     @Override
     protected int getLayoutId() {
-
         return R.layout.fragment_mine;
     }
 
@@ -43,7 +42,7 @@ public class MineFragment extends BaseFragment {
         riv_icon = (RoundedImageView) root.findViewById(R.id.frag_mine_riv);
         tv_name = (TextView) root.findViewById(R.id.frag_mine_tv_name);
         layout_sign = (LinearLayout) root.findViewById(R.id.frag_mine_layout_sign);
-        tv_set = (TextView) root.findViewById(R.id.frag_mine_tv_set);
+        iv_set = (ImageView) root.findViewById(R.id.frag_mine_iv_set);
 
     }
 
@@ -56,7 +55,7 @@ public class MineFragment extends BaseFragment {
                 MineInfoActivity.actionStart(getActivity(), null, null);
             }
         });
-        tv_set.setOnClickListener(new View.OnClickListener() {
+        iv_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SettingsActivity.actionStart(getActivity(), null, null);
@@ -73,7 +72,23 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        info = AccountManager.getInstance().getUserInfo();
+        UserInfo info = AccountManager.getInstance().getUserInfo();
+        updateUI(info);
+    }
+
+
+    @Override
+    public void onAccountUpdate(UserInfo info) {
+        updateUI(info);
+    }
+
+    /**
+     * 更新界面
+     *
+     * @param info
+     */
+    private void updateUI(UserInfo info) {
+
         if (!Util.isNullOrBlank(info.getIcon())) {
             //使用Glide展示图片
             final RequestBuilder<Drawable> thumbnailRequest = Glide.with(this).load(R.drawable.launcher);
@@ -81,6 +96,5 @@ public class MineFragment extends BaseFragment {
         }
         if (!Util.isNullOrBlank(info.getName()))
             tv_name.setText(info.getName());
-
     }
 }

@@ -11,19 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.phonefindpw.PhoneFindPwInfo;
-import com.alpha.alphaapp.model.result.ResponseInfo;
+import com.alpha.alphaapp.model.phonefindpw.PhoneFindPwLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 
 import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 
 /**
  * Created by kenway on 17/6/6 15:06
@@ -111,68 +105,24 @@ public class PhoneGetPwActivity3 extends BaseActivity {
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        String data = PhoneFindPwInfo.getJsonStrforPhoneFindPW(phone, verify, et_pw.getText().toString());
-        String json = JsonUtil.getPostJsonSignString(data);
-        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+        PhoneFindPwLogic.OnByPhoneFindPwCallBack callBack = new PhoneFindPwLogic.OnByPhoneFindPwCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-                dealReqSuccess(result);
-            }
-
-            @Override
-            public void onReqFailed(String errorMsg) {
-
-            }
-        };
-        RequestManager.getInstance(getApplicationContext()).requestPostByJsonAsyn(URLConstans.URL.PHONE_FIND_PW, json, callBack);
-    }
-
-    /**
-     * 处理返回的结果
-     *
-     * @param result
-     */
-    private void dealReqSuccess(String result) {
-        ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        switch (info.getResult()) {
-            case CommStants.BY_PHONE_FIND_PW.RESULT_OK:
+            public void onFindPwSuccessed() {
                 //弹出对话框提示密码修改成功,并返回登录页面
                 dialog.show();
-                break;
-            case CommStants.BY_PHONE_FIND_PW.RESULT_DATA_PACKAGE_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.BY_PHONE_FIND_PW.RESULT_PHONE_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.BY_PHONE_FIND_PW.RESULT_PHONE_INPUT_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.BY_PHONE_FIND_PW.RESULT_PW_FORM_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.BY_PHONE_FIND_PW.RESULT_VERIFY_INPUT_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-            case CommStants.BY_PHONE_FIND_PW.RESULT_VERIFY_ERROR:
-                tv_error.setText(info.getMsg());
-                tv_error.setVisibility(View.VISIBLE);
-                break;
-        }
+            }
 
+            @Override
+            public void onFindPwFailed(String failMsg) {
+            }
+        };
+        PhoneFindPwLogic.doByPhoneFindPw(phone, et_pw.getText().toString(), verify, callBack);
     }
-
 
     @Override
     public void initData() {
 
     }
-
 
     public static void actionStart(Context context, String phone, String verify) {
         Intent intent = new Intent(context, PhoneGetPwActivity3.class);

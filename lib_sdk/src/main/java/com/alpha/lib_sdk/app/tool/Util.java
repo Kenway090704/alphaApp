@@ -2,6 +2,9 @@ package com.alpha.lib_sdk.app.tool;
 
 import com.alpha.lib_sdk.app.log.Log;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.KeyGenerator;
@@ -177,5 +180,32 @@ public class Util {
             return false;
         }
         return suffix.equalsIgnoreCase(getSuffix(str));
+    }
+
+    public static String getStack(Throwable throwable) {
+        if (throwable == null) {
+            return "";
+        }
+        ByteArrayOutputStream baos = null;
+        PrintStream ps = null;
+        try {
+            baos = new ByteArrayOutputStream();
+            ps = new PrintStream(baos);
+            throwable.printStackTrace(ps);
+            return baos.toString();
+        } catch (Exception e) {
+            return "";
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (baos != null) {
+                try {
+                    baos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

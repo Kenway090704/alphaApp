@@ -1,7 +1,6 @@
 package com.alpha.alphaapp.ui.mine.logic;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -9,24 +8,19 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.bean.JsonBean;
-import com.alpha.alphaapp.bean.SchoolBean;
+
+import com.alpha.alphaapp.ui.mine.logic.bean.SchoolBean;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
-import com.alpha.lib_sdk.app.tool.GetJsonDataUtil;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by kenway on 17/6/19 16:41
@@ -159,7 +153,7 @@ public class GetSchoolLogic {
      * @param searchMsg
      * @return
      */
-    public void getSchoolList(String province, String city, String area, String searchMsg) {
+    private void getSchoolList(String province, String city, String area, String searchMsg) {
         HashMap<String, String> map = new HashMap<>();
         //把有市的"市"去掉
         if (province.contains("市")) {

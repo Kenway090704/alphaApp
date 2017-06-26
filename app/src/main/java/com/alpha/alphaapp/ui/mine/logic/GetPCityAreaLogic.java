@@ -1,24 +1,11 @@
 package com.alpha.alphaapp.ui.mine.logic;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.bean.JsonBean;
-import com.alpha.alphaapp.ui.mine.addr.ModifyContactAddrActivity;
-import com.alpha.lib_sdk.app.tool.GetJsonDataUtil;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 
 /**

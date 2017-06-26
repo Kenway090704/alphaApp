@@ -7,15 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 
@@ -94,7 +90,7 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
                     }
                 }
                 //获取每一个Adapter,然后通知这些刷新界面
-                List<RecyclerView> recyclerViews = IconListAdapter.recyclerViews;
+                List<RecyclerView> recyclerViews = IconListVPAdapter.recyclerViews;
                 for (int k = 0; k < recyclerViews.size(); k++) {
                     recyclerViews.get(k).getAdapter().notifyDataSetChanged();
                 }
@@ -113,7 +109,7 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
         ImageView iv;
         CheckBox cb;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
             cb = (CheckBox) view.findViewById(R.id.item_recycler_cb);
             iv = (ImageView) view.findViewById(R.id.item_recycler_iv);

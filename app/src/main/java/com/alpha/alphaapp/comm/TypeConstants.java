@@ -12,6 +12,43 @@ public class TypeConstants {
     }
 
     /**
+     * 注册类型
+     */
+    public interface ACCOUNT_TYPE {
+        int ACCOUNT = 0;
+        int PHONE = 1;
+        int AUTH_QQ = 3;
+        int AUTH_WECHAT = 4;
+    }
+
+    /**
+     * 登录类型
+     */
+    public interface LOGIN_TYPE {
+        /**
+         * 快速登录
+         */
+        int PHONE_QUICK = 0;
+        /**
+         * 手机密码登录
+         */
+        int PHONE_PW = 1;
+
+        /**
+         * 帐号密码登录
+         */
+        int ACCONUT_PW = 2;
+        /**
+         * 微信授权登录
+         */
+        int AUTH_WX = 3;
+        /**
+         * QQ授权登录
+         */
+        int AUTH_QQ = 4;
+    }
+
+    /**
      * 获取手机验证码
      */
     public interface GET_VERIFY {
@@ -46,31 +83,5 @@ public class TypeConstants {
 
     }
 
-    /**
-      登录类型
-     */
-    public interface LOGIN_TYPE {
-        /**
-         * 快速登录
-         */
-        int PHONE_QUICK = 0;
-        /**
-         * 手机密码登录
-         */
-        int PHONE_PW = 1;
-
-        /**
-         * 帐号密码登录
-         */
-        int ACCONUT_PW = 2;
-        /**
-         * 微信授权登录
-         */
-        int AUTH_WX = 3;
-        /**
-         * QQ授权登录
-         */
-        int AUTH_QQ = 4;
-    }
 
 }

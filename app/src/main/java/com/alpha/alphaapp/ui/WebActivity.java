@@ -22,7 +22,7 @@ import com.alpha.alphaapp.R;
  * Created by HP on 2016/8/25.
  */
 public class WebActivity extends AppCompatActivity {
-    public  static  final String EXTRA_URL="url";
+    public  static  final String EXTRA_URL="https://auldeywj.world.tmall.com";
     private ImageView ivBack,ivShare;
     private TextView tvTitle;
     private ProgressBar progressBar;

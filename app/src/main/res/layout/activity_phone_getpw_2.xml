@@ -8,20 +8,31 @@
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:id="@+id/phone_get_pw_2_titlelayout"
         android:layout_width="match_parent"
-        app:txt_title="@string/input_account"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:txt_title="@string/input_account" />
 
 
     <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:curent_select="2"
-        app:icon_first="@drawable/one"
-        app:icon_second="@drawable/two"
-        app:icon_third="@drawable/three"
         app:txt_first="@string/verify_msg"
         app:txt_second="@string/input_verify"
         app:txt_third="@string/reset_pw" />
+
+    <TextView
+        android:id="@+id/phone_get_pw_2_tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:lineSpacingExtra="2dp"
+        android:maxLines="2"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/tv_black"
+        android:textSize="14sp" />
 
     <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
         android:id="@+id/phone_get_pw_2_ivet"

@@ -13,8 +13,9 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.changebindphone.ChangeBindPhoneLogic;
-import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
+import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
 import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
@@ -133,7 +134,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                GetPhoneVerifyInfo.CallBack callBack = new GetPhoneVerifyInfo.CallBack() {
+                GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
                     @Override
                     public void onGetVerifySuccess() {
                         ivet.start();
@@ -146,7 +147,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyInfo.getPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.BIND_NEW_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.BIND_NEW_PHONE, callBack);
             }
         });
         btn_bind.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +164,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                     return;
                 }
                 String sskey = AccountManager.getInstance().getSskey();
-                ChangeBindPhoneLogic.BindCallBack callBack = new ChangeBindPhoneLogic.BindCallBack() {
+                ChangeBindPhoneLogic.BindNewPhoneCallBack callBack = new ChangeBindPhoneLogic.BindNewPhoneCallBack() {
                     @Override
                     public void onBindSuccess() {
                         dialog.show();
@@ -182,7 +183,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                ToastUtils.showShort(ChangePhoneBindActvity2.this, "绑定成功,跳到哪个页面没确定!");
+                AccountSecurityActivity.actionStar(ChangePhoneBindActvity2.this, null, null);
             }
         });
     }
@@ -197,9 +198,9 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(ivet))
+        if (!Util.isNull(ivet))
             ivet.cancel();
-        if (Util.isNull(dialog))
+        if (!Util.isNull(dialog))
             dialog.dismiss();
     }
 }

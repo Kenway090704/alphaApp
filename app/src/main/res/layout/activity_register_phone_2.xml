@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:txt_title="@string/input_account" />
+
+    <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:curent_select="2"
+        android:layout_marginTop="10dp"
+        app:txt_first="@string/input_phone"
+        app:txt_second="@string/input_verify"
+        app:txt_third="@string/set_pw" />
+
+    <TextView
+        android:id="@+id/reg_phone_2_tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:lineSpacingExtra="2dp"
+        android:maxLines="2"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/tv_black"
+        android:textSize="14sp" />
+    <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
+        android:id="@+id/reg_phone_2_ivet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/reg_phone_2tv_error"
+        style="@style/tv_error_com" />
+
+    <Button
+        android:id="@+id/reg_phone_2_btn_setpw"
+        style="@style/btn_com_gray"
+        android:text="@string/set_pw" />
+</LinearLayout>

@@ -1,15 +1,24 @@
 package com.alpha.alphaapp.model.login;
 
+import android.app.Activity;
+
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
+import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
+import com.alpha.alphaapp.ui.HomeActivity;
+import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
+import com.alpha.lib_sdk.app.core.thread.ThreadPool;
+import com.alpha.lib_sdk.app.fs.CfgFs;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
@@ -22,99 +31,22 @@ import com.alpha.lib_sdk.app.tool.Util;
  */
 
 public class LoginLogic {
+
+    private static final String TAG = "LoginLogic";
+
     /**
      * 最近登录类型
-     * phone ,account ,auth
+     * <p>lastLoginType</p>
+     * <p>TypeConstants.LOGIN_TYPE.ACCONUT_PW</p>
+     * <p>TypeConstants.LOGIN_TYPE.PHONE_PW</p>
+     * <p>TypeConstants.LOGIN_TYPE.PHONE_QUICK</p>
+     * <p>TypeConstants.LOGIN_TYPE.AUTH_WX</p>
+     * <p>TypeConstants.LOGIN_TYPE.AUTH_QQ</p>
      */
-    private int lastLoginType;
-    /**
-     * 登录后返回的sesskey
-     * 可以保存24小时
-     */
-    private String sessKey;
-
-    public String getSessKey() {
-        return sessKey;
-    }
-
-    public void setSessKey(String sessKey) {
-        this.sessKey = sessKey;
-    }
-
-    private String account;
-    private String pw;
-    private String user_ip;
-    private String terminal_type;
-
-    private String phone_verify;
-    private String tuiguang_id;
-    private String openid_qq;
-    private String openid_wx;
-
-    public String getOpenid_wx() {
-        return openid_wx;
-    }
-
-    public void setOpenid_wx(String openid_wx) {
-        this.openid_wx = openid_wx;
-    }
+    private static int lastLoginType = -1;
 
     public int getLastLoginType() {
         return lastLoginType;
-    }
-
-    public void setLastLoginType(int lastLoginType) {
-        this.lastLoginType = lastLoginType;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public String getUser_ip() {
-        return user_ip;
-    }
-
-    public void setUser_ip(String user_ip) {
-        this.user_ip = user_ip;
-    }
-
-
-    public String getPhone_verify() {
-        return phone_verify;
-    }
-
-    public void setPhone_verify(String phone_verify) {
-        this.phone_verify = phone_verify;
-    }
-
-    public String getTuiguang_id() {
-        return tuiguang_id;
-    }
-
-    public void setTuiguang_id(String tuiguang_id) {
-        this.tuiguang_id = tuiguang_id;
-    }
-
-    public String getOpenid_qq() {
-        return openid_qq;
-    }
-
-    public void setOpenid_qq(String openid_qq) {
-        this.openid_qq = openid_qq;
     }
 
     /**
@@ -126,10 +58,30 @@ public class LoginLogic {
      * @return
      */
     private static String getJsonStrforAccount(String account, String pw) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"account\":").append("\"" + account + "\",")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.ACCOUNT + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(pw) + "\",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
+                .append("}");
+        return sb.toString();
+    }
+
+    /**
+     * 帐号密码自动登录
+     * <p>
+     * ex:{"account":"kenway","account_type":0,"pw":"123456","user_ip":"","terminal_type":""}
+     * </p>
+     * 该处的密码是MD5格式的
+     *
+     * @return
+     */
+    private static String getJsonStrforAutoAccount(String account, String pw) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.ACCOUNT + ",")
+                .append("\"pw\":").append("\"" + pw + "\",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -150,10 +102,35 @@ public class LoginLogic {
         if (Util.isNullOrBlank(account) || Util.isNullOrBlank(pw)) {
             return null;
         }
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"account\":").append("\"" + account + "\",")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"pw\":").append("\"" + MD5.getMD5FromStr(pw) + "\",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
+                .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
+                .append("\"phone_verify\":").append("\"\"")
+                .append("}");
+        return sb.toString();
+    }
+
+    /**
+     * 手机号与密码自动登录
+     * <p>
+     * ex:{"account":"kenway","account_type":0,"pw":"123456","user_ip":"","terminal_type":""}
+     * </p>
+     *
+     * @param account 用户名输入框架
+     * @param pw      密码输入框架
+     * @return
+     */
+    private static String getJsonStrforAutophoneInAccount(String account, String pw) {
+        if (Util.isNullOrBlank(account) || Util.isNullOrBlank(pw)) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"pw\":").append("\"" + pw + "\",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"\"")
@@ -169,14 +146,14 @@ public class LoginLogic {
      *
      * @return
      */
-    public String getJsonStrforAccountHasTuiguangID() {
-        StringBuffer sb = new StringBuffer();
-        sb.append("{\"account\":").append("\"" + getAccount() + "\",")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.ACCOUNT + ",")
-                .append("\"pw\":").append("\"" + MD5.getMD5FromStr(getPw()) + "\",")
-                .append("\"user_ip\":").append("\"" + getUser_ip() + "\",")
+    public String getJsonStrforAccountHasTuiguangID(String account, String pw, String tuiguang_id) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\"account\":").append("\"" + account + "\",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.ACCOUNT + ",")
+                .append("\"pw\":").append("\"" + MD5.getMD5FromStr(pw) + "\",")
+                .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
-                .append("\"tuiguang_id\":").append("\"" + getTuiguang_id() + "\"")
+                .append("\"tuiguang_id\":").append("\"" + tuiguang_id + "\"")
                 .append("}");
         return sb.toString();
     }
@@ -191,9 +168,9 @@ public class LoginLogic {
      */
     private static String getJsonStrforQuickLogin(String phone, String verify) {
 
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"account\":").append("\"" + phone + "\",")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.PHONE + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.PHONE + ",")
                 .append("\"pw\":").append("\"" + "\",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
@@ -214,7 +191,7 @@ public class LoginLogic {
     private static String getJsonStrforQQAuth(String openid) {
         StringBuffer sb = new StringBuffer();
         sb.append("{\"account\":").append("\"" + openid + "\",")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_QQ + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -231,9 +208,9 @@ public class LoginLogic {
      * @return
      */
     private static String getJsonStrforWXAuth(String openid) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"account\":").append("\"" + openid + "\",")
-                .append("\"account_type\":").append(CommStants.ACCOUNT_TYPE.AUTH_WECHAT + ",")
+                .append("\"account_type\":").append(TypeConstants.ACCOUNT_TYPE.AUTH_WECHAT + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
                 .append("}");
@@ -254,7 +231,7 @@ public class LoginLogic {
      * @param loginType      登录类型
      * @param loginListener  登录监听
      */
-    public static void doLogin(String account_openid, String pw_verify, int loginType, final OnLoginCallBack loginListener) {
+    public static void doLogin(final String account_openid, final String pw_verify, final int loginType, final OnLoginCallBack loginListener) {
         String data = null;
         switch (loginType) {
             case TypeConstants.LOGIN_TYPE.ACCONUT_PW:
@@ -278,8 +255,7 @@ public class LoginLogic {
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
-
-                doDealLoginReqSuccess(result, loginListener);
+                doDealLoginReqSuccess(result, loginType, account_openid, pw_verify, loginListener);
             }
 
             @Override
@@ -291,18 +267,61 @@ public class LoginLogic {
     }
 
     /**
-     * 让用户察觉的登录
-     *
-     * @param result
+     * 自动登录操作,当上一次的登录为帐号密码或者手机密码登录时,
      */
-    private static void doDealLoginReqSuccess(String result, final OnLoginCallBack listener) {
+    private static void doAutoLogin(final String account, final String pw, final int loginType, final OnLoginCallBack loginListener) {
+        String data = null;
+        switch (loginType) {
+            case TypeConstants.LOGIN_TYPE.ACCONUT_PW:
+                data = getJsonStrforAutoAccount(account, pw);
+                break;
+            case TypeConstants.LOGIN_TYPE.PHONE_PW:
+                data = getJsonStrforAutophoneInAccount(account, pw);
+                break;
+        }
+        String json = JsonUtil.getPostJsonSignString(data);
+        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+            @Override
+            public void onReqSuccess(String result) {
+                doDealLoginReqSuccess(result, loginType, account, pw, loginListener);
+            }
+
+            @Override
+            public void onReqFailed(String errorMsg) {
+                if (!Util.isNull(loginListener))
+                    loginListener.onLoginFailed(errorMsg);
+            }
+        };
+        RequestManager.getInstance(ApplicationContext.getCurrentContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
+    }
+
+    /**
+     * @param result
+     * @param loginType
+     * @param username
+     * @param pw        这里的密码需要使用MD5是MD5加密后的字符串
+     * @param listener
+     */
+    private static void doDealLoginReqSuccess(String result, int loginType, String username, String pw, final OnLoginCallBack listener) {
         ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
         switch (info.getResult()) {
             case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
-
-                //将密码帐号与登录,是什么登录存入sharedPerferrence
                 final ResponseInfo info2 = ResponseInfo.getRespInfoFromJsonStr(result, true);
+                //将密码帐号与登录,是什么登录存入sharedPerferrence
+                CfgFs cfgFs = new CfgFs(StorageConstants.ACCOUNT_DATA_PATH);
+                if (loginType == TypeConstants.LOGIN_TYPE.PHONE_PW || loginType == TypeConstants.LOGIN_TYPE.ACCONUT_PW) {
+                    if (StringUtils.isPWLine(pw)) {
+                        String md5Pw = MD5.getMD5FromStr(pw);
+                        cfgFs.setString(StorageConstants.Info_Key.USER_NAME, username);
+                        cfgFs.setString(StorageConstants.Info_Key.MD5_PASSWORD, MD5.getMD5FromStr(pw));
+                        cfgFs.setInt(StorageConstants.Info_Key.LOGIN_TYPE, loginType);
+                    }
+                } else {
+                    cfgFs.reset();
+                }
+                //获取用户信息
                 AccountManager.getInstance().setSskey(info2.getSskey());
+                AccountManager.getInstance().setLoginType(loginType);
                 GetUserInfoLogic.OnGetUserInfoCallBack callBack = new GetUserInfoLogic.OnGetUserInfoCallBack() {
                     @Override
                     public void onGetUserInfoSuccuss(UserInfo info) {
@@ -342,24 +361,56 @@ public class LoginLogic {
         }
     }
 
-    @Override
-    public String toString() {
-        return "LoginLogic{" +
-                "lastLoginType=" + lastLoginType +
-                ", sessKey='" + sessKey + '\'' +
-                ", account='" + account + '\'' +
-                ", pw='" + pw + '\'' +
-                ", user_ip='" + user_ip + '\'' +
-                ", terminal_type='" + terminal_type + '\'' +
-                ", phone_verify='" + phone_verify + '\'' +
-                ", tuiguang_id='" + tuiguang_id + '\'' +
-                ", openid_qq='" + openid_qq + '\'' +
-                '}';
-    }
 
     public interface OnLoginCallBack {
         void onLoginSuccessed(String sskey);
 
         void onLoginFailed(String errorMsg);
+    }
+
+    /**
+     * 判断是否可以自动登录
+     * 上一次使用帐号和密码(手机密码)登录后就可以使用自动登录
+     *
+     * @return
+     */
+    public static boolean isAutoLogin(final Activity activity) {
+        //从acc.data文件中获取帐号和密码
+        CfgFs cfgFs = new CfgFs(StorageConstants.ACCOUNT_DATA_PATH);
+        String username = cfgFs.getString(StorageConstants.Info_Key.USER_NAME, null);
+        String password = cfgFs.getString(StorageConstants.Info_Key.MD5_PASSWORD, null);
+        int loginType = cfgFs.getInt(StorageConstants.Info_Key.LOGIN_TYPE, -1);
+        Log.e(TAG, "userName==" + username + ",password==" + password + ",loginType==" + loginType);
+        if (username == null || password == null || loginType == -1) {
+            Log.e(TAG, "username or password is null");
+            return false;
+        }
+        if (loginType == TypeConstants.LOGIN_TYPE.AUTH_QQ || loginType == TypeConstants.LOGIN_TYPE.AUTH_WX || loginType == TypeConstants.LOGIN_TYPE.PHONE_QUICK) {
+            Log.e(TAG, "LoginType不是帐号密码和手机密码登录");
+            return false;
+        }
+        OnLoginCallBack callBack = new OnLoginCallBack() {
+            @Override
+            public void onLoginSuccessed(String sskey) {
+                //自动登录成功后进入到Home页面
+                Log.e(TAG, "自动登录成功,进入HomeActivity");
+                ThreadPool.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        HomeActivity.actionStart(activity, null, null);
+                    }
+                }, 3000);
+
+            }
+
+            @Override
+            public void onLoginFailed(String errorMsg) {
+                //如果登录失败进入登录页面
+                Log.e(TAG, "自动登录失败,进入LoginActivity中");
+                LoginActivity.actionStartClearStack(activity, null, null);
+            }
+        };
+        doAutoLogin(username, password, loginType, callBack);
+        return true;
     }
 }

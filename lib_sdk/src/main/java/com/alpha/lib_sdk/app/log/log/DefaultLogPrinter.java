@@ -32,7 +32,6 @@ public class DefaultLogPrinter implements ILogPrinter {
         String fileName = ValueOptUtils.chain("", LOG_FILE_NAME,
                 ApplicationContext.getPidKey(ApplicationContext.getApplication(),
                         android.os.Process.myPid()), "_", DateUtils.getDateFormat("yyyy-MM-dd", msec), ".", LOG_FILE_SUFFIX);
-
         mLogWriter.start(LOG_BASE_DIR, fileName,
                 android.os.Process.myPid(), Looper.getMainLooper().getThread().getId(), msec);
     }

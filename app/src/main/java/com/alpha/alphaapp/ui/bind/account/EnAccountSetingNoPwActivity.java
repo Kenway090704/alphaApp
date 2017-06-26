@@ -153,7 +153,10 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
         dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountSecurityActivity.actionStartClearStack(EnAccountSetingNoPwActivity.this, null, null);
+                if (!Util.isNull(dialog))
+                    dialog.dismiss();
+                AccountSecurityActivity.actionStar(EnAccountSetingNoPwActivity.this, null, null);
+
             }
         });
     }
@@ -168,7 +171,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(dialog))
+        if (!Util.isNull(dialog))
             dialog.dismiss();
     }
 }

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.modifyPassword.ModifyPwdInfo;
+import com.alpha.alphaapp.model.modifyPassword.ModifyPwdLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
@@ -183,12 +183,12 @@ public class ModifyPwByPwActivity extends BaseActivity {
         String sskey = AccountManager.getInstance().getSskey();
         String old_pw = et_oldpw.getText().toString();
         String new_pw = et_insurePw.getText().toString();
-        ModifyPwdInfo.ModifyPwCallBack callBack = new ModifyPwdInfo.ModifyPwCallBack() {
+        ModifyPwdLogic.OnModifyPwCallBack callBack = new ModifyPwdLogic.OnModifyPwCallBack() {
             @Override
             public void modifyPwSuccess() {
                 //弹出对话框
                 ToastUtils.showShort(ModifyPwByPwActivity.this, "修改密码成功");
-                AccountSecurityActivity.actionStartClearStack(ModifyPwByPwActivity.this, null, null);
+                AccountSecurityActivity.actionStar(ModifyPwByPwActivity.this, null, null);
                 //将密码保存到本地
                 finish();
             }
@@ -199,7 +199,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        ModifyPwdInfo.doModifyPwByPw(sskey, old_pw, new_pw, callBack);
+        ModifyPwdLogic.doModifyPwByPw(sskey, old_pw, new_pw, callBack);
     }
 
     public static void actionStart(Context context, String data1, String data2) {

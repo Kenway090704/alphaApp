@@ -18,7 +18,8 @@ import com.alpha.lib_sdk.app.tool.Util;
  */
 
 public class ChangeBindQQInfo {
-    private static final String TAG="ChangeBindPhoneLogic";
+    private static final String TAG = "ChangeBindPhoneLogic";
+
     /**
      * 获取验证旧手机的字符串
      *
@@ -27,20 +28,21 @@ public class ChangeBindQQInfo {
      * @param verifyCode
      * @return
      */
-    public static String getJsonStrChangeBindPhone(String sskey, String phone, String verifyCode) {
+    private  static String getJsonStrChangeBindPhone(String sskey, String phone, String verifyCode) {
         if (Util.isNullOrBlank(phone) && Util.isNullOrBlank(sskey)) {
             return null;
         }
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                 .append("\"account\":").append("\"" + phone + "\",")
-                .append("\"account_type\":").append("\"" + CommStants.ACCOUNT_TYPE.PHONE + "\",")
+                .append("\"account_type\":").append("\"" + TypeConstants.ACCOUNT_TYPE.PHONE + "\",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"phone_verify\":").append("\"" + verifyCode + "\"")
                 .append("}");
         return sb.toString();
     }
+
     /**
      * 验证旧手机
      *
@@ -57,6 +59,7 @@ public class ChangeBindQQInfo {
             @Override
             public void onReqSuccess(String result) {
                 ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+                if (Util.isNull(info)) return;
                 switch (info.getResult()) {
                     case CommStants.CHANGE_BIND_PHONE_VERIFY_OLD_PHONE.RESULT_OK:
                         // 进入第二个页面
@@ -105,6 +108,7 @@ public class ChangeBindQQInfo {
             @Override
             public void onReqSuccess(String result) {
                 ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+                if (Util.isNull(info)) return;
                 switch (info.getResult()) {
                     case CommStants.CHANGE_BIND_PHONE_BIND_NEW_PHONE.RESULT_OK:
                         back.onBindSuccess();
@@ -120,6 +124,7 @@ public class ChangeBindQQInfo {
                         break;
                 }
             }
+
             @Override
             public void onReqFailed(String errorMsg) {
                 back.onBindFailed(errorMsg);
@@ -133,6 +138,7 @@ public class ChangeBindQQInfo {
      */
     public interface VerfifyCallBack {
         void onVerifySuccess();
+
         void onVerifyFailed(String failMsg);
     }
 
@@ -141,6 +147,7 @@ public class ChangeBindQQInfo {
      */
     public interface BindCallBack {
         void onBindSuccess();
+
         void onBindFailed(String failMsg);
     }
 }

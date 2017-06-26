@@ -27,7 +27,7 @@ public class GetIconListLogic {
 
     private static String getJsonStrForIconList(String sskey) {
         if (!Util.isNullOrBlank(sskey)) {
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                     .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                     .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
@@ -51,10 +51,12 @@ public class GetIconListLogic {
             @Override
             public void onReqSuccess(String result) {
                 ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+                if (Util.isNull(info)) return;
                 switch (info.getResult()) {
                     case CommStants.GET_ICON_LIST_RESULT.RESULT_OK:
 
                         GetIconBean.IconListBean iconListBean = GetIconBean.IconListBean.objectFromData(result, "icon_list");
+                        if (Util.isNull(iconListBean)) return;
                         String base = iconListBean.getIcon_url();
                         List<GetIconBean.IconListBean.CategoryBean> list = iconListBean.getCategory();
                         if (back != null)
@@ -74,11 +76,9 @@ public class GetIconListLogic {
             }
         };
 
-
         RequestManager.getInstance(ApplicationContext.getCurrentContext()).requestPostByJsonAsyn(URLConstans.URL.GET_ICONS_LIST, json, callBack);
 
     }
-
 
     public interface GetIconCallBack {
         void onGetIconListSuccuss(String baseUrl, List<GetIconBean.IconListBean.CategoryBean> list);

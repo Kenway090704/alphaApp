@@ -112,7 +112,7 @@ public class EnAccountSetingHasPwActivity extends BaseActivity {
         dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountSecurityActivity.actionStartClearStack(EnAccountSetingHasPwActivity.this, null, null);
+                AccountSecurityActivity.actionStar(EnAccountSetingHasPwActivity.this, null, null);
             }
         });
     }

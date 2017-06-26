@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:padding="10dp"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -9,22 +11,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/ott_iv_first"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="10dp" />
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/ott_tv_first"
+            android:id="@+id/ott_tv_one"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/one_two_three_bg_no_select"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ott_tv_first_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:gravity="center_vertical"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -32,23 +39,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/ott_iv_second"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/one" />
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/ott_tv_second"
+            android:id="@+id/ott_tv_two"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/one_two_three_bg_no_select"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ott_tv_second_msg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:gravity="center_vertical"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -57,22 +68,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/ott_iv_third"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="10dp" />
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/ott_tv_third"
+            android:id="@+id/ott_tv_three"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/one_two_three_bg_no_select"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ott_tv_third_msg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:gravity="center_vertical"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -7,14 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.bean.ProviceBean;
-import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.RequestManager;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
+import com.alpha.lib_sdk.app.tool.Util;
 import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
@@ -40,8 +36,6 @@ public class LoginActivity extends BaseFragmentActivity {
 
     @Override
     protected void initView() {
-        titlelayout = (TitleLayout) findViewById(R.id.login_titlelayout);
-        titlelayout.setTitleText(R.string.login);
         tabLayout = (TabLayout) findViewById(R.id.login_tablayout);
         vp = (ViewPager) findViewById(R.id.login_vp);
     }
@@ -52,14 +46,10 @@ public class LoginActivity extends BaseFragmentActivity {
         initTabLayout();
     }
 
-
-
     private void initFragments() {
         fragments = new ArrayList<>();
         fragments.add(new AccountLoginFragment());
         fragments.add(new QuickLoginFragment());
-
-
         BaseFragmentPageAdapter adapter = new BaseFragmentPageAdapter(getSupportFragmentManager(), fragments);
         vp.setAdapter(adapter);
     }
@@ -94,7 +84,9 @@ public class LoginActivity extends BaseFragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                tabLayout.getTabAt(position % fragments.size()).select();
+                TabLayout.Tab tab = tabLayout.getTabAt(position % fragments.size());
+                if (!Util.isNull(tab))
+                    tab.select();
             }
 
             @Override

@@ -10,33 +10,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@android:color/white" />
+
     <com.alpha.alphaapp.ui.widget.set.SetingItemView
         android:id="@+id/seting_siv_bindset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/icon_user"
+        costum:left_icon="@drawable/icon_tool"
         costum:text="@string/settings_account_bind_set" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@android:color/white" />
 
     <com.alpha.alphaapp.ui.widget.set.SetingItemView
         android:id="@+id/seting_siv_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/icon_user"
+        costum:left_icon="@drawable/icon_feedback"
         costum:text="@string/feedback" />
+
+    <com.alpha.alphaapp.ui.widget.LineView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.alpha.alphaapp.ui.widget.set.SetingItemView
         android:id="@+id/seting_siv_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/icon_user"
+        costum:left_icon="@drawable/icon_score"
         costum:text="@string/score" />
+
+    <com.alpha.alphaapp.ui.widget.LineView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.alpha.alphaapp.ui.widget.set.SetingItemView
         android:id="@+id/seting_siv_aboutus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/icon_user"
+        costum:left_icon="@drawable/launcher"
         costum:text="@string/about_us" />
+
     <Button
         android:id="@+id/seting_btn_exit"
         android:layout_width="match_parent"

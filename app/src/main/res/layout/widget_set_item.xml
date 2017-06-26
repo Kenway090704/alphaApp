@@ -2,29 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
     android:background="@color/itme_bg_gray"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/widget_set_item_leftiv_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/icon_user" />
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:id="@+id/widget_set_item_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:layout_weight="1"
-        android:text="帐号和绑定设置" />
+        android:text="@string/account_bing_set" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginRight="10dp"
-        android:src="@drawable/icon_user" />
+        android:src="@drawable/icon_set_arrow_right" />
 </LinearLayout>

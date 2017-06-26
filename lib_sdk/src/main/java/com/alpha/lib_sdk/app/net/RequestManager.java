@@ -222,7 +222,6 @@ public class RequestManager {
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        Log.e(TAG, "response ----->" + string);
                         successCallBack((T) string, callBack);
                     } else {
                         failedCallBack("服务器错误", callBack);
@@ -236,36 +235,7 @@ public class RequestManager {
         return null;
     }
 
-    /**
-     * okHttp post同步请求表单提交
-     * @param actionUrl 接口地址
-     * @param paramsMap 请求参数
-     */
-    public void requestPostBySynWithForm(String actionUrl, HashMap<String, String> paramsMap) {
-        try {
-            //创建一个FormBody.Builder
-            FormBody.Builder builder = new FormBody.Builder();
-            for (String key : paramsMap.keySet()) {
-                builder.add(key, paramsMap.get(key));
-            }
-            RequestBody formBody = builder.build();
-            //生成表单实体对象
 
-            //补全请求地址
-            String requestUrl =actionUrl;
-            //创建一个请求
-            Request request = new Request.Builder().url(actionUrl).post(formBody).build();
-            //创建一个Call
-            final Call call = mOkHttpClient.newCall(request);
-            //执行请求
-            Response response = call.execute();
-            if (response.isSuccessful()) {
-                Log.e(TAG, "response ----->" + response.body().string());
-            }
-        } catch (Exception e) {
-            Log.e(TAG, e.toString());
-        }
-    }
 
     /**
      * 统一同意处理成功信息

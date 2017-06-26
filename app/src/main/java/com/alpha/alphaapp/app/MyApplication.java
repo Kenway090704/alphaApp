@@ -6,6 +6,7 @@ import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaData;
 import com.alpha.alphaapp.wxapi.WXManager;
 import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
+import com.alpha.lib_sdk.app.app.EnvirenmentArgsHolder;
 import com.alpha.lib_sdk.app.crashhandler.CrashHandler;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -41,6 +42,7 @@ public class MyApplication extends Application {
 
         //使上下文对象弱引用
         ApplicationContext.setApplication(this);
+        EnvirenmentArgsHolder.setContext(this);
         //初始化崩溃日志类
         CrashHandler.getInstance().init();
         //注册微信接口
@@ -48,7 +50,7 @@ public class MyApplication extends Application {
         regToWx();
         //glide初始化
 
-        //加载网络地址数据
+        //加载地区地址数据
         GetPCityAreaData.getInstance().init(this);
 
     }

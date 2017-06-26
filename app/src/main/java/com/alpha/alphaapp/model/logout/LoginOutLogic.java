@@ -13,8 +13,10 @@ import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.alphaapp.ui.set.SettingsActivity;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
+import com.alpha.lib_sdk.app.fs.CfgFs;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
+import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -33,7 +35,7 @@ public class LoginOutLogic {
      */
     public static String getJSONStrforLoginOut(String sskey) {
         if (!Util.isNullOrBlank(sskey)) {
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             sb.append("{\"sskey\":").append("\"" + sskey + "\",")
                     .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                     .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\"")
@@ -46,6 +48,7 @@ public class LoginOutLogic {
 
     /**
      * 退出当前帐号,进入登录页面
+     *
      * @param sskey
      * @param back
      */
@@ -57,13 +60,17 @@ public class LoginOutLogic {
             public void onReqSuccess(String result) {
                 ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
                 //不论sskey是否过期都可以回到登录页面
+                if (Util.isNull(info)) return;
                 switch (info.getResult()) {
                     case CommStants.LOGINOUT_RESULT.RESULT_LOGINOUT_OK:
                     default:
+                        CfgFs cfgFs = new CfgFs(StorageConstants.ACCOUNT_DATA_PATH);
+                        cfgFs.reset();
                         back.onLoginOutSuccuss();
                         break;
                 }
             }
+
             @Override
             public void onReqFailed(String errorMsg) {
                 back.onLoginOutFailed(errorMsg);

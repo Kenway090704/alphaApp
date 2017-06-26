@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
-import com.alpha.alphaapp.ui.mine.adapter.IconListAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 
@@ -92,7 +91,7 @@ public class SignRecylcerAdapter extends RecyclerView.Adapter<SignRecylcerAdapte
                     }
                 }
                 //获取每一个Adapter,然后通知这些刷新界面
-                List<LinearLayout> layouts = LayoutAdapter.layouts;
+                List<LinearLayout> layouts = LayoutVPAdapter.layouts;
                 for (int k = 0; k < layouts.size(); k++) {
                     RecyclerView recyclerView = (RecyclerView) layouts.get(k).findViewById(R.id.sign_item_recyclerView);
                     recyclerView.getAdapter().notifyDataSetChanged();
@@ -112,7 +111,7 @@ public class SignRecylcerAdapter extends RecyclerView.Adapter<SignRecylcerAdapte
         ImageView iv;
         CheckBox cb;
 
-        public MyViewHolder(View view) {
+         MyViewHolder(View view) {
             super(view);
             cb = (CheckBox) view.findViewById(R.id.item_recycler_cb);
             iv = (ImageView) view.findViewById(R.id.item_recycler_iv);

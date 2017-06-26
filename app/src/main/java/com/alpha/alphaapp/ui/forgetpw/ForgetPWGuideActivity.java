@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.check.CheckAccoutLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.forgetpw.phone.PhoneGetPwActivity1;
@@ -62,7 +63,7 @@ public class ForgetPWGuideActivity extends BaseActivity {
         layout_wechat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAccountIsHas("AFGHR9011");
+                checkAccountIsHas("AFGHR9188");
                 //正式版的时候
 //                getWxOpenid();
             }
@@ -73,7 +74,7 @@ public class ForgetPWGuideActivity extends BaseActivity {
      * 检测帐号是否存在
      */
     private void checkAccountIsHas(final String wx_openid) {
-        CheckAccoutLogic.OnCheckAccountListener listener = new CheckAccoutLogic.OnCheckAccountListener() {
+        CheckAccoutLogic.OnCheckAccountCallBack listener = new CheckAccoutLogic.OnCheckAccountCallBack() {
             @Override
             public void checkSucessed(boolean isHas, String result) {
                 if (isHas) {
@@ -89,7 +90,7 @@ public class ForgetPWGuideActivity extends BaseActivity {
 
             }
         };
-        CheckAccoutLogic.checkAccountIsHas(wx_openid, CommStants.ACCOUNT_TYPE.AUTH_WECHAT, listener);
+        CheckAccoutLogic.checkAccountIsHas(wx_openid, TypeConstants.ACCOUNT_TYPE.AUTH_WECHAT, listener);
     }
 
     /**

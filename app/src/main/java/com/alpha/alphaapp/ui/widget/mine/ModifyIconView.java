@@ -17,11 +17,10 @@ import android.widget.LinearLayout;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
-import com.alpha.alphaapp.ui.mine.adapter.IconListAdapter;
+import com.alpha.alphaapp.ui.mine.adapter.IconListVPAdapter;
 import com.alpha.alphaapp.ui.mine.adapter.IconRecylcerAdapter;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -151,7 +150,7 @@ public class ModifyIconView extends LinearLayout {
                 map.put(listData.get(i).getIcons().get(j), false);
             }
         }
-        IconListAdapter adapter = new IconListAdapter(list);
+        IconListVPAdapter adapter = new IconListVPAdapter(list);
         vp.setAdapter(adapter);
         initEvent();
     }
@@ -160,6 +159,8 @@ public class ModifyIconView extends LinearLayout {
      * tab与ViewPager的监听
      */
     private void initEvent() {
+
+//        tab.setupWithViewPager(vp);
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -180,12 +181,12 @@ public class ModifyIconView extends LinearLayout {
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                Log.e(TAG,"position=="+position+",positionOffset=="+positionOffset+",positionOffsetPixels=="+positionOffsetPixels);
             }
 
             @Override
             public void onPageSelected(int position) {
-                tab.getTabAt(position).select();
+
             }
 
             @Override

@@ -17,15 +17,15 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:src="@drawable/phone" />
+            android:src="@drawable/icon_phone" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/by_bind_phone_get" />
     </LinearLayout>
@@ -38,12 +38,13 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:src="@drawable/weixin_logo" />
+            android:src="@drawable/icon_wx_black" />
 
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -11,13 +11,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
+import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -170,51 +173,26 @@ public class AccountBindFragment extends BaseFragment {
      * 处理响应成功后
      */
     private void doDealRepSuccess() {
-        String sskey = ((BindAccountActivity) getActivity()).getSskey();
-        String data = BindLogic.getJsonforBindAccount(sskey, et_account.getText().toString(), et_pw.getText().toString());
-        String json = JsonUtil.getPostJsonSignString(data);
-        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+        String sskey = AccountManager.getInstance().getSskey();
+        String account = et_account.getText().toString();
+        String pw = et_pw.getText().toString();
+        Log.e(TAG,"account=="+account+",pw=="+pw);
+        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-                //如果绑定成功,弹出对话框
-                ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-                switch (info.getResult()) {
-                    case CommStants.BIND_ACOUNT_RESULT.RESULT_OK:
-                        //弹出对话框提示绑定帐号成功
-                        Log.e(TAG, result);
-                        ToastUtils.showShort(getContext(), R.string.bind_success_you_use_wechat_phone_login);
-                        break;
-                    case CommStants.BIND_ACOUNT_RESULT.RESULT_ACCOUT_HAD:
-                        tv_error.setText(info.getMsg());
-                        tv_error.setVisibility(View.VISIBLE);
-                        //帐号已经存在
-                        Log.e(TAG, result);
-                        break;
-                    case CommStants.BIND_ACOUNT_RESULT.RESULT_RELOGIN:
-                        tv_error.setText(info.getMsg());
-                        tv_error.setVisibility(View.VISIBLE);
-                        //重新登录
-                        break;
-                    case CommStants.BIND_ACOUNT_RESULT.RESULT_GETVERIFY_TOO_MUCH:
-//                        手机验证码手机号错误
-                        break;
-//                    case  CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_IS_ERROR:
-//                        break;
+            public void onBindSuccessed() {
 
-                    case CommStants.BIND_ACOUNT_RESULT.RESULT_VERIFY_IS_ERROR:
-                        break;
-                    case CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_HAD_BIND:
-                        break;
-                }
-
+                ToastUtils.showShort(getContext(), R.string.bind_success_you_use_wechat_phone_login);
+                //进入主页
+                HomeActivity.actionStart(getActivity(),null,null);
             }
-
             @Override
-            public void onReqFailed(String errorMsg) {
-
+            public void onBindFailed(String failMsg) {
+                tv_error.setText(failMsg);
+                tv_error.setVisibility(View.VISIBLE);
             }
         };
-        RequestManager.getInstance(getContext()).requestPostByJsonAsyn(URLConstans.URL.BIND, json, callBack);
+        BindLogic.doBindAccountOrPhone(sskey, account, pw, TypeConstants.ACCOUNT_TYPE.ACCOUNT, call);
+
     }
 
 }

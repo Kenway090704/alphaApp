@@ -25,6 +25,11 @@ public abstract class BaseActivity extends Activity {
         initData();
         initListener();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
     @Override
     protected void onStart() {
@@ -54,4 +59,6 @@ public abstract class BaseActivity extends Activity {
         super.onTrimMemory(level);
         Log.e(TAG, "onTrimMemory invoked the level is", level);
     }
+
+
 }

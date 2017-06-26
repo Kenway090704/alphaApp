@@ -13,40 +13,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
-
-import com.alpha.alphaapp.bean.CityBean;
-import com.alpha.alphaapp.bean.JsonBean;
-import com.alpha.alphaapp.bean.ProviceBean;
-import com.alpha.alphaapp.bean.SchoolBean;
-import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.mine.MineInfoActivity;
 import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaLogic;
-import com.alpha.alphaapp.ui.mine.logic.GetSchoolLogic;
-import com.alpha.alphaapp.ui.mine.school.ModifySchoolActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
-import com.alpha.lib_sdk.app.tool.GetJsonDataUtil;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
-import com.bigkoo.pickerview.OptionsPickerView;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by kenway on 17/6/16 19:14
@@ -97,16 +77,9 @@ public class ModifyContactAddrActivity extends BaseActivity {
         titlelayout.setOnBackListener(new TitleLayout.OnBackListener() {
             @Override
             public void onBackLister() {
-                Intent intent = new Intent();
-                intent.putExtra(CONTACT, miiv_pca.getMsg() + et_detail.getText().toString());
-                setResult(1, intent);
                 finish();
-
             }
-
-
         });
-
 
         miiv_pca.setIvRightOnClicklistener(new View.OnClickListener() {
             @Override
@@ -115,11 +88,8 @@ public class ModifyContactAddrActivity extends BaseActivity {
                 layout.setVisibility(View.GONE);
                 //弹出底部对话框
                 logic_pca.show();
-
             }
         });
-
-
         miiv_street.setIvRightOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,9 +189,8 @@ public class ModifyContactAddrActivity extends BaseActivity {
         return super.onTouchEvent(event);
     }
 
-    public static void actionStart(Context context, int reuqest_code, String data2) {
+    public static void actionStart(Context context) {
         Intent intent = new Intent(context, ModifyContactAddrActivity.class);
-        intent.putExtra("params", data2);
-        ((MineInfoActivity) context).startActivityForResult(intent, reuqest_code);
+        context.startActivity(intent);
     }
 }

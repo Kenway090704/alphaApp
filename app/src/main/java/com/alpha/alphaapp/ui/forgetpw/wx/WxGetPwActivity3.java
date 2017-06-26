@@ -6,22 +6,23 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
-import com.alpha.alphaapp.model.resetpw.ResetPwInfo;
+import com.alpha.alphaapp.model.resetpw.ResetPwLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -37,7 +38,7 @@ public class WxGetPwActivity3 extends BaseActivity {
     public static final boolean BIND = true;
     public static final boolean UNBIND = false;
     private TitleLayout titleLayout;
-    private EditText et_pw;
+    private AccountEditText aet_pw;
     private TextView tv_error;
     private Button btn_submit;
     private String accont;
@@ -56,7 +57,7 @@ public class WxGetPwActivity3 extends BaseActivity {
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.wx_getpw3_titlelayout);
 
-        et_pw = (EditText) findViewById(R.id.wx_getpw3_et_pw);
+        aet_pw = (AccountEditText) findViewById(R.id.wx_getpw3_aet_pw);
         tv_error = (TextView) findViewById(R.id.wx_getpw3_tv_error);
         btn_submit = (Button) findViewById(R.id.wx_getpw3_btn_submit);
         dialog = new CustomAlertDialog(this);
@@ -69,7 +70,7 @@ public class WxGetPwActivity3 extends BaseActivity {
 
     @Override
     protected void initListener() {
-        et_pw.addTextChangedListener(new TextWatcher() {
+        aet_pw.setWatcherListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -77,13 +78,14 @@ public class WxGetPwActivity3 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_pw.getText().toString())) {
+                if (Util.isNullOrBlank(aet_pw.getText().toString())) {
                     btn_submit.setEnabled(Boolean.FALSE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_gray);
-
+                    aet_pw.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_blue);
+                    aet_pw.getImageViewRight().setVisibility(View.VISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);
             }
@@ -119,50 +121,41 @@ public class WxGetPwActivity3 extends BaseActivity {
      * 修改密码
      */
     private void resetPw() {
-        if (Util.isNullOrBlank(et_pw.getText().toString())) {
+        if (Util.isNullOrBlank(aet_pw.getText().toString())) {
             tv_error.setText(R.string.pw_isnot_empty);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!StringUtils.isPWLine(et_pw.getText().toString())) {
+        if (!StringUtils.isPWLine(aet_pw.getText().toString())) {
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        String pw = et_pw.getText().toString();
-        String data = ResetPwInfo.getJsonStrForAccount(accont, pw);
-        String json = JsonUtil.getPostJsonSignString(data);
-        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+        ResetPwLogic.OnResetPwCallBack callBack = new ResetPwLogic.OnResetPwCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-                ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-                switch (info.getResult()) {
-                    case CommStants.RESET_PW_RESULT.RESULT_OK:
-                        dialog.show();
-                        break;
-                    case CommStants.RESET_PW_RESULT.RESULT_ACCOUNT_NOHAD:
-                        break;
-                }
+            public void OnResetPwSuccessed() {
+                dialog.show();
             }
 
             @Override
-            public void onReqFailed(String errorMsg) {
+            public void OnResetPwFailed(String failMsg) {
+
             }
         };
-        RequestManager.getInstance(getApplicationContext()).requestPostByJsonAsyn(URLConstans.URL.RESET_PW, json, callBack);
-
+        String pw = aet_pw.getText().toString();
+        ResetPwLogic.doResetPw(accont, pw, callBack);
     }
 
     /**
      * 微信未绑定帐号,因此执行的是绑定帐号
      */
     private void bindnewAccount() {
-        if (Util.isNullOrBlank(et_pw.getText().toString())) {
+        if (Util.isNullOrBlank(aet_pw.getText().toString())) {
             tv_error.setText(R.string.pw_isnot_empty);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!StringUtils.isPWLine(et_pw.getText().toString())) {
+        if (!StringUtils.isPWLine(aet_pw.getText().toString())) {
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
             return;
@@ -173,29 +166,19 @@ public class WxGetPwActivity3 extends BaseActivity {
             return;
         }
         String sskey = AccountManager.getInstance().getSskey();
-        String pw = et_pw.getText().toString();
-        String data = BindLogic.getJsonforBindAccount(sskey, accont, pw);
-        String json = JsonUtil.getPostJsonSignString(data);
-        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+        String pw = aet_pw.getText().toString();
+        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
             @Override
-            public void onReqSuccess(String result) {
-
-                ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-
-                switch (info.getResult()) {
-                    case CommStants.BIND_ACOUNT_RESULT.RESULT_OK:
-                        dialog.show();
-                        break;
-                }
-
-
+            public void onBindSuccessed() {
+                dialog.show();
             }
 
             @Override
-            public void onReqFailed(String errorMsg) {
+            public void onBindFailed(String failMsg) {
+
             }
         };
-        RequestManager.getInstance(getApplicationContext()).requestPostByJsonAsyn(URLConstans.URL.BIND, json, callBack);
+        BindLogic.doBindAccountOrPhone(sskey, accont, pw, TypeConstants.ACCOUNT_TYPE.ACCOUNT, call);
     }
 
     public static void actionStart(Context context, String account, boolean isBind) {

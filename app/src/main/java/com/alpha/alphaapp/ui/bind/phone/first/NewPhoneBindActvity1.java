@@ -9,19 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
 import com.alpha.alphaapp.model.StringUtils;
-import com.alpha.alphaapp.model.other.GetPhoneVerifyInfo;
-import com.alpha.alphaapp.model.result.ResponseInfo;
+import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -90,7 +83,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                GetPhoneVerifyInfo.CallBack callBack = new GetPhoneVerifyInfo.CallBack() {
+                GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
                     @Override
                     public void onGetVerifySuccess() {
                         NewPhoneBindActvity2.actionStart(NewPhoneBindActvity1.this, et_phone.getText().toString(), null);
@@ -102,7 +95,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyInfo.getPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.BIND_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.BIND_PHONE, callBack);
             }
         });
 
