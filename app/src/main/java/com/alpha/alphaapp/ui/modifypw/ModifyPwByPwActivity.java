@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.modifyPassword.ModifyPwdLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
@@ -63,7 +63,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_oldpw.getText().toString()) || Util.isNullOrBlank(et_newPw.getText().toString()) || Util.isNullOrBlank(et_insurePw.getText().toString())) {
+                if (Util.isNullOrBlank(et_oldpw.getEditTextStr()) || Util.isNullOrBlank(et_newPw.getEditTextStr()) || Util.isNullOrBlank(et_insurePw.getEditTextStr())) {
                     btn_save.setEnabled(Boolean.FALSE);
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                 } else {
@@ -71,7 +71,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                 }
                 //这里的监听方法有问题
-                if (Util.isNullOrBlank(et_oldpw.getText().toString())) {
+                if (Util.isNullOrBlank(et_oldpw.getEditTextStr())) {
                     et_oldpw.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_oldpw.getImageViewRight().setVisibility(View.VISIBLE);
@@ -94,7 +94,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_oldpw.getText().toString()) || Util.isNullOrBlank(et_newPw.getText().toString()) || Util.isNullOrBlank(et_insurePw.getText().toString())) {
+                if (Util.isNullOrBlank(et_oldpw.getEditTextStr()) || Util.isNullOrBlank(et_newPw.getEditTextStr()) || Util.isNullOrBlank(et_insurePw.getEditTextStr())) {
                     btn_save.setEnabled(Boolean.FALSE);
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                 } else {
@@ -102,7 +102,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                 }
                 //这里的监听方法有问题
-                if (Util.isNullOrBlank(et_insurePw.getText().toString())) {
+                if (Util.isNullOrBlank(et_insurePw.getEditTextStr())) {
                     et_insurePw.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_insurePw.getImageViewRight().setVisibility(View.VISIBLE);
@@ -126,7 +126,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_oldpw.getText().toString()) || Util.isNullOrBlank(et_newPw.getText().toString()) || Util.isNullOrBlank(et_insurePw.getText().toString())) {
+                if (Util.isNullOrBlank(et_oldpw.getEditTextStr()) || Util.isNullOrBlank(et_newPw.getEditTextStr()) || Util.isNullOrBlank(et_insurePw.getEditTextStr())) {
                     btn_save.setEnabled(Boolean.FALSE);
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                 } else {
@@ -134,7 +134,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                 }
                 //这里的监听方法有问题
-                if (Util.isNullOrBlank(et_newPw.getText().toString())) {
+                if (Util.isNullOrBlank(et_newPw.getEditTextStr())) {
                     et_newPw.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_newPw.getImageViewRight().setVisibility(View.VISIBLE);
@@ -161,28 +161,25 @@ public class ModifyPwByPwActivity extends BaseActivity {
      * 修改密码
      */
     private void editpw() {
-        if (!StringUtils.isPWLine(et_oldpw.getText().toString())) {
+        if (!StringUtils.isPWLine(et_oldpw.getEditTextStr())) {
             tv_error.setText(R.string.old_pw_format_error);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
 
-        if (!StringUtils.isPWLine(et_newPw.getText().toString()) || !StringUtils.isPWLine(et_insurePw.getText().toString())) {
+        if (!StringUtils.isPWLine(et_newPw.getEditTextStr()) || !StringUtils.isPWLine(et_insurePw.getEditTextStr())) {
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!et_newPw.getText().toString().equals(et_insurePw.getText().toString())) {
+        if (!et_newPw.getEditTextStr().equals(et_insurePw.getEditTextStr())) {
             tv_error.setText(R.string.twice_newpw_diffrent);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-
-        if (AccountManager.getInstance().isSskeyIsNul(ModifyPwByPwActivity.this))
-            return;
         String sskey = AccountManager.getInstance().getSskey();
-        String old_pw = et_oldpw.getText().toString();
-        String new_pw = et_insurePw.getText().toString();
+        String old_pw = et_oldpw.getEditTextStr();
+        String new_pw = et_insurePw.getEditTextStr();
         ModifyPwdLogic.OnModifyPwCallBack callBack = new ModifyPwdLogic.OnModifyPwCallBack() {
             @Override
             public void modifyPwSuccess() {

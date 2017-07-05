@@ -1,12 +1,23 @@
 package com.alpha.alphaapp.ui;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
+import com.alpha.alphaapp.R;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.Log;
+import com.githang.statusbar.StatusBarCompat;
 
 
 /**
@@ -19,12 +30,17 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        // 设置为横屏模式
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        StatusBarCompat.setStatusBarColor(this,getResources().getColor(R.color.colorPrimary),false);
         initView();
         initData();
         initListener();
     }
+
     @Override
     protected void onResume() {
         super.onResume();

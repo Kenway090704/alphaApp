@@ -1,17 +1,11 @@
 package com.alpha.alphaapp.model.logout;
 
 
-import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
+import com.alpha.lib_sdk.app.tool.JsonUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
-import com.alpha.alphaapp.sp.SharePLoginInfo;
-import com.alpha.alphaapp.ui.login.LoginActivity;
-import com.alpha.alphaapp.ui.set.SettingsActivity;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.fs.CfgFs;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -19,7 +13,6 @@ import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/5/23 16:59
@@ -66,7 +59,8 @@ public class LoginOutLogic {
                     default:
                         CfgFs cfgFs = new CfgFs(StorageConstants.ACCOUNT_DATA_PATH);
                         cfgFs.reset();
-                        back.onLoginOutSuccuss();
+                        if (!Util.isNull(back))
+                            back.onLoginOutSuccuss();
                         break;
                 }
             }

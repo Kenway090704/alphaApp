@@ -17,6 +17,7 @@ import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.wxapi.WXManager;
 import com.alpha.alphaapp.wxapi.WechatAuthCallBack;
 import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -63,12 +64,14 @@ public class ForgetPWGuideActivity extends BaseActivity {
         layout_wechat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAccountIsHas("AFGHR9188");
+                //拉起微信,获取openid,然后判断进入哪个页面
+                checkAccountIsHas("AFGHR938862");
                 //正式版的时候
 //                getWxOpenid();
             }
         });
     }
+
 
     /**
      * 检测帐号是否存在

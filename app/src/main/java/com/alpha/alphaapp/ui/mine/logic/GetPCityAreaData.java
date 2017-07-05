@@ -7,6 +7,7 @@ import com.alpha.alphaapp.ui.mine.logic.bean.AreaBean;
 import com.alpha.alphaapp.ui.mine.logic.bean.CityBean;
 import com.alpha.alphaapp.ui.mine.logic.bean.ProviceBean;
 import com.alpha.alphaapp.comm.URLConstans;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -21,15 +22,18 @@ import java.util.List;
  */
 
 public class GetPCityAreaData {
+    private static final String TAG = "GetPCityAreaData";
 
     private Context context;
     public static final ArrayList<String> itme1datas = new ArrayList<>();
     public static final ArrayList<ArrayList<String>> item2datas = new ArrayList<>();
     public static final ArrayList<ArrayList<ArrayList<String>>> item3datas = new ArrayList<>();
     private static GetPCityAreaData gpcad;
+
     //启动线程现在地址信息
     public void init(Context context) {
         this.context = context;
+
         downProvince();
     }
 
@@ -65,6 +69,7 @@ public class GetPCityAreaData {
             @Override
             public void onReqSuccess(String result) {
                 List<ProviceBean> provinces = ProviceBean.arrayProvieBeanFromJson(result);
+
                 for (int i = 0; i < provinces.size(); i++) {
                     String province = provinces.get(i).getProvince();
                     itme1datas.add(province);
@@ -79,7 +84,7 @@ public class GetPCityAreaData {
 
             @Override
             public void onReqFailed(String errorMsg) {
-
+                Log.e(TAG, errorMsg);
             }
         };
 

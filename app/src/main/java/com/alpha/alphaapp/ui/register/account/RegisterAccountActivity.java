@@ -3,23 +3,21 @@ package com.alpha.alphaapp.ui.register.account;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.check.CheckAccoutLogic;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.model.register.RegisterLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.HomeActivity;
-import com.alpha.alphaapp.ui.register.phone.RegisterPhoneActivity3;
+import com.alpha.alphaapp.ui.register.UserAgreementActivity;
+import com.alpha.alphaapp.ui.widget.OneTwoThreeItemView;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
@@ -32,7 +30,9 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 public class RegisterAccountActivity extends BaseActivity {
     private static final String TAG = "RegisterAccountActivity";
+    private OneTwoThreeItemView ott;
     private AccountEditText aet_acc, aet_pw, aet_insurepw;
+
     private TextView tv_error;
     private Button btn_reg;
     private TextView tv_protocal;
@@ -44,12 +44,13 @@ public class RegisterAccountActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        ott = (OneTwoThreeItemView) findViewById(R.id.reg_account_ott);
         aet_acc = (AccountEditText) findViewById(R.id.reg_account_aet_acc);
         aet_pw = (AccountEditText) findViewById(R.id.reg_account_aet_pw);
         aet_insurepw = (AccountEditText) findViewById(R.id.reg_account_aet_insurepw);
         tv_error = (TextView) findViewById(R.id.reg_account_tv_error);
         btn_reg = (Button) findViewById(R.id.reg_account_btn_reg_and_login);
-        tv_protocal= (TextView) findViewById(R.id.reg_account_tv_protocal);
+        tv_protocal = (TextView) findViewById(R.id.reg_account_tv_protocal);
 
     }
 
@@ -119,7 +120,7 @@ public class RegisterAccountActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //进入到查看协议的activity中
-                ToastUtils.showShort(RegisterAccountActivity.this,"进入到协议activity");
+                UserAgreementActivity.actionStart(RegisterAccountActivity.this);
             }
         });
     }
@@ -131,16 +132,18 @@ public class RegisterAccountActivity extends BaseActivity {
      * @param aet
      */
     private void isEditTextNull(AccountEditText aet) {
-        if (Util.isNullOrBlank(aet_acc.getText().toString()) || Util.isNullOrBlank(aet_pw.getText().toString()) || Util.isNullOrBlank(aet_insurepw.getText().toString())) {
+        if (Util.isNullOrBlank(aet_acc.getEditTextStr()) || Util.isNullOrBlank(aet_pw.getEditTextStr()) || Util.isNullOrBlank(aet_insurepw.getEditTextStr())) {
             btn_reg.setEnabled(Boolean.FALSE);
             btn_reg.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
         } else {
             btn_reg.setEnabled(Boolean.TRUE);
             btn_reg.setBackgroundResource(R.drawable.shape_btn_bg_blue);
+            ott.setCurrentUI(2);
+
         }
 
-        if (Util.isNullOrBlank(aet.getText().toString())) {
+        if (Util.isNullOrBlank(aet.getEditTextStr())) {
             aet.getImageViewRight().setVisibility(View.INVISIBLE);
         } else {
             aet.getImageViewRight().setVisibility(View.VISIBLE);
@@ -149,31 +152,30 @@ public class RegisterAccountActivity extends BaseActivity {
     }
 
 
-
     /**
      * 注册并登录
      */
     private void doRegisterAndLogin() {
         //判断帐号是否正确
-        if (!StringUtils.isAccountLine(aet_acc.getText().toString())) {
+        if (!StringUtils.isAccountLine(aet_acc.getEditTextStr())) {
             tv_error.setText(R.string.account_format);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!StringUtils.isPWLine(aet_pw.getText().toString()) || !StringUtils.isPWLine(aet_insurepw.getText().toString())) {
+        if (!StringUtils.isPWLine(aet_pw.getEditTextStr()) || !StringUtils.isPWLine(aet_insurepw.getEditTextStr())) {
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!aet_pw.getText().toString().equals(aet_insurepw.getText().toString())) {
+        if (!aet_pw.getEditTextStr().equals(aet_insurepw.getEditTextStr())) {
             tv_error.setText(R.string.twice_newpw_diffrent);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
 
         //判断是否存在该帐号
-        final String account = aet_acc.getText().toString();
-        final String pw = aet_pw.getText().toString();
+        final String account = aet_acc.getEditTextStr();
+        final String pw = aet_pw.getEditTextStr();
         int type = TypeConstants.ACCOUNT_TYPE.ACCOUNT;
 
         CheckAccoutLogic.OnCheckAccountCallBack listener = new CheckAccoutLogic.OnCheckAccountCallBack() {

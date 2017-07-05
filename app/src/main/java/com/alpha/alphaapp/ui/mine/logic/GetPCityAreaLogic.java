@@ -1,11 +1,15 @@
 package com.alpha.alphaapp.ui.mine.logic;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
+
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
+
 import java.util.ArrayList;
 
 /**
@@ -64,7 +68,7 @@ public class GetPCityAreaLogic {
 
             }
         })
-            .setLayoutRes(R.layout.widget_options_pca, new CustomListener() {
+                .setLayoutRes(R.layout.widget_options_pca, new CustomListener() {
                     @Override
                     public void customLayout(View v) {
                         final Button btn_save = (Button) v.findViewById(R.id.dialog_opt_pca_btn_save);
@@ -77,11 +81,14 @@ public class GetPCityAreaLogic {
                         });
                     }
                 })
-
-                .setContentTextSize(18)
+                .setBgColor(0xFFF0F0F0)//滚轮背景颜色 Night mode
+                .setContentTextSize(20)
                 .setOutSideCancelable(true)// default is true
                 .build();
-
+        if (options1Items.size() == 0 || options2Items.size() == 0 || options3Items.size() == 0) {
+            ToastUtils.showShort(context, "地址数据获取有误,无法获取数据");
+            return;
+        }
         pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器
         pvOptions.show();
     }

@@ -26,10 +26,27 @@
         app:hint="@string/account_alpha_format"
         app:icon_type="@drawable/icon_user" />
 
-    <TextView
-        android:id="@+id/wx_getpw_no_account_tv_error"
-        style="@style/tv_error_com"
-        />
+    <LinearLayout
+        android:id="@+id/wx_getpw_no_account_tv_error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/wx_getpw_no_account_tv_error_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_tv_error" />
+
+        <TextView
+            android:id="@+id/wx_getpw_no_account_tv_error"
+            style="@style/tv_error_com_two_line"
+            android:lineSpacingExtra="6dp"
+            android:maxLines="2"
+            android:text="@string/the_wx_no_set_en_account" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/wx_getpw_no_account_btn_resetpw"

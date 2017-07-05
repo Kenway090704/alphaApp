@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.changebindphone.ChangeBindPhoneLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
@@ -63,7 +63,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_phone.getText().toString()) && Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr()) && Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_next.setEnabled(Boolean.FALSE);
                     btn_next.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -73,7 +73,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
 
                 }
 
-                if (Util.isNullOrBlank(et_phone.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())) {
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
@@ -94,7 +94,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_phone.getText().toString()) && Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr()) && Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_next.setEnabled(Boolean.FALSE);
                     btn_next.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -103,7 +103,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
                     btn_next.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
                 }
-                if (Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(ivet.getEditTextStr())) {
                     ivet.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     ivet.getImageViewRight().setVisibility(View.VISIBLE);
@@ -119,7 +119,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
         ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
                     //验证手机号格式是否正确
                     tv_error.setText(R.string.input_valid_eleven_number);
                     tv_error.setVisibility(View.VISIBLE);
@@ -137,18 +137,18 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.VERIFY_OLD_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY.VERIFY_OLD_PHONE, callBack);
             }
         });
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
                     tv_error.setText(R.string.input_valid_eleven_number);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                if (!StringUtils.isPhoneVerify(ivet.getText().toString())) {
+                if (!StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
                     tv_error.setText(R.string.verify_form_error);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
@@ -166,7 +166,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                ChangeBindPhoneLogic.doVerifyOldPhone(sskey, et_phone.getText().toString(), ivet.getText().toString(), callBack);
+                ChangeBindPhoneLogic.doVerifyOldPhone(sskey, et_phone.getEditTextStr(), ivet.getEditTextStr(), callBack);
             }
         });
 

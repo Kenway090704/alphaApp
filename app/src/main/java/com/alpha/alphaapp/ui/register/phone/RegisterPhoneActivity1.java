@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.check.CheckAccoutLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
@@ -76,13 +76,13 @@ public class RegisterPhoneActivity1 extends BaseActivity {
      * 检测帐号是否注册
      */
     private void checkPhoneHasReg() {
-        if (!StringUtils.isPhoneNum(aet_phone.getText().toString())) {
+        if (!StringUtils.isPhoneNum(aet_phone.getEditTextStr())) {
             tv_error.setText(R.string.input_valid_eleven_number);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
         //判断是否存在该帐号
-        final String phone = aet_phone.getText().toString();
+        final String phone = aet_phone.getEditTextStr();
         CheckAccoutLogic.OnCheckAccountCallBack callBack = new CheckAccoutLogic.OnCheckAccountCallBack() {
             @Override
             public void checkSucessed(boolean isHas, String result) {
@@ -128,7 +128,7 @@ public class RegisterPhoneActivity1 extends BaseActivity {
      * 判断EditText是否为空
      */
     private void isEditTextNull() {
-        if (Util.isNullOrBlank(aet_phone.getText().toString())) {
+        if (Util.isNullOrBlank(aet_phone.getEditTextStr())) {
             btn_getVerify.setEnabled(Boolean.FALSE);
             btn_getVerify.setBackgroundResource(R.drawable.shape_btn_bg_gray);
             aet_phone.getImageViewRight().setVisibility(View.INVISIBLE);

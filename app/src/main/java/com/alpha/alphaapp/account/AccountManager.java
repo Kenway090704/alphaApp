@@ -128,7 +128,6 @@ public class AccountManager {
      * 将当前的sskey设置为空
      */
     public synchronized void reset() {
-
         sskey = null;
         if (accountInfo != null) {
             accountInfo = null;

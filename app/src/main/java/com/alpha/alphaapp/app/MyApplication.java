@@ -19,8 +19,8 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 public class MyApplication extends Application {
     private static MyApplication ins;
     // wechat appid  app_sercet
-    public static final String WX_APP_ID = "wx88888888";
-    public static final String WX_APP_SECRET = "申请的app_secret";
+    public static final String WX_APP_ID = "wxc3d8450695643bfb";
+    public static final String WX_APP_SECRET = "wxc3d8450695643bfb";
     //wechat tokeninfo
     private WxAccessTokenInfo wxAccessTokenInfo;
 
@@ -65,7 +65,6 @@ public class MyApplication extends Application {
         //将应用的appid注册到微信
         iwxapi.registerApp(WX_APP_ID);
         WXManager.instance().setApi(iwxapi);
-
     }
 
     /**

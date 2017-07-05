@@ -7,10 +7,10 @@ package com.alpha.alphaapp.comm;
  */
 
 public class TypeConstants {
+
     public interface TERMINAL_TYPE {
         String PHONE = "PHONE";
     }
-
     /**
      * 注册类型
      */
@@ -38,14 +38,16 @@ public class TypeConstants {
          * 帐号密码登录
          */
         int ACCONUT_PW = 2;
-        /**
-         * 微信授权登录
-         */
-        int AUTH_WX = 3;
+
+
         /**
          * QQ授权登录
          */
-        int AUTH_QQ = 4;
+        int AUTH_QQ = 3;
+        /**
+         * 微信授权登录
+         */
+        int AUTH_WX = 4;
     }
 
     /**

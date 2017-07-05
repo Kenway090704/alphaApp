@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/item_recycler_iv"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="5dp"
         android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
         android:clickable="true"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@drawable/launcher" />
 
     <CheckBox
@@ -22,8 +21,9 @@
         android:layout_height="102dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:button="@null"
         android:background="@drawable/shape_iv_bg"
+        android:button="@null"
         android:clickable="false"
-        android:enabled="false" />
+        android:enabled="false"
+        android:visibility="gone" />
 </RelativeLayout>

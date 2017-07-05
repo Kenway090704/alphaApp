@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/icon_user"
+            android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
             android:text="推荐" />
 
@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/icon_user"
+            android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
             android:text="积分商城" />
 
@@ -45,8 +45,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/icon_user"
+            android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
+            android:drawablePadding="5dp"
             android:text="我的" />
     </RadioGroup>
 </LinearLayout>

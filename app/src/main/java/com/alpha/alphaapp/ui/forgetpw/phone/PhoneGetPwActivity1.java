@@ -10,19 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 
 /**
  * Created by kenway on 17/6/6 15:06
@@ -66,7 +59,7 @@ public class PhoneGetPwActivity1 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_phone.getText())) {
+                if (TextUtils.isEmpty(et_phone.getEditTextStr())) {
                     btn_getVerify.setEnabled(Boolean.FALSE);
                     btn_getVerify.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -86,17 +79,17 @@ public class PhoneGetPwActivity1 extends BaseActivity {
         btn_getVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
                     //验证手机号格式是否正确
                     tv_error.setText(R.string.input_valid_eleven_number);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                String phone=et_phone.getText().toString();
+                String phone=et_phone.getEditTextStr();
                 GetPhoneVerifyLogic.OnGetVerifyCallBack callBack =new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
                     @Override
                     public void onGetVerifySuccess() {
-                        PhoneGetPwActivity2.actionStart(PhoneGetPwActivity1.this, et_phone.getText().toString());
+                        PhoneGetPwActivity2.actionStart(PhoneGetPwActivity1.this, et_phone.getEditTextStr());
                     }
 
                     @Override

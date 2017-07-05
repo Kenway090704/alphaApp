@@ -22,9 +22,9 @@
         android:id="@+id/reg_phone_3_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:hint="@string/pw_form"
-        app:icon_type="@drawable/icon_lock" />
+        app:icon_type="@drawable/icon_lock"
+        app:input_type="password" />
 
     <TextView
         android:id="@+id/reg_phone_3_tv_error"
@@ -34,4 +34,13 @@
         android:id="@+id/reg_phone_3_btn_register"
         style="@style/btn_com_gray"
         android:text="@string/register_and_login" />
+
+    <TextView
+        android:id="@+id/reg_phone_3_btn_tv_protocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:clickable="true"
+        android:text="@string/register_and_agree_alpha_rules"
+        android:textColor="@color/tv_blue" />
 </LinearLayout>

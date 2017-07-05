@@ -1,4 +1,4 @@
-package com.alpha.alphaapp.model;
+package com.alpha.lib_sdk.app.tool;
 
 import com.alpha.lib_sdk.app.log.Log;
 
@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 /**
  * Created by kenway on 17/5/24 11:50
  * Email : xiaokai090704@126.com
+ * 判断密码和帐号是否正确的
  */
 
 public class StringUtils {
@@ -33,6 +34,7 @@ public class StringUtils {
      * 帐号注册时的验证帐号是否正确
      */
     public static boolean isAccountLine(String account) {
+        account = account.trim();
         Pattern p = Pattern
                 .compile("[a-z]{1}[A-Za-z0-9]{5,11}");
         Matcher m = p.matcher(account);
@@ -44,6 +46,7 @@ public class StringUtils {
      * 密码判读有误
      */
     public static boolean isPWLine(String pw) {
+        pw = pw.trim();
         Pattern p = Pattern
                 .compile("[A-Za-z0-9]{6,12}");
         Matcher m = p.matcher(pw);
@@ -57,6 +60,7 @@ public class StringUtils {
      * @return
      */
     public static boolean isPhoneNum(String mobiles) {
+        mobiles = mobiles.trim();
         Pattern p = Pattern
                 .compile("^(13[0-9]|15[0-9]|17[0-9]|18[0-9])\\d{8}$");
         Matcher m = p.matcher(mobiles);
@@ -67,13 +71,14 @@ public class StringUtils {
      * 判断是否是手机验证码
      * 手机验证码也存在问题
      *
-     * @param mobiles
+     * @param verify
      * @return
      */
-    public static boolean isPhoneVerify(String mobiles) {
+    public static boolean isPhoneVerify(String verify) {
+        verify = verify.trim();
         Pattern p = Pattern
                 .compile("\\d{6}");
-        Matcher m = p.matcher(mobiles);
+        Matcher m = p.matcher(verify);
         return m.matches();
     }
 
@@ -84,6 +89,7 @@ public class StringUtils {
      * @return
      */
     public static boolean isQQ(String qq) {
+        qq = qq.trim();
         Pattern p = Pattern
                 .compile("^[1-9][0-9]{4,9}");
         Matcher m = p.matcher(qq);

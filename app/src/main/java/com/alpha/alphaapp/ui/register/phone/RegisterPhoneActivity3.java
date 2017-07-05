@@ -10,13 +10,16 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.model.register.RegisterLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.HomeActivity;
+import com.alpha.alphaapp.ui.register.UserAgreementActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
+import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/22 10:04
@@ -28,21 +31,24 @@ public class RegisterPhoneActivity3 extends BaseActivity {
     private AccountEditText aet_pw;
     private TextView tv_error;
     private Button btn_reg;
+    private TextView tv_protocal;
     private String phone, verify;
 
     @Override
     protected int getLayoutId() {
         phone = getIntent().getStringExtra("phone");
         verify = getIntent().getStringExtra("verify");
+        Log.e(TAG, "phone==" + phone + ".verify==" + verify);
         return R.layout.activity_register_phone_3;
     }
+
 
     @Override
     protected void initView() {
         aet_pw = (AccountEditText) findViewById(R.id.reg_phone_3_aet_pw);
         tv_error = (TextView) findViewById(R.id.reg_phone_3_tv_error);
         btn_reg = (Button) findViewById(R.id.reg_phone_3_btn_register);
-
+        tv_protocal = (TextView) findViewById(R.id.reg_phone_3_btn_tv_protocal);
     }
 
     @Override
@@ -72,10 +78,18 @@ public class RegisterPhoneActivity3 extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //注册
-                doRegister(phone, verify, aet_pw.getText().toString());
+                doRegister(phone, aet_pw.getEditTextStr(), verify);
 
             }
         });
+
+        tv_protocal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserAgreementActivity.actionStart(RegisterPhoneActivity3.this);
+            }
+        });
+
     }
 
     /**
@@ -96,6 +110,7 @@ public class RegisterPhoneActivity3 extends BaseActivity {
             @Override
             public void onRegisterSuccessed() {
                 //弹出对话框提示,然后确认后,登录成功
+                ToastUtils.showShort(RegisterPhoneActivity3.this,"注册成功");
                 doLogin(phone, pw);
             }
 
@@ -105,6 +120,8 @@ public class RegisterPhoneActivity3 extends BaseActivity {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
+
+
         RegisterLogic.doRegisterPhone(phone, pw, verify, call);
     }
 
@@ -132,7 +149,7 @@ public class RegisterPhoneActivity3 extends BaseActivity {
      * 判断EditText是否为空
      */
     private void isEditTextNull() {
-        if (Util.isNullOrBlank(aet_pw.getText().toString())) {
+        if (Util.isNullOrBlank(aet_pw.getEditTextStr())) {
             btn_reg.setEnabled(Boolean.FALSE);
             btn_reg.setBackgroundResource(R.drawable.shape_btn_bg_gray);
             aet_pw.getImageViewRight().setVisibility(View.INVISIBLE);

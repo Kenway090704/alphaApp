@@ -25,7 +25,7 @@ import com.alpha.lib_sdk.app.tool.Util;
  */
 
 public class AccountEditText extends LinearLayout {
-    private static final String TAG = "MyPwEditText";
+    private static final String TAG = "AccountEditText";
     private Context context;
 
     private EditText et;
@@ -33,7 +33,6 @@ public class AccountEditText extends LinearLayout {
     private Drawable icon_left;
     private String txt_hint;
     private String input_type;
-
 
 
     public AccountEditText(Context context) {
@@ -66,17 +65,31 @@ public class AccountEditText extends LinearLayout {
         }
         return et.getText();
     }
+
+    /**
+     * 获取输入框中的文字(前后空格已去除)
+     *
+     * @return
+     */
+    public String getEditTextStr() {
+        if (!Util.isNull(et)) {
+            return et.getText().toString().trim();
+        } else {
+            return null;
+        }
+
+    }
+
     public EditText getEditText() {
         return et;
     }
 
+
     private void initViews() {
-
-
         View view = LayoutInflater.from(context).inflate(R.layout.widget_account_et, this);
-        iv_icon = (ImageView) view.findViewById(R.id.mypw_edit_iv_lock);
-        et = (EditText) view.findViewById(R.id.mypw_edit_et_hint);
-        iv_del = (ImageView) view.findViewById(R.id.mypw_edit_iv_del);
+        iv_icon = (ImageView) view.findViewById(R.id.acc_edit_iv_lock);
+        et = (EditText) view.findViewById(R.id.acc_edit_et_hint);
+        iv_del = (ImageView) view.findViewById(R.id.acc_edit_iv_del);
         if (!Util.isNull(icon_left))
             iv_icon.setImageDrawable(icon_left);
         if (!Util.isNullOrBlank(txt_hint))

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.setenaccount.SetEnAccountLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
@@ -63,7 +63,7 @@ public class EnAccountSetingHasPwActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(aet_account.getText().toString())) {
+                if (Util.isNullOrBlank(aet_account.getEditTextStr())) {
                     btn_save.setEnabled(Boolean.FALSE);
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                     aet_account.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -84,14 +84,14 @@ public class EnAccountSetingHasPwActivity extends BaseActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isAccountLine(aet_account.getText().toString())) {
+                if (!StringUtils.isAccountLine(aet_account.getEditTextStr())) {
                     //验证手机号格式是否正确
                     tv_error.setText(R.string.account_alpha_format);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
                 String sskey = AccountManager.getInstance().getSskey();
-                String account = aet_account.getText().toString();
+                String account = aet_account.getEditTextStr();
                 SetEnAccountLogic.SetEnAccountCallBack callBack = new SetEnAccountLogic.SetEnAccountCallBack() {
                     @Override
                     public void onSetEnAccountSuccuss() {
@@ -109,7 +109,7 @@ public class EnAccountSetingHasPwActivity extends BaseActivity {
             }
         });
 
-        dialog.setOnClickListener(new View.OnClickListener() {
+        dialog.setPositiveButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AccountSecurityActivity.actionStar(EnAccountSetingHasPwActivity.this, null, null);
@@ -127,7 +127,7 @@ public class EnAccountSetingHasPwActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(dialog))
+        if (!Util.isNull(dialog))
             dialog.dismiss();
     }
 }

@@ -26,13 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:lineSpacingExtra="2dp"
         android:maxLines="2"
         android:layout_marginBottom="10dp"
         android:textColor="@color/tv_black"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 
     <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
         android:id="@+id/phone_get_pw_2_ivet"

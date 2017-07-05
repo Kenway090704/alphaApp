@@ -9,8 +9,9 @@ import android.support.v4.view.ViewPager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
-import com.alpha.alphaapp.ui.widget.TitleLayout;
+import com.alpha.alphaapp.ui.login.qq.QQLoginManager;
 import com.alpha.lib_sdk.app.tool.Util;
+import com.tencent.connect.common.Constants;
 import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
@@ -23,11 +24,9 @@ import java.util.List;
 
 public class LoginActivity extends BaseFragmentActivity {
     private static final String TAG = "LoginActivity";
-    private TitleLayout titlelayout;
     private TabLayout tabLayout;
     private ViewPager vp;
     private List<Fragment> fragments;
-
 
     @Override
     protected int getLayoutId() {
@@ -107,7 +106,7 @@ public class LoginActivity extends BaseFragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //qq授权登录使用
-        Tencent.onActivityResultData(requestCode, resultCode, data, ((AccountLoginFragment) fragments.get(0)).getQQIUiListener());
+        Tencent.onActivityResultData(requestCode, resultCode, data, QQLoginManager.getInstance().getQQIUiListener());
     }
 
 

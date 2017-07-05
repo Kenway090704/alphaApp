@@ -15,14 +15,17 @@
         android:gravity="center_vertical"
         android:textColor="@color/tv_black"
         android:textSize="12sp" />
+
     <TextView
         android:id="@+id/widget_acc_bind_tv_msg"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_vertical"
+        android:maxLines="1"
         android:textColor="@color/tv_black"
         android:textSize="12sp" />
+
     <Button
         android:id="@+id/widget_acc_bind_btn_right"
         android:layout_width="wrap_content"

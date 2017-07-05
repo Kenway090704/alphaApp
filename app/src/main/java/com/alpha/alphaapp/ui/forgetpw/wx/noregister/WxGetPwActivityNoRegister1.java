@@ -10,6 +10,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.forgetpw.wx.hasregister.WxGetPwActivityNoAccount;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 
@@ -52,7 +53,7 @@ public class WxGetPwActivityNoRegister1 extends BaseActivity {
         btn_loginset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //使用该微信open_id 进行登录,登录后再进入到第二个界面中
+                //使用该微信open_id 进行登录,是进入到绑定界面还是进入设置界面,登录后再进入到第二个界面中
                 LoginLogic.OnLoginCallBack listener = new LoginLogic.OnLoginCallBack() {
                     @Override
                     public void onLoginSuccessed(String sskey) {

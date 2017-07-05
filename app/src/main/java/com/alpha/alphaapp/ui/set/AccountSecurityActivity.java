@@ -12,11 +12,12 @@ import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.bind.BindLogic;
 import com.alpha.alphaapp.model.check.CheckAccoutLogic;
 import com.alpha.alphaapp.ui.AccountChangeActivity;
-import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.bind.account.EnAccountSetingHasPwActivity;
 import com.alpha.alphaapp.ui.bind.account.EnAccountSetingNoPwActivity;
 import com.alpha.alphaapp.ui.bind.phone.change.ChangePhoneBindActvity1;
 import com.alpha.alphaapp.ui.bind.phone.first.NewPhoneBindActvity1;
+import com.alpha.alphaapp.ui.login.qq.QQLoginManager;
+import com.alpha.alphaapp.ui.login.wx.WxAuthLogic;
 import com.alpha.alphaapp.ui.modifypw.phone.ModifyPwByPhoneActivity1;
 import com.alpha.alphaapp.ui.modifypw.ModifyPwByPwActivity;
 import com.alpha.alphaapp.ui.widget.AccountBindItemView;
@@ -63,7 +64,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
      */
     private void setCurrentAccount() {
         // 判断是登录的类型,然后选择对应的帐号显示
-        String format = getResources().getString(R.string.current_account) + " ";
+        String format = getResources().getString(R.string.current_account) + "   ";
         int accountType = AccountManager.getInstance().getLoginType();
         switch (AccountManager.getInstance().getLoginType()) {
             case TypeConstants.LOGIN_TYPE.PHONE_QUICK:
@@ -111,14 +112,14 @@ public class AccountSecurityActivity extends AccountChangeActivity {
         }
         if (!Util.isNullOrBlank(info.getOpenid_qq())) {
             abi_qq.setMsg(info.getOpenid_qq());
-            abi_qq.setRightTxtAndBg("更改绑定", R.drawable.shape_btn_bg_blue);
+            abi_qq.setRightTxtAndBg("已绑定", R.drawable.shape_btn_bg_gray);
         } else {
             abi_qq.setRightTxtAndBg("+ 绑定", R.drawable.shape_btn_bg_blue);
         }
         if (!Util.isNullOrBlank(info.getMobile()) || !Util.isNullOrBlank(info.getAccount())) {
             abi_pweditpw.setRightTxtAndBg("修改", R.drawable.shape_btn_bg_blue);
         } else {
-            abi_pweditpw.setRightTxtAndBg("未绑定帐号", R.drawable.shape_tv_getverify_bg_gray);
+            abi_pweditpw.setRightTxtAndBg("未绑定帐号", R.drawable.shape_btn_bg_gray);
         }
     }
 
@@ -159,16 +160,49 @@ public class AccountSecurityActivity extends AccountChangeActivity {
         abi_wx.setOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册,
-                checkAuthBind("AFGH1008", TypeConstants.ACCOUNT_TYPE.AUTH_WECHAT);
+                if (Util.isNullOrBlank(info.getOpenid_weixin())) {
+                    ToastUtils.showShort(AccountSecurityActivity.this, "拉起Wx获取openid");
+                    //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册,
+//                    checkAuthBind("AFGH1008", TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
+                    WxAuthLogic.OnWxAuthCallBack callBack = new WxAuthLogic.OnWxAuthCallBack() {
+                        @Override
+                        public void onAuthSuccessed(String openid) {
+                            checkAuthBind("AFGH1008", TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
+                        }
+
+                        @Override
+                        public void onAuthFailed(String failedMsg) {
+                            ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
+                        }
+                    };
+                    WxAuthLogic.getInstance().doWxAuth(callBack);
+                }
 
             }
         });
         abi_qq.setOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //通过拉起QQ获取QQ的openid,检测该openid是否已经注册,如果未注册,
-                checkAuthBind("AFGH1008", TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
+                if (Util.isNullOrBlank(info.getOpenid_qq())) {
+                    Log.e(TAG, "openid_qq为空");
+                    //通过拉起QQ获取QQ的openid,检测该openid是否已经注册,如果未注册,
+                    QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
+                        @Override
+                        public void onQQAuthSuccessed(String qq_openid) {
+                            checkAuthBind(qq_openid, TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
+                            Log.e(TAG, "qq_openid==" + qq_openid);
+                        }
+
+
+                        @Override
+                        public void onQQAuthFailed(String failedMsg) {
+                            Log.e(TAG, "failedMsg==" + failedMsg);
+                            ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
+                        }
+                    };
+                    QQLoginManager.getInstance().loginQQAuth(AccountSecurityActivity.this, callBack);
+                }
+
 
             }
         });

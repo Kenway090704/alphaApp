@@ -15,9 +15,9 @@
 
     <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
         android:id="@+id/bind_phone_ivet"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/bind_phone_tv_error"
@@ -27,4 +27,14 @@
         android:id="@+id/bind_phone_btn_submit"
         style="@style/btn_com_gray"
         android:text="@string/submit" />
+
+    <TextView
+        android:id="@+id/bind_phone_tv_no_bind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/no_bind"
+        android:textSize="16sp" />
 </LinearLayout>

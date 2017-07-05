@@ -17,10 +17,8 @@ import java.util.List;
  */
 
 public class UserInfo {
-
+    public static final String TAG = "UserInfo";
     public static final String UINFO = "uinfo";
-
-
     private String account;
     private String create_time;
     private String uuid;

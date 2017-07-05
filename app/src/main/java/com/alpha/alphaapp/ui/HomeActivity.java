@@ -3,18 +3,15 @@ package com.alpha.alphaapp.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.model.StringUtils;
 import com.alpha.alphaapp.ui.mine.MineFragment;
-import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaData;
 import com.alpha.alphaapp.ui.recom.RecomFragment;
 import com.alpha.alphaapp.ui.score.ScoreFragment;
-import com.alpha.lib_sdk.app.app.EnvirenmentArgsHolder;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/5/24 14:59
@@ -24,6 +21,7 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 public class HomeActivity extends BaseFragmentActivity {
     private static final String TAG = "HomeActivity";
     private RadioGroup radioGroup;
+    private RadioButton rb_mine;
     private BaseFragment[] fragments;
     private int lastIndex = 2;
 
@@ -37,6 +35,11 @@ public class HomeActivity extends BaseFragmentActivity {
     @Override
     protected void initView() {
         radioGroup = (RadioGroup) findViewById(R.id.home_rg);
+        rb_mine= (RadioButton) findViewById(R.id.home_rb_mine);
+        //定义底部标签图片大小
+        Drawable drawableWeiHui = getResources().getDrawable(R.drawable.icon_mine);
+        drawableWeiHui.setBounds(2, 0, 25, 30);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        rb_mine.setCompoundDrawables(null, drawableWeiHui, null, null);//只放上面
     }
 
 
@@ -65,7 +68,7 @@ public class HomeActivity extends BaseFragmentActivity {
             tran.add(R.id.home_content, frag);
             tran.hide(frag);
         }
-        // 默认显示第一个
+        // 默认显示第一个,这里显示的是最后一个
         tran.show(fragments[2]);
         // 提交事务
         tran.commit();

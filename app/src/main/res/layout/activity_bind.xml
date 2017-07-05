@@ -9,6 +9,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
+        android:layout_marginTop="30dp"
         android:text="@string/bind_had_account"
         android:textColor="@color/tv_black"
         android:textSize="30sp" />
@@ -24,14 +25,7 @@
         android:layout_height="0dp"
         android:layout_weight="2" />
 
-    <TextView
-        android:id="@+id/bind_tv_no_bind"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="@string/no_bind"
-        android:textSize="16sp" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -43,12 +37,21 @@
             android:id="@+id/bind_tv_user_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="25dp"
             android:text="@string/app_user_center"
             android:textColor="@color/tv_black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:src="@drawable/launcher"
+            android:layout_height="50dp"
+            android:id="@+id/imageView"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/bind_tv_user_center"
+            android:layout_marginBottom="13dp" />
     </RelativeLayout>
 
 </LinearLayout>

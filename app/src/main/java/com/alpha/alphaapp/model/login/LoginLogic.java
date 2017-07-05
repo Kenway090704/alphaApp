@@ -8,8 +8,8 @@ import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.HomeActivity;
@@ -350,8 +350,10 @@ public class LoginLogic {
                     listener.onLoginFailed(info.getMsg());
                 break;
             case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_OR_PW_ERROR:
+                //帐号或者密码错误
                 if (!Util.isNull(listener))
-                    listener.onLoginFailed(info.getMsg());
+//                    listener.onLoginFailed(info.getMsg());
+                listener.onLoginFailed("帐号或者密码错误,请重新输入。");
                 break;
             case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
                 if (!Util.isNull(listener))

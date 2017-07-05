@@ -1,8 +1,5 @@
 package com.alpha.alphaapp.ui.bind.firstbind;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -12,21 +9,18 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
+import com.alpha.alphaapp.model.login.LoginLogic;
+import com.alpha.alphaapp.model.logout.LoginOutLogic;
+
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
+import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/5 15:52
@@ -39,11 +33,18 @@ public class AccountBindFragment extends BaseFragment {
     private AccountEditText et_account;
     private AccountEditText et_pw;
     private Button btn_submit;
-    private TextView tv_error;
+    private TextView tv_error, tv_no_bind;
 
+    private CustomAlertDialog dialog_insure_bind, dialog_bind_success;
+
+
+    private int loginType;
+    private String openId;
 
     @Override
     protected int getLayoutId() {
+        loginType = ((BindAccountActivity) getActivity()).getLoginType();
+        openId = ((BindAccountActivity) getActivity()).getOpenid();
         return R.layout.fragment_bind_account;
     }
 
@@ -53,6 +54,49 @@ public class AccountBindFragment extends BaseFragment {
         et_pw = (AccountEditText) root.findViewById(R.id.bind_ac_aet_pw);
         tv_error = (TextView) root.findViewById(R.id.bind_ac_tv_error);
         btn_submit = (Button) root.findViewById(R.id.bind_ac_btn_submit);
+        tv_no_bind = (TextView) root.findViewById(R.id.bind_ac_tv_no_bind);
+        initDialogs();
+    }
+
+    /**
+     * 初始化对话框
+     */
+    private void initDialogs() {
+        dialog_insure_bind = new CustomAlertDialog(getActivity());
+        dialog_insure_bind.setTxtMsg(R.string.insure_bind_account);
+        dialog_insure_bind.setPositiveButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
+                    dialog_insure_bind.dismiss();
+                }
+                onBindAccount();
+
+            }
+        });
+        dialog_insure_bind.setNegativeButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
+                    dialog_insure_bind.dismiss();
+                }
+            }
+        });
+
+        dialog_bind_success = new CustomAlertDialog(getActivity());
+        dialog_bind_success.setTxtMsg(R.string.bind_success_you_use_wechat_account_login);
+        dialog_bind_success.setCancelable(false);
+        dialog_bind_success.setPositiveButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转到HomeActivity
+                if (!Util.isNull(dialog_bind_success) && dialog_bind_success.isShowing()) {
+                    dialog_bind_success.dismiss();
+                }
+                HomeActivity.actionStart(getActivity(), null, null);
+            }
+        });
+
     }
 
     @Override
@@ -65,16 +109,14 @@ public class AccountBindFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_account.getText()) || TextUtils.isEmpty(et_pw.getText())) {
+                if (Util.isNullOrBlank(et_account.getEditTextStr()) || Util.isNullOrBlank(et_pw.getEditTextStr())) {
                     btn_submit.setEnabled(Boolean.FALSE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_gray);
-
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_blue);
-
                 }
-                if (Util.isNullOrBlank(et_account.getText().toString())) {
+                if (Util.isNullOrBlank(et_account.getEditTextStr())) {
                     et_account.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_account.getImageViewRight().setVisibility(View.VISIBLE);
@@ -95,13 +137,19 @@ public class AccountBindFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_account.getText()) || TextUtils.isEmpty(et_pw.getText())) {
+                if (Util.isNullOrBlank(et_account.getEditTextStr()) || Util.isNullOrBlank(et_pw.getEditTextStr())) {
                     btn_submit.setEnabled(Boolean.FALSE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_blue);
+                }
+
+                if (Util.isNullOrBlank(et_pw.getEditTextStr())) {
+                    et_pw.getImageViewRight().setVisibility(View.INVISIBLE);
+                } else {
+                    et_pw.getImageViewRight().setVisibility(View.VISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);
             }
@@ -114,7 +162,39 @@ public class AccountBindFragment extends BaseFragment {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userAccountPwBind();
+                if (!StringUtils.isAccountLine(et_account.getEditTextStr())) {
+                    tv_error.setText(R.string.account_format);
+                    tv_error.setVisibility(View.VISIBLE);
+                    return;
+                }
+                if (!StringUtils.isPWLine(et_pw.getEditTextStr())) {
+                    tv_error.setText(R.string.pw_error_format);
+                    tv_error.setVisibility(View.VISIBLE);
+                    return;
+                }
+
+                if (!Util.isNull(dialog_insure_bind) && !dialog_insure_bind.isShowing())
+                    dialog_insure_bind.show();
+            }
+        });
+
+        tv_no_bind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
+                    @Override
+                    public void onLoginSuccessed(String sskey) {
+                        //这里需要存在暂不关联
+                        HomeActivity.actionStart(getActivity(), null, null);
+                    }
+
+                    @Override
+                    public void onLoginFailed(String errorMsg) {
+                        tv_error.setText(errorMsg);
+                        tv_error.setVisibility(View.VISIBLE);
+                    }
+                };
+                LoginLogic.doLogin(openId, null, loginType, callBack);
             }
         });
     }
@@ -126,73 +206,89 @@ public class AccountBindFragment extends BaseFragment {
 
 
     /**
-     * 绑定帐号
+     * 先使用输入的帐号登录,然后绑定首次授权登录的第三方opneid
      */
-    private void userAccountPwBind() {
-        if (!StringUtils.isAccountLine(et_account.getText().toString())) {
-            tv_error.setText(R.string.account_format);
-            tv_error.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (!StringUtils.isPWLine(et_pw.getText().toString())) {
-            tv_error.setText(R.string.pw_error_format);
-            tv_error.setVisibility(View.VISIBLE);
-            return;
-        }
-        showNormalDialog();
+    private void onBindAccount() {
 
-
-    }
-
-    /**
-     * 弹出提示对话框
-     */
-    private void showNormalDialog() {
-        final AlertDialog.Builder normalDialog =
-                new AlertDialog.Builder(getContext());
-        normalDialog.setMessage(R.string.insure_bind_account);
-        normalDialog.setCancelable(false);//设置不可取消
-        DialogInterface.OnClickListener dialogInterface = new DialogInterface.OnClickListener() {
+        String account = et_account.getEditTextStr();
+        String pw = et_pw.getEditTextStr();
+        //如果帐号存在,登录进入,直接进入HomeActivity
+        LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case Dialog.BUTTON_POSITIVE:
-                        doDealRepSuccess();
-                        break;
-                    case Dialog.BUTTON_NEGATIVE:
-                        break;
+            public void onLoginSuccessed(String sskey) {
+                //获取用户信息,判读是否已经有绑定的其他的帐号
+                UserInfo info = AccountManager.getInstance().getUserInfo();
+                if (TypeConstants.LOGIN_TYPE.AUTH_QQ == loginType) {
+                    if (Util.isNullOrBlank(info.getOpenid_qq())) {
+                        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
+                            @Override
+                            public void onBindSuccessed() {
+                                //弹出对话框,提示绑定成功!
+                                if (!Util.isNull(dialog_bind_success) && !dialog_bind_success.isShowing())
+                                    dialog_bind_success.show();
+                            }
+
+                            @Override
+                            public void onBindFailed(String failMsg) {
+                                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing())
+                                    dialog_insure_bind.dismiss();
+                                tv_error.setText(failMsg);
+                                tv_error.setVisibility(View.VISIBLE);
+                            }
+                        };
+                        BindLogic.doBindWxOrQQ(sskey, openId, loginType, call);
+                    } else {
+                        LoginOutLogic.doLoginOut(sskey, null);
+                        tv_error.setText("该英文帐号已经绑定其他QQ帐号");
+                        tv_error.setVisibility(View.VISIBLE);
+                    }
+                } else if (TypeConstants.LOGIN_TYPE.AUTH_WX == loginType) {
+                    if (Util.isNullOrBlank(info.getOpenid_qq())) {
+                        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
+                            @Override
+                            public void onBindSuccessed() {
+                                //弹出对话框,提示绑定成功!
+                                if (!Util.isNull(dialog_bind_success) && !dialog_bind_success.isShowing())
+                                    dialog_bind_success.show();
+                            }
+
+                            @Override
+                            public void onBindFailed(String failMsg) {
+                                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing())
+                                    dialog_insure_bind.dismiss();
+                                tv_error.setText(failMsg);
+                                tv_error.setVisibility(View.VISIBLE);
+                            }
+                        };
+                        BindLogic.doBindWxOrQQ(sskey, openId, loginType, call);
+                    } else {
+                        LoginOutLogic.doLoginOut(sskey, null);
+                        tv_error.setText("该英文帐号已经绑定其他微信帐号");
+                        tv_error.setVisibility(View.VISIBLE);
+                    }
                 }
-            }
-        };
-        normalDialog.setPositiveButton("确认", dialogInterface);
-        normalDialog.setNegativeButton("取消", dialogInterface);
-        normalDialog.show();
-    }
 
-    /**
-     * 处理响应成功后
-     */
-    private void doDealRepSuccess() {
-        String sskey = AccountManager.getInstance().getSskey();
-        String account = et_account.getText().toString();
-        String pw = et_pw.getText().toString();
-        Log.e(TAG,"account=="+account+",pw=="+pw);
-        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
-            @Override
-            public void onBindSuccessed() {
-
-                ToastUtils.showShort(getContext(), R.string.bind_success_you_use_wechat_phone_login);
-                //进入主页
-                HomeActivity.actionStart(getActivity(),null,null);
             }
+
             @Override
-            public void onBindFailed(String failMsg) {
-                tv_error.setText(failMsg);
+            public void onLoginFailed(String errorMsg) {
+                tv_error.setText(errorMsg);
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        BindLogic.doBindAccountOrPhone(sskey, account, pw, TypeConstants.ACCOUNT_TYPE.ACCOUNT, call);
+        LoginLogic.doLogin(account, pw, TypeConstants.LOGIN_TYPE.ACCONUT_PW, callBack);
+
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
+            dialog_insure_bind.dismiss();
+        }
+        if (!Util.isNull(dialog_bind_success) && dialog_bind_success.isShowing()) {
+            dialog_bind_success.dismiss();
+        }
+    }
 }

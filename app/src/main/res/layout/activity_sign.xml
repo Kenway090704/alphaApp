@@ -15,7 +15,9 @@
         android:id="@+id/sign_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabMode="scrollable"
         app:tabTextAppearance="@style/MyTabLayoutTextAppearance" />
+
 
     <View
         android:layout_width="match_parent"
@@ -42,14 +44,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:layout_marginTop="14dp"
             android:gravity="center"
+            android:lineSpacingExtra="9dp"
             android:maxLines="2"
             android:text="@string/need_help_msg"
             android:textColor="@color/tv_black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/sign_btn_sign"

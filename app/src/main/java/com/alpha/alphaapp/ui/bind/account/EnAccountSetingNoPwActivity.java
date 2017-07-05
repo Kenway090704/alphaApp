@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.setenaccount.SetEnAccountLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
@@ -64,7 +65,8 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(aet_account.getText().toString()) || Util.isNullOrBlank(aet_pw.getText().toString())) {
+
+                if (Util.isNullOrBlank(aet_account.getEditTextStr()) || Util.isNullOrBlank(aet_pw.getEditTextStr())) {
                     btn_save.setEnabled(Boolean.FALSE);
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -73,7 +75,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_blue);
 
                 }
-                if (Util.isNullOrBlank(aet_account.getText().toString())) {
+                if (Util.isNullOrBlank(aet_account.getEditTextStr())) {
                     aet_account.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     aet_account.getImageViewRight().setVisibility(View.VISIBLE);
@@ -94,7 +96,8 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(aet_account.getText().toString()) || Util.isNullOrBlank(aet_pw.getText().toString())) {
+
+                if (Util.isNullOrBlank(aet_account.getEditTextStr()) || Util.isNullOrBlank(aet_pw.getEditTextStr())) {
                     btn_save.setEnabled(Boolean.FALSE);
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -103,7 +106,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_btn_bg_blue);
 
                 }
-                if (Util.isNullOrBlank(aet_pw.getText().toString())) {
+                if (Util.isNullOrBlank(aet_pw.getEditTextStr())) {
                     aet_pw.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     aet_pw.getImageViewRight().setVisibility(View.VISIBLE);
@@ -120,20 +123,20 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isAccountLine(aet_account.getText().toString())) {
+                if (!StringUtils.isAccountLine(aet_account.getEditTextStr())) {
                     //验证帐号格式是否ok
                     tv_error.setText(R.string.account_alpha_format);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                if (!StringUtils.isPWLine(aet_pw.getText().toString())) {
+                if (!StringUtils.isPWLine(aet_pw.getEditTextStr())) {
                     tv_error.setText(R.string.pw_error_format);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
                 String sskey = AccountManager.getInstance().getSskey();
-                String account = aet_account.getText().toString();
-                String pw = aet_pw.getText().toString();
+                String account = aet_account.getEditTextStr();
+                String pw = aet_pw.getEditTextStr();
                 SetEnAccountLogic.SetEnAccountCallBack callBack = new SetEnAccountLogic.SetEnAccountCallBack() {
                     @Override
                     public void onSetEnAccountSuccuss() {
@@ -150,7 +153,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
                 SetEnAccountLogic.doSetEnAccountForNoPw(sskey, account, pw, callBack);
             }
         });
-        dialog.setOnClickListener(new View.OnClickListener() {
+        dialog.setPositiveButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!Util.isNull(dialog))

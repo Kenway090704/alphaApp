@@ -17,10 +17,10 @@
         android:id="@+id/bind_ac_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:hint="@string/pw"
-        app:icon_type="@drawable/icon_lock" />
-
+        app:icon_type="@drawable/icon_lock"
+        app:input_type="password" />
 
     <TextView
         android:id="@+id/bind_ac_tv_error"
@@ -30,4 +30,14 @@
         android:id="@+id/bind_ac_btn_submit"
         style="@style/btn_com_gray"
         android:text="@string/submit" />
+
+    <TextView
+        android:id="@+id/bind_ac_tv_no_bind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/no_bind"
+        android:textSize="16sp" />
 </LinearLayout>

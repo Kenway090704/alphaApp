@@ -11,18 +11,10 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.comm.CommStants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.modifyPassword.ModifyPwdLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
@@ -79,9 +71,6 @@ public class ModifyPwByPhoneActivity3 extends BaseActivity implements TextWatche
             //验证手机号和验证码格式是否正确
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (AccountManager.isSskeyIsNul(ModifyPwByPhoneActivity3.this)) {
             return;
         }
         String sskey = AccountManager.getInstance().getSskey();

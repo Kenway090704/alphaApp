@@ -1,8 +1,5 @@
 package com.alpha.alphaapp.ui.bind.firstbind;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -12,23 +9,20 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.comm.CommStants;
+import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
+import com.alpha.alphaapp.model.login.LoginLogic;
+import com.alpha.alphaapp.model.logout.LoginOutLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
+import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/5 15:52
@@ -42,10 +36,17 @@ public class PhoneBindFragment extends BaseFragment {
     private InputVerifyEditText ivet;
     private TextView tv_error;
     private Button btn_submit;
+    private TextView tv_no_bind;
+    private CustomAlertDialog dialog_insure_bind, dialog_bind_success;
 
+
+    private int loginType;
+    private String openId;
 
     @Override
     protected int getLayoutId() {
+        loginType = ((BindAccountActivity) getActivity()).getLoginType();
+        openId = ((BindAccountActivity) getActivity()).getOpenid();
         return R.layout.fragment_bind_phone;
     }
 
@@ -55,6 +56,53 @@ public class PhoneBindFragment extends BaseFragment {
         ivet = (InputVerifyEditText) root.findViewById(R.id.bind_phone_ivet);
         tv_error = (TextView) root.findViewById(R.id.bind_phone_tv_error);
         btn_submit = (Button) root.findViewById(R.id.bind_phone_btn_submit);
+        tv_no_bind = (TextView) root.findViewById(R.id.bind_phone_tv_no_bind);
+        //初始化两个对话框
+        initDialogs();
+
+    }
+
+    /**
+     * 初始化对话框
+     */
+    private void initDialogs() {
+        dialog_insure_bind = new CustomAlertDialog(getActivity());
+        dialog_insure_bind.setTxtMsg(R.string.insure_bind_account);
+        dialog_insure_bind.setPositiveButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
+                    dialog_insure_bind.dismiss();
+                }
+                doBindPhone();
+
+            }
+        });
+        dialog_insure_bind.setNegativeButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
+                    dialog_insure_bind.dismiss();
+                }
+            }
+        });
+
+        dialog_bind_success = new CustomAlertDialog(getActivity());
+        dialog_bind_success.setTxtMsg(R.string.bind_success_you_use_wechat_phone_login);
+        dialog_bind_success.setCancelable(false);
+        dialog_bind_success.setPositiveButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //跳转到HomeActivity
+                if (!Util.isNull(dialog_bind_success) && dialog_bind_success.isShowing()) {
+                    dialog_bind_success.dismiss();
+                }
+                HomeActivity.actionStart(getActivity(), null, null);
+                //点击确定进入HomeActivity
+            }
+        });
+
     }
 
     @Override
@@ -67,7 +115,7 @@ public class PhoneBindFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(ivet.getText())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())||Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_submit.setEnabled(Boolean.FALSE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -77,7 +125,7 @@ public class PhoneBindFragment extends BaseFragment {
 
                 }
 
-                if (Util.isNullOrBlank(et_phone.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())) {
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
@@ -104,7 +152,7 @@ public class PhoneBindFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(ivet.getText())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())||Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_submit.setEnabled(Boolean.FALSE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -113,7 +161,7 @@ public class PhoneBindFragment extends BaseFragment {
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                 }
 
-                if (Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(ivet.getEditTextStr())) {
                     ivet.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     ivet.getImageViewRight().setVisibility(View.VISIBLE);
@@ -133,20 +181,41 @@ public class PhoneBindFragment extends BaseFragment {
 
             }
         });
+
+        tv_no_bind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //记录未绑定,下次进入直接进入到HomeActvity页面
+                LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
+                    @Override
+                    public void onLoginSuccessed(String sskey) {
+                        //这里需要存在暂不关联
+                        HomeActivity.actionStart(getActivity(), null, null);
+                    }
+
+                    @Override
+                    public void onLoginFailed(String errorMsg) {
+                        tv_error.setText(errorMsg);
+                        tv_error.setVisibility(View.VISIBLE);
+                    }
+                };
+                LoginLogic.doLogin(openId, null, loginType, callBack);
+            }
+        });
     }
 
     /**
      * 获取验证码
      */
     private void getVerify() {
-        if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+        if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
             //验证手机号码格式是否正确
             tv_error.setText(R.string.input_valid_eleven_number);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
         //获取手机验证码
-        String phone = et_phone.getText().toString();
+        String phone = et_phone.getEditTextStr();
         GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
             @Override
             public void onGetVerifySuccess() {
@@ -160,7 +229,7 @@ public class PhoneBindFragment extends BaseFragment {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.BIND_PHONE, callBack);
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.LOGIN, callBack);
     }
 
 
@@ -173,67 +242,92 @@ public class PhoneBindFragment extends BaseFragment {
      * 绑定帐号
      */
     private void userPhonePwBind() {
-        if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+        if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
             tv_error.setText(R.string.input_valid_eleven_number);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!StringUtils.isPhoneVerify(ivet.getText().toString())) {
+        if (!StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
             tv_error.setText(R.string.verify_form_error);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        showNormalDialog();
+        if (!Util.isNull(dialog_insure_bind) && !dialog_insure_bind.isShowing())
+            dialog_insure_bind.show();
     }
 
-    /**
-     * 绑定提交后对话框的显示
-     */
-    private void showNormalDialog() {
-        final AlertDialog.Builder normalDialog =
-                new AlertDialog.Builder(getContext());
-        normalDialog.setMessage(R.string.insure_bind_account);
-        normalDialog.setCancelable(false);//设置不可取消
-        DialogInterface.OnClickListener dialogInterface = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case Dialog.BUTTON_POSITIVE:
-                        doDealRepSuccess();
-                        break;
-                    case Dialog.BUTTON_NEGATIVE:
-                        break;
-                }
-            }
-        };
-        normalDialog.setPositiveButton("确认", dialogInterface);
-        normalDialog.setNegativeButton("取消", dialogInterface);
-        normalDialog.show();
-    }
 
     /**
      * 提交绑定信息后返回对应的字段进行处理
      */
-    private void doDealRepSuccess() {
-        String sskey = AccountManager.getInstance().getSskey();
-        String phone = et_phone.getText().toString();
-        String verify = ivet.getText().toString();
-        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
+    private void doBindPhone() {
+
+        final String phone = et_phone.getEditTextStr();
+        final String verify = ivet.getEditTextStr();
+        //如果帐号存在,登录进入,直接进入HomeActivity
+        LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
             @Override
-            public void onBindSuccessed() {
-                //弹出对话框架提示绑定成功
-                ToastUtils.showShort(getContext(), R.string.bind_success_you_use_wechat_account_login);
-                HomeActivity.actionStart(getActivity(), null, null);
+            public void onLoginSuccessed(String sskey) {
+                //获取用户信息,判读是否已经有绑定的其他的帐号
+                UserInfo info = AccountManager.getInstance().getUserInfo();
+                if (TypeConstants.LOGIN_TYPE.AUTH_QQ == loginType) {
+                    if (Util.isNullOrBlank(info.getOpenid_qq())) {
+                        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
+                            @Override
+                            public void onBindSuccessed() {
+                                //弹出对话框,提示绑定成功!
+                                if (!Util.isNull(dialog_bind_success) && !dialog_bind_success.isShowing())
+                                    dialog_bind_success.show();
+                            }
+
+                            @Override
+                            public void onBindFailed(String failMsg) {
+                                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing())
+                                    dialog_insure_bind.dismiss();
+                                tv_error.setText(failMsg);
+                                tv_error.setVisibility(View.VISIBLE);
+                            }
+                        };
+                        BindLogic.doBindWxOrQQ(sskey, openId, loginType, call);
+                    } else {
+                        LoginOutLogic.doLoginOut(sskey,null);
+                        tv_error.setText("该手机帐号已经绑定其他QQ帐号");
+                        tv_error.setVisibility(View.VISIBLE);
+                    }
+                } else if (TypeConstants.LOGIN_TYPE.AUTH_WX == loginType) {
+                    if (Util.isNullOrBlank(info.getOpenid_qq())) {
+                        BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
+                            @Override
+                            public void onBindSuccessed() {
+                                //弹出对话框,提示绑定成功!
+                                if (!Util.isNull(dialog_bind_success) && !dialog_bind_success.isShowing())
+                                    dialog_bind_success.show();
+                            }
+
+                            @Override
+                            public void onBindFailed(String failMsg) {
+                                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing())
+                                    dialog_insure_bind.dismiss();
+                                tv_error.setText(failMsg);
+                                tv_error.setVisibility(View.VISIBLE);
+                            }
+                        };
+                        BindLogic.doBindWxOrQQ(sskey, openId, loginType, call);
+                    } else {
+                        LoginOutLogic.doLoginOut(sskey,null);
+                        tv_error.setText("该手机帐号已经绑定其他微信帐号");
+                        tv_error.setVisibility(View.VISIBLE);
+                    }
+                }
             }
 
             @Override
-            public void onBindFailed(String failMsg) {
-                tv_error.setText(failMsg);
+            public void onLoginFailed(String errorMsg) {
+                tv_error.setText(errorMsg);
                 tv_error.setVisibility(View.VISIBLE);
-                //帐号已经存在
             }
         };
-        BindLogic.doBindAccountOrPhone(sskey, phone, verify, TypeConstants.ACCOUNT_TYPE.PHONE, call);
+        LoginLogic.doLogin(phone, verify, TypeConstants.LOGIN_TYPE.PHONE_QUICK, callBack);
     }
 
     @Override
@@ -241,5 +335,12 @@ public class PhoneBindFragment extends BaseFragment {
         super.onDestroy();
         if (!Util.isNull(ivet))
             ivet.cancel();
+
+        if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
+            dialog_insure_bind.dismiss();
+        }
+        if (!Util.isNull(dialog_bind_success) && dialog_bind_success.isShowing()) {
+            dialog_bind_success.dismiss();
+        }
     }
 }

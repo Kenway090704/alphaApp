@@ -7,17 +7,16 @@ import android.widget.Button;
 
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.logout.LoginOutLogic;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.AboutUsActivity;
-import com.alpha.alphaapp.ui.AccountChangeActivity;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.FeedbackActivity;
-import com.alpha.alphaapp.ui.ScoreActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
+import com.alpha.alphaapp.ui.score.ScoreActivity;
 import com.alpha.alphaapp.ui.widget.set.SetingItemView;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
+import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 
 public class SettingsActivity extends BaseActivity {
@@ -65,6 +64,8 @@ public class SettingsActivity extends BaseActivity {
         siv_score.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //
+                ToastUtils.showShort(SettingsActivity.this, "进入评分页面");
                 Intent intent = new Intent(SettingsActivity.this, ScoreActivity.class);
                 startActivity(intent);
             }
@@ -96,10 +97,12 @@ public class SettingsActivity extends BaseActivity {
         LoginOutLogic.LoginOutCallBack callBack = new LoginOutLogic.LoginOutCallBack() {
             @Override
             public void onLoginOutSuccuss() {
+
                 //弹出对话框提示
                 AccountManager.getInstance().reset();//退出当前帐号
                 SharePLoginInfo.getInstance(SettingsActivity.this).clear();
                 LoginActivity.actionStartClearStack(getApplicationContext(), null, null);
+
             }
 
             @Override

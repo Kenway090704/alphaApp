@@ -91,8 +91,16 @@ public class ModifySchoolActivity extends BaseActivity {
         miiv_school.setIvRightOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Util.isNull(logic_school))
-                    logic_school.show();
+
+                if (Util.isNullOrBlank(miiv_pca.getMsg())) {
+                    ToastUtils.showLong(ModifySchoolActivity.this, "请先选者省市区");
+                } else {
+                    if (!Util.isNull(logic_school)) {
+                        logic_school.show();
+                    }
+                }
+
+
             }
         });
     }

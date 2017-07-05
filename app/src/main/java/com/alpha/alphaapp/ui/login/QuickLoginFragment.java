@@ -9,9 +9,8 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseFragment;
@@ -19,7 +18,6 @@ import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -68,7 +66,7 @@ public class QuickLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(ivet.getText())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())||Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                 } else {
@@ -76,7 +74,7 @@ public class QuickLoginFragment extends BaseFragment {
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                 }
 
-                if (Util.isNullOrBlank(et_phone.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())) {
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
@@ -97,7 +95,7 @@ public class QuickLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_phone.getText()) || TextUtils.isEmpty(ivet.getText())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())||Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                 } else {
@@ -105,7 +103,7 @@ public class QuickLoginFragment extends BaseFragment {
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
 
                 }
-                if (Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(ivet.getEditTextStr())) {
                     ivet.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     ivet.getImageViewRight().setVisibility(View.VISIBLE);
@@ -131,7 +129,7 @@ public class QuickLoginFragment extends BaseFragment {
      */
     private void getPhoneVerify() {
         //获取验证码
-        if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+        if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
             //验证手机号码格式是否正确
             tv_error.setText(R.string.input_valid_eleven_number);
             tv_error.setVisibility(View.VISIBLE);
@@ -139,7 +137,7 @@ public class QuickLoginFragment extends BaseFragment {
         }
         ivet.start();//开始倒计时
         //获取手机验证码
-        String phone = et_phone.getText().toString();
+        String phone = et_phone.getEditTextStr();
         GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
             @Override
             public void onGetVerifySuccess() {
@@ -158,18 +156,19 @@ public class QuickLoginFragment extends BaseFragment {
      * 手机快速登录
      */
     private void doPhoneQuickLogin() {
-        if (!StringUtils.isPhoneNum(et_phone.getText().toString()) &&
-                !StringUtils.isPhoneVerify(ivet.getText().toString())) {
+        if (!StringUtils.isPhoneNum(et_phone.getEditTextStr()) ||
+                !StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
             //验证手机号和验证码格式是否正确
+            Log.e(TAG,"有执行这里");
             tv_error.setText(R.string.account_or_verify_error);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (loadingDialog != null) {
+        if (!Util.isNull(loadingDialog)) {
             loadingDialog.show();
         }
-        String phone = et_phone.getText().toString();
-        String vrerify = ivet.getText().toString();
+        String phone = et_phone.getEditTextStr();
+        String vrerify = ivet.getEditTextStr();
         LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
             @Override
             public void onLoginSuccessed(String sskey) {
@@ -181,8 +180,12 @@ public class QuickLoginFragment extends BaseFragment {
 
             @Override
             public void onLoginFailed(String errorMsg) {
+                if (!Util.isNull(loadingDialog)) {
+                    loadingDialog.dismiss();
+                }
                 tv_error.setText(errorMsg);
                 tv_error.setVisibility(View.VISIBLE);
+
             }
         };
         LoginLogic.doLogin(phone, vrerify, TypeConstants.LOGIN_TYPE.PHONE_QUICK, callBack);
@@ -197,7 +200,7 @@ public class QuickLoginFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (!Util.isNull(loadingDialog) ) {
+        if (!Util.isNull(loadingDialog)) {
             loadingDialog.dismiss();
         }
     }

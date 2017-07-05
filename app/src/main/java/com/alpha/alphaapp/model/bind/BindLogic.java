@@ -1,22 +1,17 @@
 package com.alpha.alphaapp.model.bind;
 
-import android.view.View;
-
-import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/5 17:24
@@ -150,7 +145,7 @@ public class BindLogic {
 
         //如果绑定成功,弹出对话框
         ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        if (Util.isNull(info)){
+        if (Util.isNull(info)) {
             return;
         }
         switch (info.getResult()) {
@@ -183,6 +178,10 @@ public class BindLogic {
                     call.onBindFailed(info.getMsg());
                 break;
             case CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_HAD_BIND:
+                if (!Util.isNull(call))
+                    call.onBindFailed(info.getMsg());
+                break;
+            default:
                 if (!Util.isNull(call))
                     call.onBindFailed(info.getMsg());
                 break;

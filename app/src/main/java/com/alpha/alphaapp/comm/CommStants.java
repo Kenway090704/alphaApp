@@ -135,7 +135,7 @@ public class CommStants {
         int RESULT_RELOGIN = 1;
 
         /**
-         * 手机号已绑定:手机已经被绑定,请重新输入
+         * 手机号已绑定
          */
         int RESULT_PHONE_HAD_BIND = 106;
         /**

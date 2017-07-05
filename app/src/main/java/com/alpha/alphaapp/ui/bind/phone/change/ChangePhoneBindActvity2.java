@@ -11,17 +11,17 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.changebindphone.ChangeBindPhoneLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
+import com.alpha.alphaapp.ui.login.LoginActivity;
+import com.alpha.alphaapp.ui.widget.OneTwoThreeItemView;
 import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/13 15:30
@@ -32,6 +32,7 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 public class ChangePhoneBindActvity2 extends BaseActivity {
     private static final String TAG = "ChangePhoneBindActvity2";
     private TitleLayout titleLayout;
+    private OneTwoThreeItemView ott;
     private AccountEditText et_phone;
     private InputVerifyEditText ivet;
     private TextView tv_error;
@@ -47,7 +48,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
     @Override
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.change_phone_bind_2_titlelayout);
-
+        ott = (OneTwoThreeItemView) findViewById(R.id.change_phone_bind_2_ott);
         et_phone = (AccountEditText) findViewById(R.id.change_phone_bind_2_aet_phone);
         ivet = (InputVerifyEditText) findViewById(R.id.change_phone_bind_2_ivet);
         tv_error = (TextView) findViewById(R.id.change_phone_bind_2_tv_error);
@@ -72,7 +73,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_phone.getText().toString()) && Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr()) && Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_bind.setEnabled(Boolean.FALSE);
                     btn_bind.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -82,7 +83,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
 
                 }
 
-                if (Util.isNullOrBlank(et_phone.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())) {
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
@@ -103,7 +104,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_phone.getText().toString()) && Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr()) && Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_bind.setEnabled(Boolean.FALSE);
                     btn_bind.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
@@ -112,7 +113,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                     btn_bind.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
                 }
-                if (Util.isNullOrBlank(ivet.getText().toString())) {
+                if (Util.isNullOrBlank(ivet.getEditTextStr())) {
                     ivet.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     ivet.getImageViewRight().setVisibility(View.VISIBLE);
@@ -128,7 +129,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
         ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
                     //验证手机号格式是否正确
                     tv_error.setText(R.string.input_valid_eleven_number);
                     tv_error.setVisibility(View.VISIBLE);
@@ -138,7 +139,6 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                     @Override
                     public void onGetVerifySuccess() {
                         ivet.start();
-
                     }
 
                     @Override
@@ -147,18 +147,18 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.BIND_NEW_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY.BIND_NEW_PHONE, callBack);
             }
         });
         btn_bind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
                     tv_error.setText(R.string.input_valid_eleven_number);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                if (!StringUtils.isPhoneVerify(ivet.getText().toString())) {
+                if (!StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
                     tv_error.setText(R.string.verify_form_error);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
@@ -167,7 +167,10 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                 ChangeBindPhoneLogic.BindNewPhoneCallBack callBack = new ChangeBindPhoneLogic.BindNewPhoneCallBack() {
                     @Override
                     public void onBindSuccess() {
-                        dialog.show();
+                        ott.setCurrentUI(3);
+                        if (!Util.isNull(dialog) && !dialog.isShowing())
+                            dialog.show();
+
                     }
 
                     @Override
@@ -176,14 +179,16 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                ChangeBindPhoneLogic.doBindNewPhone(sskey, et_phone.getText().toString(), ivet.getText().toString(), callBack);
+                ChangeBindPhoneLogic.doBindNewPhone(sskey, et_phone.getEditTextStr(), ivet.getEditTextStr(), callBack);
             }
         });
-        dialog.setOnClickListener(new View.OnClickListener() {
+        dialog.setPositiveButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
-                AccountSecurityActivity.actionStar(ChangePhoneBindActvity2.this, null, null);
+                if (!Util.isNull(dialog) && dialog.isShowing())
+                    dialog.dismiss();
+                //进入登录界面
+                LoginActivity.actionStartClearStack(ChangePhoneBindActvity2.this, null, null);
             }
         });
     }

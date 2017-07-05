@@ -11,6 +11,7 @@
         app:txt_title="@string/account_register" />
 
     <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:id="@+id/reg_account_ott"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:curent_select="1"
@@ -21,7 +22,6 @@
         android:id="@+id/reg_account_aet_acc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:hint="@string/account_alpha_format"
         app:icon_type="@drawable/icon_user" />
 
@@ -56,7 +56,7 @@
         android:id="@+id/reg_account_tv_protocal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:clickable="true"
         android:text="@string/register_and_agree_alpha_rules"
         android:textColor="@color/tv_blue" />

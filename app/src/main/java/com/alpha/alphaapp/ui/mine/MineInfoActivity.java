@@ -16,6 +16,7 @@ import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
 import com.alpha.alphaapp.ui.AccountChangeActivity;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.mine.addr.ModifyContactAddrActivity;
+import com.alpha.alphaapp.ui.mine.logic.GetBirthdayLogic;
 import com.alpha.alphaapp.ui.mine.school.ModifySchoolActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.mine.ModifyIconView;
@@ -48,6 +49,8 @@ public class MineInfoActivity extends AccountChangeActivity {
     private ModifySexView msv_sex;
     private UserInfo info;
     private Map<String, Boolean> map;
+
+    private GetBirthdayLogic logic_birday;//修改生日
 
     @Override
     protected int getLayoutId() {
@@ -83,7 +86,7 @@ public class MineInfoActivity extends AccountChangeActivity {
         if (!Util.isNullOrBlank(info.getContact_phone()))
             mieiv_contact_phone.setMsg(info.getContact_phone());
         if (!Util.isZore(info.getBirthday_year()) && !Util.isZore(info.getBirthday_mon()) && !Util.isZore(info.getBirthday_day()))
-            mod_birthday.setMsg(info.getBirthday_year() + "-" + info.getBirthday_mon() + "-" + info.getBirthday_day());
+            mod_birthday.setMsg(DateUtils.getStringformYMD(info.getBirthday_year(), info.getBirthday_mon(), info.getBirthday_day()));
         msv_sex.setMsg(info.getSex());
         if (!Util.isNullOrBlank(info.getSchool()))
             mod_school.setMsg(info.getSchool());
@@ -219,6 +222,7 @@ public class MineInfoActivity extends AccountChangeActivity {
         });
     }
 
+
     /**
      * 让有输入的控件变为完成状态
      */
@@ -229,26 +233,28 @@ public class MineInfoActivity extends AccountChangeActivity {
         mieiv_contact_phone.finishEdit();
     }
 
+
     /**
      * 修改生日
      */
     private void doModifyBirthday() {
-        boolean[] type = new boolean[]{true, true, true, false, false, false};
-        TimePickerView pvTime = new TimePickerView.Builder(MineInfoActivity.this, new TimePickerView.OnTimeSelectListener() {
+
+        logic_birday = new GetBirthdayLogic(this);
+        logic_birday.setOnSubmitCallback(new GetBirthdayLogic.OnSubmitCallback() {
             @Override
-            public void onTimeSelect(final Date date, View v) {//选中事件回调
+            public void onSubmit(final int year, final int month, final int day) {
                 String sskey = AccountManager.getInstance().getSskey();
                 UserInfo info = new UserInfo();
-                final String format = "yyyy-MM-dd";
-                String dateYMD = DateUtils.dateToString(date, format);
-                String[] arr = dateYMD.split("-");
-                info.setBirthday_year(Integer.parseInt(arr[0]));
-                info.setBirthday_mon(Integer.parseInt(arr[1]));
-                info.setBirthday_day(Integer.parseInt(arr[2]));
+                info.setBirthday_year(year);
+                info.setBirthday_mon(month);
+                info.setBirthday_day(day);
+                //判读日期是否相等,不相同才修改
                 ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
                     @Override
                     public void onEditInfoSuccuss() {
-                        mod_birthday.setMsg(DateUtils.dateToString(date, format));
+
+                        Log.e(TAG, "DateUtils.getStringformYMD(year, month, day)==" + DateUtils.getStringformYMD(year, month, day));
+                        mod_birthday.setMsg(DateUtils.getStringformYMD(year, month, day));
                     }
 
                     @Override
@@ -257,22 +263,9 @@ public class MineInfoActivity extends AccountChangeActivity {
                     }
                 };
                 ModifyUserInfoLogic.doModifyUserInfo(sskey, info, ModifyUserInfoLogic.MODIFY_BIRTHDAY, call);
-
             }
-        })
-                .setType(type)
-                .setCancelColor(Color.RED)
-                .setSubmitColor(Color.RED)
-                .setCancelText("取消")//取消按钮文字
-                .setSubmitText("确认")//确认按钮文字
-                .setContentSize(18)//滚轮文字大小
-                .setOutSideCancelable(false)//点击屏幕，点在控件外部范围时，是否取消显示
-                .isCyclic(true)//是否循环滚动
-                .setLabel("年", "月", "日", "", "", "")
-                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                .build();
-        pvTime.setDate(Calendar.getInstance());//注：根据需求来决定是否使用该方法（一般是精确到秒的情况），此项可以在弹出选择器的时候重新设置当前时间，避免在初始化之后由于时间已经设定，导致选中时间与当前时间不匹配的问题。
-        pvTime.show();
+        });
+        logic_birday.show();
     }
 
     public static void actionStart(Context context, String data1, String data2) {
@@ -291,11 +284,23 @@ public class MineInfoActivity extends AccountChangeActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        //当在修改时,back上一个页面,关闭键盘
+        mieiv_nickname.finishEdit();
+        mieiv_qq.finishEdit();
+        mieiv_qq.finishEdit();
+        mieiv_contact_phone.finishEdit();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (!Util.isNull(msv_sex))
             msv_sex.dismiss();
         if (!Util.isNull(mod_icon))
             mod_icon.dismiss();
+        if (!Util.isNull(logic_birday))
+            logic_birday.dismiss();
     }
 }

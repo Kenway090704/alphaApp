@@ -102,6 +102,19 @@ public class InputVerifyEditText extends LinearLayout {
         return et.getText();
     }
 
+    /**
+     * 获取输入框中的文字(前后空格已去除)
+     *
+     * @return
+     */
+    public String getEditTextStr() {
+        if (!Util.isNull(et)) {
+            return et.getText().toString().trim();
+        } else {
+            return null;
+        }
+
+    }
 
     public void setGetVerifyTextViewListener(OnClickListener listener) {
         if (Util.isNull(tv_getVerify))
@@ -110,11 +123,13 @@ public class InputVerifyEditText extends LinearLayout {
     }
 
     public void start() {
-        cmd.start();
+        if (!Util.isNull(cmd))
+            cmd.start();
 
     }
 
     public void cancel() {
-        cmd.cancel();
+        if (!Util.isNull(cmd))
+            cmd.cancel();
     }
 }

@@ -15,7 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
  * @author LEI 
  *  
  */  
-public class HMACSHA1 {  
+public class HmacSHA1 {
   
     private static final String HMAC_SHA1 = "HmacSHA1";  
   

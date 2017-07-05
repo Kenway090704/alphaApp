@@ -1,8 +1,7 @@
-package com.alpha.alphaapp.model;
+package com.alpha.lib_sdk.app.tool;
 
 import com.alpha.lib_sdk.app.arithmetic.Base64Util;
 import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.tool.HMACSHA1;
 
 /**
  * Created by kenway on 17/5/23 13:39
@@ -26,9 +25,9 @@ public class JsonUtil {
     public static String getPostJsonSignString(String data) {
 
         try {
-            String has = HMACSHA1.getSignature(APPID + data, APPKEY);
+            String has = HmacSHA1.getSignature(APPID + data, APPKEY);
 
-            String sign = Base64Util.encodeToString(HMACSHA1.getSignature(APPID + data, APPKEY));
+            String sign = Base64Util.encodeToString(HmacSHA1.getSignature(APPID + data, APPKEY));
 
 
             StringBuffer sb = new StringBuffer();

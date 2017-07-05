@@ -12,6 +12,7 @@
         android:layout_height="wrap_content" />
 
     <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
+        android:id="@+id/change_phone_bind_2_ott"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:curent_select="2"

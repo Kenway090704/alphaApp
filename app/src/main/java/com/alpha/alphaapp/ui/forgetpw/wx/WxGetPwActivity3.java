@@ -10,21 +10,15 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
 import com.alpha.alphaapp.model.resetpw.ResetPwLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -61,6 +55,7 @@ public class WxGetPwActivity3 extends BaseActivity {
         tv_error = (TextView) findViewById(R.id.wx_getpw3_tv_error);
         btn_submit = (Button) findViewById(R.id.wx_getpw3_btn_submit);
         dialog = new CustomAlertDialog(this);
+        dialog.setCancelable(false);
     }
 
     @Override
@@ -78,7 +73,7 @@ public class WxGetPwActivity3 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(aet_pw.getText().toString())) {
+                if (Util.isNullOrBlank(aet_pw.getEditTextStr())) {
                     btn_submit.setEnabled(Boolean.FALSE);
                     btn_submit.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                     aet_pw.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -109,7 +104,7 @@ public class WxGetPwActivity3 extends BaseActivity {
 
 
         });
-        dialog.setOnClickListener(new View.OnClickListener() {
+        dialog.setPositiveButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginActivity.actionStartClearStack(WxGetPwActivity3.this, null, null);
@@ -121,12 +116,12 @@ public class WxGetPwActivity3 extends BaseActivity {
      * 修改密码
      */
     private void resetPw() {
-        if (Util.isNullOrBlank(aet_pw.getText().toString())) {
+        if (Util.isNullOrBlank(aet_pw.getEditTextStr())) {
             tv_error.setText(R.string.pw_isnot_empty);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!StringUtils.isPWLine(aet_pw.getText().toString())) {
+        if (!StringUtils.isPWLine(aet_pw.getEditTextStr())) {
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
             return;
@@ -142,7 +137,7 @@ public class WxGetPwActivity3 extends BaseActivity {
 
             }
         };
-        String pw = aet_pw.getText().toString();
+        String pw = aet_pw.getEditTextStr();
         ResetPwLogic.doResetPw(accont, pw, callBack);
     }
 
@@ -150,12 +145,12 @@ public class WxGetPwActivity3 extends BaseActivity {
      * 微信未绑定帐号,因此执行的是绑定帐号
      */
     private void bindnewAccount() {
-        if (Util.isNullOrBlank(aet_pw.getText().toString())) {
+        if (Util.isNullOrBlank(aet_pw.getEditTextStr())) {
             tv_error.setText(R.string.pw_isnot_empty);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        if (!StringUtils.isPWLine(aet_pw.getText().toString())) {
+        if (!StringUtils.isPWLine(aet_pw.getEditTextStr())) {
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
             return;
@@ -166,7 +161,7 @@ public class WxGetPwActivity3 extends BaseActivity {
             return;
         }
         String sskey = AccountManager.getInstance().getSskey();
-        String pw = aet_pw.getText().toString();
+        String pw = aet_pw.getEditTextStr();
         BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
             @Override
             public void onBindSuccessed() {

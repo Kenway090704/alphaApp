@@ -27,19 +27,16 @@ public class LaunchActivity extends AppCompatActivity {
         getSupportActionBar().hide();//去掉标题栏
         ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.launcher);
+//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         setContentView(imageView);
-        //在这里判断是否登录帐号和密码
+        //判断最近的一次登录是什么登录,如果是有密码的登录,如果有直接登录,如果没有三秒后跳转到登录界面
         if (!LoginLogic.isAutoLogin(this)) {
-            //等待三秒后跳转到注册页面
             ThreadPool.post(new Runnable() {
                 @Override
                 public void run() {
                     LoginActivity.actionStartClearStack(LaunchActivity.this, null, null);
                 }
             }, 3000);
-
         }
-
-
     }
 }

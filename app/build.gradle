@@ -42,4 +42,5 @@ dependencies {
     compile project(':lib_stub')
     compile files('libs/open_sdk_r5788_lite.jar')
     compile files('libs/bottomView.jar')
+    compile 'com.githang:status-bar-compat:0.3'
 }

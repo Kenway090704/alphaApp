@@ -7,17 +7,18 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.phonefindpw.PhoneFindPwLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 
 import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
+import com.alpha.lib_sdk.app.tool.Util;
 
 /**
  * Created by kenway on 17/6/6 15:06
@@ -28,7 +29,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
     private static final String TAG = "PhoneGetPwActivity3";
     private String phone, verify;
     private TitleLayout titleLayout;
-    private EditText et_pw;
+    private AccountEditText aet_pw;
     private TextView tv_error;
     private Button btn_submit;
 
@@ -46,15 +47,16 @@ public class PhoneGetPwActivity3 extends BaseActivity {
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.phone_get_pw_3_titlelayout);
 
-        et_pw = (EditText) findViewById(R.id.phone_get_pw_3_et_pw);
+        aet_pw = (AccountEditText) findViewById(R.id.phone_get_pw_3_aet_pw);
         tv_error = (TextView) findViewById(R.id.phone_get_pw_3_tv_error);
         btn_submit = (Button) findViewById(R.id.phone_get_pw_3_btn_submit);
         dialog = new CustomAlertDialog(this);
+        dialog.setCancelable(false);
     }
 
     @Override
     protected void initListener() {
-        et_pw.addTextChangedListener(new TextWatcher() {
+        aet_pw.setWatcherListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -87,7 +89,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
             }
         });
 
-        dialog.setOnClickListener(new View.OnClickListener() {
+        dialog.setPositiveButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginActivity.actionStartClearStack(PhoneGetPwActivity3.this, null, null);
@@ -99,7 +101,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
      * 通过手机找到密码
      */
     private void findPwByPhone() {
-        if (!StringUtils.isPWLine(et_pw.getText().toString())) {
+        if (!StringUtils.isPWLine(aet_pw.getEditTextStr())) {
             //验证手机号和验证码格式是否正确
             tv_error.setText(R.string.pw_error_format);
             tv_error.setVisibility(View.VISIBLE);
@@ -109,14 +111,17 @@ public class PhoneGetPwActivity3 extends BaseActivity {
             @Override
             public void onFindPwSuccessed() {
                 //弹出对话框提示密码修改成功,并返回登录页面
-                dialog.show();
+                if (!Util.isNull(dialog))
+                    dialog.show();
             }
 
             @Override
             public void onFindPwFailed(String failMsg) {
+                tv_error.setText(failMsg);
+                tv_error.setVisibility(View.VISIBLE);
             }
         };
-        PhoneFindPwLogic.doByPhoneFindPw(phone, et_pw.getText().toString(), verify, callBack);
+        PhoneFindPwLogic.doByPhoneFindPw(phone, aet_pw.getEditTextStr(), verify, callBack);
     }
 
     @Override

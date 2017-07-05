@@ -9,15 +9,18 @@
         android:id="@+id/account_sec_titlelayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <View
         android:layout_width="match_parent"
-        android:background="@android:color/white"
-        android:layout_height="10dp"/>
+        android:layout_height="10dp"
+        android:background="@android:color/white" />
+
     <TextView
         android:id="@+id/account_sec_tv_current"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_gray"
+        android:maxLines="1"
         android:padding="10dp"
         android:text="@string/current_account"
         android:textColor="@color/tv_black" />

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 
 public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapter.MyViewHolder> {
-    private static final String TAG = "SignRecylcerAdapter";
+    private static final String TAG = "StaggerRecylcerAdapter";
     private Context context;
     private List<String> list;
     private Map<String, Boolean> map;

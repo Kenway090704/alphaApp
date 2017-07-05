@@ -9,20 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
-import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.modifypw.ModifyPwByPwActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.net.ReqCallBack;
-import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -61,16 +53,16 @@ public class ModifyPwByPhoneActivity1 extends BaseActivity implements TextWatche
         btn_getVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
                     tv_error.setText(R.string.input_valid_eleven_number);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                String phone=et_phone.getText().toString();
+                String phone=et_phone.getEditTextStr();
                 GetPhoneVerifyLogic.OnGetVerifyCallBack callBack=new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
                     @Override
                     public void onGetVerifySuccess() {
-                        ModifyPwByPhoneActivity2.actionStart(ModifyPwByPhoneActivity1.this, et_phone.getText().toString(), null);
+                        ModifyPwByPhoneActivity2.actionStart(ModifyPwByPhoneActivity1.this, et_phone.getEditTextStr(), null);
                     }
 
                     @Override
@@ -100,7 +92,7 @@ public class ModifyPwByPhoneActivity1 extends BaseActivity implements TextWatche
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (Util.isNullOrBlank(et_phone.getText().toString())) {
+        if (Util.isNullOrBlank(et_phone.getEditTextStr())) {
             btn_getVerify.setEnabled(Boolean.FALSE);
             btn_getVerify.setBackgroundResource(R.drawable.shape_btn_bg_gray);
             et_phone.getImageViewRight().setVisibility(View.INVISIBLE);

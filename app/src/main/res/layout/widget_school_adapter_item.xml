@@ -4,9 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/qqlogin_btn"
-        android:text="qq授权登录"
+    <TextView
+        android:id="@+id/shcool_adapter_tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="光中13中学"
+        android:textColor="@color/tv_black" />
 </LinearLayout>

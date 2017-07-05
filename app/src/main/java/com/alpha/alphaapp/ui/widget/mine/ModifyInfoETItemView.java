@@ -6,7 +6,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,12 +15,10 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/8 11:16
@@ -85,7 +82,6 @@ public class ModifyInfoETItemView extends LinearLayout {
                 two_et.setText(one_tv_info.getText().toString());
                 //强制使输入框获取焦点
                 if (layout_two.getVisibility() == VISIBLE) {
-
                     two_et.setFocusable(true);
                     two_et.setFocusableInTouchMode(true);
                     two_et.requestFocus();
@@ -286,5 +282,7 @@ public class ModifyInfoETItemView extends LinearLayout {
         //修改完成
         finishEdit();
     }
+
+
 
 }

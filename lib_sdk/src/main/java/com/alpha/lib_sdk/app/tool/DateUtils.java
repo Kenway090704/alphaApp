@@ -78,8 +78,9 @@ public class DateUtils {
     }
 
     /**
-     *  formatType格式为yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日 HH时mm分ss秒
-     *  data Date类型的时间
+     * formatType格式为yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日 HH时mm分ss秒
+     * data Date类型的时间
+     *
      * @param data
      * @param formatType
      * @return
@@ -87,6 +88,7 @@ public class DateUtils {
     public static String dateToString(Date data, String formatType) {
         return new SimpleDateFormat(formatType).format(data);
     }
+
     /**
      * 从日期获取时间
      *
@@ -124,6 +126,28 @@ public class DateUtils {
     }
 
     /**
+     * 输入年月日,获取yyyy-mm-dd
+     */
+
+    public static String getStringformYMD(int year, int month, int day) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(year + "-");
+        if (month < 10) {
+            builder.append("0" + month + "-");
+        } else {
+            builder.append(month + "-");
+        }
+
+        if (day < 10) {
+            builder.append("0" + day);
+        } else {
+            builder.append(day);
+        }
+
+        return builder.toString();
+    }
+
+    /**
      * 获取日期从某月某日--某月某日
      *
      * @param beginDate
@@ -153,6 +177,125 @@ public class DateUtils {
         stringBuilder.append(endCalendar.get(Calendar.DAY_OF_MONTH));
         stringBuilder.append("日");
         return stringBuilder.toString();
+    }
+
+    /**
+     * 获取上一个月
+     * int[] now =new int[3];
+     * <p>now[0]==year</p>
+     * <p>now[1]==month</p>
+     * <p>now[2]==day</p>
+     *
+     * @param now
+     * @return
+     */
+    public static int[] getBeforeMonth(int[] now) {
+        if (now[1] == 1) {
+            now[0] = now[0] - 1;
+            now[1] = 12;
+        } else {
+            now[1] = now[1] - 1;
+        }
+
+        now[2] = 1;
+        return now;
+
+    }
+
+    /**
+     * 获取下一个月
+     * int[] now =new int[3];
+     * <p>now[0]==year</p>
+     * <p>now[1]==month</p>
+     * <p>now[2]==day</p>
+     *
+     * @param now
+     * @return
+     */
+    public static int[] getNextMonth(int[] now) {
+        if (now[1] == 12) {
+            now[0] = now[0] + 1;
+            now[1] = 1;
+        } else {
+            now[1] = now[1] + 1;
+        }
+        now[2] = 1;
+        return now;
+    }
+
+    /**
+     * 将年月日数字转化为字符串  2017-06-01
+     *
+     * @return
+     */
+    public static String doArrToString(int[] arr) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(arr[0] + "-");
+        if (arr[1] < 10) {
+            builder.append("0" + arr[1] + "-");
+        } else {
+            builder.append(arr[1] + "-");
+        }
+        if (arr[2] < 10) {
+            builder.append("0" + arr[2]);
+        } else {
+            builder.append(arr[2]);
+        }
+        return builder.toString();
+    }
+
+    /**
+     * 获取当前年月日数据
+     *
+     * @return
+     */
+    public static int[] getNowDate() {
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int[] selectDate = new int[3];
+        selectDate[0] = year;
+        selectDate[1] = month;
+        selectDate[2] = day;
+        return selectDate;
+    }
+
+    /**
+     * 获取某一个月有多少天
+     *
+     * @return
+     */
+    public static int getDaysOfMonth(int[] ymd) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Log.e(TAG, "doArrToString(ymd)===" + doArrToString(ymd));
+            Date date = sdf.parse(doArrToString(ymd));
+            calendar.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
+    /**
+     * 获取某一个月有多少天
+     *
+     * @return
+     */
+    public static int getDaysOfMonth(String date2) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Date date = sdf.parse(date2);
+            calendar.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
 }

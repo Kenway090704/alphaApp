@@ -12,7 +12,6 @@ import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.forgetpw.wx.noregister.WxGetPwActivityNoAccount;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.lib_sdk.app.tool.Util;

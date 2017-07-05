@@ -8,36 +8,36 @@
         android:id="@+id/optionspicker"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:orientation="horizontal">
 
         <com.bigkoo.pickerview.lib.WheelView
             android:id="@+id/options1"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <com.bigkoo.pickerview.lib.WheelView
             android:id="@+id/options2"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <com.bigkoo.pickerview.lib.WheelView
             android:id="@+id/options3"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/dialog_opt_pca_btn_save"
-            style="@style/btn_com_blue"
+            style="@style/btn_com_bottom"
             android:text="@string/save" />
     </LinearLayout>
 </LinearLayout>

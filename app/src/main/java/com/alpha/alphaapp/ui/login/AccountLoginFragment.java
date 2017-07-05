@@ -10,15 +10,17 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
+import com.alpha.alphaapp.model.check.CheckAccoutLogic;
 import com.alpha.alphaapp.model.login.LoginLogic;
-import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.bind.firstbind.BindAccountActivity;
 import com.alpha.alphaapp.ui.forgetpw.ForgetPWGuideActivity;
+import com.alpha.alphaapp.ui.login.qq.QQLoginManager;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
+import com.alpha.alphaapp.ui.widget.et.PwInputEditText;
 import com.alpha.alphaapp.wxapi.WXManager;
 import com.alpha.alphaapp.ui.register.RegisterGuideActivity;
 import com.alpha.alphaapp.wxapi.WechatAuthCallBack;
@@ -26,15 +28,7 @@ import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
-import com.tencent.connect.UserInfo;
-import com.tencent.connect.common.Constants;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by kenway on 17/5/26 11:27
@@ -43,14 +37,13 @@ import org.json.JSONObject;
 
 public class AccountLoginFragment extends BaseFragment {
     private static final String TAG = "AccountLoginFragment";
-    private AccountEditText aet_user, aet_pw;
-
+    private AccountEditText aet_user;
+    private PwInputEditText piet_pw;
     private TextView tv_error;
     private Button btn_login;
     private TextView tv_register, tv_forget;
     private ImageView iv_weixin, iv_qq;
-    private Tencent mTencent;
-    private IUiListener iUiListener;
+
     private CustomLoadingDialog loadingDialog;
 
     @Override
@@ -61,14 +54,13 @@ public class AccountLoginFragment extends BaseFragment {
     @Override
     protected void initViews(View root) {
         aet_user = (AccountEditText) root.findViewById(R.id.log_ac_aet_accout);
-        aet_pw = (AccountEditText) root.findViewById(R.id.log_ac_aet_pw);
+        piet_pw = (PwInputEditText) root.findViewById(R.id.log_ac_piet_pw);
         tv_error = (TextView) root.findViewById(R.id.log_ac_tv_error);
         btn_login = (Button) root.findViewById(R.id.log_ac_btn_login);
         tv_register = (TextView) root.findViewById(R.id.log_ac_tv_register);
         tv_forget = (TextView) root.findViewById(R.id.log_ac_tv_forgetpw);
         iv_weixin = (ImageView) root.findViewById(R.id.log_ac_iv_auth_weixin);
         iv_qq = (ImageView) root.findViewById(R.id.log_ac_iv_auth_qq);
-
         loadingDialog = new CustomLoadingDialog(getActivity());
         loadingDialog.setCancelable(false);
     }
@@ -89,16 +81,15 @@ public class AccountLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(aet_user.getText()) || TextUtils.isEmpty(aet_pw.getText())) {
+                if (Util.isNullOrBlank(aet_user.getEditTextStr()) || Util.isNullOrBlank(piet_pw.getEditTextStr())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
 
                 } else {
                     btn_login.setEnabled(Boolean.TRUE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
-
                 }
-                if (Util.isNullOrBlank(aet_user.getText().toString())) {
+                if (Util.isNullOrBlank(aet_user.getEditTextStr())) {
                     aet_user.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     aet_user.getImageViewRight().setVisibility(View.VISIBLE);
@@ -112,7 +103,7 @@ public class AccountLoginFragment extends BaseFragment {
 
             }
         });
-        aet_pw.setWatcherListener(new TextWatcher() {
+        piet_pw.setWatcherListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -120,20 +111,20 @@ public class AccountLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(aet_user.getText()) || TextUtils.isEmpty(aet_pw.getText())) {
+
+
+                if (Util.isNullOrBlank(aet_user.getEditTextStr()) || Util.isNullOrBlank(piet_pw.getEditTextStr())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
-
-
                 } else {
                     btn_login.setEnabled(Boolean.TRUE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_blue);
                 }
 
-                if (Util.isNullOrBlank(aet_pw.getText().toString())) {
-                    aet_pw.getImageViewRight().setVisibility(View.INVISIBLE);
+                if (Util.isNullOrBlank(piet_pw.getEditTextStr())) {
+                    piet_pw.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
-                    aet_pw.getImageViewRight().setVisibility(View.VISIBLE);
+                    piet_pw.getImageViewRight().setVisibility(View.VISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);
 
@@ -161,14 +152,14 @@ public class AccountLoginFragment extends BaseFragment {
             public void onClick(View v) {
 //                loginQQAuth();
                 //此处暂时使用测试代
-                debugQQFunc(TypeConstants.LOGIN_TYPE.AUTH_QQ);
+                debugQQFunc("AFGHR996888", TypeConstants.LOGIN_TYPE.AUTH_QQ);
             }
         });
         iv_weixin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                loginWxAuth();
-                debugQQFunc(TypeConstants.LOGIN_TYPE.AUTH_WX);
+                loginWxAuth();
+
             }
         });
     }
@@ -178,36 +169,30 @@ public class AccountLoginFragment extends BaseFragment {
      */
     private void userAccountPwLogin() {
         //是不是手机号
-        if (aet_user.getText().toString().startsWith("1")) {
-            if (!StringUtils.isPhoneNum(aet_user.getText().toString())) {
+        if (aet_user.getEditTextStr().startsWith("1")) {
+            if (!StringUtils.isPhoneNum(aet_user.getEditTextStr())) {
                 tv_error.setText(R.string.input_valid_eleven_number);
                 tv_error.setVisibility(View.VISIBLE);
                 return;
             }
-            if (!StringUtils.isPWLine(aet_pw.getText().toString())) {
+            if (!StringUtils.isPWLine(piet_pw.getEditTextStr())) {
                 tv_error.setText(R.string.pw_error_format);
                 tv_error.setVisibility(View.VISIBLE);
                 return;
-            }
-            if (loadingDialog != null) {
-                loadingDialog.show();
             }
             loginAccontPw(TypeConstants.LOGIN_TYPE.PHONE_PW);
 
         } else {
 
-            if (!StringUtils.isAccountLine(aet_user.getText().toString())) {
+            if (!StringUtils.isAccountLine(aet_user.getEditTextStr())) {
                 tv_error.setText(R.string.account_format);
                 tv_error.setVisibility(View.VISIBLE);
                 return;
             }
-            if (!StringUtils.isPWLine(aet_pw.getText().toString())) {
+            if (!StringUtils.isPWLine(piet_pw.getEditTextStr())) {
                 tv_error.setText(R.string.pw_error_format);
                 tv_error.setVisibility(View.VISIBLE);
                 return;
-            }
-            if (loadingDialog != null) {
-                loadingDialog.show();
             }
 
             loginAccontPw(TypeConstants.LOGIN_TYPE.ACCONUT_PW);
@@ -220,20 +205,23 @@ public class AccountLoginFragment extends BaseFragment {
      * @param loginTpe
      */
     private void loginAccontPw(int loginTpe) {
-        String account = aet_user.getText().toString();
-        String pw = aet_pw.getText().toString();
+        if (!Util.isNull(loadingDialog) && !loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
+        String account = aet_user.getEditTextStr();
+        String pw = piet_pw.getEditTextStr();
         LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
             @Override
             public void onLoginSuccessed(String sskey) {
-                if (loadingDialog != null) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                HomeActivity.actionStart(getContext(), null, null);
+                HomeActivity.actionStartClearStack(getContext(), null, null);
             }
 
             @Override
             public void onLoginFailed(String errorMsg) {
-                if (loadingDialog != null) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
                 tv_error.setText(errorMsg);
@@ -247,26 +235,44 @@ public class AccountLoginFragment extends BaseFragment {
     /**
      * 这是一个测试代码,后面要删除
      */
-    private void debugQQFunc(int loginType) {
-        String openid_qq = "AFGHR9188";
-        LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
+    private void debugQQFunc(final String openId, final int loginType) {
+        //查看该第三方帐号是否已经注册alpha用户中心,如果有,登录并
+        CheckAccoutLogic.OnCheckAccountCallBack call = new CheckAccoutLogic.OnCheckAccountCallBack() {
             @Override
-            public void onLoginSuccessed(String sskey) {
-                //判断是否在第一次授权中取消绑定帐号
-//                if (SharePLoginInfo.getInstance(getContext()).getIsBindAccount()) {
-                BindAccountActivity.actionStart(getActivity(), sskey, null);
-//                } else {
-//                    HomeActivity.actionStar(getActivity(), null, null);
-//                }
+            public void checkSucessed(boolean isHas, String result) {
+                //判断是否是第一次登录
+                if (isHas) {
+                    Log.e(TAG, "不是第一次登录");
+                    //如果帐号存在,登录进入,直接进入HomeActivity
+                    LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
+                        @Override
+                        public void onLoginSuccessed(String sskey) {
+                            //判断是否在第一次授权中取消绑定帐号
+                            HomeActivity.actionStartClearStack(getActivity(), null, null);
+                        }
+
+                        @Override
+                        public void onLoginFailed(String errorMsg) {
+                            tv_error.setText(errorMsg);
+                            tv_error.setVisibility(View.VISIBLE);
+                        }
+                    };
+                    LoginLogic.doLogin(openId, null, loginType, callBack);
+
+                } else {
+                    Log.e(TAG, "是第一次登录");
+                    //如果帐号不存在,直接进入BindActivity
+                    BindAccountActivity.actionStart(getActivity(), openId, loginType);
+
+                }
             }
 
             @Override
-            public void onLoginFailed(String errorMsg) {
-                tv_error.setText(errorMsg);
-                tv_error.setVisibility(View.VISIBLE);
+            public void checkFailed(String errorMsg) {
+
             }
         };
-        LoginLogic.doLogin(openid_qq, null, loginType, callBack);
+        CheckAccoutLogic.checkAccountIsHas(openId, loginType, call);
     }
 
     @Override
@@ -275,185 +281,30 @@ public class AccountLoginFragment extends BaseFragment {
     }
 
     /**
-     * 第一步:qq授权登录
+     * QQ授权登录
      */
     private void loginQQAuth() {
-        // Tencent类是SDK的主要实现类，开发者可通过Tencent类访问腾讯开放的OpenAPI。
-        // 其中APP_ID是分配给第三方应用的appid，类型为String。
-        mTencent = Tencent.createInstance("222222", getActivity());
-        iUiListener = new IUiListener() {
+        if (!Util.isNull(loadingDialog) && !loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
+        QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
             @Override
-            public void onComplete(Object o) {
-                /**
-                 * /登录成功时的回调，这里的o是登录授权成功以后返回的数据
-                 *{
-                 *"ret":0,
-                 *"pay_token":"xxxxxxxxxxxxxxxx",
-                 *"pf":"openmobile_android",
-                 *"expires_in":"7776000",
-                 *"openid":"xxxxxxxxxxxxxxxxxxx",
-                 *"pfkey":"xxxxxxxxxxxxxxxxxxx",
-                 *"msg":"sucess",
-                 *"access_token":"xxxxxxxxxxxxxxxxxxxxx"
-                 *}
-                 */
-                String json = ((JSONObject) o).toString();
-                Log.e("onComplete", json);
-
-                ToastUtils.showShort(getActivity(), json);
-                initQQOpenidAndToken((JSONObject) o);
-                updateQQUserInfo();
+            public void onQQAuthSuccessed(String qq_openid) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                    loadingDialog.dismiss();
+                }
+                Log.e(TAG, "qq_openid==" + qq_openid);
+                ToastUtils.showShort(getActivity(), "授权成功");
+                UserOpenidLogin(qq_openid, TypeConstants.LOGIN_TYPE.AUTH_QQ);
             }
 
-            @Override
-            public void onError(UiError uiError) {
-                ToastUtils.showShort(getActivity(), uiError.toString());
-                Log.e("onError", uiError.toString());
-            }
 
             @Override
-            public void onCancel() {
-                ToastUtils.showShort(getContext(), "onCancel");
-                Log.e(TAG, "cancel");
+            public void onQQAuthFailed(String failedMsg) {
+                Log.e(TAG, "failedMsg==" + failedMsg);
             }
         };
-        mTencent.login(getActivity(), "all", iUiListener);
-
-    }
-
-
-    /**
-     * 第二步:获取到openid和token
-     *
-     * @param @param jsonObject
-     * @return void
-     * @throws
-     * @Title: initOpenidAndToken
-     * @Description: 初始化OPENID以及TOKEN身份验证。
-     */
-    private void initQQOpenidAndToken(JSONObject jsonObject) {
-        try {
-            //这里的Constants类，是 com.tencent.connect.common.Constants类，下面的几个参数也是固定的
-            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
-            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
-            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
-            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires) && !TextUtils.isEmpty(openId)) {
-                //设置身份的token
-                mTencent.setAccessToken(token, expires);
-                mTencent.setOpenId(openId);
-                UserInfo userInfo = new UserInfo(getActivity(), mTencent.getQQToken());
-                userInfo.getUserInfo(new IUiListener() {
-                    @Override
-                    public void onComplete(Object o) {
-/**
- *{
- *"is_yellow_year_vip": "0",
- *"ret": 0,
- *"figureurl_qq_1":
- *"http://q.qlogo.cn/qqapp/222222/8C75BBE3DC6B0E9A64BD31449A3C8CB0/40",这是QQ头像，分辨率低
- *"figureurl_qq_2":
- *"http://q.qlogo.cn/qqapp/222222/8C75BBE3DC6B0E9A64BD31449A3C8CB0/100",QQ头像，分辨率高
- *"nickname": "小罗",                                                   昵称
- *"yellow_vip_level": "0",
- *"msg": "",
- *"figureurl_1":
- *"http://qzapp.qlogo.cn/qzapp/222222/8C75BBE3DC6B0E9A64BD31449A3C8CB0/50",
- *"vip": "0",
- *"level": "0",
- *"figureurl_2":
- *"http://qzapp.qlogo.cn/qzapp/222222/8C75BBE3DC6B0E9A64BD31449A3C8CB0/100",
- *"is_yellow_vip": "0",
- *"gender": "男",
- *"figureurl":
- *"http://qzapp.qlogo.cn/qzapp/222222/8C75BBE3DC6B0E9A64BD31449A3C8CB0/30"
- *}
- */
-                    }
-
-                    @Override
-                    public void onError(UiError uiError) {
-
-                    }
-
-                    @Override
-                    public void onCancel() {
-
-                    }
-                });
-
-                //使用获取的openid进行登录
-                if (!Util.isNullOrBlank(openId)) {
-                    LoginLogic.OnLoginCallBack call = new LoginLogic.OnLoginCallBack() {
-                        @Override
-                        public void onLoginSuccessed(String sskey) {
-                            //判断是否在第一次授权中取消绑定帐号
-                            if (SharePLoginInfo.getInstance(getContext()).getIsBindAccount()) {
-                                BindAccountActivity.actionStart(getActivity(), sskey, null);
-                            } else {
-                                HomeActivity.actionStartClearStack(getActivity(), null, null);
-                            }
-                        }
-
-                        @Override
-                        public void onLoginFailed(String errorMsg) {
-
-                        }
-                    };
-                    LoginLogic.doLogin(openId, null, TypeConstants.LOGIN_TYPE.AUTH_QQ, call);
-
-                }
-
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    /**
-     * 第三步:在回调中可以获取用户信息数据
-     */
-    private void updateQQUserInfo() {
-        if (mTencent != null && mTencent.isSessionValid()) {
-            UserInfo mInfo = new UserInfo(getContext(), mTencent.getQQToken());
-            IUiListener listener = new IUiListener() {
-
-                @Override
-                public void onError(UiError e) {
-//                    MyProgressDialog. closeDialog();
-                }
-
-                // 用户的信息回调在此处
-                @Override
-                public void onComplete(final Object response) {
-                    // 返回Bitmap对象。
-                    try {
-                        JSONObject obj = new JSONObject(response.toString());
-//                        thirdUser.setNickName(obj.optString( "nickname"));
-//                        thirdUser.setIcon(obj.optString( "figureurl_qq_2"));
-//                        thirdUser.setGender(obj.optString( "gender"));
-//                        ThirdUserVerify. verifyUser(LoginActivity.this,thirdUser, 1);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onCancel() {
-//                    MyProgressDialog. closeDialog();
-                }
-            };
-            mInfo.getUserInfo(listener);
-        }
-    }
-
-
-    /**
-     * 获取qq登录的回调接口
-     *
-     * @return
-     */
-    public IUiListener getQQIUiListener() {
-
-        return iUiListener;
+        QQLoginManager.getInstance().loginQQAuth(getActivity(), callBack);
     }
 
     /**
@@ -461,6 +312,9 @@ public class AccountLoginFragment extends BaseFragment {
      */
     private void loginWxAuth() {
         if (WXManager.instance().isWXAppInstalled()) {
+            if (!Util.isNull(loadingDialog) && !loadingDialog.isShowing()) {
+                loadingDialog.show();
+            }
             final SendAuth.Req req = new SendAuth.Req();
             req.scope = "snsapi_userinfo";
             req.state = "wechat_sdk_demo";
@@ -468,15 +322,24 @@ public class AccountLoginFragment extends BaseFragment {
 
                 @Override
                 public void onAuthSuccess(WxAccessTokenInfo info) {
-                    userWxOpenidLogin(info);
+                    if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                        loadingDialog.dismiss();
+                    }
+                    Log.e(TAG, info.toString());
+                    String wxopenid = info.getOpenId();
+                    UserOpenidLogin(wxopenid, TypeConstants.LOGIN_TYPE.AUTH_WX);
                 }
 
                 @Override
                 public void onAuthFailed(String errmsg) {
-
+                    Log.e(TAG, errmsg);
+                    if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                        loadingDialog.dismiss();
+                    }
                 }
             };
             //拉起微信授权，授权结果在WXEntryActivity中接收处理
+            Log.e(TAG, "发送请求到Wx");
             WXManager.instance().sendReq(req, callBack);
         } else {
             ToastUtils.showShort(getActivity(), R.string.wechat_not_installed);
@@ -484,27 +347,54 @@ public class AccountLoginFragment extends BaseFragment {
     }
 
     /**
-     * 通过获取的wx openid登录
+     * 使用openid进行登录
+     * 适用于wx,qq登录时
+     *
+     * @param openId
+     * @param loginType
      */
-    private void userWxOpenidLogin(WxAccessTokenInfo info) {
-        String wxopenid = info.getOpenId();
-        if (!Util.isNullOrBlank(wxopenid)) {
-            LoginLogic.OnLoginCallBack call = new LoginLogic.OnLoginCallBack() {
+    private void UserOpenidLogin(final String openId, final int loginType) {
+        if (!Util.isNullOrBlank(openId)) {
+            //查看该第三方帐号是否已经注册alpha用户中心,如果有,登录并
+            CheckAccoutLogic.OnCheckAccountCallBack call = new CheckAccoutLogic.OnCheckAccountCallBack() {
                 @Override
-                public void onLoginSuccessed(String sskey) {
+                public void checkSucessed(boolean isHas, String result) {
+                    //判断是否是第一次登录
+                    if (isHas) {
+                        Log.e(TAG, "不是第一次登录");
+                        //如果帐号存在,登录进入,直接进入HomeActivity
+                        LoginLogic.OnLoginCallBack callBack = new LoginLogic.OnLoginCallBack() {
+                            @Override
+                            public void onLoginSuccessed(String sskey) {
 
+                                ToastUtils.showShort(getActivity(), "登录成功");
+                                //判断是否在第一次授权中取消绑定帐号
+                                HomeActivity.actionStartClearStack(getActivity(), null, null);
+                            }
+
+                            @Override
+                            public void onLoginFailed(String errorMsg) {
+                                tv_error.setText(errorMsg);
+                                tv_error.setVisibility(View.VISIBLE);
+                            }
+                        };
+                        LoginLogic.doLogin(openId, null, loginType, callBack);
+                    } else {
+                        Log.e(TAG, "是第一次登录");
+                        //如果帐号不存在,直接进入BindActivity
+                        BindAccountActivity.actionStart(getActivity(), openId, loginType);
+
+                    }
                 }
 
                 @Override
-                public void onLoginFailed(String errorMsg) {
+                public void checkFailed(String errorMsg) {
 
                 }
             };
-            LoginLogic.doLogin(wxopenid, null, TypeConstants.LOGIN_TYPE.AUTH_WX, call);
+            CheckAccoutLogic.checkAccountIsHas(openId, TypeConstants.LOGIN_TYPE.AUTH_QQ, call);
         }
-
     }
-
 
     @Override
     public void onPause() {
@@ -515,4 +405,8 @@ public class AccountLoginFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

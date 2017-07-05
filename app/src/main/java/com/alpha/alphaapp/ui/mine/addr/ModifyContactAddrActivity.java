@@ -2,6 +2,7 @@ package com.alpha.alphaapp.ui.mine.addr;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ObbInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +24,7 @@ import com.alpha.alphaapp.ui.mine.MineInfoActivity;
 import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -36,13 +38,12 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 public class ModifyContactAddrActivity extends BaseActivity {
     private static final String TAG = "ModifyContactAddrActivity";
-    public static final int RESQUEST_CODE = 0;
-    public static final String CONTACT = "contact";
     private TitleLayout titlelayout;
     private ModifyInfoItemView miiv_pca, miiv_street;
     private LinearLayout layout;
     private EditText et_detail;
     private ImageView iv_del;
+
     /**
      * 地区选中器
      */
@@ -93,8 +94,12 @@ public class ModifyContactAddrActivity extends BaseActivity {
         miiv_street.setIvRightOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Util.isNullOrBlank(miiv_pca.getMsg()))
+                if (!Util.isNullOrBlank(miiv_pca.getMsg())) {
                     layout.setVisibility(View.VISIBLE);
+                } else {
+                    ToastUtils.showShort(ModifyContactAddrActivity.this, "请先选中省市区");
+                }
+
             }
         });
         et_detail.addTextChangedListener(new TextWatcher() {
@@ -145,8 +150,6 @@ public class ModifyContactAddrActivity extends BaseActivity {
             @Override
             public void onSubmit(String province, String city, String area) {
                 miiv_pca.setMsg(province + city + area);
-                //保存该数据为用户的通信地址
-                doModifyContactAddr(province + city + area);
             }
         });
 
@@ -183,7 +186,13 @@ public class ModifyContactAddrActivity extends BaseActivity {
                     //判断是否输入框中有内容,如果有,隐藏输入框,将文字显示到街道位置
                     layout.setVisibility(View.GONE);
                     KeyBoardUtils.closeKeybord(et_detail, this);
+                    // 将信息提交修改信息
                     miiv_street.setMsg(et_detail.getText().toString());
+                    //保存该数据为用户的通信地址,如果信息与填写的内容相同,则不修改
+                    String  addr=miiv_pca.getMsg() + miiv_street.getMsg();
+                    UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+                    if (!Util.isNullOrBlank(miiv_street.getMsg()) && (addr.equals(userInfo.getContact_addr())))
+                        doModifyContactAddr(addr);
                 }
         }
         return super.onTouchEvent(event);

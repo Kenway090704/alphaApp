@@ -70,7 +70,7 @@ public class ModifyIconView extends LinearLayout {
                 R.style.BottomViewTheme_Defalut, R.layout.widget_bottom_view_mod_icon);
         bottomView.setAnimation(R.style.BottomToTopAnim);//设置动画，可选
         btmView = bottomView.getView();
-        hor_scroll_view = (HorizontalScrollView) btmView.findViewById(R.id.dialog_mod_icon_scroll);
+//        hor_scroll_view = (HorizontalScrollView) btmView.findViewById(R.id.dialog_mod_icon_scroll);
         tab = (TabLayout) btmView.findViewById(R.id.dialog_mod_icon_tablayout);
         vp = (ViewPager) btmView.findViewById(R.id.dialog_mod_icon_vp);
         btn = (Button) btmView.findViewById(R.id.dialog_mod_icon_btn);
@@ -138,8 +138,10 @@ public class ModifyIconView extends LinearLayout {
      */
     public void setBottomViewData(List<GetIconBean.IconListBean.CategoryBean> listData, Map<String, Boolean> map) {
         List<RecyclerView> list = new ArrayList<>();
+        tab.removeAllTabs();
         for (int i = 0; i < listData.size(); i++) {
             tab.addTab(tab.newTab().setText(listData.get(i).getName()));
+            Log.e(TAG, "添加" + (i + 1) + "tab");
             RecyclerView recyclerView = new RecyclerView(context);
             recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
             IconRecylcerAdapter adapter2 = new IconRecylcerAdapter(context, listData.get(i), map);
@@ -153,14 +155,13 @@ public class ModifyIconView extends LinearLayout {
         IconListVPAdapter adapter = new IconListVPAdapter(list);
         vp.setAdapter(adapter);
         initEvent();
+
     }
 
     /**
      * tab与ViewPager的监听
      */
     private void initEvent() {
-
-//        tab.setupWithViewPager(vp);
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -177,16 +178,17 @@ public class ModifyIconView extends LinearLayout {
 
             }
         });
-
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e(TAG,"position=="+position+",positionOffset=="+positionOffset+",positionOffsetPixels=="+positionOffsetPixels);
+
             }
 
             @Override
             public void onPageSelected(int position) {
-
+                TabLayout.Tab tab2 = tab.getTabAt(position);
+                if (!Util.isNull(tab2))
+                    tab2.select();
             }
 
             @Override
@@ -194,6 +196,7 @@ public class ModifyIconView extends LinearLayout {
 
             }
         });
+
     }
 
 

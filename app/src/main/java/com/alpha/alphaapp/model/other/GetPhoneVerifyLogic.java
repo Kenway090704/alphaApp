@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.other;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -67,26 +67,33 @@ public class GetPhoneVerifyLogic {
                 if (Util.isNull(info)) return;
                 switch (info.getResult()) {
                     case CommStants.GET_PHONEVERIFY_RESULT.RESUTL_OK:
-                        back.onGetVerifySuccess();
+                        if (!Util.isNull(back))
+                            back.onGetVerifySuccess();
                         break;
                     case CommStants.GET_PHONEVERIFY_RESULT.PHOEN_ERROR:
-                        back.onGetVerifyFailed(info.getMsg());
+                        if (!Util.isNull(back))
+                            back.onGetVerifyFailed(info.getMsg());
                         //提示手机号码错误
                         break;
                     case CommStants.GET_PHONEVERIFY_RESULT.PHONE_HAD_REGISTER:
-                        back.onGetVerifyFailed(info.getMsg());
+                        if (!Util.isNull(back))
+                            back.onGetVerifyFailed(info.getMsg());
                         //提示手机号码已经注册
                         break;
                     case CommStants.GET_PHONEVERIFY_RESULT.PHONE_NO_REGISTER:
-                        back.onGetVerifyFailed(info.getMsg());
+                        if (!Util.isNull(back))
+                            back.onGetVerifyFailed(info.getMsg());
                         //提示手机号码没有注册
                         break;
                     case CommStants.GET_PHONEVERIFY_RESULT.VERIFY_HAD:
-                        back.onGetVerifyFailed(info.getMsg());
-                        //提示验证码已经存在
+                        if (!Util.isNull(back))
+                            back.onGetVerifySuccess();
+//                        back.onGetVerifyFailed(info.getMsg());
+                        //提示验证码已经存在,也就是验证码获取成功
                         break;
                     case CommStants.GET_PHONEVERIFY_RESULT.TOO_MUCH_MESSAGE:
-                        back.onGetVerifyFailed(info.getMsg());
+                        if (!Util.isNull(back))
+                            back.onGetVerifyFailed(info.getMsg());
                         //提示获取验证码次数太多
                         break;
                 }

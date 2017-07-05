@@ -52,16 +52,32 @@
     <style name="btn_com_gray">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+
         <item name="android:background">@drawable/shape_btn_bg_gray</item>
         <item name="android:enabled">false</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="btn_com_blue">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:background">@drawable/shape_btn_bg_blue</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <!--底部弹出框的Button-->
+    <style name="btn_com_bottom">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
         <item name="android:background">@drawable/shape_btn_bg_blue</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@android:color/white</item>
@@ -87,13 +103,27 @@
     <style name="tv_error_com">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">2dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
         <item name="android:drawableLeft">@drawable/icon_tv_error</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/error_red</item>
         <item name="android:visibility">invisible</item>
+    </style>
+
+    <!--tv_error_two_line有两行通用样式-->
+    <style name="tv_error_com_two_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/error_red</item>
     </style>
     <!--dialog_custom样式-->
     <style name="Dialog" parent="android:style/Theme.Dialog">
@@ -152,8 +182,13 @@
     </style>
 
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!--toggle-->
+    <style name="MyToggleStyle" parent="@android:style/Widget.CompoundButton">
+        <item name="android:button">@drawable/selector_toggle_btn</item>
     </style>
 
 </resources>

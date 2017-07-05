@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
@@ -57,7 +57,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_phone.getText().toString())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr())) {
                     btn_getVerify.setEnabled(Boolean.FALSE);
                     btn_getVerify.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -77,7 +77,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
         btn_getVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
+                if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
                     //验证手机号格式是否正确
                     tv_error.setText(R.string.input_valid_eleven_number);
                     tv_error.setVisibility(View.VISIBLE);
@@ -86,7 +86,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
                 GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
                     @Override
                     public void onGetVerifySuccess() {
-                        NewPhoneBindActvity2.actionStart(NewPhoneBindActvity1.this, et_phone.getText().toString(), null);
+                        NewPhoneBindActvity2.actionStart(NewPhoneBindActvity1.this, et_phone.getEditTextStr(), null);
                     }
 
                     @Override
@@ -95,7 +95,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getText().toString(), TypeConstants.GET_VERIFY.BIND_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY.BIND_PHONE, callBack);
             }
         });
 

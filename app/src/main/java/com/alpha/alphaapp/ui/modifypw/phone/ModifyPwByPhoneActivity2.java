@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
@@ -45,7 +45,6 @@ public class ModifyPwByPhoneActivity2 extends BaseActivity implements TextWatche
         ivet_verify.start();//开始倒计时
         tv_error = (TextView) findViewById(R.id.modify_pbph2_tv_error);
         btn_setpw = (Button) findViewById(R.id.modify_pbph2_btn_setpw);
-
     }
 
     @Override
@@ -60,19 +59,20 @@ public class ModifyPwByPhoneActivity2 extends BaseActivity implements TextWatche
             @Override
             public void onClick(View v) {
                 //再次获取新的验证码
+                ivet_verify.start();
             }
         });
 
         btn_setpw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneVerify(ivet_verify.getText().toString())) {
+                if (!StringUtils.isPhoneVerify(ivet_verify.getEditTextStr())) {
                     //验证手机号和验证码格式是否正确
                     tv_error.setText(R.string.verify_form_error);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                ModifyPwByPhoneActivity3.actionStart(ModifyPwByPhoneActivity2.this, phone, ivet_verify.getText().toString());
+                ModifyPwByPhoneActivity3.actionStart(ModifyPwByPhoneActivity2.this, phone, ivet_verify.getEditTextStr());
             }
         });
     }
@@ -100,7 +100,7 @@ public class ModifyPwByPhoneActivity2 extends BaseActivity implements TextWatche
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (Util.isNullOrBlank(ivet_verify.getText().toString())) {
+        if (Util.isNullOrBlank(ivet_verify.getEditTextStr())) {
             btn_setpw.setEnabled(Boolean.FALSE);
             btn_setpw.setBackgroundResource(R.drawable.shape_btn_bg_gray);
             ivet_verify.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -116,4 +116,5 @@ public class ModifyPwByPhoneActivity2 extends BaseActivity implements TextWatche
     public void afterTextChanged(Editable s) {
 
     }
+
 }
