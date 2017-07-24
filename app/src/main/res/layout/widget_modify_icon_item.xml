@@ -3,33 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="6dp"
     android:background="@color/bg_gray"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="6dp">
 
     <TextView
         android:id="@+id/widget_mod_icon_tv_left"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/left_item_width"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/margin_item_left"
         android:gravity="center_vertical"
         android:text="@string/avatar"
         android:textColor="@color/tv_black"
         android:textSize="12sp" />
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/widget_mod_icon_riv_msg"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/launcher"
-        android:textColor="@color/tv_black"
-        android:textSize="12sp"
-        app:riv_border_color="@color/btn_red"
-        app:riv_border_width="1dp"
-        app:riv_oval="true" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/widget_mod_icon_riv_msg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/launcher"
+            android:textColor="@color/tv_black"
+            android:textSize="12sp"
+            app:riv_border_color="@color/btn_red"
+            app:riv_border_width="1dp"
+            app:riv_oval="true" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/widget_mod_icon_iv_right"

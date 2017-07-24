@@ -15,7 +15,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
+
 
 import java.util.List;
 import java.util.Map;

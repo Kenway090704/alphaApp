@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/add_shiping_addr_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:txt_title="@string/add_new_addr" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:text="@string/shipping_person" />
+
+        <EditText
+            android:id="@+id/add_shiping_addr_et_name"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/bg_gray"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:text="@string/contact_phone" />
+
+        <EditText
+            android:id="@+id/add_shiping_addr_et_phone"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/bg_gray"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/add_shiping_addr_liner_area"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:text="@string/area" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/add_shiping_addr_tv_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plz_choose"
+            android:textColor="@color/tv_gray"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/icon_mysign_next" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:text="@string/post_code" />
+
+        <EditText
+            android:id="@+id/add_shiping_addr_et_postcode"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/bg_gray"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/add_shiping_addr_liner_detail"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/add_shiping_addr_et_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:hint="@string/plz_input_detail_addr_more_than_5_bite"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/bg_gray"
+        android:layout_height="1dp"/>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/set_default_addr"
+            android:layout_gravity="center"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ToggleButton
+            android:id="@+id/add_shiping_addr_toggle_setdefault"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/bg_gray"
+        android:layout_height="5dp"/>
+    <Button
+        android:id="@+id/add_shiping_addr_btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/btn_login_com_red"
+        android:text="@string/save" />
+
+</LinearLayout>

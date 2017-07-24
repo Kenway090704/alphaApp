@@ -98,7 +98,7 @@ public class PhoneGetPwActivity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.GET_PW,callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.GET_PW,callBack);
 
             }
         });

@@ -66,8 +66,8 @@ public class SettingsActivity extends BaseActivity {
             public void onClick(View view) {
                 //
                 ToastUtils.showShort(SettingsActivity.this, "进入评分页面");
-                Intent intent = new Intent(SettingsActivity.this, ScoreActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(SettingsActivity.this, ScoreActivity.class);
+//                startActivity(intent);
             }
         });
         siv_aboutus.setOnClickListener(new View.OnClickListener() {

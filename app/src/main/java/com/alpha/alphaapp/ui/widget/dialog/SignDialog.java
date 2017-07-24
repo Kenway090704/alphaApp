@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
+
 
 /**
  * Created by kenway on 17/6/21 14:52
@@ -55,7 +55,6 @@ public class SignDialog extends Dialog {
      */
     public void setSignIcon(String iconUrl) {
         //使用Glide展示图片
-        final RequestBuilder<Drawable> thumbnailRequest = Glide.with(context).load(R.drawable.launcher);
-        Glide.with(context).load(iconUrl).thumbnail(thumbnailRequest).into(iv_sign);
+        Glide.with(context).load(iconUrl).into(iv_sign);
     }
 }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">lib_sdk</string>
     <string name="local_network_error">请检查手机的网络连接</string>
+    <string name="bk4">8sOz</string>
 </resources>

@@ -20,7 +20,7 @@ import com.alpha.lib_sdk.app.tool.Util;
  * 手机注册,找回密码中的一步一步的控件
  */
 
-public class     OneTwoThreeItemView extends LinearLayout {
+public class OneTwoThreeItemView extends LinearLayout {
 
     private Context context;
     private TextView ott_tv_one, ott_tv_two, ott_tv_three;

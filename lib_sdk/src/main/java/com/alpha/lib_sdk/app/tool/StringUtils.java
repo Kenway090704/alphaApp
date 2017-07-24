@@ -96,6 +96,46 @@ public class StringUtils {
         return m.matches();
     }
 
+
+    /**
+     * 判断是否为昵称
+     */
+    public static boolean isName(String name) {
+        name = name.trim();
+        Pattern p = Pattern
+                .compile("[\\u4e00-\\u9fa5a-zA-Z0-9\\-]{4,12}");
+        Matcher m = p.matcher(name);
+        return m.matches();
+    }
+
+    /**
+     * 判断是否为真实姓名
+     *
+     * @param name
+     * @return
+     */
+    public static boolean isTrueName(String name) {
+        name = name.trim();
+        Pattern p = Pattern
+                .compile("[\\u4e00-\\u9fa5a-zA-Z0-9\\-]{1,12}");
+        Matcher m = p.matcher(name);
+        return m.matches();
+    }
+
+    /**
+     * 判断是否为真实姓名
+     *
+     * @param postCode
+     * @return
+     */
+    public static boolean isPost_Code(String postCode) {
+        postCode = postCode.trim();
+        Pattern p = Pattern
+                .compile( "[1-9]\\d{5}");
+        Matcher m = p.matcher(postCode);
+        return m.matches();
+    }
+
     /**
      * 隐藏手机的中间四位的字符串
      *
@@ -116,5 +156,38 @@ public class StringUtils {
         return sb.toString();
     }
 
+    /**
+     * 获取授权登录时的昵称字符串
+     * @param nickName
+     * @return
+     */
+    public static String getNickName(String nickName) {
+        if (Util.isNull(nickName)) {
+            return null;
+        }
+        nickName = nickName.trim();
+        int size = nickName.length();
+        if (size > 4 && size < 12) {
+            return nickName;
+        } else if (size < 4) {
+            return "奥飞用户" + nickName;
+        } else {
+            return nickName.substring(0, 12);
+        }
+    }
 
+
+    /**
+     * 判断是否为激活码
+     *
+     * @param active_code
+     * @return
+     */
+    public static boolean isActiveCode(String active_code) {
+        active_code = active_code.trim();
+        Pattern p = Pattern
+                .compile("[a-zA-Z0-9\\-]{10}");
+        Matcher m = p.matcher(active_code);
+        return m.matches();
+    }
 }

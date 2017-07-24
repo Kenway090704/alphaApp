@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:id="@+id/active_enter_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:txt_title="@string/i_want_active" />
+
+    <com.alpha.alphaapp.ui.widget.mall.ActiveEnterItem
+        android:id="@+id/active_enter_aei_tranform_car"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+    <com.alpha.alphaapp.ui.widget.LineView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <com.alpha.alphaapp.ui.widget.mall.ActiveEnterItem
+        android:id="@+id/active_enter_aei_speed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.alpha.alphaapp.ui.widget.LineView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <com.alpha.alphaapp.ui.widget.mall.ActiveEnterItem
+        android:id="@+id/active_enter_aei_super"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui.forgetpw.phone;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -10,12 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.phonefindpw.PhoneFindPwLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 
-import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -33,7 +34,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
     private TextView tv_error;
     private Button btn_submit;
 
-    private CustomAlertDialog dialog;
+    private Dialog dialog;
 
 
     @Override
@@ -50,8 +51,12 @@ public class PhoneGetPwActivity3 extends BaseActivity {
         aet_pw = (AccountEditText) findViewById(R.id.phone_get_pw_3_aet_pw);
         tv_error = (TextView) findViewById(R.id.phone_get_pw_3_tv_error);
         btn_submit = (Button) findViewById(R.id.phone_get_pw_3_btn_submit);
-        dialog = new CustomAlertDialog(this);
-        dialog.setCancelable(false);
+        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success_msg, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.actionStartClearStack(PhoneGetPwActivity3.this, null, null);
+            }
+        });
     }
 
     @Override
@@ -89,12 +94,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
             }
         });
 
-        dialog.setPositiveButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginActivity.actionStartClearStack(PhoneGetPwActivity3.this, null, null);
-            }
-        });
+
     }
 
     /**

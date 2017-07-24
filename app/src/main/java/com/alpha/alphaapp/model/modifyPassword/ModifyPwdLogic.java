@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.modifyPassword;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
@@ -74,7 +74,7 @@ public class ModifyPwdLogic {
      */
     public static void doModifyPwByPw(String sskey, String oldPwd, String newPwd, final OnModifyPwCallBack callback) {
         String data = getJsonModifyPwdByPwdInfo(sskey, oldPwd, newPwd);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -117,7 +117,7 @@ public class ModifyPwdLogic {
      */
     public static void doModifyPwByPhone(String sskey, String phone, String verifyCode, String newPwd, final OnModifyPwCallBack callback) {
         String data = getJsonModifyPwdByPhone(sskey, phone, verifyCode, newPwd);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

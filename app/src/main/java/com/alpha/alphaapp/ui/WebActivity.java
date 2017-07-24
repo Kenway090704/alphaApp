@@ -1,9 +1,7 @@
 package com.alpha.alphaapp.ui;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -21,19 +19,19 @@ import com.alpha.alphaapp.R;
 /**
  * Created by HP on 2016/8/25.
  */
-public class WebActivity extends AppCompatActivity {
-    public  static  final String EXTRA_URL="https://auldeywj.world.tmall.com";
-    private ImageView ivBack,ivShare;
+public class WebActivity extends BaseActivity {
+    public static final String EXTRA_URL = "http://club.auldey.com";
+    private ImageView ivBack, ivShare;
     private TextView tvTitle;
     private ProgressBar progressBar;
-    private WebView  webView;
-    private  String url;
+    private WebView webView;
+    private String url;
 
-    private WebViewClient webViewClient= new WebViewClient(){
+    private WebViewClient webViewClient = new WebViewClient() {
         @Override
         public void onPageFinished(WebView view, String url) {
-           //获取网页的标题
-            String title=view.getTitle();
+            //获取网页的标题
+            String title = view.getTitle();
             tvTitle.setText(title);
         }
 
@@ -44,29 +42,32 @@ public class WebActivity extends AppCompatActivity {
         }
     };
 
-    private WebChromeClient webChromeClient= new WebChromeClient(){
+    private WebChromeClient webChromeClient = new WebChromeClient() {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
 //            super.onProgressChanged(view, newProgress);
 
-            if(newProgress==100){
+            if (newProgress == 100) {
                 progressBar.setVisibility(View.INVISIBLE);
-            }else {
+            } else {
                 progressBar.setProgress(newProgress);
             }
         }
     };
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web);
+    protected int getLayoutId() {
+        return R.layout.activity_web;
+    }
 
-        ivBack= (ImageView) findViewById(R.id.web_back_iv);
-        ivShare= (ImageView) findViewById(R.id.web_share_ic);
-        tvTitle= (TextView) findViewById(R.id.web_title);
+    @Override
+    protected void initView() {
+        ivBack = (ImageView) findViewById(R.id.web_back_iv);
+        ivShare = (ImageView) findViewById(R.id.web_share_ic);
+        tvTitle = (TextView) findViewById(R.id.web_title);
         progressBar = (ProgressBar) findViewById(R.id.web_pb);
-        webView= (WebView) findViewById(R.id.web_content_wv);
-
+        webView = (WebView) findViewById(R.id.web_content_wv);
 
 
         //===========================监听事件==================================//
@@ -78,8 +79,9 @@ public class WebActivity extends AppCompatActivity {
                 finish();
             }
         });
-        url = getIntent().getStringExtra(EXTRA_URL);
-        Log.e("tag","webactivity================"+url);
+//        url = getIntent().getStringExtra(EXTRA_URL);
+        url = getIntent().getStringExtra("url");
+        Log.e("tag", "webactivity================" + url);
         WebSettings settings = webView.getSettings();
         //允许运行脚本语言
         settings.setJavaScriptEnabled(true);
@@ -90,18 +92,30 @@ public class WebActivity extends AppCompatActivity {
         webView.setWebViewClient(webViewClient);
         webView.setWebChromeClient(webChromeClient);
         webView.loadUrl(url);
+    }
 
+    @Override
+    public void initData() {
 
+    }
 
+    @Override
+    protected void initListener() {
 
     }
 
 
+    public static void actionStart(Context context, String url) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("url", url);
+        context.startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
-        if(webView.canGoBack()){
+        if (webView.canGoBack()) {
             webView.goBack();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }

@@ -121,7 +121,7 @@ public class RegisterPhoneActivity1 extends BaseActivity {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.REGISTER, callback);
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.REGISTER, callback);
     }
 
     /**

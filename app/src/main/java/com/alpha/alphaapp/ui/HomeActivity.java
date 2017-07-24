@@ -9,9 +9,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.ui.mall.ScoreMallFragment;
 import com.alpha.alphaapp.ui.mine.MineFragment;
 import com.alpha.alphaapp.ui.recom.RecomFragment;
-import com.alpha.alphaapp.ui.score.ScoreFragment;
 
 /**
  * Created by kenway on 17/5/24 14:59
@@ -61,7 +61,7 @@ public class HomeActivity extends BaseFragmentActivity {
      */
     private void initFragments() {
         fragments = new BaseFragment[]{
-                new RecomFragment(), new ScoreFragment(), new MineFragment()
+                new RecomFragment(), new ScoreMallFragment(), new MineFragment()
         };
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
         for (BaseFragment frag : fragments) {

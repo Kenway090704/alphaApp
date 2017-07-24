@@ -64,7 +64,7 @@ public class ModifyInfoItemView extends LinearLayout {
      * @return
      */
     public String getMsg() {
-        return tv_info.getText().toString();
+        return tv_info.getText().toString().trim();
     }
 
     /**

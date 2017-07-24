@@ -21,6 +21,7 @@ public class ApplicationContext {
 	private static WeakReference<Application> sApplicationWeakRef;
 	private static WeakReference<Context> sCurrContextWeakRef;
 
+
 	public static Application getApplication() {
 		return sApplicationWeakRef != null ? sApplicationWeakRef.get() : null;
 	}

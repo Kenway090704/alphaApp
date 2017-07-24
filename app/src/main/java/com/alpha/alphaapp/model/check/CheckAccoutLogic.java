@@ -2,7 +2,7 @@ package com.alpha.alphaapp.model.check;
 
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -17,8 +17,6 @@ import com.alpha.lib_sdk.app.tool.Util;
 
 public class CheckAccoutLogic {
 
-    private String account;
-    private int account_type;
 
     /**
      * 获取检测帐号是否存在帐号检测的json字符串
@@ -47,7 +45,7 @@ public class CheckAccoutLogic {
      */
     public static void checkAccountIsHas(String account, int accountType, final OnCheckAccountCallBack listener) {
         String data = getJsonStrCheckAccout(account, accountType);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

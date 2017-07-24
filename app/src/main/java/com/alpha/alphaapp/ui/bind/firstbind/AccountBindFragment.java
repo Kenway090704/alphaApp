@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui.bind.firstbind;
 
+import android.app.Dialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -11,6 +12,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.TypeConstants;
+import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
 import com.alpha.alphaapp.model.login.LoginLogic;
@@ -18,7 +20,7 @@ import com.alpha.alphaapp.model.logout.LoginOutLogic;
 
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
-import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
+
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -35,7 +37,7 @@ public class AccountBindFragment extends BaseFragment {
     private Button btn_submit;
     private TextView tv_error, tv_no_bind;
 
-    private CustomAlertDialog dialog_insure_bind, dialog_bind_success;
+    private Dialog dialog_insure_bind, dialog_bind_success;
 
 
     private int loginType;
@@ -62,31 +64,17 @@ public class AccountBindFragment extends BaseFragment {
      * 初始化对话框
      */
     private void initDialogs() {
-        dialog_insure_bind = new CustomAlertDialog(getActivity());
-        dialog_insure_bind.setTxtMsg(R.string.insure_bind_account);
-        dialog_insure_bind.setPositiveButton(new View.OnClickListener() {
+        dialog_insure_bind= DialogUtils.createTwoChoiceDialog(getActivity(), R.string.insure_bind_account, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
                     dialog_insure_bind.dismiss();
                 }
                 onBindAccount();
-
-            }
-        });
-        dialog_insure_bind.setNegativeButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!Util.isNull(dialog_insure_bind) && dialog_insure_bind.isShowing()) {
-                    dialog_insure_bind.dismiss();
-                }
             }
         });
 
-        dialog_bind_success = new CustomAlertDialog(getActivity());
-        dialog_bind_success.setTxtMsg(R.string.bind_success_you_use_wechat_account_login);
-        dialog_bind_success.setCancelable(false);
-        dialog_bind_success.setPositiveButton(new View.OnClickListener() {
+        dialog_bind_success=DialogUtils.createSingleChoiceDialog(getActivity(), R.string.bind_success_you_use_wechat_account_login, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //跳转到HomeActivity
@@ -96,7 +84,6 @@ public class AccountBindFragment extends BaseFragment {
                 HomeActivity.actionStart(getActivity(), null, null);
             }
         });
-
     }
 
     @Override

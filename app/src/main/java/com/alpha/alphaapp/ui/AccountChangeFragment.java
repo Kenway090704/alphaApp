@@ -34,7 +34,6 @@ public abstract class AccountChangeFragment extends BaseFragment {
         initEnvent();
         //注册信息更新
         eventObserver = new AccurateEventObserver<AccountUpdataEvent>() {
-
             @Override
             public void onReceiveEvent(AccountUpdataEvent event) {
                 onAccountUpdate(AccountManager.getInstance().getUserInfo());

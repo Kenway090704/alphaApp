@@ -6,6 +6,7 @@ import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.lib_sdk.app.core.event.RxEventBus;
 import com.alpha.lib_sdk.app.core.event.acc.AccountUpdataEvent;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -19,6 +20,10 @@ public class AccountManager {
     private UserInfo accountInfo;
     private static AccountManager manager;
     private String sskey;
+
+
+
+    private String authNickName;//微信或者QQ登录时的昵称
     /**
      * 登录的类型 account ,phone,auth_wx,auth_qq
      */
@@ -143,4 +148,13 @@ public class AccountManager {
         LoginActivity.actionStartClearStack(activity, null, null);
 
     }
+
+    public String getAuthNickName() {
+        return authNickName;
+    }
+
+    public void setAuthNickName(String authNickName) {
+        this.authNickName =  StringUtils.getNickName(authNickName);
+    }
+
 }

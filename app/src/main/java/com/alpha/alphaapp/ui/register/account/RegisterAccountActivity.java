@@ -32,7 +32,6 @@ public class RegisterAccountActivity extends BaseActivity {
     private static final String TAG = "RegisterAccountActivity";
     private OneTwoThreeItemView ott;
     private AccountEditText aet_acc, aet_pw, aet_insurepw;
-
     private TextView tv_error;
     private Button btn_reg;
     private TextView tv_protocal;

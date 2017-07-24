@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui.bind.phone.first;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -11,11 +12,11 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
-import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -34,7 +35,7 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
 
     private String phone;
 
-    private CustomAlertDialog dialog;
+    private Dialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -51,9 +52,15 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
         tv_error = (TextView) findViewById(R.id.phone_bind_2_tv_error);
         btn_bind = (Button) findViewById(R.id.phone_bind_2_btn_bind);
 
+        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.phone_bind_sucess_use_phone_login, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                AccountSecurityActivity.actionStar(NewPhoneBindActvity2.this, null, null);
+                finish();
+            }
+        });
 
-        dialog = new CustomAlertDialog(this);
-        dialog.setTxtMsg(R.string.phone_bind_sucess_use_phone_login);
 
     }
 
@@ -74,27 +81,19 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
         btn_bind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneVerify(ivet.getText().toString())) {
+                if (!StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
                     //验证手机号格式是否正确
                     tv_error.setText(R.string.verify_form_error);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
                 String sskey = AccountManager.getInstance().getSskey();
-                String verify = ivet.getText().toString();
+                String verify = ivet.getEditTextStr();
                 BindLogic.OnBindCallBack call = new BindLogic.OnBindCallBack() {
                     @Override
                     public void onBindSuccessed() {
                         //弹出对话框架提示绑定成功,然后重新加载一次信息
                         AccountManager.getInstance().loadUserinfo();
-                        dialog.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                                AccountSecurityActivity.actionStar(NewPhoneBindActvity2.this, null, null);
-                                finish();
-                            }
-                        });
                         dialog.show();
                     }
 
@@ -120,9 +119,9 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(ivet))
+        if (!Util.isNull(ivet))
             ivet.cancel();
-        if (Util.isNull(dialog))
+        if (!Util.isNull(dialog))
             dialog.dismiss();
     }
 
@@ -133,7 +132,7 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (Util.isNullOrBlank(ivet.getText().toString())) {
+        if (Util.isNullOrBlank(ivet.getEditTextStr())) {
             btn_bind.setEnabled(Boolean.FALSE);
             btn_bind.setBackgroundResource(R.drawable.shape_btn_bg_gray);
             ivet.getImageViewRight().setVisibility(View.INVISIBLE);

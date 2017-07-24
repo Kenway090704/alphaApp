@@ -19,7 +19,6 @@ import com.alpha.lib_sdk.app.tool.DateUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -73,8 +72,8 @@ public class MySignActivity extends BaseActivity {
         selectDate = DateUtils.getNowDate();
         if (!Util.isNullOrBlank(icon)) {
             //使用Glide展示图片
-            final RequestBuilder<Drawable> thumbnailRequest = Glide.with(this).load(R.drawable.launcher);
-            Glide.with(this).load(URLConstans.GET_ICON.ICON300 + icon).thumbnail(thumbnailRequest).into(iv_signIcon);
+
+            Glide.with(this).load(URLConstans.GET_ICON.ICON300 + icon).into(iv_signIcon);
         }
         //初始化Recyclerview的数据
         map = new HashMap<>();

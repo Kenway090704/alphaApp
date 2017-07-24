@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.other;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -45,13 +45,13 @@ public class GetPhoneVerifyLogic {
      * 获取验证码
      * <p>verifyType</p>
      * <p>
-     * <p>TypeConstants.GET_VERIFY.LOGIN</p>
-     * <p>TypeConstants.GET_VERIFY.REGISTER</p>
-     * <p>TypeConstants.GET_VERIFY.GET_PW</p>
-     * <p>TypeConstants.GET_VERIFY.VERIFY_OLD_PHONE</p>
-     * <p>TypeConstants.GET_VERIFY.BIND_NEW_PHONE</p>
-     * <p>TypeConstants.GET_VERIFY.BIND_PHONE</p>
-     * <p>TypeConstants.GET_VERIFY.MODIFY_PWD_BY_PHONE</p>
+     * <p>TypeConstants.GET_VERIFY_TYPE.LOGIN</p>
+     * <p>TypeConstants.GET_VERIFY_TYPE.REGISTER</p>
+     * <p>TypeConstants.GET_VERIFY_TYPE.GET_PW</p>
+     * <p>TypeConstants.GET_VERIFY_TYPE.VERIFY_OLD_PHONE</p>
+     * <p>TypeConstants.GET_VERIFY_TYPE.BIND_NEW_PHONE</p>
+     * <p>TypeConstants.GET_VERIFY_TYPE.BIND_PHONE</p>
+     * <p>TypeConstants.GET_VERIFY_TYPE.MODIFY_PWD_BY_PHONE</p>
      *
      * @param phone
      * @param verifyType
@@ -59,7 +59,7 @@ public class GetPhoneVerifyLogic {
      */
     public static void doGetPhoneVerify(String phone, int verifyType, final OnGetVerifyCallBack back) {
         String data = GetPhoneVerifyLogic.getJsonStrPhoneVerify(phone, verifyType);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

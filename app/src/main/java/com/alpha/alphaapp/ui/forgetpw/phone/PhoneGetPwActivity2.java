@@ -3,22 +3,19 @@ package com.alpha.alphaapp.ui.forgetpw.phone;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_stub.model.CountDownManager;
 
 /**
  * Created by kenway on 17/6/6 15:06
@@ -77,13 +74,13 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
         btn_resetpw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StringUtils.isPhoneVerify(ivet.getText().toString())) {
+                if (!StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
                     //验证手机号和验证码格式是否正确
                     tv_error.setText(R.string.verify_form_error);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                PhoneGetPwActivity3.actionStart(PhoneGetPwActivity2.this, phone, ivet.getText().toString());
+                PhoneGetPwActivity3.actionStart(PhoneGetPwActivity2.this, phone, ivet.getEditTextStr());
             }
         });
     }
@@ -112,7 +109,7 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.REGISTER, callBack);
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.GET_PW, callBack);
     }
 
     @Override
@@ -122,7 +119,7 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (TextUtils.isEmpty(ivet.getText())) {
+        if (Util.isNullOrBlank(ivet.getEditTextStr())) {
             btn_resetpw.setEnabled(Boolean.FALSE);
             btn_resetpw.setBackgroundResource(R.drawable.shape_btn_bg_gray);
             ivet.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -142,7 +139,7 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(ivet))
+        if (!Util.isNull(ivet))
             ivet.cancel();
     }
 

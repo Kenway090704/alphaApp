@@ -40,5 +40,4 @@ public class CountDownManager {
         timer.cancel();
     }
 
-
 }

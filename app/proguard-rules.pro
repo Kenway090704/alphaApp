@@ -15,9 +15,9 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-  -keep public class * implements com.bumptech.glide.module.GlideModule
-  -keep class com.bumptech.glide.integration.okhttp.OkHttpGlideModule
-  -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep class com.bumptech.glide.integration.okhttp.OkHttpGlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
       **[] $VALUES;
       public *;
     }
@@ -32,3 +32,13 @@
 -keep class com.tencent.mm.sdk.** {
    *;
 }
+
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+#-keep class com.google.gson.stream.** { *; }
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+#防止混淆造成apk中gson无法解析bean
+#-keep com.alpha.alphaapp.account.** {*;}

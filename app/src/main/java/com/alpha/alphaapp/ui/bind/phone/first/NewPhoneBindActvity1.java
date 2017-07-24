@@ -95,7 +95,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY.BIND_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY_TYPE.BIND_PHONE, callBack);
             }
         });
 

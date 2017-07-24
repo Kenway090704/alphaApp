@@ -71,7 +71,7 @@ public class ModifyPwByPhoneActivity1 extends BaseActivity implements TextWatche
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.MODIFY_PWD_BY_PHONE,callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.MODIFY_PWD_BY_PHONE,callBack);
             }
         });
     }

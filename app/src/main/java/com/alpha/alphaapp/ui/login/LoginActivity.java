@@ -2,16 +2,20 @@ package com.alpha.alphaapp.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.anim.GifView;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
 import com.alpha.alphaapp.ui.login.qq.QQLoginManager;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.tencent.connect.common.Constants;
+import com.alpha.lib_sdk.app.unitily.ApkUtils;
+import com.alpha.lib_sdk.app.unitily.NetUtils;
+import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
@@ -27,6 +31,11 @@ public class LoginActivity extends BaseFragmentActivity {
     private TabLayout tabLayout;
     private ViewPager vp;
     private List<Fragment> fragments;
+    private GifView gif_sheep, gif_super;
+
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private boolean isStop;
 
     @Override
     protected int getLayoutId() {
@@ -35,8 +44,12 @@ public class LoginActivity extends BaseFragmentActivity {
 
     @Override
     protected void initView() {
+        gif_sheep = (GifView) findViewById(R.id.login_iv_sheep);
+        gif_super = (GifView) findViewById(R.id.login_iv_super);
         tabLayout = (TabLayout) findViewById(R.id.login_tablayout);
         vp = (ViewPager) findViewById(R.id.login_vp);
+        startNormalAnim();
+
     }
 
     @Override
@@ -44,6 +57,7 @@ public class LoginActivity extends BaseFragmentActivity {
         initFragments();
         initTabLayout();
     }
+
 
     private void initFragments() {
         fragments = new ArrayList<>();
@@ -103,11 +117,60 @@ public class LoginActivity extends BaseFragmentActivity {
         context.startActivity(intent);
     }
 
+
+    public void stopNormalAnim() {
+        gif_sheep.stop();
+        gif_super.stop();
+        handler.removeCallbacks(runnable);
+    }
+
+    public void startNormalAnim() {
+        gif_sheep.setMovieResource(R.raw.animation_sheep_normal);
+        gif_super.setMovieResource(R.raw.animation_super_normal);
+        isStop = false;
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                //动画
+                gif_sheep.setPaused(isStop);
+                gif_super.setPaused(isStop);
+                isStop = !isStop;
+                handler.postDelayed(this, 3000);
+            }
+        };
+        handler.postDelayed(runnable, 0);
+    }
+
+    /**
+     * 执行闭眼睛动画
+     */
+    public void doDealCloseEyesAnim() {
+        //停止上一个动画
+        stopNormalAnim();
+        //执行闭眼的动画,替换成闭眼动画即可
+        gif_sheep.setMovieResource(R.raw.animation_sheep_pw);
+        gif_super.setMovieResource(R.raw.animation_super_pw);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //qq授权登录使用
         Tencent.onActivityResultData(requestCode, resultCode, data, QQLoginManager.getInstance().getQQIUiListener());
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!Util.isNull(gif_sheep)) {
+            gif_sheep.setPaused(true);
+        }
+        if (!Util.isNull(gif_super)) {
+            gif_super.setPaused(true);
+        }
+        if (!Util.isNull(handler)) {
+            stopNormalAnim();
+        }
+    }
 
 }

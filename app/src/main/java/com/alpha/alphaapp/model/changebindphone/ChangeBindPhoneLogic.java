@@ -4,7 +4,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.app.EnvirenmentArgsHolder;
@@ -54,7 +54,7 @@ public class ChangeBindPhoneLogic {
             ToastUtils.showShort(EnvirenmentArgsHolder.getContext(), "旧手机验证失败");
         }
         String data = getJsonStrChangeBindPhone(sskey, phone, verifyCode);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -104,7 +104,7 @@ public class ChangeBindPhoneLogic {
     public static void doBindNewPhone(String sskey, String phone, String verifyCode, final BindNewPhoneCallBack back) {
 
         String data = getJsonStrChangeBindPhone(sskey, phone, verifyCode);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -35,6 +36,14 @@ public class PwInputEditText extends LinearLayout {
     private ImageView iv_left, iv_del;
     private EditText et;
     private ToggleButton tbtn;
+    private boolean isShowPW = false;//是否显示密码
+
+
+    private OnFoucusableListener onFocusableListener;//当获取焦点的时候回调接口
+
+
+
+    private OnToggleBtnCheckedChangeListener onToggleBtnCheckedChangeListener;//显示密码与隐藏密码回调接口
 
     public PwInputEditText(Context context) {
         super(context);
@@ -69,13 +78,15 @@ public class PwInputEditText extends LinearLayout {
                     //设置EditText文本为可见的
                     tbtn.setBackground(getResources().getDrawable(R.drawable.icon_toggle_show));
                     et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-
+                    isShowPW = true;
                 } else {
                     //设置EditText文本为隐藏的
                     tbtn.setBackground(getResources().getDrawable(R.drawable.icon_toggle_hide));
                     et.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
+                    isShowPW = false;
                 }
+                if(!Util.isNull(onToggleBtnCheckedChangeListener))
+                    onToggleBtnCheckedChangeListener.onCheckedChanged(buttonView,isChecked);
                 et.postInvalidate();
                 //切换后将EditText光标置于末尾
                 CharSequence charSequence = et.getText();
@@ -105,6 +116,9 @@ public class PwInputEditText extends LinearLayout {
                 } else {
                     iv_del.setVisibility(INVISIBLE);
                 }
+               if(!Util.isNull(onFocusableListener))
+                onFocusableListener.onFocusChange(v, hasFocus);
+
             }
         });
     }
@@ -138,6 +152,7 @@ public class PwInputEditText extends LinearLayout {
         }
 
     }
+
     public EditText getEditText() {
         return et;
     }
@@ -152,4 +167,30 @@ public class PwInputEditText extends LinearLayout {
             et.addTextChangedListener(textWatcher);
         }
     }
+
+
+    /**
+     * 是否显示密码
+     *
+     * @return
+     */
+    public boolean isShowPW() {
+        return isShowPW;
+    }
+    public void setOnFocusableListener(OnFoucusableListener onFocusableListener) {
+        this.onFocusableListener = onFocusableListener;
+    }
+    public void setOnToggleBtnCheckedChangeListener(OnToggleBtnCheckedChangeListener onToggleBtnCheckedChangeListener) {
+        this.onToggleBtnCheckedChangeListener = onToggleBtnCheckedChangeListener;
+    }
+
+    public interface OnFoucusableListener {
+        void onFocusChange(View v, boolean hasFocus);
+    }
+
+    public  interface  OnToggleBtnCheckedChangeListener{
+        void onCheckedChanged(CompoundButton buttonView, boolean isChecked);
+    }
+
+
 }

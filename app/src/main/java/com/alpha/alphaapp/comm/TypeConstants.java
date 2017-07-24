@@ -11,6 +11,7 @@ public class TypeConstants {
     public interface TERMINAL_TYPE {
         String PHONE = "PHONE";
     }
+
     /**
      * 注册类型
      */
@@ -53,7 +54,7 @@ public class TypeConstants {
     /**
      * 获取手机验证码
      */
-    public interface GET_VERIFY {
+    public interface GET_VERIFY_TYPE {
         /**
          * 手机号登录
          */
@@ -84,6 +85,89 @@ public class TypeConstants {
         int MODIFY_PWD_BY_PHONE = 7;
 
     }
+
+    /**
+     * (AT)获取商品列表
+     */
+
+    public interface GET_GOODS_LIST_TYPE {
+        /**
+         * 获取商品列表
+         */
+        int ALL = 0;
+        /**
+         * 获取商品数量包含个人已兑换
+         */
+        int EXCHANGE_COUNT = 1;
+        /**
+         * 商品剩余数量
+         */
+        int REMIAN_COUNT = 2;
+    }
+
+    /**
+     * (AU)获取商品详情
+     */
+
+    public interface GET_GOODS_DETAIL_TYPE {
+        /**
+         * 获取商品详情
+         */
+        int ALL = 0;
+        /**
+         * 获取商品详情包含个人已兑换数量exchange_count
+         */
+        int EXCHANGE_COUNT = 1;
+        /**
+         * 返回商品剩余数量
+         */
+        int REMIAN_COUNT = 2;
+    }
+
+
+    /**
+     *产品类型
+     */
+
+    public interface IP_PRODUCT_TYPE {
+        /**
+         * 爆裂飞车
+         */
+        int TRANSFROM_CAR = 0;
+
+        /**
+         * 零速争霸
+         */
+        int SPEED = 1;
+        /**
+         * 超级飞侠
+         */
+        int SUPER_WAVING   = 2;
+    }
+
+    /**
+     * 产品Proudct_ID
+     */
+    public  interface PRODUCT_ID{
+
+        int   NONE_PRODUCT=0;
+        /**
+         * 零速争霸
+         */
+        int SPEED = 34;
+
+        /**
+         * 爆裂飞车2
+         */
+        int TRANSFROM_CAR = 91;
+
+
+        /**
+         * 超级飞侠
+         */
+        int SUPER_WAVING   = 182;
+    }
+
 
 
 }

@@ -3,46 +3,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/login_bg_white"
     android:orientation="vertical">
-    <!--加入标题栏-->
-    <!--<com.makeramen.roundedimageview.RoundedImageView-->
-    <!--android:layout_width="70dp"-->
-    <!--android:layout_height="70dp"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:layout_margin="10dp"-->
-    <!--android:scaleType="centerCrop"-->
-    <!--android:src="@drawable/launcher"-->
-    <!--app:riv_border_color="@color/btn_red"-->
-    <!--app:riv_border_width="2dp"-->
-    <!--app:riv_oval="true" />-->
+
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/about_us"
-        android:src="@drawable/circle_bg" />
-
-    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="46.5dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/app_user_center"
-        android:textColor="@color/tv_black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="22.5dp"
+        android:src="@drawable/alpha_logo" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/login_tablayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:tabIndicatorColor="@android:color/holo_green_dark"
-        app:tabSelectedTextColor="@android:color/holo_green_dark" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="147.5dp"
+        android:layout_marginTop="24.5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.alpha.alphaapp.anim.GifView
+                android:id="@+id/login_iv_sheep"
+                android:layout_width="147.5dp"
+                android:enabled="false"
+                android:layout_height="match_parent"
+               />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.alpha.alphaapp.anim.GifView
+                android:id="@+id/login_iv_super"
+                android:layout_width="207dp"
+                android:enabled="false"
+                android:layout_marginRight="1dp"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/login_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:layout_alignParentBottom="true"
+            app:tabBackground="@drawable/selector_login_tab"
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextAppearance="@style/login_tab_txtSize"
+            app:tabTextColor="@color/login_txt_red" />
+    </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/login_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp" />
+        android:layout_height="match_parent" />
 </LinearLayout>

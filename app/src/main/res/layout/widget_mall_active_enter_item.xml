@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/my_score_item"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/active_enter_item_iv_logo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="3"
+        android:scaleType="centerCrop"
+        android:src="@drawable/speed_logo" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="7">
+
+        <LinearLayout
+            android:id="@+id/active_enter_item_layout_active_time_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/active_enter_item_tv_active_time_1_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/racingcar_code_active_time" />
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/active_enter_item_tv_active_time_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/active_enter_item_layout_active_time_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/active_enter_item_layout_active_time_1"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/active_enter_item_tv_active_time_2_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score_code_active_time" />
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/active_enter_item_tv_active_time_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/active_enter_item_tv_active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:text="@string/i_want_active"
+                android:textColor="@color/red"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/active_enter_item_tv_review_exchange_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:text="@string/look_active_record"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/active_enter_item_tv_look_web"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/look_official_web"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,12 +1,20 @@
 package com.alpha.alphaapp.ui.login.wx;
 
+import com.alpha.alphaapp.account.AccountManager;
+import com.alpha.alphaapp.app.MyApplication;
 import com.alpha.alphaapp.ui.login.qq.QQLoginManager;
 import com.alpha.alphaapp.wxapi.WXManager;
 import com.alpha.alphaapp.wxapi.WechatAuthCallBack;
 import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
+import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.net.ReqCallBack;
+import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by kenway on 17/7/3 15:15
@@ -55,11 +63,8 @@ public class WxAuthLogic {
 
                 @Override
                 public void onAuthSuccess(WxAccessTokenInfo info) {
-                    Log.e(TAG, info.toString());
-                    String wxopenid = info.getOpenId();
-                    if (!Util.isNullOrBlank(wxopenid)) {
-                        if (!Util.isNull(back))
-                            back.onAuthSuccessed(wxopenid);
+                    if (!Util.isNullOrBlank(info.getOpenId())) {
+                        getWxUserInfo(info, back);
                     } else {
                         if (!Util.isNull(back))
                             back.onAuthFailed("无法获取微信Openid");
@@ -71,22 +76,52 @@ public class WxAuthLogic {
                 public void onAuthFailed(String errmsg) {
                     if (!Util.isNull(back))
                         back.onAuthFailed(errmsg);
-                    Log.e(TAG, errmsg);
                 }
             };
             //拉起微信授权，授权结果在WXEntryActivity中接收处理
-            Log.e(TAG, "发送请求到Wx");
             WXManager.instance().sendReq(req, callBack);
         } else {
-
             if (!Util.isNull(back))
                 back.onAuthFailed("微信未安装");
-
         }
     }
 
+    private void getWxUserInfo(final WxAccessTokenInfo info, final OnWxAuthCallBack back) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("https://api.weixin.qq.com/sns/userinfo?access_token=")
+                .append(info.getAccess_token())
+                .append("&openid=")
+                .append(info.getOpenId());
+        ReqCallBack<String> callBack = new ReqCallBack<String>() {
+            @Override
+            public void onReqSuccess(String result) {
+                try {
+                    //解析获取的信息
+                    JSONObject obj = new JSONObject(result);
+                    String nickname = obj.optString("nickname");
+                    int sex = obj.optInt("sex");//1--男
+                    String icon = obj.optString("headimgurl");
+
+                    if (!Util.isNull(back)) {
+                        AccountManager.getInstance().setAuthNickName(nickname);
+                        back.onAuthSuccessed(info.getOpenId(), nickname);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onReqFailed(String errorMsg) {
+                if (!Util.isNull(back))
+                    back.onAuthFailed(errorMsg);
+            }
+        };
+        RequestManager.getInstance(ApplicationContext.getCurrentContext()).requestGetWXData(sb.toString(), callBack);
+    }
+
     public interface OnWxAuthCallBack {
-        void onAuthSuccessed(String openid);
+        void onAuthSuccessed(String openid, String nickname);
 
         void onAuthFailed(String failedMsg);
     }

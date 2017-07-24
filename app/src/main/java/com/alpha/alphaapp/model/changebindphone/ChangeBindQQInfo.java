@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.changebindphone;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -54,7 +54,7 @@ public class ChangeBindQQInfo {
     public static void doVerifyOldPhone(String sskey, String phone, String verifyCode, final VerfifyCallBack back) {
 
         String data = getJsonStrChangeBindPhone(sskey, phone, verifyCode);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -103,7 +103,7 @@ public class ChangeBindQQInfo {
     public static void doBindNewPhone(String sskey, String phone, String verifyCode, final BindCallBack back) {
 
         String data = getJsonStrChangeBindPhone(sskey, phone, verifyCode);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

@@ -4,7 +4,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
@@ -124,7 +124,7 @@ public class BindLogic {
      * @param data
      */
     private static void doBind(final OnBindCallBack callBack, String data) {
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> call = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

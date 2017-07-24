@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alpha.alphaapp">
+    package="com.alpha.alphaapp"
+    android:versionCode="1"
+    android:versionName="v 1.0.4">
+
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
 
     <application
@@ -29,6 +34,7 @@
         <activity android:name=".ui.register.phone.RegisterPhoneActivity1" />
         <activity android:name=".ui.register.phone.RegisterPhoneActivity2" />
         <activity android:name=".ui.register.phone.RegisterPhoneActivity3" />
+        <activity android:name=".ui.register.UserAgreementActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.set.SettingsActivity" />
         <activity android:name=".ui.modifypw.ModifyPwByPwActivity" />
@@ -37,7 +43,7 @@
         <activity android:name=".ui.modifypw.phone.ModifyPwByPhoneActivity3" />
         <activity android:name=".ui.AboutUsActivity" />
         <activity android:name=".ui.FeedbackActivity" />
-        <activity android:name=".ui.ScoreActivity" />
+        <activity android:name=".ui.score.ScoreActivity" />
         <activity
             android:name=".ui.set.AccountSecurityActivity"
             android:launchMode="singleTask" />
@@ -51,7 +57,7 @@
         <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityHasRegister1" />
         <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityHasAccount" />
         <activity android:name=".ui.forgetpw.wx.noregister.WxGetPwActivityNoRegister1" />
-        <activity android:name=".ui.forgetpw.wx.noregister.WxGetPwActivityNoAccount" />
+        <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityNoAccount" />
         <!--bind phone-->
         <activity android:name=".ui.bind.phone.first.NewPhoneBindActvity1" />
         <activity android:name=".ui.bind.phone.first.NewPhoneBindActvity2" />
@@ -68,6 +74,31 @@
         <!--签到-->
         <activity android:name=".ui.sign.SignActivity" />
         <activity android:name=".ui.sign.MySignActivity" />
+        <activity android:name=".ui.WebActivity" />
+        <!--积分商城模块-->
+        <activity android:name=".ui.mall.exchange.ScoreExchangeEnterActivity" />
+        <activity android:name=".ui.mall.exchange.GoodsExchangeActivity" />
+
+        <activity android:name=".ui.mall.exchange.ScoreChangeRecordActivity" />
+        <activity android:name=".ui.mall.exchange.ExchangeRecordActivity" />
+        <activity android:name=".ui.mall.exchange.GoodsListsActivity" />
+
+        <activity android:name=".ui.mall.addr.ShippingAddrActivity" />
+        <activity android:name=".ui.mall.addr.AddShippingAddrActivity" />
+        <activity android:name=".ui.mall.addr.EditShippingAddrActvity" />
+        <activity android:name=".ui.mall.addr.ChooseShippingAddrActivity" />
+
+        <!--激活-->
+        <activity android:name=".ui.mall.active.ActiveEnterActivity" />
+        <activity android:name=".ui.mall.active.ActiveActivity" />
+        <activity android:name=".ui.mall.active.ActiveRecordActivity" />
+        <!--版本更新的服务-->
+        <service android:name=".version.UpdateVersionService" />
+        <receiver android:name="com.alpha.lib_sdk.app.net.broadcast.NetWorkChangeBroadcasetReceiver">
+            <intent-filter android:priority="1000">　　　　　　
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
         <!--QQ授权登录-->
         <activity
             android:name="com.tencent.tauth.AuthActivity"

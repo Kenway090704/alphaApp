@@ -12,8 +12,9 @@ import android.widget.ImageView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
+import com.alpha.lib_sdk.app.glide.ImageLoader;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
+
 
 import java.util.List;
 import java.util.Map;
@@ -62,9 +63,8 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
                 }
             }
         }
-        //使用Glide展示图片
-        final RequestBuilder<Drawable> thumbnailRequest = Glide.with(context).load(R.drawable.launcher);
-        Glide.with(context).load(URLConstans.GET_ICON.ICON60 + list.get(position)).thumbnail(thumbnailRequest).into(holder.iv);
+//        //使用Glide展示图片
+        ImageLoader.load(context,URLConstans.GET_ICON.ICON60 + list.get(position),holder.iv);
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -175,7 +175,6 @@ public class WxAccessTokenInfo implements Serializable {
 
     /**
      * 将返回的json WxAccessToken对象
-     *
      * @param json
      * @return WxaccessToken
      */
@@ -189,7 +188,6 @@ public class WxAccessTokenInfo implements Serializable {
             wxAccessTokenInfo.setOpenId(jsonObject.getString("openid"));
             wxAccessTokenInfo.setScope(jsonObject.getString("scope"));
             wxAccessTokenInfo.setUnionid(jsonObject.getString("unionid"));
-
             return wxAccessTokenInfo;
         } catch (JSONException e) {
             e.printStackTrace();

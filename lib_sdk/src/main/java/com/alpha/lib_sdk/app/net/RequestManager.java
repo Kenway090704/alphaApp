@@ -8,8 +8,16 @@ import com.alpha.lib_sdk.app.log.Log;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,15 +38,10 @@ public class RequestManager {
 
     private static final String TAG = "RequestManager";
 
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private static RequestManager mInstance;//单例引用
 
-    public static final int TYPE_GET = 0;//get请求
-
-    public static final int TYPE_POST_JSON = 1;//post请求参数为json
-
-    public static final int TYPE_POST_FORM = 2;//post请求参数为表单
 
     private OkHttpClient mOkHttpClient;//okHttpClient;
 
@@ -46,13 +49,56 @@ public class RequestManager {
 
     private RequestManager(Context context) {
         //初始化OkHttpClient
-        mOkHttpClient = new OkHttpClient().newBuilder()
+        mOkHttpClient = gettUnsafeOkHttpClient().newBuilder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .build();
         okHttpHandler = new Handler(context.getMainLooper());//属于主线程的Handler
     }
+
+    private static OkHttpClient gettUnsafeOkHttpClient() {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.sslSocketFactory(sslSocketFactory);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+
+            OkHttpClient okHttpClient = builder.build();
+            return okHttpClient;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     /**
      * 获取网络请求管理类实例
@@ -120,30 +166,26 @@ public class RequestManager {
     public <T> Call requestGet(String actionUrl, final ReqCallBack<T> callBack) {
 
         try {
-            String requestUrl = actionUrl;
-
-            Request request = new Request.Builder().url(actionUrl).get().build();
-
+            final Request request = new Request.Builder().url(actionUrl).get().build();
             final Call call = mOkHttpClient.newCall(request);
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     failedCallBack("访问失败", callBack);
-                    com.alpha.lib_sdk.app.log.Log.e(TAG, e.toString());
+                    Log.e(TAG, "这里发生了错误==" + e.toString());
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        com.alpha.lib_sdk.app.log.Log.e(TAG, "response ----->" + string);
+                        Log.e(TAG, "response ----->" + string);
                         successCallBack((T) string, callBack);
                     } else {
                         failedCallBack("服务器错误", callBack);
                     }
                 }
             });
-
             return call;
         } catch (Exception e) {
             Log.e(TAG, e.toString());
@@ -193,15 +235,17 @@ public class RequestManager {
         }
         return null;
     }
+
     /**
      * okHttp post异步请求表单提交
+     *
      * @param actionUrl 接口地址
      * @param paramsMap 请求参数
-     * @param callBack 请求返回数据回调
-     * @param <T> 数据泛型
+     * @param callBack  请求返回数据回调
+     * @param <T>       数据泛型
      * @return
      */
-    public  <T> Call requestPostByAsynWithForm(String actionUrl, HashMap<String, String> paramsMap, final ReqCallBack<T> callBack) {
+    public <T> Call requestPostByAsynWithForm(String actionUrl, HashMap<String, String> paramsMap, final ReqCallBack<T> callBack) {
         try {
             FormBody.Builder builder = new FormBody.Builder();
             for (String key : paramsMap.keySet()) {
@@ -234,7 +278,6 @@ public class RequestManager {
         }
         return null;
     }
-
 
 
     /**

@@ -137,7 +137,7 @@ public class ChangePhoneBindActvity1 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY.VERIFY_OLD_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY_TYPE.VERIFY_OLD_PHONE, callBack);
             }
         });
         btn_next.setOnClickListener(new View.OnClickListener() {

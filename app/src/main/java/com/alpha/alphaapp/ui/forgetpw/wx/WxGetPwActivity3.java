@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui.forgetpw.wx;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -11,12 +12,12 @@ import android.widget.TextView;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
+import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.bind.BindLogic;
 import com.alpha.alphaapp.model.resetpw.ResetPwLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
-import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -38,7 +39,7 @@ public class WxGetPwActivity3 extends BaseActivity {
     private String accont;
     private boolean isBind;
 
-    private CustomAlertDialog dialog;
+    private Dialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -54,8 +55,14 @@ public class WxGetPwActivity3 extends BaseActivity {
         aet_pw = (AccountEditText) findViewById(R.id.wx_getpw3_aet_pw);
         tv_error = (TextView) findViewById(R.id.wx_getpw3_tv_error);
         btn_submit = (Button) findViewById(R.id.wx_getpw3_btn_submit);
-        dialog = new CustomAlertDialog(this);
-        dialog.setCancelable(false);
+
+        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success_msg, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.actionStartClearStack(WxGetPwActivity3.this, null, null);
+            }
+        });
+
     }
 
     @Override
@@ -104,12 +111,7 @@ public class WxGetPwActivity3 extends BaseActivity {
 
 
         });
-        dialog.setPositiveButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginActivity.actionStartClearStack(WxGetPwActivity3.this, null, null);
-            }
-        });
+
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.alpha.alphaapp.comm;
 
+import com.alpha.lib_sdk.BuildConfig;
+
 /**
  * Created by kenway on 17/5/23 17:20
  * Email : xiaokai090704@126.com
@@ -9,7 +11,27 @@ package com.alpha.alphaapp.comm;
 
 public class URLConstans {
 
+    //release
+
+    //private static  String URL_ROOT = "Http://openapi.gdalpha.com:9998/user/";
+    //debug
+
     private static final String URL_ROOT = "Http://passport.gdalpha.com:9998/user/";
+
+    //内网测试url,为了测试激活记录中有product_id
+//    private static final String URL_ROOT = "http://192.168.199.102:8089/user/";
+
+//    private static String URL_ROOT;
+//
+//    {
+//        if (true) {
+//            //debug
+//            URL_ROOT = "Http://passport.gdalpha.com:9998/user/";
+//        } else {
+//            //release
+//            URL_ROOT = "Http://openapi.gdalpha.com:9998/user/";
+//        }
+//    }
 
     /**
      * 获取省、市、县的url
@@ -57,6 +79,24 @@ public class URLConstans {
          * 图片大小 300*300
          */
         String ICON300 = "http://cdn.gdalpha.com/icon/300/";
+    }
+
+    /**
+     * 三个产品的官网地址
+     */
+    public interface OFFICAL_WEB_URL {
+        /**
+         * 爆裂飞车官网
+         */
+        String TRANSFORM_CAR = "http://fc2.auldey.com";
+        /**
+         * 零速争霸
+         */
+        String SPEED = "http://z.auldey.com";
+        /**
+         * 超级飞侠
+         */
+        String SUPER_WAVING = "http://sw.auldey.com";
     }
 
     public interface URL {
@@ -116,6 +156,41 @@ public class URLConstans {
          * (N) 更换绑定手机号-绑定新手机号
          */
         String CHANGE_BING_PHONE_BIND_NEW_PHONE = URL_ROOT + "changeBindPhone2";
+        /**
+         * (O)绑定激活
+         */
+
+        String BIND_ACTIVE_CODE = URL_ROOT + "bindCode";
+
+        /**
+         * (P)检测激活码是否正确
+         */
+        String CHECTOUT_ACTIVIT_CODE = URL_ROOT + "checkCode";
+
+        /**
+         * (Q)渠道cdk检索
+         */
+        String CHANNER_CHECKOUT = URL_ROOT + "channelCheck";
+        /**
+         * (T)获取收货地址
+         */
+        String GET_SHIPPING_ADDR = URL_ROOT + "getAddress";
+        /**
+         * (U)添加收货地址
+         */
+        String ADD_SHIPING_ADDR = URL_ROOT + "addAddress";
+        /**
+         * (V)编辑收货地址
+         */
+        String EDIT_SHIPPING_ADDR = URL_ROOT + "editAddress";
+        /**
+         * (W)删除收货地址
+         */
+        String DEL_SHIPPING_ADDR = URL_ROOT + "delAddress";
+        /**
+         * (X)设置默认收货地址
+         */
+        String SET_DEFUALT_ADDR = URL_ROOT + "defaultAddress";
 
         /**
          * (Y)获取头像列表
@@ -125,11 +200,60 @@ public class URLConstans {
          * (Z) Modify the password by the phone
          */
         String MODIFY_PWD_BY_PHONE = URL_ROOT + "phoneEditPw";
-
+        /**
+         * (AA)获取用户积分信息
+         */
+        String GET_USER_SCORE_INFO = URL_ROOT + "getScoreInfo";
+        /**
+         * (AB)用户增加积分
+         */
+        String USER_ADD_SCORE = URL_ROOT + "addScore";
+        /**
+         * (AC)用户扣除积分
+         */
+        String USER_REDUCE_SCORE = URL_ROOT + "delScore";
         /**
          * (AF) 重置密码
          */
         String RESET_PW = URL_ROOT + "resetPw";
+
+        /**
+         * (AT)获取商品列表
+         */
+
+        String GET_GOODS_LIST = URL_ROOT + "goodsList";
+        /**
+         * (AS)兑换商品
+         */
+
+        String EXCHANGE_GOODS = URL_ROOT + "exchange";
+        /**
+         * (AU)获取商品详情
+         */
+        String GET_GOODS_DETAIL = URL_ROOT + "goodsDetail";
+
+        /**
+         * (AV)获取订单列表
+         */
+
+        String GET_ORDER_LIST = URL_ROOT + "orderList";
+
+        /**
+         * (AW)获取订单详情
+         */
+        String GET_ORDER_DETAIL = URL_ROOT + "orderDetail";
+        /**
+         * (BB)查询用户产品积分Log
+         */
+        String GET_SCORE_LOG = URL_ROOT + "getScoreLog";
+        /**
+         * (CI)用户中心签到
+         */
+        String SIGN = URL_ROOT + "sign";
+        /**
+         * (CJ)获取用户中心签到信息
+         */
+        String GET_SINGINFO = URL_ROOT + "getSignInfo";
     }
 
 

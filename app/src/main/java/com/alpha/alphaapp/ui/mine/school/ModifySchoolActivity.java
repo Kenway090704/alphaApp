@@ -7,10 +7,9 @@ import android.view.View;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
-import com.alpha.alphaapp.ui.mine.logic.bean.SchoolBean;
+import com.alpha.alphaapp.account.bean.SchoolBean;
 import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.mine.MineInfoActivity;
 import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.mine.logic.GetSchoolLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
@@ -99,8 +98,6 @@ public class ModifySchoolActivity extends BaseActivity {
                         logic_school.show();
                     }
                 }
-
-
             }
         });
     }

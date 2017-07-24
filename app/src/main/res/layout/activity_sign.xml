@@ -10,13 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:txt_title="@string/sign" />
+    <com.androidkun.xtablayout.XTabLayout
+        android:id="@+id/sign_tab_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:xTabMode="scrollable"
+        app:xTabTextSelectedBold="true"
+        app:xTabSelectedTextSize="16sp"
+        app:xTabTextAppearance="@style/MyTabLayoutTextAppearance"/>
 
-    <android.support.design.widget.TabLayout
+    <com.androidkun.xtablayout.XTabLayout
         android:id="@+id/sign_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="scrollable"
-        app:tabTextAppearance="@style/MyTabLayoutTextAppearance" />
+        app:xTabMode="scrollable"
+        app:xTabTextSelectedBold="true"
+        app:xTabSelectedTextSize="16sp"
+        app:xTabTextAppearance="@style/MyTabLayoutTextAppearance" />
 
 
     <View

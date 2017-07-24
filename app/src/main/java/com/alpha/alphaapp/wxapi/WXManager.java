@@ -15,6 +15,7 @@ import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
+import com.alpha.lib_sdk.app.tool.Util;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
@@ -72,7 +73,14 @@ public class WXManager {
      * @param code
      * @param resp
      */
-    public void getAccessToken(String code, final WxAccessTokenResp resp) {
+    public void getAccessToken(String code, final WxAccessTokenResp resp, String result) {
+        //如果code为null,则未收取成功
+        if (Util.isNullOrBlank(code)) {
+            if (wxcallBack != null) {
+                wxcallBack.onAuthFailed(result);
+            }
+            return;
+        }
         //网络请求获取WxAccessToken
         final StringBuilder sb = new StringBuilder();
         sb.append(URL_ACCESS_TOKEN).append("appid=")
@@ -103,7 +111,9 @@ public class WXManager {
 
             @Override
             public void onReqFailed(String errorMsg) {
-
+                if (wxcallBack != null) {
+                    wxcallBack.onAuthFailed(errorMsg);
+                }
             }
         };
         RequestManager.getInstance(ApplicationContext.getCurrentContext()).requestGetWXData(sb.toString(), callBack);
@@ -141,8 +151,6 @@ public class WXManager {
 
                 WxAccessTokenInfo wxAccessTokenInfo = WxAccessTokenInfo.getWxAccessTokenFromJsonStr(result);
                 resp.onSuccess(wxAccessTokenInfo);
-
-
             }
 
             @Override
@@ -154,21 +162,19 @@ public class WXManager {
     }
 
     /**
-     * 得到用户信息,暂时未使用到
-     *
-     * @param resp
+     * 得到用户信息
      */
-    public void getWxUserInfo(final WxAccessTokenResp resp) {
+    public void getWxUserInfo(WxAccessTokenInfo info) {
 
         StringBuilder sb = new StringBuilder();
         sb.append("https://api.weixin.qq.com/sns/userinfo?access_token=")
-                .append(MyApplication.getIns().getWxAccessTokenInfo().access_token)
+                .append(MyApplication.getIns().getWxAccessTokenInfo().getAccess_token())
                 .append("&openid=")
                 .append(MyApplication.getIns().getWxAccessTokenInfo().getOpenId());
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
-
+                Log.e(TAG, "wx_info==" + result);
                 //如果返回错误的时候则不可以执行
 //                WxAccessTokenInfo wxAccessTokenInfo = WxAccessTokenInfo.getWxAccessTokenFromJsonStr(result);
 //                resp.onSuccess(wxAccessTokenInfo);

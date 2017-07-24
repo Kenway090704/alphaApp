@@ -13,7 +13,9 @@ import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.forgetpw.phone.PhoneGetPwActivity1;
 import com.alpha.alphaapp.ui.forgetpw.wx.hasregister.WxGetPwActivityHasRegister1;
 import com.alpha.alphaapp.ui.forgetpw.wx.noregister.WxGetPwActivityNoRegister1;
+import com.alpha.alphaapp.ui.login.wx.WxAuthLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
+import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.alphaapp.wxapi.WXManager;
 import com.alpha.alphaapp.wxapi.WechatAuthCallBack;
 import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
@@ -65,9 +67,8 @@ public class ForgetPWGuideActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //拉起微信,获取openid,然后判断进入哪个页面
-                checkAccountIsHas("AFGHR938862");
                 //正式版的时候
-//                getWxOpenid();
+                loginWxAuth();
             }
         });
     }
@@ -96,40 +97,46 @@ public class ForgetPWGuideActivity extends BaseActivity {
         CheckAccoutLogic.checkAccountIsHas(wx_openid, TypeConstants.ACCOUNT_TYPE.AUTH_WECHAT, listener);
     }
 
+
     /**
      * 微信授权登录
      */
-    private void getWxOpenid() {
-        if (WXManager.instance().isWXAppInstalled()) {
-            final SendAuth.Req req = new SendAuth.Req();
-            req.scope = "snsapi_userinfo";
-            req.state = "wechat_sdk_demo";
-            WechatAuthCallBack callBack = new WechatAuthCallBack() {
+    public void loginWxAuth() {
 
-                @Override
-                public void onAuthSuccess(WxAccessTokenInfo info) {
-                    jumpWxgetPw(info);
+        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
+
+        //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册
+        WxAuthLogic.OnWxAuthCallBack callBack = new WxAuthLogic.OnWxAuthCallBack() {
+            @Override
+            public void onAuthSuccessed(String openid, String nickname) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                    loadingDialog.dismiss();
                 }
+                ToastUtils.showLong(ForgetPWGuideActivity.this, "你好," + nickname);
+                jumpWxgetPw(openid);
+            }
 
-                @Override
-                public void onAuthFailed(String errmsg) {
-
+            @Override
+            public void onAuthFailed(String failedMsg) {
+                ToastUtils.showShort(ForgetPWGuideActivity.this, failedMsg);
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                    loadingDialog.dismiss();
                 }
-            };
-            //拉起微信授权，授权结果在WXEntryActivity中接收处理
-            WXManager.instance().sendReq(req, callBack);
-        } else {
-            ToastUtils.showShort(ForgetPWGuideActivity.this, R.string.wechat_not_installed);
-        }
+            }
+        };
+        WxAuthLogic.getInstance().doWxAuth(callBack);
     }
+
 
     /**
      * 得到wx openid 并进入找回密码页面
      */
-    private void jumpWxgetPw(WxAccessTokenInfo info) {
-        String wxopenid = info.getOpenId();
-        if (!Util.isNullOrBlank(wxopenid)) {
-            checkAccountIsHas(wxopenid);
+    private void jumpWxgetPw(String openid) {
+
+        if (!Util.isNullOrBlank(openid)) {
+            checkAccountIsHas(openid);
         }
 
     }

@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui.bind.phone.change;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -11,13 +12,13 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.comm.TypeConstants;
+import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.changebindphone.ChangeBindPhoneLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.alphaapp.ui.widget.OneTwoThreeItemView;
-import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
@@ -38,7 +39,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
     private TextView tv_error;
     private Button btn_bind;
 
-    private CustomAlertDialog dialog;
+    private Dialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -53,9 +54,16 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
         ivet = (InputVerifyEditText) findViewById(R.id.change_phone_bind_2_ivet);
         tv_error = (TextView) findViewById(R.id.change_phone_bind_2_tv_error);
         btn_bind = (Button) findViewById(R.id.change_phone_bind_2_btn_bind);
-        dialog = new CustomAlertDialog(this);
-        dialog.setTxtMsg(R.string.bind_success_plz_phone_login);
-        dialog.setCancelable(false);
+
+        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.bind_success_plz_phone_login, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Util.isNull(dialog) && dialog.isShowing())
+                    dialog.dismiss();
+                //进入登录界面
+                LoginActivity.actionStartClearStack(ChangePhoneBindActvity2.this, null, null);
+            }
+        });
 
     }
 
@@ -147,7 +155,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                         tv_error.setVisibility(View.VISIBLE);
                     }
                 };
-                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY.BIND_NEW_PHONE, callBack);
+                GetPhoneVerifyLogic.doGetPhoneVerify(et_phone.getEditTextStr(), TypeConstants.GET_VERIFY_TYPE.BIND_NEW_PHONE, callBack);
             }
         });
         btn_bind.setOnClickListener(new View.OnClickListener() {
@@ -182,15 +190,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
                 ChangeBindPhoneLogic.doBindNewPhone(sskey, et_phone.getEditTextStr(), ivet.getEditTextStr(), callBack);
             }
         });
-        dialog.setPositiveButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!Util.isNull(dialog) && dialog.isShowing())
-                    dialog.dismiss();
-                //进入登录界面
-                LoginActivity.actionStartClearStack(ChangePhoneBindActvity2.this, null, null);
-            }
-        });
+
     }
 
     public static void actionStart(Context context, String data1, String data2) {

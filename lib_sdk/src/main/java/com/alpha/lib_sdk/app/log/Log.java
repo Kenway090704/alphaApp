@@ -86,6 +86,16 @@ public  class Log {
     }
 
     /**
+     * @param tag
+     * @param format
+     * @param args
+     */
+    public static void a(String tag, String format, Object... args) {
+        sLogPrinter.printLog(ASSERT, tag, format, args);
+    }
+
+
+    /**
      * @param priority
      * @param tag
      * @param format

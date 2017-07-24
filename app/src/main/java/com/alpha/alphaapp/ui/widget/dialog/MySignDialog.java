@@ -26,7 +26,6 @@ public class MySignDialog extends Dialog {
         super(context, themeResId);
         setContentView(R.layout.dialog_my_sign);
         btn_ikown = (Button) findViewById(R.id.dialog_my_sign_btn_ikown);
-
         btn_ikown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -308,6 +308,180 @@ public class CommStants {
     }
 
     /**
+     * (O)绑定激活码
+     */
+    public interface BIND_ACTIVE_CODE_RESULT {
+        /**
+         * 绑定成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 绑定成功,有产品积分等数据
+         */
+        int RESULT_OK_HAS_SCORE = 0;
+        /**
+         * 激活失败
+         */
+        int ACTIVE_FAILED = 301;
+        /**
+         * 激活码错误
+         */
+        int ACTIVE_ERROR = 302;
+        /**
+         * 渠道错误
+         */
+        int CHANNER_ERROR = 303;
+        /**
+         * 激活码未生效
+         */
+        int ACTIVE_INVALID = 304;
+        /**
+         * 激活码已过期
+         */
+        int ACTIVIE_POST_DUE = 305;
+        /**
+         * 只能激活一个激活码
+         */
+        int ONLY_ACTIVE_ONE_CODE = 306;
+        /**
+         * 你已经激活过该激活码了
+         */
+        int YOU_ACTIVIE_THE_CODE = 307;
+        /**
+         * 该激活码已经被激活
+         */
+        int ACTIVIE_HAD_ACTIVIED = 308;
+        /**
+         * 超过激活码可激活次数
+         */
+        int MORE_THAN_CODE_TIME = 309;
+        /**
+         * 数据错误,激活失败1
+         */
+        int DATA_ERROR_1 = 310;
+        /**
+         * 数据错误,激活失败2
+         */
+        int DATA_ERROR_2 = 326;
+        /**
+         * 数据错误,激活失败3
+         */
+        int DATA_ERROR_3 = 327;
+        /**
+         * 错误次数太多,请60min后再试
+         */
+        int ERROR_TOO_MUCH = 328;
+    }
+
+    /**
+     * (P)检测激活码是否正确
+     */
+
+    public interface CHECKOUT_ACTIVE_CODE_RESULT {
+        /**
+         * 激活码正确
+         */
+        int RESULT_OK = 0;
+        /**
+         * 错误次数太多,请60min后再试
+         */
+        int ERROR_TOO_MUCH = 328;
+
+        /**
+         * 激活码错误
+         */
+        int ACTIVE_CODE_ERROR = 329;
+
+    }
+
+    /**
+     * (Q)渠道cdk检索
+     */
+    public interface CHANNEL_CDK_CHECKOUT_RESULT {
+        /**
+         *
+         */
+        int RESULT_OK = 0;
+
+        /**
+         * 输入参数错误
+         */
+        int PARAMS_ERROR = 1;
+    }
+
+    /**
+     * (T)获取收货地址
+     */
+    public interface GET_SHIPPING_ADDR_RESULT {
+        /**
+         * 获取成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int PLZ_RELOGIN = 1;
+    }
+
+    /**
+     * (U)添加收货地址
+     */
+    public interface ADD_SHIPPING_ADDR_RESULT {
+        /**
+         * 添加成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int PLZ_RELOGIN = 1;
+
+    }
+
+    /**
+     * (V)编辑收货地址
+     */
+    public interface EDIT_SHIPPING_ADDR_RESULT {
+        /**
+         * 编辑成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int PLZ_RELOGIN = 1;
+    }
+
+    /**
+     * (W)删除收货地址
+     */
+    public interface DEL_SHIPPING_ADDR_RESULT {
+        /**
+         * 删除成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int PLZ_RELOGIN = 1;
+    }
+
+    /**
+     * (X)设置默认收货地址
+     */
+    public interface SET_DEFAULT_ADDR_RESULT {
+        /**
+         * 设置成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请重新登录
+         */
+        int PLZ_RELOGIN = 1;
+    }
+
+
+    /**
      * (Y)获取头像列表
      */
     public interface GET_ICON_LIST_RESULT {
@@ -334,6 +508,20 @@ public class CommStants {
     }
 
     /**
+     * (AA)获取用户积分信息
+     */
+    public interface GET_USER_SCORE_INFO_RESULT {
+        /**
+         * 获取成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 重新登录
+         */
+        int PLZ_RELOGIN = 1;
+    }
+
+    /**
      * (AF)重置密码
      */
     public interface RESET_PW_RESULT {
@@ -345,6 +533,112 @@ public class CommStants {
          * 用户不存在
          */
         int RESULT_ACCOUNT_NOHAD = 1;
+    }
+
+    /**
+     * (AS)兑换商品
+     */
+    public interface EXCHANGE_PRODUCT_RESULT {
+        /**
+         * 兑换成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 用户积分不足
+         */
+        int USER_NO_ENOUGH_SCORE = 334;
+        /**
+         * 兑换失败
+         */
+        int RESULT_FAILED = 337;
+        /**
+         * 库存不足
+         */
+        int STORGE_INSUFFICIENT = 339;
+        /**
+         * 超过最大兑换次数
+         */
+        int MORE_THAN_MAX_COUNT = 340;
+        /**
+         * 超过今天最大兑换次数
+         */
+        int MORE_THAN_TODAY_MAX_COUNT = 341;
+    }
+
+    /**
+     * (AT)获取商品列表
+     */
+    public interface GET_GOODS_LIST_RESULT {
+        /**
+         * 获取列表成功
+         */
+        int RESULT_OK = 0;
+    }
+
+    /**
+     * (AU)获取商品详情
+     */
+    public interface GET_GOODS_DETAIL_RESULT {
+        /**
+         * 获取商品详情成功
+         */
+        int RESULT_OK = 0;
+
+        /**
+         * 商品不成功
+         */
+        int RESULT_NO_HAD = 338;
+    }
+
+    /**
+     * (AV)获取订单列表
+     */
+    public interface GET_ORDER_LIST_RESULT {
+        int RESULT_OK = 0;
+    }
+
+    /**
+     * (AW)获取订单列表
+     */
+    public interface GET_ORDER_DETAIL_RESULT {
+
+        int RESULT_OK = 0;
+
+    }
+
+    /**
+     * (BB)查询用户产品积分Log
+     */
+    public interface GET_SCORE_LOG_RESULT {
+        /**
+         * 查询成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 用户不存在
+         */
+        int USER_NO_HAD = 1;
+    }
+
+    /**
+     * (CI)用户中心签到
+     */
+    public interface SIGN_RESULT {
+        /**
+         * 签到成功
+         */
+        int RESULT_OK = 0;
+        /**
+         * 请明天再来吧
+         */
+        int RESULT_PLZ_TOMORROW = 345;
+    }
+
+    /**
+     * (CJ)获取用户中心签到信息
+     */
+    public interface GET_SIGNINFO_RESULT {
+        int RESULT_OK = 0;
     }
 
 }

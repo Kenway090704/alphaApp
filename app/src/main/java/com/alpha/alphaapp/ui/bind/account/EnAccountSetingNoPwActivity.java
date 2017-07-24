@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui.bind.account;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -10,12 +11,11 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.setenaccount.SetEnAccountLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.set.AccountSecurityActivity;
-import com.alpha.alphaapp.ui.widget.dialog.CustomAlertDialog;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -32,7 +32,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
     private AccountEditText aet_account, aet_pw;
     private TextView tv_error;
     private Button btn_save;
-    private CustomAlertDialog dialog;
+    private Dialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -46,8 +46,15 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
         aet_pw = (AccountEditText) findViewById(R.id.set_acc_nopw_aet_pw);
         tv_error = (TextView) findViewById(R.id.set_acc_nopw_tv_error);
         btn_save = (Button) findViewById(R.id.set_acc_nopw_btn_save);
-        dialog = new CustomAlertDialog(this);
-        dialog.setTxtMsg(R.string.set_en_account_sucess_use_account_login);
+        dialog = DialogUtils.createSingleChoiceDialog(this, R.string.set_en_account_sucess_use_account_login, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Util.isNull(dialog) && dialog.isShowing())
+                    dialog.dismiss();
+                AccountSecurityActivity.actionStar(EnAccountSetingNoPwActivity.this, null, null);
+            }
+        });
+
     }
 
     @Override
@@ -153,15 +160,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
                 SetEnAccountLogic.doSetEnAccountForNoPw(sskey, account, pw, callBack);
             }
         });
-        dialog.setPositiveButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!Util.isNull(dialog))
-                    dialog.dismiss();
-                AccountSecurityActivity.actionStar(EnAccountSetingNoPwActivity.this, null, null);
 
-            }
-        });
     }
 
     public static void actionStart(Context context, String data1, String data2) {

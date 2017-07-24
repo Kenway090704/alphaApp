@@ -43,12 +43,10 @@ public class ModifyContactAddrActivity extends BaseActivity {
     private LinearLayout layout;
     private EditText et_detail;
     private ImageView iv_del;
-
     /**
      * 地区选中器
      */
     private GetPCityAreaLogic logic_pca;
-
 
     @Override
     protected int getLayoutId() {
@@ -64,7 +62,8 @@ public class ModifyContactAddrActivity extends BaseActivity {
         et_detail = (EditText) findViewById(R.id.mod_contact_addr_et_detail);
         iv_del = (ImageView) findViewById(R.id.mod_contact_addr_et_detail_iv_del);
         logic_pca = new GetPCityAreaLogic(this);
-
+//        miiv_pca.setMsg();
+//        miiv_street.setMsg();
     }
 
     @Override
@@ -97,7 +96,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
                 if (!Util.isNullOrBlank(miiv_pca.getMsg())) {
                     layout.setVisibility(View.VISIBLE);
                 } else {
-                    ToastUtils.showShort(ModifyContactAddrActivity.this, "请先选中省市区");
+                    ToastUtils.showShort(ModifyContactAddrActivity.this, "请先选者省市区");
                 }
 
             }
@@ -189,10 +188,13 @@ public class ModifyContactAddrActivity extends BaseActivity {
                     // 将信息提交修改信息
                     miiv_street.setMsg(et_detail.getText().toString());
                     //保存该数据为用户的通信地址,如果信息与填写的内容相同,则不修改
-                    String  addr=miiv_pca.getMsg() + miiv_street.getMsg();
-                    UserInfo userInfo = AccountManager.getInstance().getUserInfo();
-                    if (!Util.isNullOrBlank(miiv_street.getMsg()) && (addr.equals(userInfo.getContact_addr())))
+                    String addr = miiv_pca.getMsg() + miiv_street.getMsg();
+                    //地址是否与当前地址相同
+                    boolean isSame = addr.equals(AccountManager.getInstance().getUserInfo().getContact_addr());
+                    if (!Util.isNullOrBlank(miiv_street.getMsg()) && !isSame) {
                         doModifyContactAddr(addr);
+                    }
+
                 }
         }
         return super.onTouchEvent(event);

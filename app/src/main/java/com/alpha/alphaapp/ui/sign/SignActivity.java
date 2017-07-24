@@ -4,23 +4,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
+import com.alpha.alphaapp.account.SignInfo;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.alpha.alphaapp.model.geticons.GetIconListLogic;
+import com.alpha.alphaapp.model.sign.SignLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.sign.adapter.LayoutVPAdapter;
-import com.alpha.alphaapp.ui.sign.adapter.SignRecylcerAdapter;
+import com.alpha.alphaapp.ui.sign.adapter.SpacesItemDecoration;
+import com.alpha.alphaapp.ui.sign.adapter.StaggerRecylcerAdapter;
 import com.alpha.alphaapp.ui.widget.dialog.SignDialog;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
+import com.androidkun.xtablayout.XTabLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,14 +40,19 @@ import java.util.Map;
  * 签到页面
  */
 
-public class SignActivity extends BaseActivity {
-    private static final String TAG = "SignActivity";
-
-    private TabLayout tab;
+public class SignActivity extends BaseFragmentActivity {
+    private static final String TAG = "StaggerActivity";
+    private XTabLayout tab_1,tab_2;
     private ViewPager vp;
     private Button btn_sign;
 
     private Map<String, Boolean> map;
+    //保存图片的高度
+    private Map<String, Integer> map_heights;
+
+    //保存四个RecyclerView 的adapter
+
+    private List<StaggerRecylcerAdapter> adapters;
 
     private SignDialog signDialog;
 
@@ -51,15 +63,18 @@ public class SignActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        tab = (TabLayout) findViewById(R.id.sign_tablayout);
+        tab_1 = (XTabLayout) findViewById(R.id.sign_tab_1);
+        tab_2 = (XTabLayout) findViewById(R.id.sign_tablayout);
         vp = (ViewPager) findViewById(R.id.sign_vp);
         btn_sign = (Button) findViewById(R.id.sign_btn_sign);
         signDialog = new SignDialog(this);
 
     }
+
     @Override
     public void initData() {
         map = new HashMap<>();
+        map_heights = new HashMap<>();
         initTabs();
         initVps();
 
@@ -74,6 +89,7 @@ public class SignActivity extends BaseActivity {
 
     /**
      * 模拟获取图片后的签到,这个模拟的
+     *
      * @param context
      */
     private void getIconList(final Context context) {
@@ -81,20 +97,44 @@ public class SignActivity extends BaseActivity {
             @Override
             public void onGetIconListSuccuss(String baseUrl, List<GetIconBean.IconListBean.CategoryBean> list) {
                 List<LinearLayout> layouts = new ArrayList<>();
+                //所有RecyclerView的Adapter
+                adapters = new ArrayList<>();
                 for (int i = 0; i < 4; i++) {
-                    LinearLayout layout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.widget_sign_item,null);
+                    //======创建ViewPager中的每一个界面=======//
+                    final LinearLayout layout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.widget_sign_item, null);
                     RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.sign_item_recyclerView);
-                    recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-                    SignRecylcerAdapter adapter = new SignRecylcerAdapter(context, list.get(i), map);
+                    //设置瀑布流LayoutManager
+                    final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                    //RecyclerView滑动过程中不断请求layout的Request，不断调整item见的间隙，并且是在item尺寸显示前预处理，因此解决RecyclerView滑动到顶部时仍会出现移动问题
+//                    layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setPadding(0, 0, 0, 0);
+
+                    //RecyclerView的Adapter
+                    StaggerRecylcerAdapter adapter = new StaggerRecylcerAdapter(context, list.get(i), map, map_heights);
                     recyclerView.setAdapter(adapter);
+
+                    //设置item之间的间隔
+                    SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+                    recyclerView.addItemDecoration(decoration);
                     layouts.add(layout);
+                    adapters.add(adapter);
                     //遍历每一个图片的名字
                     for (int j = 0; j < list.get(i).getIcons().size(); j++) {
                         map.put(list.get(i).getIcons().get(j), false);
+                        int random_height;
+//                        if (j == 0 || j == 1) {
+//                            random_height = 200;
+//                        } else {
+                        random_height = (int) (100 + Math.random() * 400);
+//                        }
+                        map_heights.put(list.get(i).getIcons().get(j), random_height);
                     }
                 }
                 LayoutVPAdapter adapter = new LayoutVPAdapter(layouts);
                 vp.setAdapter(adapter);
+
 
             }
 
@@ -110,28 +150,32 @@ public class SignActivity extends BaseActivity {
      * 初始化标题参数
      */
     private void initTabs() {
-        tab.addTab(tab.newTab().setText("零速争霸"));
-        tab.addTab(tab.newTab().setText("爆裂飞车"));
-        tab.addTab(tab.newTab().setText("超级飞侠"));
-        tab.addTab(tab.newTab().setText("喜羊羊与灰太郎"));
+        tab_1.addTab(tab_1.newTab().setText("零速争霸"));
+        tab_1.addTab(tab_1.newTab().setText("超级飞侠"));
+
+
+        tab_2.addTab(tab_2.newTab().setText("零速争霸"));
+        tab_2.addTab(tab_2.newTab().setText("爆裂飞车"));
+        tab_2.addTab(tab_2.newTab().setText("超级飞侠"));
+        tab_2.addTab(tab_2.newTab().setText("喜羊羊与灰太郎"));
     }
 
     @Override
     protected void initListener() {
-        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+        tab_2.setOnTabSelectedListener(new XTabLayout.OnTabSelectedListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
+            public void onTabSelected(XTabLayout.Tab tab) {
                 vp.setCurrentItem(tab.getPosition());
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
+            public void onTabUnselected(XTabLayout.Tab tab) {
 
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onTabReselected(XTabLayout.Tab tab) {
 
             }
         });
@@ -144,8 +188,8 @@ public class SignActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                TabLayout.Tab tablayout = tab.getTabAt(position );
-                if (!Util.isNull(tab))
+                XTabLayout.Tab tablayout = tab_2.getTabAt(position);
+                if (!Util.isNull(tablayout))
                     tablayout.select();
 
             }
@@ -162,6 +206,18 @@ public class SignActivity extends BaseActivity {
                     //map.keySet()返回的是所有key的值
                     Boolean isSelect = map.get(str);//得到每个key对应value的值
                     if (isSelect) {
+                        SignLogic.OnGetSignInfoCallBack callBack = new SignLogic.OnGetSignInfoCallBack() {
+                            @Override
+                            public void onGetSignInfoSuccessed(SignInfo info) {
+
+                            }
+
+                            @Override
+                            public void onGetSignInfoFailed(String failMsg) {
+
+                            }
+                        };
+                        SignLogic.doGetSignInfo(callBack);
                         if (!Util.isNull(signDialog)) {
                             signDialog.setSignIcon(URLConstans.GET_ICON.ICON100 + str);
                             signDialog.show();
@@ -178,13 +234,6 @@ public class SignActivity extends BaseActivity {
 
             }
         });
-        signDialog.setBtnLookOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 
     }
 
@@ -201,5 +250,9 @@ public class SignActivity extends BaseActivity {
             signDialog.dismiss();
             //进入到查看记录页面
         }
+    }
+
+    public List<StaggerRecylcerAdapter> getListAdapters() {
+        return adapters;
     }
 }

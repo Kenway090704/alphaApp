@@ -2,34 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
     android:background="@drawable/shape_et_bg_gray"
     android:orientation="horizontal"
-    android:padding="7dp">
+    android:padding="10dp">
 
     <ImageView
-        android:id="@+id/mypw_edit_iv_lock"
+        android:id="@+id/acc_edit_iv_lock"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="center"
         android:src="@drawable/icon_user" />
 
     <EditText
-        android:id="@+id/mypw_edit_et_hint"
+        android:id="@+id/acc_edit_et_hint"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_weight="1"
         android:background="@null"
+        android:singleLine="true"
         android:gravity="center_vertical"
         android:maxLength="30"
-        android:singleLine="true"
+        android:maxLines="1"
         android:textColor="@color/tv_black"
         android:textSize="14sp" />
 
     <ImageView
-        android:id="@+id/mypw_edit_iv_del"
+        android:id="@+id/acc_edit_iv_del"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_gravity="center"

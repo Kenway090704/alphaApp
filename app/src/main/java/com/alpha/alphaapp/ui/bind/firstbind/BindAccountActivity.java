@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
 import com.alpha.alphaapp.ui.HomeActivity;
+import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.tool.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +31,18 @@ import java.util.List;
 
 public class BindAccountActivity extends BaseFragmentActivity {
     private static final String TAG = "BindAccountActivity";
-    private String sskey;
+
     private ViewPager vp;
     private TabLayout tabLayout;
-    private TextView tv;
     private List<Fragment> fragmentList;
+    private String openid;
+    private int loginType;
 
     @Override
     protected int getLayoutId() {
-        sskey = getIntent().getStringExtra("sskey");
+        openid = getIntent().getStringExtra("openid");
+        loginType = getIntent().getIntExtra("loginType", -1);
+        Log.e(TAG, "openid==" + openid + ",loginType=" + loginType);
         return R.layout.activity_bind;
     }
 
@@ -46,7 +52,6 @@ public class BindAccountActivity extends BaseFragmentActivity {
 
         vp = (ViewPager) findViewById(R.id.bind_vp);
         tabLayout = (TabLayout) findViewById(R.id.bind_tablayout);
-        tv = (TextView) findViewById(R.id.bind_tv_no_bind);
     }
 
     @Override
@@ -98,7 +103,10 @@ public class BindAccountActivity extends BaseFragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                tabLayout.getTabAt(position % fragmentList.size()).select();
+              TabLayout.Tab tab= tabLayout.getTabAt(position % fragmentList.size());
+                if (!Util.isNull(tab)){
+                    tab.select();
+                }
             }
 
             @Override
@@ -107,19 +115,13 @@ public class BindAccountActivity extends BaseFragmentActivity {
             }
         });
 
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharePLoginInfo.getInstance(getApplicationContext()).saveIsBindAccount(false);
-                HomeActivity.actionStart(BindAccountActivity.this, null, null);
-            }
-        });
+
     }
 
-    public static void actionStart(Context context, String sskey, String data2) {
+    public static void actionStart(Context context, String openid, int loginType) {
         Intent intent = new Intent(context, BindAccountActivity.class);
-        intent.putExtra("sskey", sskey);
-        intent.putExtra("params", data2);
+        intent.putExtra("openid", openid);
+        intent.putExtra("loginType", loginType);
         context.startActivity(intent);
         if (context instanceof Activity) {
             ((Activity) context).finish();
@@ -127,8 +129,13 @@ public class BindAccountActivity extends BaseFragmentActivity {
 
     }
 
-    public String getSskey() {
-        return sskey;
+    public String getOpenid() {
+        return openid;
     }
+
+    public int getLoginType() {
+        return loginType;
+    }
+
 
 }

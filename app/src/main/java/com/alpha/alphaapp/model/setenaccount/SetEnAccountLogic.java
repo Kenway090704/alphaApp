@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.setenaccount;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
@@ -73,7 +73,7 @@ public class SetEnAccountLogic {
     public static void doSetEnAccountForHasPw(String sskey, String phone, final SetEnAccountCallBack back) {
 
         String data = getJsonStrSetEnAccuontForHasPw(sskey, phone);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -119,7 +119,7 @@ public class SetEnAccountLogic {
      */
     public static void doSetEnAccountForNoPw(String sskey, String phone, String pw, final SetEnAccountCallBack back) {
         String data = getJsonStrSetEnAccuontForNoPw(sskey, phone, pw);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

@@ -15,11 +15,11 @@
         android:src="@drawable/launcher" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:layout_weight="1"
+
         android:gravity="center"
         android:orientation="vertical">
 
@@ -53,7 +53,7 @@
             android:textSize="12sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
@@ -63,22 +63,25 @@
                 android:id="@+id/dialog_sign_btn_ikown"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
-                android:layout_weight="1.79"
+                android:layout_weight="1"
                 android:background="@drawable/shape_dialog_btn_bg"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:text="@string/i_kown"
                 android:textSize="10sp" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
 
             <Button
                 android:id="@+id/dialog_sign_btn_look"
                 android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="24dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1.61"
                 android:background="@drawable/shape_dialog_btn_bg"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:text="@string/look_out_sign_record"
                 android:textSize="10sp" />
         </LinearLayout>

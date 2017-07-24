@@ -3,9 +3,13 @@ package com.alpha.alphaapp.ui.mine.adapter;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -51,5 +55,8 @@ public class IconListVPAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView(recyclerViews.get(position));
     }
+
+
+
 
 }

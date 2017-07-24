@@ -3,9 +3,9 @@ package com.alpha.alphaapp.ui.mine.logic;
 import android.content.Context;
 
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.ui.mine.logic.bean.AreaBean;
-import com.alpha.alphaapp.ui.mine.logic.bean.CityBean;
-import com.alpha.alphaapp.ui.mine.logic.bean.ProviceBean;
+import com.alpha.alphaapp.account.bean.AreaBean;
+import com.alpha.alphaapp.account.bean.CityBean;
+import com.alpha.alphaapp.account.bean.ProviceBean;
 import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -68,7 +68,8 @@ public class GetPCityAreaData {
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
-                List<ProviceBean> provinces = ProviceBean.arrayProvieBeanFromJson(result);
+//                List<ProviceBean> provinces = ProviceBean.arrayProvieBeanFromJson(result);
+                List<ProviceBean> provinces = ProviceBean.parseData(result);
 
                 for (int i = 0; i < provinces.size(); i++) {
                     String province = provinces.get(i).getProvince();

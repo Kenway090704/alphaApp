@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hint="@string/pw_form"
+        app:input_type="password"
         app:icon_type="@drawable/icon_lock" />
 
     <TextView

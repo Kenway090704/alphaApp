@@ -1,17 +1,21 @@
 package com.alpha.alphaapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.login.LoginLogic;
-import com.alpha.alphaapp.sp.SharePLoginInfo;
 import com.alpha.alphaapp.ui.login.LoginActivity;
-import com.alpha.alphaapp.ui.register.RegisterGuideActivity;
+import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
+import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.version.UpdateVersionUtil;
 import com.alpha.lib_sdk.app.core.thread.ThreadPool;
+import com.alpha.lib_sdk.app.unitily.ApkUtils;
+import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 
 /**
@@ -21,14 +25,15 @@ import com.alpha.lib_sdk.app.core.thread.ThreadPool;
  */
 
 public class LaunchActivity extends AppCompatActivity {
+    private static final String TAG = "LaunchActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();//去掉标题栏
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.launcher);
-//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        setContentView(imageView);
+        setContentView(R.layout.activity_launch);
+        TextView tv = (TextView) findViewById(R.id.launch_tv);
+        tv.setText(ApkUtils.getVersionName(this));
         //判断最近的一次登录是什么登录,如果是有密码的登录,如果有直接登录,如果没有三秒后跳转到登录界面
         if (!LoginLogic.isAutoLogin(this)) {
             ThreadPool.post(new Runnable() {
@@ -38,5 +43,65 @@ public class LaunchActivity extends AppCompatActivity {
                 }
             }, 3000);
         }
+
+        //测试版本更新
+        Button btn_version = (Button) findViewById(R.id.launch_btn_version);
+        btn_version.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //本地测试是否有新版本发布
+                UpdateVersionUtil.doCheckVersionUpdate(LaunchActivity.this, null, false);
+            }
+        });
+
+
     }
+
+//    private void doCheckxUpdate() {
+//        UpdateVersionUtil.UpdateListener listener = new UpdateVersionUtil.UpdateListener() {
+//            @Override
+//            public void onUpdateReturned(int updateStatus, final VersionInfo info) {
+//                //判断回调过来的版本检测状态
+//                switch (updateStatus) {
+//                    case UpdateStatus.YES:
+//                        //弹出更新提示
+//                        UpdateVersionUtil.showDialog(LaunchActivity.this, info);
+//                        break;
+//                    case UpdateStatus.NO:
+//                        //没有新版本
+//                        ToastUtils.showToast(getApplicationContext(), "已经是最新版本了!");
+//                        break;
+//                    case UpdateStatus.NOWIFI:
+//                        //当前是非Wifi网络
+//                        ToastUtils.showToast(getApplicationContext(), "只有在wifi下更新");
+//                        UpdateVersionUtil.showDialog(LaunchActivity.this, info);
+////                                DialogUtils.showDialog(MainActivity.this, "温馨提示","当前非wifi网络,下载会消耗手机流量!", "确定", "取消",new DialogOnClickListenner() {
+////                              @Override
+////                              public void btnConfirmClick(Dialog dialog) {
+////                                  dialog.dismiss();
+////                                  //点击确定之后弹出更新对话框
+////                                  UpdateVersionUtil.showDialog(LaunchActivity.this,info);
+////                              }
+////
+////                              @Override
+////                              public void btnCancelClick(Dialog dialog) {
+////                                  dialog.dismiss();
+////                              }
+////                          });
+//                        break;
+//                    case UpdateStatus.ERROR:
+//                        //检测失败
+//                        ToastUtils.showToast(getApplicationContext(), "检测失败,请稍后重试!");
+//                        break;
+//                    case UpdateStatus.TIMEOUT:
+//                        //链接超时
+//                        ToastUtils.showToast(getApplicationContext(), "链接超时");
+//                        break;
+//
+//                }
+//            }
+//        };
+//
+//        UpdateVersionUtil.localCheckVersion(LaunchActivity.this, listener);
+//    }
 }

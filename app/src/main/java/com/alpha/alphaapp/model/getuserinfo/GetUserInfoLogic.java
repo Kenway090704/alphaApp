@@ -5,7 +5,7 @@ import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -42,7 +42,7 @@ public class GetUserInfoLogic {
      */
     public static void doGetUserInfo(String sskey, final OnGetUserInfoCallBack back) {
         String data = getJsonStrForGetUserInfo(sskey);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

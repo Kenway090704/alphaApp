@@ -8,7 +8,7 @@ import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
 import com.alpha.alphaapp.model.result.ResponseInfo;
@@ -249,9 +249,8 @@ public class LoginLogic {
             case TypeConstants.LOGIN_TYPE.AUTH_WX:
                 data = getJsonStrforWXAuth(account_openid);
                 break;
-
         }
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -260,7 +259,8 @@ public class LoginLogic {
 
             @Override
             public void onReqFailed(String errorMsg) {
-
+                if (!Util.isNull(loginListener))
+                    loginListener.onLoginFailed(errorMsg);
             }
         };
         RequestManager.getInstance(ApplicationContext.getCurrentContext()).requestPostByJsonAsyn(URLConstans.URL.LOGIN, json, callBack);
@@ -279,7 +279,10 @@ public class LoginLogic {
                 data = getJsonStrforAutophoneInAccount(account, pw);
                 break;
         }
-        String json = JsonUtil.getPostJsonSignString(data);
+        Log.e(TAG, "data==" + data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
+
+        Log.e(TAG, "json==" + json);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -304,6 +307,7 @@ public class LoginLogic {
      */
     private static void doDealLoginReqSuccess(String result, int loginType, String username, String pw, final OnLoginCallBack listener) {
         ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
+        if (Util.isNull(info)) return;
         switch (info.getResult()) {
             case CommStants.LOGIN_RESULT.RESULT_LOGIN_OK:
                 final ResponseInfo info2 = ResponseInfo.getRespInfoFromJsonStr(result, true);
@@ -332,7 +336,8 @@ public class LoginLogic {
 
                     @Override
                     public void onGetUserInfoFailed(String failMsg) {
-
+                        if (!Util.isNull(listener))
+                            listener.onLoginFailed("无法获取用户信息");
                     }
                 };
                 GetUserInfoLogic.doGetUserInfo(info2.getSskey(), callBack);
@@ -353,9 +358,13 @@ public class LoginLogic {
                 //帐号或者密码错误
                 if (!Util.isNull(listener))
 //                    listener.onLoginFailed(info.getMsg());
-                listener.onLoginFailed("帐号或者密码错误,请重新输入。");
+                    listener.onLoginFailed("帐号或者密码错误,请重新输入。");
                 break;
             case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
+                if (!Util.isNull(listener))
+                    listener.onLoginFailed(info.getMsg());
+                break;
+            default:
                 if (!Util.isNull(listener))
                     listener.onLoginFailed(info.getMsg());
                 break;

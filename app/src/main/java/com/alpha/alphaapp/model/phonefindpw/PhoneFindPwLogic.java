@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.phonefindpw;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
@@ -19,6 +19,9 @@ import com.alpha.lib_sdk.app.tool.Util;
  */
 
 public class PhoneFindPwLogic {
+
+    private static final String TAG = "PhoneFindPwLogic";
+
     /**
      * 用手机找回密码的字段
      *
@@ -41,6 +44,7 @@ public class PhoneFindPwLogic {
 
     /**
      * 通过手机修改密码
+     *
      * @param phone
      * @param pw
      * @param verify
@@ -48,10 +52,11 @@ public class PhoneFindPwLogic {
      */
     public static void doByPhoneFindPw(String phone, String pw, String verify, final OnByPhoneFindPwCallBack call) {
         String data = PhoneFindPwLogic.getJsonStrforPhoneFindPW(phone, verify, pw);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
+
                 dealReqSuccess(result, call);
             }
 
@@ -71,7 +76,7 @@ public class PhoneFindPwLogic {
      */
     private static void dealReqSuccess(String result, OnByPhoneFindPwCallBack callBack) {
         ResponseInfo info = ResponseInfo.getRespInfoFromJsonStr(result);
-        if (Util.isNull(info))return;
+        if (Util.isNull(info)) return;
         switch (info.getResult()) {
             case CommStants.BY_PHONE_FIND_PW.RESULT_OK:
                 if (!Util.isNull(callBack))
@@ -98,6 +103,10 @@ public class PhoneFindPwLogic {
                     callBack.onFindPwFailed(info.getMsg());
                 break;
             case CommStants.BY_PHONE_FIND_PW.RESULT_VERIFY_ERROR:
+                if (!Util.isNull(callBack))
+                    callBack.onFindPwFailed(info.getMsg());
+                break;
+            default:
                 if (!Util.isNull(callBack))
                     callBack.onFindPwFailed(info.getMsg());
                 break;

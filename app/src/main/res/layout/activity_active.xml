@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:txt_title="@string/active" />
+
+    <EditText
+        android:id="@+id/active_et_active_code"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:background="@drawable/shape_et_bg_gray"
+        android:hint="请输入激活码" />
+
+    <EditText
+        android:id="@+id/active_et_active_code_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:hint="请输入产品product_id(34,91,182)"
+        android:background="@drawable/shape_et_bg_gray" />
+
+    <Button
+        android:id="@+id/active_btn_active"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_btn_bg_blue"
+        android:text="@string/now_active" />
+</LinearLayout>

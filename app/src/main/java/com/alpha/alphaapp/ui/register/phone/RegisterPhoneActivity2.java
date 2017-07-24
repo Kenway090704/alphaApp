@@ -3,7 +3,6 @@ package com.alpha.alphaapp.ui.register.phone;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +10,9 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.StringUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -65,7 +63,7 @@ public class RegisterPhoneActivity2 extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(ivet.getText())) {
+                if (Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_setpw.setEnabled(Boolean.FALSE);
                     btn_setpw.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                     ivet.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -114,18 +112,18 @@ public class RegisterPhoneActivity2 extends BaseActivity {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.REGISTER, callBack);
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.REGISTER, callBack);
     }
 
     private void jumpNextActivity() {
-        if (!StringUtils.isPhoneVerify(ivet.getText().toString())) {
+        if (!StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
             //验证手机号和验证码格式是否正确
             tv_error.setText(R.string.verify_form_error);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
         //进入第三页
-        RegisterPhoneActivity3.actionStart(RegisterPhoneActivity2.this, phone, ivet.getText().toString());
+        RegisterPhoneActivity3.actionStart(RegisterPhoneActivity2.this, phone, ivet.getEditTextStr());
     }
 
     public static void actionStart(Context context, String phone) {
@@ -137,7 +135,7 @@ public class RegisterPhoneActivity2 extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (Util.isNull(ivet))
+        if (!Util.isNull(ivet))
             ivet.cancel();
     }
 

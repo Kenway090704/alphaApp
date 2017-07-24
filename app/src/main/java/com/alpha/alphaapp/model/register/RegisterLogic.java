@@ -3,7 +3,7 @@ package com.alpha.alphaapp.model.register;
 import com.alpha.alphaapp.comm.CommStants;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.lib_sdk.app.tool.JsonUtil;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.alpha.alphaapp.model.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
@@ -107,7 +107,7 @@ public class RegisterLogic {
     public static void doRegisterAccountPW(String account, String pw, final OnRegisterCallBack back) {
 
         String data = RegisterLogic.getJsonStrforAccount(account, pw);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         final ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -133,7 +133,7 @@ public class RegisterLogic {
      */
     public static void doRegisterPhone(String phone, String pw, String verify, final OnRegisterCallBack back) {
         String data = RegisterLogic.getJsonStrforPhone(phone, pw, verify);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         final ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -162,7 +162,7 @@ public class RegisterLogic {
     public static void doRegisterAuth(String openid, int accountType, final OnRegisterCallBack back) {
 
         String data = RegisterLogic.getJsonStrforAuth(openid, accountType);
-        String json = JsonUtil.getPostJsonSignString(data);
+        String json = JsonEncryptUtil.getPostJsonSignString(data);
         final ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {

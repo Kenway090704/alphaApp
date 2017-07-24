@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -35,10 +36,27 @@ public abstract class BaseActivity extends Activity {
         setContentView(getLayoutId());
         // 设置为横屏模式
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        StatusBarCompat.setStatusBarColor(this,getResources().getColor(R.color.colorPrimary),false);
+        setAlphaToolbar();
         initView();
         initData();
         initListener();
+    }
+
+    /**
+     * 设置全透明状态栏
+     */
+    private void setAlphaToolbar() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明状态栏
+//            View decorView = getWindow().getDecorView();
+//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            decorView.setSystemUiVisibility(option);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4 全透明状态栏
+//            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+//            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+//        }
+        StatusBarCompat.setStatusBarColor(this,getResources().getColor(R.color.colorPrimary),false);
     }
 
     @Override

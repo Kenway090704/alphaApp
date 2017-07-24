@@ -9,7 +9,7 @@ import android.util.Base64;
 
 public class Base64Util {
     /**
-     * 八色base64加密
+     * base64加密
      *
      * @param data
      * @return

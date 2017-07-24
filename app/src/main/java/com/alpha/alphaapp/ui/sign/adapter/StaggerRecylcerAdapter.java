@@ -16,10 +16,11 @@ import com.alpha.alphaapp.comm.URLConstans;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.alpha.alphaapp.ui.mine.school.SchoolListAdapter;
 import com.alpha.alphaapp.ui.sign.SignActivity;
+import com.alpha.lib_sdk.app.glide.ImageLoader;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
+
 
 import java.util.List;
 import java.util.Map;
@@ -69,7 +70,7 @@ public class StaggerRecylcerAdapter extends RecyclerView.Adapter<StaggerRecylcer
                     selectedIcon = icon;
                     holder.cb.setChecked(true);
                     holder.cb.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     holder.cb.setChecked(false);
                     holder.cb.setVisibility(View.GONE);
                 }
@@ -94,55 +95,70 @@ public class StaggerRecylcerAdapter extends RecyclerView.Adapter<StaggerRecylcer
 //                            当第一次进入的时候,没有任何一个选中,此时,如果点击图片,就将该图片设置为选中的图片
                         if (Util.isNullOrBlank(selectedIcon)) {
                             selectedIcon = list.get(position);
+                            holder.cb.setChecked(true);
+                            holder.cb.setVisibility(View.VISIBLE);
                         }
                         map.put(icon, true);
                     } else {
                         map.put(icon, false);
                     }
                 }
+                refreshChangeItem(position, holder);
 
-                //获取每一个Adapter,然后通知这些刷新界面
-                List<LinearLayout> layouts = LayoutVPAdapter.layouts;
-                List<StaggerRecylcerAdapter> adapters = ((SignActivity) context).getListAdapters();
-                //这个部分主要是修改当前可见页面的选中与未选中的切换,防止有"闪屏"
-                for (int k = 0; k < adapters.size(); k++) {
-                    if (StaggerRecylcerAdapter.this == adapters.get(k)) {
-                        RecyclerView recyclerView = (RecyclerView) layouts.get(k).findViewById(R.id.sign_item_recyclerView);
-                        for (int j = 0; j < list.size(); j++) {
-                            if (list.get(j).equals(selectedIcon)) {
-                                //获取上一个选中的Item    //利用 RecyclerView 的 findViewHolderForLayoutPosition()方法，获取某个postion的ViewHolder
-                                MyViewHolder viewHolder = (MyViewHolder) recyclerView.findViewHolderForLayoutPosition(j);
-                                if (viewHolder != null) {//还在屏幕里
-                                    //将上一个选中的变为未选中
-                                    Log.e(TAG, "selectedIcon==" + selectedIcon);
-                                    map.put(selectedIcon, false);
-                                    viewHolder.cb.setChecked(false);
-                                    viewHolder.cb.setVisibility(View.GONE);
-                                }else {
-                                    notifyItemChanged(j);
-                                }
-                                //将现在选中的变为选中
-                                selectedIcon = list.get(position);//更新选中项
-                                Log.e(TAG, "new selectedIcon==" + selectedIcon);
-                                map.put(list.get(position), true);
-                                holder.cb.setChecked(true);
-                                holder.cb.setVisibility(View.VISIBLE);
-                                break;
-                            }
-                        }
-                    } else {
-                        adapters.get(k).notifyDataSetChanged();
-                    }
 
-                }
             }
         });
+    }
+
+
+    /**
+     * 刷新指定的item
+     *
+     * @param position
+     * @param holder
+     */
+    private void refreshChangeItem(int position, MyViewHolder holder) {
+        //获取每一个Adapter,然后通知这些刷新界面
+        List<LinearLayout> layouts = LayoutVPAdapter.layouts;
+        List<StaggerRecylcerAdapter> adapters = ((SignActivity) context).getListAdapters();
+        //这个部分主要是修改当前可见页面的选中与未选中的切换,防止有"闪屏"
+        for (int k = 0; k < adapters.size(); k++) {
+            if (StaggerRecylcerAdapter.this == adapters.get(k)) {
+                RecyclerView recyclerView = (RecyclerView) layouts.get(k).findViewById(R.id.sign_item_recyclerView);
+                for (int j = 0; j < list.size(); j++) {
+                    if (list.get(j).equals(selectedIcon)) {
+                        //获取上一个选中的Item    //利用 RecyclerView 的 findViewHolderForLayoutPosition()方法，获取某个postion的ViewHolder
+                        MyViewHolder viewHolder = (MyViewHolder) recyclerView.findViewHolderForLayoutPosition(j);
+                        if (viewHolder != null) {//还在屏幕里
+                            //将上一个选中的变为未选中
+                            map.put(selectedIcon, false);
+                            viewHolder.cb.setChecked(false);
+                            viewHolder.cb.setVisibility(View.GONE);
+                        } else {
+                            //这一句代码导致item乱跳
+//                            notifyItemChanged(j);
+                        }
+                        //将现在选中的变为选中
+                        selectedIcon = list.get(position);//更新选中项
+                        Log.e(TAG, "new selectedIcon==" + selectedIcon);
+                        map.put(list.get(position), true);
+                        holder.cb.setChecked(true);
+                        holder.cb.setVisibility(View.VISIBLE);
+                        break;
+                    }
+                }
+            } else {
+                adapters.get(k).notifyDataSetChanged();
+            }
+
+        }
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView iv;
@@ -152,8 +168,6 @@ public class StaggerRecylcerAdapter extends RecyclerView.Adapter<StaggerRecylcer
             super(view);
             cb = (CheckBox) view.findViewById(R.id.item_recycler_cb);
             iv = (ImageView) view.findViewById(R.id.item_recycler_iv);
-
-
         }
 
         void setData(String icon, int height) {
@@ -167,8 +181,7 @@ public class StaggerRecylcerAdapter extends RecyclerView.Adapter<StaggerRecylcer
             params_cb.width = width / 2;
             params_cb.height = height + 2;
             cb.setLayoutParams(params_cb);
-            final RequestBuilder<Drawable> thumbnailRequest = Glide.with(context).load(R.drawable.launcher);
-            Glide.with(context).load(URLConstans.GET_ICON.ICON100 + icon).thumbnail(thumbnailRequest).into(iv);
+            ImageLoader.load(context, URLConstans.GET_ICON.ICON100 + icon, iv);
         }
     }
 }

@@ -84,6 +84,15 @@ public class AccountEditText extends LinearLayout {
         return et;
     }
 
+    /**
+     * 清楚输入框的文字
+     */
+    public void clear() {
+        if (!Util.isNull(et)) {
+            et.getText().clear();
+        }
+    }
+
 
     private void initViews() {
         View view = LayoutInflater.from(context).inflate(R.layout.widget_account_et, this);

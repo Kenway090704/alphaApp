@@ -122,6 +122,16 @@ public class InputVerifyEditText extends LinearLayout {
         tv_getVerify.setOnClickListener(listener);
     }
 
+
+
+    /**
+     * 清楚输入框的文字
+     */
+    public void clear() {
+        if (!Util.isNull(et)) {
+            et.getText().clear();
+        }
+    }
     public void start() {
         if (!Util.isNull(cmd))
             cmd.start();

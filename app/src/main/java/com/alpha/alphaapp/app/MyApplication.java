@@ -8,6 +8,7 @@ import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.app.EnvirenmentArgsHolder;
 import com.alpha.lib_sdk.app.crashhandler.CrashHandler;
+import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -17,10 +18,14 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
  */
 
 public class MyApplication extends Application {
+    /**
+     * 当前模式是否为debug
+     */
+    public static  final  boolean  isDebug=true;
     private static MyApplication ins;
     // wechat appid  app_sercet
-    public static final String WX_APP_ID = "wxc3d8450695643bfb";
-    public static final String WX_APP_SECRET = "wxc3d8450695643bfb";
+    public static final String WX_APP_ID = "wx6b2bf92fe1507d80";
+    public static final String WX_APP_SECRET = "b0edfec14306808b50a7412aeda39dbe";
     //wechat tokeninfo
     private WxAccessTokenInfo wxAccessTokenInfo;
 
@@ -39,7 +44,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        JsonEncryptUtil.context = this;
         //使上下文对象弱引用
         ApplicationContext.setApplication(this);
         EnvirenmentArgsHolder.setContext(this);

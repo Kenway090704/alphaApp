@@ -13,10 +13,9 @@
 
         <TextView
             android:id="@+id/mod_info_has_et_layout_one_tv_left"
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
+            android:layout_width="@dimen/left_item_width"
+            android:layout_marginLeft="@dimen/margin_item_left"
             android:gravity="center_vertical"
             android:textColor="@color/tv_black"
             android:textSize="12sp" />
@@ -25,9 +24,9 @@
             android:id="@+id/mod_info_has_et_layout_one_tv_msg"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="right"
             android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:textColor="@color/tv_black"
             android:textSize="12sp" />
 

@@ -1,5 +1,7 @@
 package com.alpha.lib_sdk.app.unitily;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 
@@ -11,82 +13,75 @@ import java.io.File;
  */
 
 public class SDCardUtils {
-    private SDCardUtils()
-    {
-        /* cannot be instantiated */
-        throw new UnsupportedOperationException("cannot be instantiated");
+    public static String getPath(){
+        return Environment.getExternalStorageDirectory().getAbsolutePath();
+    }
+    /**
+     * 获取SD卡的状态
+     * @return
+     */
+    public static String getState(){
+        return Environment.getExternalStorageState();
     }
 
     /**
-     * 判断SDCard是否可用
-     *
-     * @return
+     * SD卡是否可用
+     * @return 只有当SD卡已经安装并且准备好了才返回true
      */
-    public static boolean isSDCardEnable()
-    {
-        return Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED);
-
+    public static boolean isAvailable(){
+        return getState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
-     * 获取SD卡路径
-     *
-     * @return
+     * 获取SD卡的根目录
+     * @return null：不存在SD卡
      */
-    public static String getSDCardPath()
-    {
-        return Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator;
+    public static File getRootDirectory(){
+        return isAvailable()?Environment.getExternalStorageDirectory():null;
     }
 
     /**
-     * 获取SD卡的剩余容量 单位byte
-     *
-     * @return
+     * 获取SD卡的根路径
+     * @return null：不存在SD卡
      */
-    public static long getSDCardAllSize()
-    {
-        if (isSDCardEnable())
-        {
-            StatFs stat = new StatFs(getSDCardPath());
-            // 获取空闲的数据块的数量
-            long availableBlocks = (long) stat.getAvailableBlocks() - 4;
-            // 获取单个数据块的大小（byte）
-            long freeBlocks = stat.getAvailableBlocks();
-            return freeBlocks * availableBlocks;
+    public static String getRootPath(){
+        File rootDirectory = getRootDirectory();
+        return rootDirectory != null ?rootDirectory.getPath():null;
+    }
+
+    /**
+     * 获取SD卡总的容量
+     * @return 总容量；-1：SD卡不可用
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static long getTotalSize(){
+        if(isAvailable()){
+            StatFs statFs = new StatFs(getRootDirectory().getPath());
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1){
+                return statFs.getBlockCount() * statFs.getBlockSize();
+            }else{
+                return statFs.getBlockCount() * statFs.getBlockSize();
+            }
+        }else{
+            return -1;
         }
-        return 0;
     }
 
     /**
-     * 获取指定路径所在空间的剩余可用容量字节数，单位byte
-     *
-     * @param filePath
-     * @return 容量字节 SDCard可用空间，内部存储可用空间
+     * 获取SD卡中可用的容量
+     * @return 可用的容量；-1：SD卡不可用
      */
-    public static long getFreeBytes(String filePath)
-    {
-        // 如果是sd卡的下的路径，则获取sd卡可用容量
-        if (filePath.startsWith(getSDCardPath()))
-        {
-            filePath = getSDCardPath();
-        } else
-        {// 如果是内部存储的路径，则获取内存存储的可用容量
-            filePath = Environment.getDataDirectory().getAbsolutePath();
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static long getAvailableSize(){
+        if(isAvailable()){
+            StatFs statFs = new StatFs(getRootDirectory().getPath());
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1){
+                return statFs.getAvailableBlocks() * statFs.getBlockSize();
+            }else{
+                return statFs.getAvailableBlocks() * statFs.getBlockSize();
+            }
+        }else{
+            return -1;
         }
-        StatFs stat = new StatFs(filePath);
-        long availableBlocks = (long) stat.getAvailableBlocks() - 4;
-        return stat.getBlockSize() * availableBlocks;
-    }
-
-    /**
-     * 获取系统存储路径
-     *
-     * @return
-     */
-    public static String getRootDirectoryPath()
-    {
-        return Environment.getRootDirectory().getAbsolutePath();
     }
 }

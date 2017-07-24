@@ -20,8 +20,10 @@ import com.alpha.alphaapp.ui.login.qq.QQLoginManager;
 import com.alpha.alphaapp.ui.login.wx.WxAuthLogic;
 import com.alpha.alphaapp.ui.modifypw.phone.ModifyPwByPhoneActivity1;
 import com.alpha.alphaapp.ui.modifypw.ModifyPwByPwActivity;
-import com.alpha.alphaapp.ui.widget.AccountBindItemView;
+import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
+import com.alpha.alphaapp.ui.widget.set.AccountBindItemView;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
+import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -77,10 +79,10 @@ public class AccountSecurityActivity extends AccountChangeActivity {
                 tv_curent.setText(format + info.getAccount());
                 break;
             case TypeConstants.LOGIN_TYPE.AUTH_WX:
-                tv_curent.setText(format + info.getOpenid_weixin());
+                tv_curent.setText(format + AccountManager.getInstance().getAuthNickName());
                 break;
             case TypeConstants.LOGIN_TYPE.AUTH_QQ:
-                tv_curent.setText(format + info.getOpenid_qq());
+                tv_curent.setText(format + AccountManager.getInstance().getAuthNickName());
                 break;
         }
         setUIData(info);
@@ -161,46 +163,15 @@ public class AccountSecurityActivity extends AccountChangeActivity {
             @Override
             public void onClick(View v) {
                 if (Util.isNullOrBlank(info.getOpenid_weixin())) {
-                    ToastUtils.showShort(AccountSecurityActivity.this, "拉起Wx获取openid");
-                    //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册,
-//                    checkAuthBind("AFGH1008", TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
-                    WxAuthLogic.OnWxAuthCallBack callBack = new WxAuthLogic.OnWxAuthCallBack() {
-                        @Override
-                        public void onAuthSuccessed(String openid) {
-                            checkAuthBind("AFGH1008", TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
-                        }
-
-                        @Override
-                        public void onAuthFailed(String failedMsg) {
-                            ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
-                        }
-                    };
-                    WxAuthLogic.getInstance().doWxAuth(callBack);
+                    loginWxAuth();
                 }
-
             }
         });
         abi_qq.setOnClicklistener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Util.isNullOrBlank(info.getOpenid_qq())) {
-                    Log.e(TAG, "openid_qq为空");
-                    //通过拉起QQ获取QQ的openid,检测该openid是否已经注册,如果未注册,
-                    QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
-                        @Override
-                        public void onQQAuthSuccessed(String qq_openid) {
-                            checkAuthBind(qq_openid, TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
-                            Log.e(TAG, "qq_openid==" + qq_openid);
-                        }
-
-
-                        @Override
-                        public void onQQAuthFailed(String failedMsg) {
-                            Log.e(TAG, "failedMsg==" + failedMsg);
-                            ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
-                        }
-                    };
-                    QQLoginManager.getInstance().loginQQAuth(AccountSecurityActivity.this, callBack);
+                    loginQQAuth();
                 }
 
 
@@ -224,14 +195,64 @@ public class AccountSecurityActivity extends AccountChangeActivity {
         });
     }
 
+    private void loginQQAuth() {
+        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
+        //通过拉起QQ获取QQ的openid,检测该openid是否已经注册,如果未注册,
+        QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
+            @Override
+            public void onQQAuthSuccessed(String qq_openid, String nickName) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                    loadingDialog.dismiss();
+                }
+                Log.e(TAG, "qq_openid==" + qq_openid);
+                checkAuthBind(qq_openid, TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
+
+            }
+
+
+            @Override
+            public void onQQAuthFailed(String failedMsg) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                    loadingDialog.dismiss();
+                }
+                ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
+            }
+        };
+        QQLoginManager.getInstance().loginQQAuth(AccountSecurityActivity.this, callBack);
+    }
+
+    private void loginWxAuth() {
+        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
+        //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册
+        WxAuthLogic.OnWxAuthCallBack callBack = new WxAuthLogic.OnWxAuthCallBack() {
+            @Override
+            public void onAuthSuccessed(String openid, String nickname) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                    loadingDialog.dismiss();
+                }
+                checkAuthBind(openid, TypeConstants.ACCOUNT_TYPE.AUTH_WECHAT);
+            }
+
+            @Override
+            public void onAuthFailed(String failedMsg) {
+                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
+                    loadingDialog.dismiss();
+                }
+                ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
+            }
+        };
+        WxAuthLogic.getInstance().doWxAuth(callBack);
+    }
+
     /**
      * 检测QQ/Wx帐号是否存在,并绑定
      */
     private void checkAuthBind(final String openid, final int accountType) {
-
         final String sskey = AccountManager.getInstance().getSskey();
-
-
         CheckAccoutLogic.OnCheckAccountCallBack call = new CheckAccoutLogic.OnCheckAccountCallBack() {
             @Override
             public void checkSucessed(boolean isHas, String result) {
@@ -246,7 +267,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
 
                         @Override
                         public void onBindFailed(String failMsg) {
-                            ToastUtils.showShort(AccountSecurityActivity.this, "绑定失败===" + failMsg);
+                            ToastUtils.showShort(AccountSecurityActivity.this, "绑定失败," + failMsg);
                         }
                     };
                     BindLogic.doBindWxOrQQ(sskey, openid, accountType, call);
@@ -255,7 +276,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
 
             @Override
             public void checkFailed(String errorMsg) {
-
+                ToastUtils.showShort(AccountSecurityActivity.this, "绑定失败," + errorMsg);
             }
         };
         CheckAccoutLogic.checkAccountIsHas(openid, accountType, call);

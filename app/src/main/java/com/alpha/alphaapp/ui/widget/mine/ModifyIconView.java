@@ -14,15 +14,16 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.geticons.GetIconBean;
 import com.alpha.alphaapp.ui.mine.adapter.IconListVPAdapter;
 import com.alpha.alphaapp.ui.mine.adapter.IconRecylcerAdapter;
+import com.alpha.lib_sdk.app.glide.ImageLoader;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.tandong.bottomview.view.BottomView;
 
@@ -46,8 +47,7 @@ public class ModifyIconView extends LinearLayout {
     private BottomView bottomView;
     //底部Button;
     private View btmView;
-    private HorizontalScrollView hor_scroll_view;
-    private TabLayout tab;
+    private TabLayout tabLayout;
     private ViewPager vp;
     private Button btn;
 
@@ -70,8 +70,7 @@ public class ModifyIconView extends LinearLayout {
                 R.style.BottomViewTheme_Defalut, R.layout.widget_bottom_view_mod_icon);
         bottomView.setAnimation(R.style.BottomToTopAnim);//设置动画，可选
         btmView = bottomView.getView();
-//        hor_scroll_view = (HorizontalScrollView) btmView.findViewById(R.id.dialog_mod_icon_scroll);
-        tab = (TabLayout) btmView.findViewById(R.id.dialog_mod_icon_tablayout);
+        tabLayout = (TabLayout) btmView.findViewById(R.id.dialog_mod_icon_tablayout);
         vp = (ViewPager) btmView.findViewById(R.id.dialog_mod_icon_vp);
         btn = (Button) btmView.findViewById(R.id.dialog_mod_icon_btn);
     }
@@ -89,11 +88,7 @@ public class ModifyIconView extends LinearLayout {
      */
     public void setIcon(String baseUrl, String icon) {
         String url = baseUrl + icon;
-        RequestBuilder<Drawable> thumbnailRequest = Glide.with(context).load(R.drawable.launcher);
-        Glide.with(context)
-                .load(url)
-                .thumbnail(thumbnailRequest)
-                .into(riv_icon);
+        ImageLoader.load(context,url,riv_icon);
     }
 
     public void setRightIVOnClicklistener(OnClickListener listener) {
@@ -138,9 +133,10 @@ public class ModifyIconView extends LinearLayout {
      */
     public void setBottomViewData(List<GetIconBean.IconListBean.CategoryBean> listData, Map<String, Boolean> map) {
         List<RecyclerView> list = new ArrayList<>();
-        tab.removeAllTabs();
+        tabLayout.removeAllTabs();
         for (int i = 0; i < listData.size(); i++) {
-            tab.addTab(tab.newTab().setText(listData.get(i).getName()));
+            addCustomTab(listData, i);
+//            tabLayout.addTab(tabLayout.newTab().setText(listData.get(i).getName()));
             Log.e(TAG, "添加" + (i + 1) + "tab");
             RecyclerView recyclerView = new RecyclerView(context);
             recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
@@ -154,15 +150,26 @@ public class ModifyIconView extends LinearLayout {
         }
         IconListVPAdapter adapter = new IconListVPAdapter(list);
         vp.setAdapter(adapter);
+
+
         initEvent();
 
+    }
+
+    private void addCustomTab(List<GetIconBean.IconListBean.CategoryBean> listData, int i) {
+        TabLayout.Tab tab = tabLayout.newTab();
+        View view = LayoutInflater.from(context).inflate(R.layout.widget_choose_icon_tab_bg, null);
+        TextView tv = (TextView) view.findViewById(R.id.choose_icon_tab_tv);
+        tv.setText(listData.get(i).getName());
+        tab.setCustomView(view);
+        tabLayout.addTab(tab);
     }
 
     /**
      * tab与ViewPager的监听
      */
     private void initEvent() {
-        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 vp.setCurrentItem(tab.getPosition());
@@ -186,7 +193,7 @@ public class ModifyIconView extends LinearLayout {
 
             @Override
             public void onPageSelected(int position) {
-                TabLayout.Tab tab2 = tab.getTabAt(position);
+                TabLayout.Tab tab2 = tabLayout.getTabAt(position);
                 if (!Util.isNull(tab2))
                     tab2.select();
             }

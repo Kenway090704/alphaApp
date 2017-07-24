@@ -24,7 +24,7 @@
             android:background="@drawable/shape_et_bg_white"
             android:gravity="center"
             android:textSize="12sp"
-            android:hint="请输入学校名称"
+            android:hint="@string/input_school"
             android:padding="8dp" />
 
         <View
@@ -66,10 +66,11 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
+
             android:background="@android:color/black" />
         <Button
             android:id="@+id/dialog_opt_school_btn_save"
-            style="@style/btn_com_blue"
+            style="@style/btn_com_bottom"
             android:text="@string/save" />
     </LinearLayout>
 </LinearLayout>

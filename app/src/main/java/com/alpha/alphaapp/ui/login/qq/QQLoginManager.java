@@ -11,6 +11,7 @@ import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.bind.firstbind.BindAccountActivity;
 import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.tencent.connect.UserInfo;
@@ -140,10 +141,7 @@ public class QQLoginManager {
                 mTencent.setAccessToken(token, expires);
                 mTencent.setOpenId(openId);
                 //获取用户信息
-                getQQUserInfo();
-                if (!Util.isNull(logincall)) {
-                    logincall.onQQAuthSuccessed(openId);
-                }
+                getQQUserInfo(openId);
             }
         } catch (Exception e) {
         }
@@ -152,7 +150,7 @@ public class QQLoginManager {
     /**
      * 获取QQ用户信息
      */
-    private void getQQUserInfo() {
+    private void getQQUserInfo(final String openId) {
         IUiListener userInfoListener = new IUiListener() {
 
             /**
@@ -182,6 +180,13 @@ public class QQLoginManager {
                     String gender = jo.getString("gender");
                     ToastUtils.showShort(activity, "你好，" + nickName);
 
+                    if (!Util.isNull(logincall)) {
+                        if (!Util.isNull(nickName)) {
+                            AccountManager.getInstance().setAuthNickName(nickName);
+                        }
+                        logincall.onQQAuthSuccessed(openId, nickName);
+                    }
+
                 } catch (Exception e) {
                     // TODO: handle exception
                 }
@@ -192,14 +197,11 @@ public class QQLoginManager {
             @Override
             public void onError(UiError uiError) {
                 Log.e(TAG, "获取信息==UiError" + uiError.toString());
-
             }
 
             @Override
             public void onCancel() {
                 Log.e(TAG, "获取信息==onCancel");
-
-
             }
         };
         if (mTencent != null && mTencent.isSessionValid()) {
@@ -225,7 +227,7 @@ public class QQLoginManager {
          *
          * @param qq_openid
          */
-        void onQQAuthSuccessed(String qq_openid);
+        void onQQAuthSuccessed(String qq_openid, String nickName);
 
 
         void onQQAuthFailed(String failedMsg);

@@ -1,7 +1,6 @@
 package com.alpha.alphaapp.ui.login;
 
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.model.other.GetPhoneVerifyLogic;
@@ -66,7 +64,7 @@ public class QuickLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_phone.getEditTextStr())||Util.isNullOrBlank(ivet.getEditTextStr())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr()) || Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                 } else {
@@ -95,7 +93,7 @@ public class QuickLoginFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (Util.isNullOrBlank(et_phone.getEditTextStr())||Util.isNullOrBlank(ivet.getEditTextStr())) {
+                if (Util.isNullOrBlank(et_phone.getEditTextStr()) || Util.isNullOrBlank(ivet.getEditTextStr())) {
                     btn_login.setEnabled(Boolean.FALSE);
                     btn_login.setBackgroundResource(R.drawable.shape_btn_bg_gray);
                 } else {
@@ -149,7 +147,7 @@ public class QuickLoginFragment extends BaseFragment {
 
             }
         };
-        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY.LOGIN, callBack);
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.LOGIN, callBack);
     }
 
     /**
@@ -159,7 +157,6 @@ public class QuickLoginFragment extends BaseFragment {
         if (!StringUtils.isPhoneNum(et_phone.getEditTextStr()) ||
                 !StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
             //验证手机号和验证码格式是否正确
-            Log.e(TAG,"有执行这里");
             tv_error.setText(R.string.account_or_verify_error);
             tv_error.setVisibility(View.VISIBLE);
             return;
@@ -193,7 +190,7 @@ public class QuickLoginFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        //刷新界面
     }
 
 

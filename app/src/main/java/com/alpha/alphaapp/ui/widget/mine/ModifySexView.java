@@ -31,7 +31,6 @@ public class ModifySexView extends LinearLayout {
     private TextView tv_left, tv_info;
     private ImageView iv_right;
 
-
     //底部弹出布局
     private BottomView bottomView;
     private View btmView;

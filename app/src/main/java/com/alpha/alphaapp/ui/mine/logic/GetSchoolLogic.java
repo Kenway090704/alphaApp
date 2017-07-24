@@ -9,8 +9,9 @@ import android.widget.EditText;
 
 import com.alpha.alphaapp.R;
 
-import com.alpha.alphaapp.ui.mine.logic.bean.SchoolBean;
+import com.alpha.alphaapp.account.bean.SchoolBean;
 import com.alpha.alphaapp.comm.URLConstans;
+import com.alpha.alphaapp.ui.widget.wheel.WheelView;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
@@ -18,9 +19,12 @@ import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
+import com.tandong.bottomview.view.BottomView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 
 /**
  * Created by kenway on 17/6/19 16:41
@@ -46,6 +50,8 @@ public class GetSchoolLogic {
 
     private OptionsPickerView pvOptions;
 
+    boolean isStop = false;
+
     public GetSchoolLogic(Context context, SchoolBean bean) {
         this.context = context;
         this.bean = bean;
@@ -57,8 +63,7 @@ public class GetSchoolLogic {
             switch (msg.what) {
                 case MSG_LOAD_DATA:
                     if (thread == null) {//如果已创建就不再重新创建子线程了
-
-                        ToastUtils.showShort(context, "开始解析数据");
+                          //开始解析数据
                         thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -69,13 +74,12 @@ public class GetSchoolLogic {
                         thread.start();
                     }
                     break;
-
                 case MSG_LOAD_SUCCESS:
-                    ToastUtils.showShort(context, "解析数据成功");
+//                  //解析数据成功
                     isLoaded = true;
                     break;
                 case MSG_LOAD_FAILED:
-                    ToastUtils.showShort(context, "解析数据失败");
+                    //解析数据失败
                     break;
 
             }
@@ -85,11 +89,55 @@ public class GetSchoolLogic {
     public void show() {
         //弹出底部对话框
         if (isLoaded) {
-            ShowPickerView();
+            // ShowPickerView();
+            //自定义滚轮选取学校
+            showWheelView();
         } else {
             ToastUtils.showShort(context, "数据暂未解析成功，请等待");
         }
     }
+
+    /**
+     * 自定义的WheelView
+     */
+    private void showWheelView() {
+        final BottomView bottomView = new BottomView(context,
+                R.style.BottomViewTheme_Defalut, R.layout.widget_my_options_wheel_school);
+        bottomView.setAnimation(R.style.BottomToTopAnim);//设置动画，可选
+        View btmView = bottomView.getView();
+        EditText et = (EditText) btmView.findViewById(R.id.dialog_my_wheel_opt_school_et_school);
+        et.setFocusable(false);
+        final WheelView wheelView = (WheelView) btmView.findViewById(R.id.dialog_my_wheel_opt_wheelView);
+        final Button btnSave = (Button) btmView.findViewById(R.id.dialog_my_wheel_opt_school_btn_save);
+        List<String> lists = new ArrayList<>();
+        for (int i = 0; i < options1Items.size(); i++) {
+            lists.add(options1Items.get(i).getSchool());
+        }
+        wheelView.lists(lists)
+                .fontSize(26)
+                .showCount(5)
+                .select(0)
+                .setSelectLocation(false)
+                .listener(new WheelView.OnWheelViewItemSelectListener() {
+                    @Override
+                    public void onItemSelect(final int index) {
+                       Log.e("xk", "current select" + wheelView.getSelectItem());
+                    }
+                }).build();
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int index = wheelView.getSelectItem();
+                String school = options1Items.get(index).getPickerViewText();
+                if (listener != null) {
+                    bottomView.dismissBottomView();
+                    listener.onSubmit(school);
+                }
+            }
+        });
+        bottomView.showBottomView(true);
+    }
+
 
     /**
      * 点击确认按钮时事件监听
@@ -112,7 +160,7 @@ public class GetSchoolLogic {
         pvOptions = new OptionsPickerView.Builder(context, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                //返回的分别是三个级别的选中位置
+                //返回的分别选中的学校
                 String school = options1Items.get(options1).getPickerViewText();
                 if (listener != null) {
                     listener.onSubmit(school);
@@ -135,8 +183,8 @@ public class GetSchoolLogic {
 
             }
         })
-
-                .setContentTextSize(14)
+                .setBgColor(0xFFF0F0F0)//滚轮背景颜色 Night mode
+                .setContentTextSize(16)
                 .setOutSideCancelable(true)// default is true
                 .build();
 
@@ -155,13 +203,6 @@ public class GetSchoolLogic {
      */
     private void getSchoolList(String province, String city, String area, String searchMsg) {
         HashMap<String, String> map = new HashMap<>();
-        //把有市的"市"去掉
-        if (province.contains("市")) {
-            province = province.substring(0, city.length() - 1);
-        }
-        if (city.contains("市")) {
-            city = city.substring(0, city.length() - 1);
-        }
         map.put("p", province);
         map.put("c", city);
         map.put("area", area);

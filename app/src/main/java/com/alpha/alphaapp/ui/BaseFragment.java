@@ -40,9 +40,14 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         // 初始化数据
         initData();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
     }
 
     /**

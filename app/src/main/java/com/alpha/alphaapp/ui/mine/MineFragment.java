@@ -9,16 +9,16 @@ import android.widget.TextView;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.UserInfo;
+import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.comm.URLConstans;
-import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
 import com.alpha.alphaapp.ui.AccountChangeFragment;
-import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.set.SettingsActivity;
 import com.alpha.alphaapp.ui.sign.SignActivity;
+import com.alpha.lib_sdk.app.glide.ImageLoader;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 /**
@@ -31,6 +31,7 @@ public class MineFragment extends AccountChangeFragment {
     private RoundedImageView riv_icon;
     private TextView tv_name;
     private ImageView iv_set;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_mine;
@@ -43,7 +44,8 @@ public class MineFragment extends AccountChangeFragment {
         tv_name = (TextView) root.findViewById(R.id.frag_mine_tv_name);
         layout_sign = (LinearLayout) root.findViewById(R.id.frag_mine_layout_sign);
         iv_set = (ImageView) root.findViewById(R.id.frag_mine_iv_set);
-
+        UserInfo info = AccountManager.getInstance().getUserInfo();
+        updateUI(info);
     }
 
     @Override
@@ -65,7 +67,10 @@ public class MineFragment extends AccountChangeFragment {
             @Override
             public void onClick(View v) {
                 //进入签到页面
-                SignActivity.actionStart(getActivity());
+//                SignActivity.actionStart(getActivity());
+                ToastUtils.showShort(getActivity(), "进入到签到界面");
+                //进入到demo页面
+//              StaggerActivity.actionStart(getActivity());
             }
         });
     }
@@ -75,7 +80,6 @@ public class MineFragment extends AccountChangeFragment {
         UserInfo info = AccountManager.getInstance().getUserInfo();
         updateUI(info);
     }
-
 
     @Override
     public void onAccountUpdate(UserInfo info) {
@@ -88,13 +92,25 @@ public class MineFragment extends AccountChangeFragment {
      * @param info
      */
     private void updateUI(UserInfo info) {
-
         if (!Util.isNullOrBlank(info.getIcon())) {
             //使用Glide展示图片
-            final RequestBuilder<Drawable> thumbnailRequest = Glide.with(this).load(R.drawable.launcher);
-            Glide.with(this).load(URLConstans.GET_ICON.ICON60 + info.getIcon()).thumbnail(thumbnailRequest).into(riv_icon);
+            ImageLoader.load(getActivity(), URLConstans.GET_ICON.ICON60 + info.getIcon(), riv_icon);
         }
-        if (!Util.isNullOrBlank(info.getName()))
-            tv_name.setText(info.getName());
+        //如果是微信/QQ登录,使用为微信或者QQ的昵称,如果是手机或者帐号登录,先判断是否有
+        if (AccountManager.getInstance().getLoginType() == TypeConstants.LOGIN_TYPE.AUTH_QQ || AccountManager.getInstance().getLoginType() == TypeConstants.LOGIN_TYPE.AUTH_WX) {
+            String nickname = AccountManager.getInstance().getAuthNickName();
+            if (!Util.isNull(nickname)) {
+                tv_name.setText(nickname);
+            }
+        } else {
+            if (!Util.isNullOrBlank(info.getName())) {
+                tv_name.setText(info.getName());
+            }else  if (!Util.isNullOrBlank(info.getMobile())){
+                tv_name.setText(info.getMobile());
+            }else if (!Util.isNullOrBlank(info.getAccount())){
+                tv_name.setText(info.getAccount());
+            }
+        }
+
     }
 }
