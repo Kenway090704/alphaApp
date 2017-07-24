@@ -1,18 +1,27 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
-
+    //编译版本
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    //编译工具版本
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        //最低sdk版本
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        //当前使用的sdk版本
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        //版本code
+        versionCode rootProject.ext.android["versionCode"]
+        //版本名
+        versionName rootProject.ext.android["versionName"]
+
+        //只有在library中有,
+        defaultPublishConfig rootProject.ext.android["defaultPublishConfig"]
+        publishNonDefault rootProject.ext.android["publishNonDefault"]
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,6 +35,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    testCompile rootProject.ext.dependencies["junit"]
+
+    compile rootProject.ext.dependencies["appcompat-v7"]
+
+    compile rootProject.ext.dependencies["support-design"]
+
 }

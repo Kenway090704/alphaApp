@@ -234,18 +234,39 @@
     <string name="my_score">我的积分</string>
     <string name="active_code">激活码</string>
     <string name="exchange_record">兑换记录</string>
-
+    <string name="change_record">变动记录</string>
     <string name="shipping_addr">收获地址</string>
     <string name="do_active_code">激活激活码</string>
+    <string name="order_detail">订单详情</string>
 
     <!--积分兑换-->
-    <string name="product_name">商品名称 :</string>
-    <string name="product_type">商品类型 :</string>
-    <string name="need_score">所需积分 :</string>
-    <string name="exchange_count">兑换数量 :</string>
+    <string name="product_name_">商品名称 :</string>
+    <string name="product_type_">商品类型 :</string>
+    <string name="need_score_">所需积分 :</string>
+    <string name="exchange_count_">兑换数量 :</string>
     <string name="my_score_">我的积分 :</string>
-    <string name="warm_prompt">温馨提示:</string>
+    <string name="warm_prompt_">温馨提示:</string>
     <string name="express_is_arrival_pay">快递都以到付的形式寄送,请知悉!</string>
+    <string name="order_code_"> 订单编号 : </string>
+    <string name="expense_score_"> 消费积分 : </string>
+    <string name="status_"> 状态 :</string>
+    <string name="empty_order_data_hint">当前没有订单信息!</string>
+    <string name="actual_googs">虚拟物品</string>
+    <string name="virtual_gooods">虚拟物品</string>
+    <string name="nothing">无</string>
+    <string name="ready_send_goods">待发货</string>
+    <string name="had_been_shipping">已发货</string>
+    <string name="have_the_goods">已收获</string>
+    <string name="order_close">已关闭</string>
+
+
+    <string name="channel_">渠道 :</string>
+    <string name="type_">类型 :</string>
+    <string name="change_score_">变动积分 :</string>
+    <string name="change_before_score_">变动前积分 :</string>
+    <string name="change_behind_score_">变动后积分 :</string>
+    <string name="change_time_">变动时间 :</string>
+    <string name="empty_change_data_hint">当前没有积分变动信息!</string>
 
     <!--收货地址-->
     <string name="insure_del_addr">确定删除该收货地址么?</string>
@@ -284,18 +305,13 @@
     <string name="insure_active_this_code">确认激活该激活码么?</string>
     <string name="active_record">激活记录</string>
     <string name="active_code_">激活码 :</string>
-    <string name="code_type">码类型 :</string>
-    <string name="belong_to_product">所属产品 :</string>
-    <string name="active_time">激活时间 :</string>
-    <string name="active_channer">激活渠道 :</string>
-    <string name="active_status">激活状态 :</string>
+    <string name="code_type_">码类型 :</string>
+    <string name="belong_to_product_">所属产品 :</string>
+    <string name="active_time_">激活时间 :</string>
+    <string name="active_channer_">激活渠道 :</string>
+    <string name="active_status_">激活状态 :</string>
     <string name="has_active">已激活</string>
     <string name="no_active">未激活</string>
-
-    <!--兑换和变动记录-->
-    <string name="change_record">变动记录</string>
-
-
 
 
 </resources>

@@ -8,13 +8,11 @@
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:txt_title="@string/exchange_record" />
-
-    <TextView
-        android:id="@+id/exchange_record_tv_info"
+        app:txt_title="@string/change_record" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/score_change_record_list_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="@string/exchange_record" />
+        android:layout_height="match_parent"
+        />
+
 </LinearLayout>

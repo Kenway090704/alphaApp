@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 
 android {
@@ -7,14 +9,16 @@ android {
         cruncherEnabled = false
         useNewCruncher = false
     }
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        applicationId "com.alpha.alphaapp"
-        minSdkVersion 17
-        targetSdkVersion 25
-        versionCode 1
-        versionName "v 1.0.4"
+        applicationId rootProject.ext.android["applicationId"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -22,49 +26,61 @@ android {
     buildTypes {
 
         release {
-//            // 不显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-//          buildConfigField "String", "appKeyPre", "\"xxx\""
-////            //Zipalign优化
-//            zipAlignEnabled true
-            // 移除无用的resource文件
             shrinkResources false
             //混淆
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //签名
-//            signingConfig signingConfigs.release
+            manifestPlaceholders = [appName: "奥飞用户中心", bugly_debug:false]
+            buildConfigField "int", "buildTime", getDebugVersionNameSuffix()
+        }
+
+        debug {
+            debuggable true
+            versionNameSuffix "-debug"
+            applicationIdSuffix ".debug"
+            manifestPlaceholders = [appName: "奥飞用户中心-dev", bugly_debug:true]
+            buildConfigField "int", "buildTime", getDebugVersionNameSuffix()
         }
     }
+}
+//版本编译时间
+def String getDebugVersionNameSuffix() {
+    Date buildTime = new Date();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+    String buildTimeStr = simpleDateFormat.format(buildTime);
+    return buildTimeStr;
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:+'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.makeramen:roundedimageview:2.2.1'
-    compile 'com.contrarywind:Android-PickerView:3.2.5'
-    compile 'com.androidkun:XTabLayout:1.1.1'
-    compile 'com.alibaba:fastjson:1.2.35'
-    compile 'com.alibaba:fastjson:1.1.59.android'
-    testCompile 'junit:junit:4.12'
-    compile project(':lib_sdk')
-    compile project(':lib_stub')
+
+    testCompile rootProject.ext.dependencies["junit"]
+
     compile files('libs/open_sdk_r5788_lite.jar')
     compile files('libs/bottomView.jar')
     compile files('libs/xUtils-2.6.14.jar')
-    compile 'com.githang:status-bar-compat:0.3'
-    //微信
-    //    releaseCompile project(path: ':lib_sdk', configuration: "release")
-    //    releaseCompile project(path: ':lib_stub', configuration: "release")
-    //
-    //
-    //    debugCompile project(path: ':lib_sdk', configuration: "debug")
-    //    debugCompile project(path: ':lib_stub', configuration: "debug")
-    //
-    //记得后面修改为gradle模式
+    //微信 记得后面修改为gradle模式
     compile files('libs/wechat-sdk-android-without-mta-1.3.4.jar')
+
+
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["support-design"]
+    compile rootProject.ext.dependencies["support-v4"]
+    compile rootProject.ext.dependencies["roundedimageview"]
+    compile rootProject.ext.dependencies["Android-PickerView"]
+    compile rootProject.ext.dependencies["XTabLayout"]
+    compile rootProject.ext.dependencies["XTabLayout"]
+    compile rootProject.ext.dependencies["fastjson"]
+    compile rootProject.ext.dependencies["fastjson_android"]
+    compile rootProject.ext.dependencies["status-bar-compat"]
+
+    releaseCompile project(path: ":lib_sdk", configuration: "release");
+    releaseCompile project(path: ":lib_stub", configuration: "release");
+
+    debugCompile project(path: ":lib_sdk", configuration: "debug");
+    debugCompile project(path: ":lib_stub", configuration: "debug");
+
+
 }

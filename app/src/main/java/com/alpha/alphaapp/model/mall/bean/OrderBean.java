@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,10 @@ import java.util.List;
  * 订单bean(兑换记录)
  */
 
-public class OrderBean {
+public class OrderBean implements Serializable {
 
-    public static final String KEY_ORDER_LIST="order_list";
-    public static final String KEY_ORDER_DETAIL="order_detail";
+    public static final String KEY_ORDER_LIST = "order_list";
+    public static final String KEY_ORDER_DETAIL = "order_detail";
 
     private long order_id;
     private int goods_id;
@@ -230,6 +231,35 @@ public class OrderBean {
     }
 
     public void setClose_reason(String close_reason) {
+
         this.close_reason = close_reason;
     }
+
+
+    @Override
+    public String toString() {
+        return "OrderBean{" +
+                "order_id=" + order_id +
+                ", goods_id=" + goods_id +
+                ", goods_name='" + goods_name + '\'' +
+                ", create_time='" + create_time + '\'' +
+                ", update_time='" + update_time + '\'' +
+                ", account='" + account + '\'' +
+                ", uuid='" + uuid + '\'' +
+                ", count=" + count +
+                ", receive_name='" + receive_name + '\'' +
+                ", receive_phone='" + receive_phone + '\'' +
+                ", receive_province='" + receive_province + '\'' +
+                ", receive_city='" + receive_city + '\'' +
+                ", receive_area='" + receive_area + '\'' +
+                ", receive_street='" + receive_street + '\'' +
+                ", addr_detail='" + addr_detail + '\'' +
+                ", post_code='" + post_code + '\'' +
+                ", logistics='" + logistics + '\'' +
+                ", logistics_num='" + logistics_num + '\'' +
+                ", status=" + status +
+                ", close_reason='" + close_reason + '\'' +
+                '}';
+    }
+
 }

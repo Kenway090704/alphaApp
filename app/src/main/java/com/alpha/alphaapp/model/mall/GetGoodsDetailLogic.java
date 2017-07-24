@@ -91,11 +91,9 @@ public class GetGoodsDetailLogic {
             case TypeConstants.GET_GOODS_DETAIL_TYPE.ALL:
                 data = getJsonforGetGoodsDetail(goods_id);
                 break;
-
             case TypeConstants.GET_GOODS_DETAIL_TYPE.EXCHANGE_COUNT:
                 data = getJsonforGetGoodsDetailExChangeCount(goods_id);
                 break;
-
             case TypeConstants.GET_GOODS_DETAIL_TYPE.REMIAN_COUNT:
                 data = getJsonforGetGoodsReMainCount();
                 break;

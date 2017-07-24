@@ -92,25 +92,22 @@ public class ScoreChangeListLogic {
      */
     public static void doGetUserScoreChange(final int product_id, final OnModelCallback<List<ScoreLogBean>> callBack) {
         String data = null;
-        if (MyApplication.isDebug) {
-            //测试时,product_id为0
-            data = getJsonforScoreChangeRecord();
-        } else {
-            switch (product_id) {
-                case TypeConstants.PRODUCT_ID.NONE_PRODUCT:
-                    data = getJsonforScoreChangeRecord();
-                    break;
-                case TypeConstants.PRODUCT_ID.SPEED:
-                    data = getJsonforScoreChangeRecord(product_id);
-                    break;
-                case TypeConstants.PRODUCT_ID.TRANSFROM_CAR:
-                    data = getJsonforScoreChangeRecord(product_id);
-                    break;
-                case TypeConstants.PRODUCT_ID.SUPER_WAVING:
-                    data = getJsonforScoreChangeRecord(product_id);
-                    break;
-            }
+
+        switch (product_id) {
+            case TypeConstants.PRODUCT_ID.NONE_PRODUCT:
+                data = getJsonforScoreChangeRecord();
+                break;
+            case TypeConstants.PRODUCT_ID.SPEED:
+                data = getJsonforScoreChangeRecord(product_id);
+                break;
+            case TypeConstants.PRODUCT_ID.TRANSFROM_CAR:
+                data = getJsonforScoreChangeRecord(product_id);
+                break;
+            case TypeConstants.PRODUCT_ID.SUPER_WAVING:
+                data = getJsonforScoreChangeRecord(product_id);
+                break;
         }
+
 
         String json = JsonEncryptUtil.getPostJsonSignString(data);
 
@@ -130,8 +127,12 @@ public class ScoreChangeListLogic {
                             callBack.onModelFailed(info.getMsg());
                         break;
                     default:
-                        if (!Util.isNull(callBack))
+                        if (!Util.isNull(callBack) &&!Util.isNullOrBlank(info.getMsg())) {
                             callBack.onModelFailed(info.getMsg());
+                        } else {
+                            callBack.onModelFailed("没有获取数据");
+                        }
+
                         break;
                 }
             }

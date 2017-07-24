@@ -126,7 +126,7 @@ public class TypeConstants {
 
 
     /**
-     *产品类型
+     * 产品类型
      */
 
     public interface IP_PRODUCT_TYPE {
@@ -142,15 +142,15 @@ public class TypeConstants {
         /**
          * 超级飞侠
          */
-        int SUPER_WAVING   = 2;
+        int SUPER_WAVING = 2;
     }
 
     /**
      * 产品Proudct_ID
      */
-    public  interface PRODUCT_ID{
+    public interface PRODUCT_ID {
 
-        int   NONE_PRODUCT=0;
+        int NONE_PRODUCT = 0;
         /**
          * 零速争霸
          */
@@ -165,9 +165,44 @@ public class TypeConstants {
         /**
          * 超级飞侠
          */
-        int SUPER_WAVING   = 182;
+        int SUPER_WAVING = 182;
     }
 
+    /**
+     * 订单状态
+     */
+    public interface OREDER_STATUS {
+        /**
+         * 待发货
+         */
+        int READY_SEND_GOODS = 0;
+        /**
+         * 已发货
+         */
+        int HAD_BEEN_SHIPPING = 1;
+        /**
+         * 已收货
+         */
+        int HAVE_THE_GOODS = 2;
+        /**
+         * 订单关闭
+         */
+        int ORDER_CLOSE = 3;
+    }
+
+    /**
+     * 商品类型
+     */
+    public interface GOODS_TYPE {
+        /**
+         * 实物
+         */
+        int ACTUALS_GOODS = 0;
+        /**
+         * 虚拟商品
+         */
+        int VIRTUAL_GOODS = 1;
+    }
 
 
 }

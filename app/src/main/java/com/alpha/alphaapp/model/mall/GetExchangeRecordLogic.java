@@ -135,12 +135,12 @@ public class GetExchangeRecordLogic {
      *
      * @return
      */
-    private static String getJsonforGetExchangeRecord(String order_id) {
+    private static String getJsonforGetExchangeRecord(long order_id) {
         String sskey = AccountManager.getInstance().getSskey();
         UserInfo info = AccountManager.getInstance().getUserInfo();
         StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
-                .append("\"order_id\":").append("\"" + order_id + "\",")
+                .append("\"order_id\":").append(+order_id + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"ts\":").append(System.currentTimeMillis() + ",")
@@ -155,12 +155,12 @@ public class GetExchangeRecordLogic {
      *
      * @return
      */
-    private static String getJsonforGetExchangeRecord(String order_id, int product_id) {
+    private static String getJsonforGetExchangeRecord(long order_id, int product_id) {
         String sskey = AccountManager.getInstance().getSskey();
         UserInfo info = AccountManager.getInstance().getUserInfo();
         StringBuilder sb = new StringBuilder();
         sb.append("{\"sskey\":").append("\"" + sskey + "\",")
-                .append("\"order_id\":").append("\"" + order_id + "\",")
+                .append("\"order_id\":").append(+order_id + ",")
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"ts\":").append(System.currentTimeMillis() + ",")
@@ -176,7 +176,7 @@ public class GetExchangeRecordLogic {
      * @param product_id
      * @param callBack
      */
-    public static void doGetScoreExchangeRecord(String order_id, final int product_id, final OnModelCallback<OrderBean> callBack) {
+    public static void doGetScoreExchangeRecord(long order_id, final int product_id, final OnModelCallback<OrderBean> callBack) {
         String data = null;
         if (MyApplication.isDebug) {
             //测试时,product_id为0

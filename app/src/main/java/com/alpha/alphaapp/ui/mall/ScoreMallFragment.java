@@ -7,8 +7,8 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.mall.active.ActiveEnterActivity;
 import com.alpha.alphaapp.ui.mall.addr.ShippingAddrActivity;
+import com.alpha.alphaapp.ui.mall.exchange.ExchangeRecordListActivity;
 import com.alpha.alphaapp.ui.mall.exchange.ScoreChangeRecordActivity;
-import com.alpha.alphaapp.ui.mall.exchange.ExchangeRecordActivity;
 import com.alpha.alphaapp.ui.mall.exchange.ScoreExchangeEnterActivity;
 
 /**
@@ -62,7 +62,7 @@ public class ScoreMallFragment extends BaseFragment implements View.OnClickListe
                 ScoreExchangeEnterActivity.actionStart(getActivity());
                 break;
             case R.id.fragment_score_mall_btn_for_exhange_record:
-                ExchangeRecordActivity.actionStart(getActivity());
+                ExchangeRecordListActivity.actionStart(getActivity());
                 break;
             case R.id.fragment_score_mall_btn_change_record:
                 ScoreChangeRecordActivity.actionStart(getActivity());

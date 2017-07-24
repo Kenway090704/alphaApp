@@ -8,13 +8,19 @@
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:txt_title="@string/exchange_record" />
+        app:txt_title="@string/order_detail" />
 
     <TextView
-        android:id="@+id/score_change_record_tv_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:text="此处仅为信息展示" />
 
+    <TextView
+        android:id="@+id/exchange_record_detail_tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:text="订单详情页" />
 </LinearLayout>

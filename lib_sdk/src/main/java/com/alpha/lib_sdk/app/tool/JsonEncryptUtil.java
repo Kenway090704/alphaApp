@@ -87,7 +87,7 @@ public class JsonEncryptUtil {
      * @return
      */
     private static String getbk1() {
-        return BuildConfig.appKey;
+        return "y0PB";
     }
 
     /**

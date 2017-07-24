@@ -80,13 +80,14 @@
         <activity android:name=".ui.mall.exchange.GoodsExchangeActivity" />
 
         <activity android:name=".ui.mall.exchange.ScoreChangeRecordActivity" />
-        <activity android:name=".ui.mall.exchange.ExchangeRecordActivity" />
+        <activity android:name=".ui.mall.exchange.ExchangeRecordListActivity" />
         <activity android:name=".ui.mall.exchange.GoodsListsActivity" />
 
         <activity android:name=".ui.mall.addr.ShippingAddrActivity" />
         <activity android:name=".ui.mall.addr.AddShippingAddrActivity" />
         <activity android:name=".ui.mall.addr.EditShippingAddrActvity" />
         <activity android:name=".ui.mall.addr.ChooseShippingAddrActivity" />
+        <activity android:name=".ui.mall.exchange.ExchangeRecordDetailActivity" />
 
         <!--激活-->
         <activity android:name=".ui.mall.active.ActiveEnterActivity" />

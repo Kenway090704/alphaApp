@@ -4,68 +4,68 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.comm.TypeConstants;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.model.mall.ScoreChangeListLogic;
+import com.alpha.alphaapp.model.mall.GetExchangeRecordLogic;
 import com.alpha.alphaapp.model.mall.bean.OrderBean;
-import com.alpha.alphaapp.model.mall.bean.ScoreLogBean;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.mall.adapter.ChangeRecordAdapter;
+import com.alpha.alphaapp.ui.mall.adapter.ExchangeRecordAdapter;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by kenway on 17/7/17 14:06
+ * Created by kenway on 17/7/17 14:08
  * Email : xiaokai090704@126.com
- * 积分变动记录
+ * 兑换记录(商品订单详情)
  */
 
-public class ScoreChangeRecordActivity extends BaseActivity {
+public class ExchangeRecordListActivity extends BaseActivity {
+    private static final String TAG = "ExchangeRecordListActivity";
 
-    private static final String TAG = "ScoreChangeRecordActivity";
     private RecyclerView rv;
-    private List<ScoreLogBean> list;
-    private ChangeRecordAdapter adapter;
 
+    private List<OrderBean> list;
+    private ExchangeRecordAdapter adapter;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_mall_change_record_list;
+        return R.layout.activity_mall_exchange_record_list;
     }
 
     @Override
     protected void initView() {
-        rv = (RecyclerView) findViewById(R.id.score_change_record_list_rv);
+        rv = (RecyclerView) findViewById(R.id.exchange_record_rv);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(manager);
         list = new ArrayList<>();
-        adapter = new ChangeRecordAdapter(this, list);
+        adapter = new ExchangeRecordAdapter(ExchangeRecordListActivity.this, list);
         rv.setAdapter(adapter);
 
     }
 
     @Override
     public void initData() {
-        ScoreChangeListLogic.doGetUserScoreChange(TypeConstants.PRODUCT_ID.NONE_PRODUCT, new OnModelCallback<List<ScoreLogBean>>() {
+
+        //获取订单列表
+        GetExchangeRecordLogic.doGetScoreExchangeRecordList(TypeConstants.PRODUCT_ID.NONE_PRODUCT, new OnModelCallback<List<OrderBean>>() {
             @Override
-            public void onModelSuccessed(List<ScoreLogBean> scoreLogBeens) {
+            public void onModelSuccessed(List<OrderBean> listBean) {
 //                list.clear();
-//                list.addAll(scoreLogBeens);
+//                list.addAll(listBean);
 //                adapter.notifyDataSetChanged();
 
-                //测试数据
                 for (int i = 0; i < 20; i++) {
-                    ScoreLogBean bean = new ScoreLogBean();
-                    bean.setChannel_id_text("爆裂飞车");
-                    bean.setPre_score(100 * i);
-                    bean.setOp_score(300);
-                    bean.setCur_score(100 * i + 300);
-                    bean.setOp_time("2016-09-08 18:51:45");
+                    OrderBean bean = new OrderBean();
+                    bean.setOrder_id(System.currentTimeMillis() + 1);
+                    bean.setGoods_name("爆裂机甲--" + i);
+                    bean.setCount(i);
+                    bean.setGoods_id(10002);
+
+
                     list.add(bean);
                 }
                 adapter.notifyDataSetChanged();
@@ -73,9 +73,10 @@ public class ScoreChangeRecordActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(ScoreChangeRecordActivity.this, failMsg);
+                ToastUtils.showToast(ExchangeRecordListActivity.this, failMsg);
             }
         });
+
     }
 
     @Override
@@ -84,7 +85,7 @@ public class ScoreChangeRecordActivity extends BaseActivity {
     }
 
     public static void actionStart(Context context) {
-        Intent intent = new Intent(context, ScoreChangeRecordActivity.class);
+        Intent intent = new Intent(context, ExchangeRecordListActivity.class);
         context.startActivity(intent);
     }
 }

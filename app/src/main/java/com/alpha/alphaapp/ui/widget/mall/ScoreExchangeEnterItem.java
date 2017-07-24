@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.mall.bean.ScoreExchangeEnterItemInfo;
 import com.alpha.alphaapp.ui.WebActivity;
-import com.alpha.alphaapp.ui.mall.exchange.ExchangeRecordActivity;
+import com.alpha.alphaapp.ui.mall.exchange.ExchangeRecordListActivity;
 import com.alpha.alphaapp.ui.mall.exchange.GoodsListsActivity;
 import com.alpha.lib_sdk.app.log.Log;
 
@@ -71,7 +71,7 @@ public class ScoreExchangeEnterItem extends LinearLayout {
             @Override
             public void onClick(View v) {
                 //跳到兑换记录页面
-                ExchangeRecordActivity.actionStart(context);
+                ExchangeRecordListActivity.actionStart(context);
             }
         });
         tv_web.setOnClickListener(new OnClickListener() {

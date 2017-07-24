@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.alpha.alphaapp.BuildConfig;
 import com.alpha.alphaapp.model.login.LoginLogic;
 import com.alpha.alphaapp.ui.login.LoginActivity;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
@@ -26,14 +27,19 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 public class LaunchActivity extends AppCompatActivity {
     private static final String TAG = "LaunchActivity";
+    private TextView tv_version,tv_buildtime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();//去掉标题栏
         setContentView(R.layout.activity_launch);
-        TextView tv = (TextView) findViewById(R.id.launch_tv);
-        tv.setText(ApkUtils.getVersionName(this));
+
+        initViews();
+
+
+
+
         //判断最近的一次登录是什么登录,如果是有密码的登录,如果有直接登录,如果没有三秒后跳转到登录界面
         if (!LoginLogic.isAutoLogin(this)) {
             ThreadPool.post(new Runnable() {
@@ -55,6 +61,19 @@ public class LaunchActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void initViews() {
+        tv_version = (TextView) findViewById(R.id.launch_tv_version);
+        tv_buildtime = (TextView) findViewById(R.id.launch_tv_buildtime);
+
+        tv_version.setText(BuildConfig.VERSION_NAME);
+
+        if (BuildConfig.DEBUG){
+            tv_buildtime.setText(String.valueOf(BuildConfig.buildTime));
+        }else {
+            tv_buildtime.setVisibility(View.GONE);
+        }
     }
 
 //    private void doCheckxUpdate() {

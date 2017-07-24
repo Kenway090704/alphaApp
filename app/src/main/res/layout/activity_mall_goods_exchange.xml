@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/product_name"
+                    android:text="@string/product_name_"
                     android:textSize="16sp" />
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/product_type"
+                    android:text="@string/product_type_"
                     android:textSize="16sp" />
 
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/need_score"
+                    android:text="@string/need_score_"
                     android:textSize="16sp" />
 
                 <TextView
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/exchange_count"
+                    android:text="@string/exchange_count_"
                     android:textSize="16sp" />
 
                 <TextView
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/warm_prompt"
+                    android:text="@string/warm_prompt_"
                     android:textColor="@color/red"
                     android:textSize="14sp" />
 

@@ -15,6 +15,7 @@
     <!--bind-->
     <color name="tv_black">#f3333333</color>
     <color name="tv_gray">#999999</color>
+    <color name="tv_red">#e8340c</color>
     <color name="bg_gray">#f2f2f2</color>
     <color name="btn_red">#f3bb261a</color>
     <color name="white">#FFF</color>
