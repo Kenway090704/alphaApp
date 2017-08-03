@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_bg_white"
+    android:background="@color/common_bg_light_gray"
     android:orientation="vertical">
 
     <ImageView
@@ -46,13 +46,13 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/login_tablayout"
             android:layout_width="match_parent"
-            android:layout_height="27dp"
+            android:layout_height="@dimen/commom_height_27"
             android:layout_alignParentBottom="true"
             app:tabBackground="@drawable/selector_login_tab"
             app:tabIndicatorHeight="0dp"
-            app:tabSelectedTextColor="@android:color/white"
+            app:tabSelectedTextColor="@color/common_tv_white"
             app:tabTextAppearance="@style/login_tab_txtSize"
-            app:tabTextColor="@color/login_txt_red" />
+            app:tabTextColor="@color/common_tv_dark_red" />
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

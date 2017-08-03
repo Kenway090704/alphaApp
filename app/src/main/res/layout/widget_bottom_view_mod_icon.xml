@@ -11,21 +11,22 @@
         android:layout_height="wrap_content"
         app:tabIndicatorHeight="0dp"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="#ff7a61" />
+        app:tabSelectedTextColor="@color/common_tv_dark_red" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/dialog_mod_icon_vp"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
-
+        android:layout_height="@dimen/commom_height_290" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="2dp"
-        android:background="@color/line_gray" />
+        android:background="@color/common_bound_line_gray" />
 
     <Button
-
         android:id="@+id/dialog_mod_icon_btn"
-        style="@style/btn_com_bottom"
+        style="@style/btn_one_com_red"
+        android:layout_marginBottom="@dimen/commom_margin_4"
+        android:layout_marginTop="@dimen/commom_margin_4"
         android:text="@string/save" />
 </LinearLayout>

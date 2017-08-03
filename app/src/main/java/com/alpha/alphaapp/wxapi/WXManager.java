@@ -10,7 +10,6 @@ package com.alpha.alphaapp.wxapi;
 import android.content.Intent;
 
 import com.alpha.alphaapp.app.MyApplication;
-import com.alpha.alphaapp.ui.login.*;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;

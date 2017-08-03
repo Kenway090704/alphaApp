@@ -25,6 +25,7 @@ public class ModifyInfoItemView extends LinearLayout {
     private String txt_left;
     private TextView tv_left, tv_info;
     private ImageView iv_right;
+    private View view;
 
     public ModifyInfoItemView(Context context) {
         super(context);
@@ -41,7 +42,7 @@ public class ModifyInfoItemView extends LinearLayout {
 
     private void initView() {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_modify_info_item, this);
+        view = LayoutInflater.from(context).inflate(R.layout.widget_modify_info_item, this);
         tv_left = (TextView) view.findViewById(R.id.widget_mod_info_tv_left);
         tv_info = (TextView) view.findViewById(R.id.widget_mod_info_tv_msg);
         iv_right = (ImageView) view.findViewById(R.id.widget_mod_info_iv_right);
@@ -73,7 +74,12 @@ public class ModifyInfoItemView extends LinearLayout {
      * @param listener
      */
     public void setIvRightOnClicklistener(OnClickListener listener) {
-        iv_right.setOnClickListener(listener);
+        if (!Util.isNull(listener)){
+            view.setOnClickListener(listener);
+            iv_right.setOnClickListener(listener);
+        }
+
+
     }
 
 }

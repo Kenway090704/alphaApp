@@ -5,36 +5,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
         android:id="@+id/bind_phone_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:hint="@string/input_valid_eleven_number"
-        app:icon_type="@drawable/icon_phone" />
+        app:icon_type="@drawable/icon_phone_jpg" />
 
     <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
         android:id="@+id/bind_phone_ivet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="@dimen/commom_margin_5" />
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/bind_phone_tv_error"
         style="@style/tv_error_com" />
 
     <Button
         android:id="@+id/bind_phone_btn_submit"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/submit" />
 
     <TextView
         android:id="@+id/bind_phone_tv_no_bind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/commom_margin_25"
         android:clickable="true"
         android:gravity="center"
         android:text="@string/no_bind"
-        android:textSize="16sp" />
+        android:textColor="@color/common_tv_dark_red"
+        android:textSize="@dimen/commom_tv_size_12" />
 </LinearLayout>

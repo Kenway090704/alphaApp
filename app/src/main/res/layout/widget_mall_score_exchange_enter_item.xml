@@ -9,6 +9,7 @@
         android:id="@+id/my_score_item_iv_logo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -17,27 +18,29 @@
         android:scaleType="centerCrop"
         android:src="@drawable/speed_logo" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="7">
+        android:layout_marginLeft="10dp"
+        android:layout_weight="7"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
+                android:id="@+id/my_score_item_tv_hint"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="积分 : " />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/my_score_item_tv_curr_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 5积分"
+                android:layout_marginLeft="10dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -45,23 +48,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <TextView
-                android:id="@+id/my_score_item_tv_exchange"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:padding="5dp"
-                android:text="我要兑换"
-                android:textColor="@color/red"
-                android:textStyle="bold" />
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/my_score_item_tv_review_exchange_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:clickable="true"
                 android:text="查看兑换记录>"
@@ -71,9 +64,30 @@
                 android:id="@+id/my_score_item_tv_look_web"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="去官网看看>"
+                android:layout_gravity="center"
+                android:text="去官网看看 >"
+
                 android:textSize="12sp" />
         </LinearLayout>
-    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/my_score_item_tv_score_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="积分变动记录"
+
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/my_score_item_tv_exchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="我要兑换"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
 </LinearLayout>

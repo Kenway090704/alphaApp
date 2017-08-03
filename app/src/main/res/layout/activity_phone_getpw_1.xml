@@ -18,19 +18,21 @@
         app:txt_second="@string/input_verify"
         app:txt_third="@string/reset_pw" />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.EmptyEditText
         android:id="@+id/phone_get_pw_1_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hint="@string/phone_number"
-        app:icon_type="@drawable/icon_phone" />
+        />
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/phone_get_pw_1_tv_error"
-        style="@style/tv_error_com" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/phone_get_pw_1_btn_getVerify"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/get_phone_verify" />
 </LinearLayout>

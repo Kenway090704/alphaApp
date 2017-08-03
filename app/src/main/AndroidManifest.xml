@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alpha.alphaapp"
     android:versionCode="1"
-    android:versionName="v 1.0.4">
+    android:versionName="v 1.1.0">
 
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,70 +29,70 @@
         </activity>
         <activity android:name=".ui.HomeActivity" />
         <!--注册-->
-        <activity android:name=".ui.register.RegisterGuideActivity" />
-        <activity android:name=".ui.register.account.RegisterAccountActivity" />
-        <activity android:name=".ui.register.phone.RegisterPhoneActivity1" />
-        <activity android:name=".ui.register.phone.RegisterPhoneActivity2" />
-        <activity android:name=".ui.register.phone.RegisterPhoneActivity3" />
-        <activity android:name=".ui.register.UserAgreementActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.set.SettingsActivity" />
-        <activity android:name=".ui.modifypw.ModifyPwByPwActivity" />
-        <activity android:name=".ui.modifypw.phone.ModifyPwByPhoneActivity1" />
-        <activity android:name=".ui.modifypw.phone.ModifyPwByPhoneActivity2" />
-        <activity android:name=".ui.modifypw.phone.ModifyPwByPhoneActivity3" />
+        <activity android:name=".ui.v_1_0.register.RegisterGuideActivity" />
+        <activity android:name=".ui.v_1_0.register.account.RegisterAccountActivity" />
+        <activity android:name=".ui.v_1_0.register.phone.RegisterPhoneActivity1" />
+        <activity android:name=".ui.v_1_0.register.phone.RegisterPhoneActivity2" />
+        <activity android:name=".ui.v_1_0.register.phone.RegisterPhoneActivity3" />
+        <activity android:name=".ui.v_1_0.register.UserAgreementActivity" />
+        <activity android:name=".ui.v_1_0.login.LoginActivity" />
+        <activity android:name=".ui.v_1_0.set.SettingsActivity" />
+        <activity android:name=".ui.v_1_0.modifypw.ModifyPwByPwActivity" />
+        <activity android:name=".ui.v_1_0.modifypw.phone.ModifyPwByPhoneActivity1" />
+        <activity android:name=".ui.v_1_0.modifypw.phone.ModifyPwByPhoneActivity2" />
+        <activity android:name=".ui.v_1_0.modifypw.phone.ModifyPwByPhoneActivity3" />
         <activity android:name=".ui.AboutUsActivity" />
         <activity android:name=".ui.FeedbackActivity" />
-        <activity android:name=".ui.score.ScoreActivity" />
+        <activity android:name=".ui.v_1_0.score.ScoreActivity" />
         <activity
-            android:name=".ui.set.AccountSecurityActivity"
+            android:name=".ui.v_1_0.set.AccountSecurityActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".ui.bind.firstbind.BindAccountActivity" />
-        <activity android:name=".ui.forgetpw.ForgetPWGuideActivity" />
-        <activity android:name=".ui.forgetpw.phone.PhoneGetPwActivity1" />
-        <activity android:name=".ui.forgetpw.phone.PhoneGetPwActivity2" />
-        <activity android:name=".ui.forgetpw.phone.PhoneGetPwActivity3" />
+        <activity android:name=".ui.v_1_0.bind.firstbind.BindAccountActivity" />
+        <activity android:name=".ui.v_1_0.forgetpw.ForgetPWGuideActivity" />
+        <activity android:name=".ui.v_1_0.forgetpw.phone.PhoneGetPwActivity1" />
+        <activity android:name=".ui.v_1_0.forgetpw.phone.PhoneGetPwActivity2" />
+        <activity android:name=".ui.v_1_0.forgetpw.phone.PhoneGetPwActivity3" />
         <!--找回密码-->
-        <activity android:name=".ui.forgetpw.wx.WxGetPwActivity3" />
-        <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityHasRegister1" />
-        <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityHasAccount" />
-        <activity android:name=".ui.forgetpw.wx.noregister.WxGetPwActivityNoRegister1" />
-        <activity android:name=".ui.forgetpw.wx.hasregister.WxGetPwActivityNoAccount" />
+        <activity android:name=".ui.v_1_0.forgetpw.wx.WxGetPwActivity3" />
+        <activity android:name=".ui.v_1_0.forgetpw.wx.hasregister.WxGetPwActivityHasRegister1" />
+        <activity android:name=".ui.v_1_0.forgetpw.wx.hasregister.WxGetPwActivityHasAccount" />
+        <activity android:name=".ui.v_1_0.forgetpw.wx.noregister.WxGetPwActivityNoRegister1" />
+        <activity android:name=".ui.v_1_0.forgetpw.wx.hasregister.WxGetPwActivityNoAccount" />
         <!--bind phone-->
-        <activity android:name=".ui.bind.phone.first.NewPhoneBindActvity1" />
-        <activity android:name=".ui.bind.phone.first.NewPhoneBindActvity2" />
-        <activity android:name=".ui.bind.phone.change.ChangePhoneBindActvity1" />
-        <activity android:name=".ui.bind.phone.change.ChangePhoneBindActvity2" />
+        <activity android:name=".ui.v_1_0.bind.phone.first.NewPhoneBindActvity1" />
+        <activity android:name=".ui.v_1_0.bind.phone.first.NewPhoneBindActvity2" />
+        <activity android:name=".ui.v_1_0.bind.phone.change.ChangePhoneBindActvity1" />
+        <activity android:name=".ui.v_1_0.bind.phone.change.ChangePhoneBindActvity2" />
         <!--set en_account-->
-        <activity android:name=".ui.bind.account.EnAccountSetingHasPwActivity" />
-        <activity android:name=".ui.bind.account.EnAccountSetingNoPwActivity" />
+        <activity android:name=".ui.v_1_0.bind.account.EnAccountSetingHasPwActivity" />
+        <activity android:name=".ui.v_1_0.bind.account.EnAccountSetingNoPwActivity" />
         <!--修改个人信息-->
-        <activity android:name=".ui.mine.MineInfoActivity" />
-        <activity android:name=".ui.mine.addr.ModifyContactAddrActivity" />
-        <activity android:name=".ui.mine.school.ModifySchoolActivity" />
+        <activity android:name=".ui.v_1_0.mine.MineInfoActivity" />
+        <activity android:name=".ui.v_1_0.mine.addr.ModifyContactAddrActivity" />
+        <activity android:name=".ui.v_1_0.mine.school.ModifySchoolActivity" />
 
         <!--签到-->
-        <activity android:name=".ui.sign.SignActivity" />
-        <activity android:name=".ui.sign.MySignActivity" />
+        <activity android:name=".ui.v_1_0.sign.SignActivity" />
+        <activity android:name=".ui.v_1_0.sign.MySignActivity" />
         <activity android:name=".ui.WebActivity" />
         <!--积分商城模块-->
-        <activity android:name=".ui.mall.exchange.ScoreExchangeEnterActivity" />
-        <activity android:name=".ui.mall.exchange.GoodsExchangeActivity" />
+        <activity android:name=".ui.v_1_1.mall.exchange.ScoreExchangeEnterActivity" />
+        <activity android:name=".ui.v_1_1.mall.exchange.GoodsExchangeActivity" />
 
-        <activity android:name=".ui.mall.exchange.ScoreChangeRecordActivity" />
-        <activity android:name=".ui.mall.exchange.ExchangeRecordListActivity" />
-        <activity android:name=".ui.mall.exchange.GoodsListsActivity" />
+        <activity android:name=".ui.v_1_1.mall.exchange.ScoreChangeRecordActivity" />
+        <activity android:name=".ui.v_1_1.mall.exchange.ExchangeRecordListActivity" />
+        <activity android:name=".ui.v_1_1.mall.exchange.GoodsListsActivity" />
 
-        <activity android:name=".ui.mall.addr.ShippingAddrActivity" />
-        <activity android:name=".ui.mall.addr.AddShippingAddrActivity" />
-        <activity android:name=".ui.mall.addr.EditShippingAddrActvity" />
-        <activity android:name=".ui.mall.addr.ChooseShippingAddrActivity" />
-        <activity android:name=".ui.mall.exchange.ExchangeRecordDetailActivity" />
+        <activity android:name=".ui.v_1_1.mall.addr.ShippingAddrActivity" />
+        <activity android:name=".ui.v_1_1.mall.addr.AddShippingAddrActivity" />
+        <activity android:name=".ui.v_1_1.mall.addr.EditShippingAddrActvity" />
+        <activity android:name=".ui.v_1_1.mall.addr.ChooseShippingAddrActivity" />
+        <activity android:name=".ui.v_1_1.mall.exchange.ExchangeRecordDetailActivity" />
 
         <!--激活-->
-        <activity android:name=".ui.mall.active.ActiveEnterActivity" />
-        <activity android:name=".ui.mall.active.ActiveActivity" />
-        <activity android:name=".ui.mall.active.ActiveRecordActivity" />
+        <activity android:name=".ui.v_1_1.mall.active.ActiveEnterActivity" />
+        <activity android:name=".ui.v_1_1.mall.active.ActiveActivity" />
+        <activity android:name=".ui.v_1_1.mall.active.ActiveRecordActivity" />
         <!--版本更新的服务-->
         <service android:name=".version.UpdateVersionService" />
         <receiver android:name="com.alpha.lib_sdk.app.net.broadcast.NetWorkChangeBroadcasetReceiver">

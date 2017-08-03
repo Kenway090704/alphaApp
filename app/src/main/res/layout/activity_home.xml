@@ -8,15 +8,15 @@
         android:id="@+id/home_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/shape_et_bg_gray"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:background="@drawable/shape_et_bg_gray" />
 
     <RadioGroup
-        android:layout_marginTop="5dp"
+
         android:id="@+id/home_rg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_height="@dimen/commom_height_48"
+        android:layout_marginTop="@dimen/commom_margin_5"
         android:orientation="horizontal">
 
         <RadioButton
@@ -27,7 +27,9 @@
             android:button="@null"
             android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
-            android:text="推荐" />
+            android:text="推荐"
+            android:textColor="@drawable/selector_radio_txt_color"
+            android:textSize="@dimen/commom_tv_size_10" />
 
         <RadioButton
             android:id="@+id/home_rb_score"
@@ -37,7 +39,9 @@
             android:button="@null"
             android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
-            android:text="积分商城" />
+            android:text="积分商城"
+            android:textColor="@drawable/selector_radio_txt_color"
+            android:textSize="@dimen/commom_tv_size_10" />
 
         <RadioButton
             android:id="@+id/home_rb_mine"
@@ -45,9 +49,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
+            android:checked="true"
+            android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
-            android:drawablePadding="5dp"
-            android:text="我的" />
+            android:text="我的"
+            android:textColor="@drawable/selector_radio_txt_color"
+            android:textSize="@dimen/commom_tv_size_10" />
     </RadioGroup>
 </LinearLayout>

@@ -32,10 +32,10 @@
         android:lineSpacingExtra="5dp"
         android:maxLines="2"
         android:text="@string/wx_no_login_alpha"
-        android:textColor="@color/tv_black" />
+        android:textColor="@color/common_tv_black" />
 
     <Button
         android:id="@+id/wx_getpw_no_register_1_btn_loginset"
-        style="@style/btn_com_blue"
+        style="@style/btn_one_com_red"
         android:text="@string/now_login_set" />
 </LinearLayout>

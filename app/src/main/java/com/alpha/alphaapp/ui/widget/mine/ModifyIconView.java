@@ -1,7 +1,6 @@
 package com.alpha.alphaapp.ui.widget.mine;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,19 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.model.geticons.GetIconBean;
-import com.alpha.alphaapp.ui.mine.adapter.IconListVPAdapter;
-import com.alpha.alphaapp.ui.mine.adapter.IconRecylcerAdapter;
+import com.alpha.alphaapp.model.v_1_0.bean.GetIconBean;
+import com.alpha.alphaapp.ui.v_1_0.mine.adapter.IconListVPAdapter;
+import com.alpha.alphaapp.ui.v_1_0.mine.adapter.IconRecylcerAdapter;
 import com.alpha.lib_sdk.app.glide.ImageLoader;
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.tandong.bottomview.view.BottomView;
 
@@ -50,6 +47,7 @@ public class ModifyIconView extends LinearLayout {
     private TabLayout tabLayout;
     private ViewPager vp;
     private Button btn;
+    private View view;
 
     public ModifyIconView(Context context) {
         super(context);
@@ -77,7 +75,7 @@ public class ModifyIconView extends LinearLayout {
 
     private void initView() {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_modify_icon_item, this);
+        view = LayoutInflater.from(context).inflate(R.layout.widget_modify_icon_item, this);
         riv_icon = (RoundedImageView) view.findViewById(R.id.widget_mod_icon_riv_msg);
         iv_right = (ImageView) view.findViewById(R.id.widget_mod_icon_iv_right);
     }
@@ -88,11 +86,15 @@ public class ModifyIconView extends LinearLayout {
      */
     public void setIcon(String baseUrl, String icon) {
         String url = baseUrl + icon;
-        ImageLoader.load(context,url,riv_icon);
+        ImageLoader.loadCircle(context, url, riv_icon);
     }
 
     public void setRightIVOnClicklistener(OnClickListener listener) {
-        iv_right.setOnClickListener(listener);
+        if (!Util.isNull(listener)){
+            view.setOnClickListener(listener);
+            iv_right.setOnClickListener(listener);
+        }
+
     }
 
     /**
@@ -172,12 +174,15 @@ public class ModifyIconView extends LinearLayout {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                TextView tv = (TextView) tab.getCustomView().findViewById(R.id.choose_icon_tab_tv);
+                tv.setTextColor(getResources().getColor(R.color.common_tv_dark_red));
                 vp.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                TextView tv = (TextView) tab.getCustomView().findViewById(R.id.choose_icon_tab_tv);
+                tv.setTextColor(getResources().getColor(R.color.common_tv_dark_gray));
             }
 
             @Override

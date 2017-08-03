@@ -2,14 +2,12 @@ package com.alpha.alphaapp.ui.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.URLConstans;
+import com.alpha.lib_stub.comm.URLConstans;
 import com.bumptech.glide.Glide;
 
 

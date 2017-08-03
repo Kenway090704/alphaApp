@@ -62,12 +62,12 @@
             android:lineSpacingExtra="9dp"
             android:maxLines="2"
             android:text="@string/need_help_msg"
-            android:textColor="@color/tv_black"
+            android:textColor="@color/common_tv_black"
             android:textSize="14sp" />
 
         <Button
             android:id="@+id/sign_btn_sign"
-            style="@style/btn_com_blue"
+            style="@style/btn_one_com_red"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center"

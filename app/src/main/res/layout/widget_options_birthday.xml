@@ -24,7 +24,7 @@
             android:layout_marginLeft="17dp"
             android:padding="8dp"
             android:text="取消"
-            android:textColor="@color/error_red"
+            android:textColor="@color/common_tv_dark_red"
             android:textSize="18sp" />
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_marginRight="17dp"
             android:padding="8dp"
             android:text="完成"
-            android:textColor="@color/error_red"
+            android:textColor="@color/common_tv_dark_red"
             android:textSize="18sp" />
 
         <View

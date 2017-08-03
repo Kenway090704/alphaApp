@@ -22,12 +22,12 @@
         android:id="@+id/modify_pbph2_ivet_phoneverify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/modify_pbph2_tv_error"
         style="@style/tv_error_com" />
 
     <Button
         android:id="@+id/modify_pbph2_btn_setpw"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/set_pw" />
 </LinearLayout>

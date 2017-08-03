@@ -3,6 +3,7 @@
     xmlns:costum="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_bg_light_gray"
     android:orientation="vertical">
     <!--加入标题栏-->
     <com.alpha.alphaapp.ui.widget.TitleLayout
@@ -10,28 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="@android:color/white" />
 
     <com.alpha.alphaapp.ui.widget.set.SetingItemView
         android:id="@+id/seting_siv_bindset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/icon_tool"
+        android:layout_marginTop="@dimen/commom_margin_10"
+        costum:left_icon="@drawable/icon_setting2_red"
         costum:text="@string/settings_account_bind_set" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="@android:color/white" />
 
     <com.alpha.alphaapp.ui.widget.set.SetingItemView
         android:id="@+id/seting_siv_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/icon_feedback"
+        android:layout_marginTop="@dimen/commom_margin_10"
+        costum:left_icon="@drawable/icon_seting_feedback"
         costum:text="@string/feedback" />
 
     <com.alpha.alphaapp.ui.widget.LineView
@@ -42,8 +37,8 @@
         android:id="@+id/seting_siv_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/icon_score"
-        costum:text="@string/score" />
+        costum:left_icon="@drawable/icon_seting_rating"
+        costum:text="@string/wel_comment" />
 
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
@@ -53,17 +48,13 @@
         android:id="@+id/seting_siv_aboutus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        costum:left_icon="@drawable/launcher"
+        costum:left_icon="@drawable/icon_seting_logo2"
         costum:text="@string/about_us" />
 
     <Button
         android:id="@+id/seting_btn_exit"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/shape_btn_bg_red"
-        android:text="@string/exit_account"
-        android:textColor="@android:color/white"
-        android:textSize="16sp" />
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_20"
+        android:text="@string/exit_account" />
 
 </LinearLayout>

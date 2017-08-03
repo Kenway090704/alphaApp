@@ -21,6 +21,7 @@ import com.alpha.lib_sdk.app.tool.Util;
  */
 
 public class TitleLayout extends LinearLayout {
+    private LinearLayout layout_back;
     private ImageView iv_back;
     private TextView tv_title;
 
@@ -30,6 +31,7 @@ public class TitleLayout extends LinearLayout {
         String title = array.getString(R.styleable.TitleLayout_txt_title);
         array.recycle();
         LayoutInflater.from(context).inflate(R.layout.widget_titlelayout, this);
+        layout_back = (LinearLayout) findViewById(R.id.title_layout_back);
         iv_back = (ImageView) findViewById(R.id.title_iv_back);
         tv_title = (TextView) findViewById(R.id.title_tv_title);
         if (!Util.isNullOrBlank(title))
@@ -63,16 +65,26 @@ public class TitleLayout extends LinearLayout {
      * @param onBackListener
      */
     public void setOnBackListener(final OnBackListener onBackListener) {
+        layout_back.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onBackListener != null) {
+                    onBackListener.onBackLister();
+
+                } else {
+                    ((Activity) layout_back.getContext()).finish();
+                }
+            }
+        });
         iv_back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onBackListener != null) {
                     onBackListener.onBackLister();
+
                 } else {
-                    ((Activity) iv_back.getContext()).finish();
+                    ((Activity) layout_back.getContext()).finish();
                 }
-
-
             }
         });
     }

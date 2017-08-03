@@ -28,7 +28,7 @@
         android:maxLines="2"
 
         android:text="@string/wx_has_login_alpha"
-        android:textColor="@color/tv_black" />
+        android:textColor="@color/common_tv_black" />
 
     <TextView
         android:layout_width="match_parent"
@@ -38,10 +38,10 @@
         android:gravity="center"
         android:maxLines="2"
         android:text="@string/if_reset_pw_for_the_account"
-        android:textColor="@color/tv_black" />
+        android:textColor="@color/common_tv_black" />
 
     <Button
         android:id="@+id/wx_getpw_has_account_btn_reset"
-        style="@style/btn_com_blue"
+        style="@style/btn_one_com_red"
         android:text="@string/reset_pw" />
 </LinearLayout>

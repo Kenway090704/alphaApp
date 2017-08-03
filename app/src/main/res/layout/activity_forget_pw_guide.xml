@@ -2,52 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_bg_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <!--加入标题栏-->
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:id="@+id/forget_pw_guide_titlelayout"
         android:layout_width="match_parent"
+        app:txt_title="@string/find_pw"
         android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/forget_pw_guide_btn_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/commom_length_103"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/icon_phone" />
+            android:src="@drawable/phone_big" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/commom_margin_15"
             android:gravity="center"
+            android:textSize="@dimen/commom_tv_size_12"
+            android:textColor="@color/common_tv_dark_red"
             android:text="@string/by_bind_phone_get" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/forget_pw_guide_btn_weChat"
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/commom_length_103"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/icon_wx_black" />
 
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/commom_margin_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="@dimen/commom_tv_size_12"
+            android:textColor="@color/common_tv_dark_red"
             android:text="@string/by_bind_wx_get" />
     </LinearLayout>
 

@@ -34,7 +34,7 @@ public abstract class BaseActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        // 设置为横屏模式
+        // 设置为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setAlphaToolbar();
         initView();
@@ -56,7 +56,7 @@ public abstract class BaseActivity extends Activity {
 //            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
 //            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
 //        }
-        StatusBarCompat.setStatusBarColor(this,getResources().getColor(R.color.colorPrimary),false);
+        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.common_red), false);
     }
 
     @Override

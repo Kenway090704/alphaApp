@@ -3,36 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_bg_light_gray"
     android:orientation="vertical">
 
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:id="@+id/set_acc_nopw_titlelayout"
-        app:txt_title="@string/en_account_set"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:txt_title="@string/en_account_set" />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.EmptyEditText
         android:id="@+id/set_acc_nopw_aet_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/commom_margin_20"
         app:hint="@string/account_alpha_format"
-        app:icon_type="@drawable/icon_user" />
+         />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.EmptyEditText
         android:id="@+id/set_acc_nopw_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/commom_margin_5"
         app:hint="@string/pw_form"
-        app:icon_type="@drawable/icon_lock" />
+        app:input_type="password" />
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/set_acc_nopw_tv_error"
         style="@style/tv_error_com" />
 
     <Button
         android:id="@+id/set_acc_nopw_btn_save"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/save" />
 </LinearLayout>

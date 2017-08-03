@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/my_score_item"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/score_exchange_item_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:text="特别版风暴组建 "
+        android:textColor="@color/common_tv_white"
+        android:textSize="12sp" />
+    <ImageView
+        android:id="@+id/score_exchange_item_iv_logo"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/shample" />
+    <TextView
+        android:id="@+id/score_exchange_item_tv_need_score_count"
+        android:layout_width="wrap_content"
+        android:text="兑换积分:6400"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textColor="@color/common_tv_white"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/score_exchange_item_tv_has_exchange_count"
+        android:layout_width="wrap_content"
+        android:text="已兑换:950件"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textColor="@color/common_tv_white"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/score_exchange_item_tv_remain_count"
+        android:layout_width="wrap_content"
+        android:text="库存:0件"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textColor="@color/common_tv_white"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/score_exchange_item_btn_exchange"
+        android:layout_width="match_parent"
+        android:text="立即兑换"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

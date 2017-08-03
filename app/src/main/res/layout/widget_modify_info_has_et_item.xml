@@ -1,79 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="@dimen/commom_margin_35">
 
     <LinearLayout
         android:id="@+id/mod_info_has_et_layout_one"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_gray"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:background="@color/common_bg_white"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/mod_info_has_et_layout_one_tv_left"
+            style="@style/mine_left_item" />
+
+        <View
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_width="@dimen/left_item_width"
-            android:layout_marginLeft="@dimen/margin_item_left"
-            android:gravity="center_vertical"
-            android:textColor="@color/tv_black"
-            android:textSize="12sp" />
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/mod_info_has_et_layout_one_tv_msg"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/tv_black"
-            android:textSize="12sp" />
+            style="@style/mine_mid_tv"
+            android:gravity="center" />
 
         <ImageView
             android:id="@+id/mod_info_has_et_layout_one_iv_right"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:src="@drawable/icon_set_arrow_right"
-            android:textSize="12sp" />
+            style="@style/mine_next"
+            android:layout_gravity="center"
+            android:gravity="center" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mod_info_has_et_layout_two"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/shape_et_bg_white"
+        android:background="@color/common_bg_white"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="7dp"
         android:visibility="gone">
 
         <EditText
             android:id="@+id/mod_info_has_et_layout_two_et"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:layout_marginLeft="@dimen/commom_margin_30"
             android:background="@null"
             android:gravity="center_vertical"
             android:maxLength="30"
             android:singleLine="true"
-            android:textColor="@color/tv_black"
-            android:textSize="14sp" />
+            android:textColor="@color/common_tv_light_gray"
+            android:textSize="@dimen/commom_tv_size_14" />
 
         <ImageView
             android:id="@+id/mod_info_has_et_layout_two_iv_del"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/commom_margin_30"
             android:clickable="true"
             android:src="@drawable/et_del"
             android:visibility="invisible" />

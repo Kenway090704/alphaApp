@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="#8000bf5f" >
 
-        <com.alpha.alphaapp.ui.score.BounceScrollView
+        <com.alpha.alphaapp.ui.v_1_0.score.BounceScrollView
             android:id="@+id/id_scrollview"
             android:layout_width="0dp"
             android:layout_height="45dp"
@@ -19,23 +19,23 @@
             android:focusableInTouchMode="false"
             android:scrollbars="none" >
 
-            <com.alpha.alphaapp.ui.score.ViewPagerIndicator
+            <com.alpha.alphaapp.ui.v_1_0.score.ViewPagerIndicator
                 android:id="@+id/id_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal"
                 app:item_count="4" >
-            </com.alpha.alphaapp.ui.score.ViewPagerIndicator>
-        </com.alpha.alphaapp.ui.score.BounceScrollView>
+            </com.alpha.alphaapp.ui.v_1_0.score.ViewPagerIndicator>
+        </com.alpha.alphaapp.ui.v_1_0.score.BounceScrollView>
 
-        <com.alpha.alphaapp.ui.score.RotatImageView
+        <com.alpha.alphaapp.ui.v_1_0.score.RotatImageView
             android:id="@+id/id_rotat_imageView"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
             android:layout_gravity="center"
             app:src="@drawable/add" >
-        </com.alpha.alphaapp.ui.score.RotatImageView>
+        </com.alpha.alphaapp.ui.v_1_0.score.RotatImageView>
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

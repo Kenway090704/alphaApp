@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login_bg_white"
+    android:background="@color/common_bg_light_gray"
     android:orientation="vertical">
 
     <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
@@ -11,14 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         app:hint="@string/alpha_account_or_phonenumber"
-        app:icon_type="@drawable/icon_user_super"
-      />
+        app:icon_type="@drawable/icon_user_super" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="5.5dp"
-        android:background="@color/login_bg_white"
-        />
+        android:background="@color/common_bg_light_gray" />
 
     <com.alpha.alphaapp.ui.widget.et.PwInputEditText
         android:id="@+id/log_ac_piet_pw"
@@ -29,9 +27,11 @@
         app:input_type="password" />
 
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/log_ac_tv_error"
-        style="@style/tv_error_com" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,15 +40,19 @@
 
         <Button
             android:id="@+id/log_ac_btn_regiser"
-            style="@style/btn_login_com_white"
+            style="@style/btn_com_white"
             android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/commom_margin_30"
             android:layout_weight="1"
+            android:textSize="@dimen/commom_tv_size_18"
             android:text="@string/register" />
 
         <Button
             android:id="@+id/log_ac_btn_login"
-            style="@style/btn_login_com_gray"
+            style="@style/btn_com_gray"
             android:layout_width="0dp"
+            android:layout_marginRight="@dimen/commom_margin_30"
+            android:layout_marginLeft="@dimen/commom_margin_15"
             android:layout_weight="1"
             android:text="@string/login" />
     </LinearLayout>
@@ -58,17 +62,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/log_ac_tv_forgetpw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/commom_margin_30"
             android:layout_weight="1"
             android:clickable="true"
+            android:layout_marginTop="@dimen/commom_margin_10"
             android:gravity="right"
             android:text="@string/forget_pw"
-            android:textColor="@color/login_txt_red"
-            android:textSize="12sp" />
+            android:textColor="@color/common_tv_dark_red"
+            android:textSize="@dimen/commom_tv_size_12" />
 
     </LinearLayout>
 
@@ -82,23 +88,23 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="21dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/log_ac_iv_auth_weixin"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:clickable="true"
                 android:src="@drawable/icon_wx_black" />
 
             <ImageView
                 android:id="@+id/log_ac_iv_auth_qq"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="22dp"
+                android:layout_marginLeft="@dimen/commom_margin_22"
                 android:clickable="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon_qq_black" />

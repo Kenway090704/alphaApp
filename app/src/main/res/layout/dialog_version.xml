@@ -116,7 +116,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/dialog_ok_btn_bg"
                 android:text="立即更新"
-                android:textColor="@color/white"
+                android:textColor="@color/common_tv_white"
                 android:textSize="@dimen/normal_text_size" />
         </LinearLayout>
     </LinearLayout>

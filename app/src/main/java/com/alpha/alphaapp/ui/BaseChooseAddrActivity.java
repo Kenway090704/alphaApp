@@ -2,7 +2,7 @@ package com.alpha.alphaapp.ui;
 
 import android.os.Bundle;
 
-import com.alpha.alphaapp.model.mall.bean.ShippingAddrBean;
+import com.alpha.alphaapp.model.v_1_1.bean.ShippingAddrBean;
 import com.alpha.lib_sdk.app.core.event.AccurateEventObserver;
 import com.alpha.lib_sdk.app.core.event.EventObserver;
 import com.alpha.lib_sdk.app.core.event.RxEventBus;

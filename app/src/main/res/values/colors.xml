@@ -4,35 +4,32 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="error_red">#df422a</color>
-    <!--login-->
-    <color name="tv_blue">#e6169bd5</color>
-    <color name="login_bg_white">#f8f8f8</color>
-    <color name="login_tab_bg_white">#e5ffffff</color>
-    <color name="login_bg_red">#e5e7350c</color>
-    <color name="login_txt_red">#e8340c</color>
+    <!--统一样式颜色-->
+    <color name="common_red">#d54526</color>
+    <color name="common_red_alpha_80">#ccd54526</color>
+    <color name="common_red_alpha_90">#e6d54526</color>
 
-    <!--bind-->
-    <color name="tv_black">#f3333333</color>
-    <color name="tv_gray">#999999</color>
-    <color name="tv_red">#e8340c</color>
-    <color name="bg_gray">#f2f2f2</color>
-    <color name="btn_red">#f3bb261a</color>
-    <color name="white">#FFF</color>
-    <color name="select_school_white">#FFFFFFFF</color>
-    <color name="itme_bg_gray">#f2f2f2</color>
+    <!--字体颜色-->
+    <color name="common_tv_light_gray">#9c9c9c</color>
+    <color name="common_tv_dark_gray">#626262</color>
+    <color name="common_tv_dark_red">#d54526</color>
+    <color name="common_tv_white">#ffffff</color>
+    <color name="common_tv_black">#000</color>
 
-    <color name="line_gray">#dad5d5</color>
+    <!--bound边界-->
+    <color name="common_bound_line_gray">#d2d2d2</color>
+    <color name="common_bound_line_red">#d54526</color>
+
+    <!--背景-->
+    <color name="common_bg_light_gray">#f4f4f4</color>
+    <color name="common_bg_dark_gray">#9c9c9c</color>
+    <color name="common_bg_white">#fff</color>
+    <color name="common_bg_red">#d54526</color>
+
 
 
     <!--my_score中item的背景-->
-
-    <color name="my_score_item">#b41c334e</color>
-
-
-
-
-
+    <color name="my_score_item">#b11c334e</color>
 
 
 
@@ -42,8 +39,6 @@
 
     <!--版本更新-->
     <!-- 白色 -->
-
-
     <!-- 黑色 -->
     <color name="black">#333333</color>
 
@@ -118,7 +113,7 @@
     <!-- 分页的背景 -->
     <color name="page_bg">#E5E5E5</color>
 
-    <!-- 分页——的按钮的颜色 -->
+    <!-- 分页的按钮的颜色 -->
     <color name="page_button_color">#3B3B3B</color>
 
     <color name="toast_bg">#EDEDED</color>

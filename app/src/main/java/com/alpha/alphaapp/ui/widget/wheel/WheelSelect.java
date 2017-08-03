@@ -12,7 +12,7 @@ import android.graphics.Rect;
 public class WheelSelect
 {
     //黑框背景颜色
-    private static final int COLOR_BACKGROUD = Color.parseColor("#FFFFFFFF");
+    private static final int COLOR_BACKGROUD = Color.parseColor("#e0d54526");
     //黑框的Y坐标起点，宽度，高度
     private int startY;
     private int width;

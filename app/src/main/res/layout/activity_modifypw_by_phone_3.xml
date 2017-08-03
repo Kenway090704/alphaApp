@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_bg_light_gray"
     android:orientation="vertical">
 
     <com.alpha.alphaapp.ui.widget.TitleLayout
@@ -18,17 +19,19 @@
         app:txt_second="@string/input_verify"
         app:txt_third="@string/set_pw" />
 
-    <EditText
+    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
         android:id="@+id/modify_pbph3_et_pw"
-        style="@style/et_com"
-        android:hint="@string/pw_form" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hint="@string/pw_form"
+        app:icon_type="@drawable/icon_password" />
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/modify_pbph3_tv_error"
         style="@style/tv_error_com" />
 
     <Button
         android:id="@+id/modify_pbph3_btn_save"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/set_pw" />
 </LinearLayout>

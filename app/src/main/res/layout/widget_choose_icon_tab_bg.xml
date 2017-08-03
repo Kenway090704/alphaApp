@@ -6,8 +6,14 @@
 
     <TextView
         android:id="@+id/choose_icon_tab_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:background="@drawable/selector_icon_choose_txt_bg" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/selector_icon_choose_txt_bg"
+        android:padding="@dimen/commom_margin_4"
+        android:paddingBottom="@dimen/commom_margin_8"
+        android:paddingLeft="@dimen/commom_margin_12"
+        android:paddingRight="@dimen/commom_margin_12"
+        android:paddingTop="@dimen/commom_margin_8"
+        android:textSize="@dimen/commom_tv_size_12"
+        android:textStyle="bold" />
 </LinearLayout>

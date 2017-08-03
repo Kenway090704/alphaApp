@@ -2,7 +2,7 @@ package com.alpha.alphaapp.app;
 
 import android.app.Application;
 
-import com.alpha.alphaapp.ui.mine.logic.GetPCityAreaData;
+import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaData;
 import com.alpha.alphaapp.wxapi.WXManager;
 import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;

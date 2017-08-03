@@ -29,7 +29,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/sign_success"
-            android:textColor="@color/tv_black"
+            android:textColor="@color/common_tv_black"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -39,7 +39,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="@string/get_1_exprience"
-            android:textColor="@color/tv_black"
+            android:textColor="@color/common_tv_black"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="@string/sign_days"
-            android:textColor="@color/tv_black"
+            android:textColor="@color/common_tv_black"
             android:textSize="12sp" />
 
         <LinearLayout
@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
-                android:background="@drawable/shape_dialog_btn_bg"
+                android:background="@color/common_bg_dark_gray"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/i_kown"
@@ -79,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="24dp"
-                android:background="@drawable/shape_dialog_btn_bg"
+                android:background="@color/common_bg_dark_gray"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/look_out_sign_record"

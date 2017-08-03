@@ -18,7 +18,7 @@
 
     <Button
         android:id="@+id/shippingaddr_btn_add_addr"
-        style="@style/btn_login_com_red"
+        style="@style/btn_one_com_red"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_new_shipping_addr" />

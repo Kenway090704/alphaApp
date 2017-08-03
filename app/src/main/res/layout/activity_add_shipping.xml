@@ -33,7 +33,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:background="@color/bg_gray"
+        android:background="@color/common_bg_light_gray"
         android:layout_height="1dp"/>
 
     <LinearLayout
@@ -59,7 +59,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:background="@color/bg_gray"
+        android:background="@color/common_bg_light_gray"
         android:layout_height="1dp"/>
     <LinearLayout
         android:id="@+id/add_shiping_addr_liner_area"
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plz_choose"
-            android:textColor="@color/tv_gray"
+            android:textColor="@color/common_tv_dark_gray"
             android:textSize="12sp" />
 
         <ImageView
@@ -119,7 +119,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:background="@color/bg_gray"
+        android:background="@color/common_bg_light_gray"
         android:layout_height="1dp"/>
     <LinearLayout
         android:id="@+id/add_shiping_addr_liner_detail"
@@ -139,7 +139,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:background="@color/bg_gray"
+        android:background="@color/common_bg_light_gray"
         android:layout_height="1dp"/>
     <LinearLayout
 
@@ -170,13 +170,13 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:background="@color/bg_gray"
+        android:background="@color/common_bg_light_gray"
         android:layout_height="5dp"/>
     <Button
         android:id="@+id/add_shiping_addr_btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/btn_login_com_red"
+        style="@style/btn_one_com_red"
         android:text="@string/save" />
 
 </LinearLayout>

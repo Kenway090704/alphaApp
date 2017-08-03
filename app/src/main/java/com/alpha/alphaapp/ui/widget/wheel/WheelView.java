@@ -11,6 +11,7 @@ import android.webkit.WebView;
 
 import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
+import com.alpha.lib_sdk.app.unitily.DensityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,9 @@ public class WheelView extends View {
     private static final String TAG = "WheelView";
 
     public static final int FONT_COLOR = Color.BLACK;
-    public static final int FONT_SIZE = 30;
+    public static final int FONT_COLOR_WHITE = Color.WHITE;
+
+    public static final int FONT_SIZE = 28;
     public static final int PADDING = 10;
     public static final int SHOW_COUNT = 3;
     public static final int SELECT = 0;
@@ -54,17 +57,26 @@ public class WheelView extends View {
     private boolean isCenter = true;
     //监听器
     private OnWheelViewItemSelectListener listener;
+    /**
+     * 选中的位置
+     */
+    private int index;
+
+    private Context context;
 
     public WheelView(Context context) {
         super(context);
+        this.context = context;
     }
 
     public WheelView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
     }
 
     public WheelView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
     }
 
     /**
@@ -85,7 +97,7 @@ public class WheelView extends View {
      * @return
      */
     public WheelView fontSize(int fontSize) {
-        this.fontSize = fontSize;
+        this.fontSize = DensityUtils.sp2px(context, fontSize);
         return this;
     }
 
@@ -208,7 +220,7 @@ public class WheelView extends View {
             if (stringIndex < 0) {
                 stringIndex = lists.size() + stringIndex;
             }
-            wheelItems.add(new WheelItem(startY, width, itemHeight, fontColor, fontSize, lists.get(stringIndex)));
+            wheelItems.add(new WheelItem(context, startY, width, itemHeight, fontColor, fontSize, lists.get(stringIndex)));
         }
     }
 
@@ -248,7 +260,7 @@ public class WheelView extends View {
      */
     private void handleUp() {
 
-        int index = -1;
+        index = -1;
         //得到应该选择的那一项
         for (int i = 0; i < wheelItems.size(); i++) {
             WheelItem item = wheelItems.get(i);
@@ -351,13 +363,23 @@ public class WheelView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //绘制缩影
+        //绘制背景
         if (wheelSelect != null) {
             wheelSelect.onDraw(canvas);
         }
-        //绘制每一项item
-        for (WheelItem item : wheelItems) {
-            item.onDraw(canvas);
+//        //绘制每一项item
+//        for (WheelItem item : wheelItems) {
+//
+//            item.onDraw(canvas);
+//        }
+
+        for (int i = 0; i < wheelItems.size(); i++) {
+            if (i == index) {
+                //将选中内容变为白色
+                wheelItems.get(i).onFirstItemDraw(canvas);
+            } else {
+                wheelItems.get(i).onDraw(canvas);
+            }
         }
 
     }

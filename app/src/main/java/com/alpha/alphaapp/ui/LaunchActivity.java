@@ -1,6 +1,5 @@
 package com.alpha.alphaapp.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,14 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.BuildConfig;
-import com.alpha.alphaapp.model.login.LoginLogic;
-import com.alpha.alphaapp.ui.login.LoginActivity;
-import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
+import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
+import com.alpha.alphaapp.ui.v_1_0.login.LoginActivity;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.version.UpdateVersionUtil;
 import com.alpha.lib_sdk.app.core.thread.ThreadPool;
-import com.alpha.lib_sdk.app.unitily.ApkUtils;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 
 /**

@@ -9,9 +9,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.mall.ScoreMallFragment;
-import com.alpha.alphaapp.ui.mine.MineFragment;
-import com.alpha.alphaapp.ui.recom.RecomFragment;
+import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallFragment;
+import com.alpha.alphaapp.ui.v_1_0.mine.MineFragment;
+import com.alpha.alphaapp.ui.v_1_0.recom.RecomFragment;
 
 /**
  * Created by kenway on 17/5/24 14:59
@@ -36,10 +36,10 @@ public class HomeActivity extends BaseFragmentActivity {
     protected void initView() {
         radioGroup = (RadioGroup) findViewById(R.id.home_rg);
         rb_mine= (RadioButton) findViewById(R.id.home_rb_mine);
-        //定义底部标签图片大小
-        Drawable drawableWeiHui = getResources().getDrawable(R.drawable.icon_mine);
-        drawableWeiHui.setBounds(2, 0, 25, 30);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-        rb_mine.setCompoundDrawables(null, drawableWeiHui, null, null);//只放上面
+//        //定义底部标签图片大小
+//        Drawable drawableWeiHui = getResources().getDrawable(R.drawable.icon_mine);
+//        drawableWeiHui.setBounds(2, 0, 30, 20);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+//        rb_mine.setCompoundDrawables(null, drawableWeiHui, null, null);//只放上面
     }
 
 

@@ -4,22 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <TextView
+    <com.alpha.alphaapp.ui.widget.TitleLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/bind_had_account"
-        android:textColor="@color/tv_black"
-        android:textSize="30sp" />
+        app:txt_title="@string/bind_had_account"
+        android:layout_height="wrap_content"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/bind_tablayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:tabMode="scrollable" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_27"
+        android:layout_marginTop="@dimen/commom_length_103"
+        app:tabBackground="@drawable/selector_login_tab"
+        app:tabIndicatorHeight="0dp"
+
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextAppearance="@style/login_tab_txtSize"
+        app:tabTextColor="@color/common_tv_dark_red" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/bind_vp"
@@ -27,32 +27,14 @@
         android:layout_height="0dp"
         android:layout_weight="2" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/commom_height_27"
+        android:layout_toStartOf="@+id/bind_tv_user_center"
+        android:src="@drawable/alpha_logo" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="1">
-
-        <TextView
-            android:id="@+id/bind_tv_user_center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="25dp"
-            android:text="@string/app_user_center"
-            android:textColor="@color/tv_black"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="13dp"
-            android:layout_toStartOf="@+id/bind_tv_user_center"
-            android:src="@drawable/launcher" />
-    </RelativeLayout>
 
 </LinearLayout>

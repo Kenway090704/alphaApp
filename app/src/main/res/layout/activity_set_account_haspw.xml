@@ -11,20 +11,20 @@
         app:txt_title="@string/en_account_set"
         android:layout_height="wrap_content" />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.EmptyEditText
         android:id="@+id/set_acc_haspw_aet_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/commom_margin_20"
         app:hint="@string/account_alpha_format"
-        app:icon_type="@drawable/icon_user" />
+         />
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/set_acc_haspw_tv_error"
         style="@style/tv_error_com" />
 
     <Button
         android:id="@+id/set_acc_haspw_btn_save"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/save" />
 </LinearLayout>

@@ -1,15 +1,20 @@
 package com.alpha.alphaapp.ui.widget.wheel;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+
+import com.alpha.lib_sdk.app.unitily.DensityUtils;
 
 /**
  * @作者： HP 创建于on 2017/7/2.
  * @邮箱：xiaokai090704@126.com
  */
-public class WheelItem
-{
+public class WheelItem {
+
+    private Context context;
     //起点Y坐标，宽度，高度
     private float startY;
     private int width;
@@ -23,9 +28,8 @@ public class WheelItem
     private String text;
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-    public WheelItem(int startY, int width, int itemHeight, int fontColor, int fontSize, String text)
-    {
-
+    public WheelItem(Context context, int startY, int width, int itemHeight, int fontColor, int fontSize, String text) {
+        this.context = context;
         this.startY = startY;
         this.width = width;
         this.height = itemHeight;
@@ -40,8 +44,7 @@ public class WheelItem
      *
      * @param dy
      */
-    public void adjust(float dy)
-    {
+    public void adjust(float dy) {
         startY += dy;
         rect.left = 0;
         rect.top = startY;
@@ -49,8 +52,7 @@ public class WheelItem
         rect.bottom = startY + height;
     }
 
-    public float getStartY()
-    {
+    public float getStartY() {
         return startY;
     }
 
@@ -59,8 +61,7 @@ public class WheelItem
      *
      * @param startY
      */
-    public void setStartY(float startY)
-    {
+    public void setStartY(float startY) {
         this.startY = startY;
         rect.left = 0;
         rect.top = startY;
@@ -68,21 +69,31 @@ public class WheelItem
         rect.bottom = startY + height;
     }
 
-    public void setText(String text)
-    {
+    public void setText(String text) {
         this.text = text;
     }
 
-    public String getText()
-    {
+    public String getText() {
         return text;
     }
 
-    public void onDraw(Canvas mCanvas)
-    {
+    public void onDraw(Canvas mCanvas) {
         //设置钢笔属性
         mPaint.setTextSize(fontSize);
         mPaint.setColor(fontColor);
+        //得到字体的高度
+        int textWidth = (int) mPaint.measureText(text);
+        //drawText的绘制起点是左下角，y轴起点为baseLine
+        Paint.FontMetrics metrics = mPaint.getFontMetrics();
+        int baseLine = (int) (rect.centerY() + (metrics.bottom - metrics.top) / 2 - metrics.bottom);
+        //居中绘制
+        mCanvas.drawText(text, rect.centerX() - textWidth / 2, baseLine, mPaint);
+    }
+
+    public void onFirstItemDraw(Canvas mCanvas) {
+        //设置钢笔属性
+        mPaint.setTextSize(fontSize);
+        mPaint.setColor(Color.WHITE);
         //得到字体的高度
         int textWidth = (int) mPaint.measureText(text);
         //drawText的绘制起点是左下角，y轴起点为baseLine

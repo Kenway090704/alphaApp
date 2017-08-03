@@ -15,24 +15,22 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:padding="5dp"
         android:background="@drawable/shape_et_bg_gray"
-        android:hint="请输入激活码" />
+        android:hint="请输入激活码"
+        android:padding="5dp" />
 
-    <EditText
-        android:id="@+id/active_et_active_code_2"
+    <TextView
+        android:id="@+id/active_tv_product_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:padding="5dp"
-        android:hint="请输入产品product_id(34,91,182)"
-        android:background="@drawable/shape_et_bg_gray" />
+        android:padding="5dp" />
 
     <Button
         android:id="@+id/active_btn_active"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/shape_btn_bg_blue"
+        android:background="@drawable/shape_bg_red"
         android:text="@string/now_active" />
 </LinearLayout>

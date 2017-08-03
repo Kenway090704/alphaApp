@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <com.alpha.alphaapp.ui.widget.TitleLayout
@@ -18,46 +19,62 @@
         app:txt_first="@string/input_alpha_account"
         app:txt_second="@string/set_pw_register_success" />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
         android:id="@+id/reg_account_aet_acc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hint="@string/account_alpha_format"
-        app:icon_type="@drawable/icon_user" />
+        app:hint="@string/account_alpha_format" />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
         android:id="@+id/reg_account_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/commom_margin_5"
         app:hint="@string/pw_form"
-        app:icon_type="@drawable/icon_lock"
+        app:icon_type="@drawable/icon_password"
         app:input_type="password" />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
         android:id="@+id/reg_account_aet_insurepw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/commom_margin_5"
         app:hint="@string/insure_pw"
-        app:icon_type="@drawable/icon_lock"
+        app:icon_type="@drawable/icon_password"
         app:input_type="password" />
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/reg_account_tv_error"
-        style="@style/tv_error_com" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/reg_account_btn_reg_and_login"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/register_and_login" />
+    <LinearLayout
 
-    <TextView
-        android:id="@+id/reg_account_tv_protocal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:clickable="true"
-        android:text="@string/register_and_agree_alpha_rules"
-        android:textColor="@color/tv_blue" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/reg_account_tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_30"
+            android:layout_marginTop="@dimen/commom_margin_22"
+            android:clickable="true"
+            android:text="@string/register_and_agree"
+            android:textColor="@color/common_tv_light_gray" />
+
+        <TextView
+            android:id="@+id/reg_account_tv_protocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/commom_margin_22"
+            android:clickable="true"
+            android:text="@string/alpha_rules"
+            android:textColor="@color/common_tv_dark_red" />
+    </LinearLayout>
+
 </LinearLayout>

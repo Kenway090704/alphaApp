@@ -23,7 +23,7 @@ import com.alpha.lib_sdk.app.tool.Util;
 public class OneTwoThreeItemView extends LinearLayout {
 
     private Context context;
-    private TextView ott_tv_one, ott_tv_two, ott_tv_three;
+    private ImageView ott_iv_one, ott_iv_two, ott_iv_three;
     private TextView tv_first, tv_second, tv_third;
     private LinearLayout layout_three;
     private String txt_first, txt_second, txt_third;
@@ -51,9 +51,9 @@ public class OneTwoThreeItemView extends LinearLayout {
 
     private void initView() {
         View view = LayoutInflater.from(context).inflate(R.layout.widget_onetwothree_item, this);
-        ott_tv_one = (TextView) view.findViewById(R.id.ott_tv_one);
-        ott_tv_two = (TextView) view.findViewById(R.id.ott_tv_two);
-        ott_tv_three = (TextView) view.findViewById(R.id.ott_tv_three);
+        ott_iv_one = (ImageView) view.findViewById(R.id.ott_iv_one);
+        ott_iv_two = (ImageView) view.findViewById(R.id.ott_iv_two);
+        ott_iv_three = (ImageView) view.findViewById(R.id.ott_iv_three);
 
         tv_first = (TextView) view.findViewById(R.id.ott_tv_first_msg);
         tv_second = (TextView) view.findViewById(R.id.ott_tv_second_msg);
@@ -72,21 +72,22 @@ public class OneTwoThreeItemView extends LinearLayout {
             tv_third.setText(txt_third);
         } else {
             layout_three.setVisibility(GONE);
-            tv_first.setTextSize(16);
-            tv_second.setTextSize(16);
+
         }
         switch (currentSelects) {
             case 1:
-                tv_first.setTextColor(getResources().getColor(R.color.tv_blue));
-                ott_tv_one.setBackground(getResources().getDrawable(R.drawable.one_two_three_bg_select));
+                tv_first.setTextColor(getResources().getColor(R.color.common_tv_dark_red));
+                ott_iv_one.setImageResource(R.drawable.icon_select_1);
                 break;
             case 2:
-                tv_second.setTextColor(getResources().getColor(R.color.tv_blue));
-                ott_tv_two.setBackground(getResources().getDrawable(R.drawable.one_two_three_bg_select));
+
+
+                tv_second.setTextColor(getResources().getColor(R.color.common_tv_dark_red));
+                ott_iv_two.setImageResource(R.drawable.icon_select_2);
                 break;
             case 3:
-                tv_third.setTextColor(getResources().getColor(R.color.tv_blue));
-                ott_tv_three.setBackground(getResources().getDrawable(R.drawable.one_two_three_bg_select));
+                tv_third.setTextColor(getResources().getColor(R.color.common_tv_dark_red));
+                ott_iv_three.setImageResource(R.drawable.icon_select_3);
                 break;
         }
 
@@ -97,11 +98,11 @@ public class OneTwoThreeItemView extends LinearLayout {
      *
      */
     public void updateUI() {
-        tv_first.setTextColor(getResources().getColor(R.color.tv_gray));
-        ott_tv_one.setBackground(getResources().getDrawable(R.drawable.one_two_three_bg_no_select));
-        tv_second.setTextColor(getResources().getColor(R.color.tv_gray));
-        ott_tv_two.setBackground(getResources().getDrawable(R.drawable.one_two_three_bg_no_select));
-        tv_third.setTextColor(getResources().getColor(R.color.tv_gray));
-        ott_tv_three.setBackground(getResources().getDrawable(R.drawable.one_two_three_bg_no_select));
+        tv_first.setTextColor(getResources().getColor(R.color.common_tv_dark_gray));
+        ott_iv_one.setBackground(getResources().getDrawable(R.drawable.icon_normal_1));
+        tv_second.setTextColor(getResources().getColor(R.color.common_tv_dark_gray));
+        ott_iv_two.setBackground(getResources().getDrawable(R.drawable.icon_normal_2));
+        tv_third.setTextColor(getResources().getColor(R.color.common_tv_dark_gray));
+        ott_iv_three.setBackground(getResources().getDrawable(R.drawable.icon_normal_3));
     }
 }

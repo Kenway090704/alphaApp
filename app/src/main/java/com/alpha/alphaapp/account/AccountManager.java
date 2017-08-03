@@ -2,10 +2,12 @@ package com.alpha.alphaapp.account;
 
 import android.app.Activity;
 
-import com.alpha.alphaapp.model.getuserinfo.GetUserInfoLogic;
-import com.alpha.alphaapp.ui.login.LoginActivity;
+import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.model.v_1_0.userinfo.GetUserInfoLogic;
+import com.alpha.alphaapp.ui.v_1_0.login.LoginActivity;
 import com.alpha.lib_sdk.app.core.event.RxEventBus;
 import com.alpha.lib_sdk.app.core.event.acc.AccountUpdataEvent;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -81,20 +83,22 @@ public class AccountManager {
      */
     public void loadUserinfo() {
         if (!Util.isNullOrBlank(sskey)) {
-            GetUserInfoLogic.OnGetUserInfoCallBack callBack = new GetUserInfoLogic.OnGetUserInfoCallBack() {
+
+            OnModelCallback<UserInfo> back=new OnModelCallback<UserInfo>() {
                 @Override
-                public void onGetUserInfoSuccuss(UserInfo info) {
+                public void onModelSuccessed(UserInfo info) {
                     saveUserInfo(info);
                     //通知相关的注册页面进行用户信息更新
                     RxEventBus.getBus().publish(new AccountUpdataEvent());
                 }
 
                 @Override
-                public void onGetUserInfoFailed(String failMsg) {
+                public void onModelFailed(String failedMsg) {
+                    Log.e(TAG, "failedMsg==" + failedMsg);
 
                 }
             };
-            GetUserInfoLogic.doGetUserInfo(sskey, callBack);
+            GetUserInfoLogic.doGetUserInfo(sskey, back);
         }
     }
 

@@ -3,35 +3,42 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_bg_light_gray"
     android:orientation="vertical">
 
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:id="@+id/account_sec_titlelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        custom:txt_title="@string/settings_account_bind_set" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@android:color/white" />
+        android:background="@color/common_bg_light_gray" />
 
     <TextView
         android:id="@+id/account_sec_tv_current"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_gray"
+        android:layout_height="@dimen/commom_height_35"
+        android:background="@color/common_bg_white"
+        android:gravity="center_vertical"
         android:maxLines="1"
-        android:padding="10dp"
+        android:paddingLeft="@dimen/commom_margin_30"
         android:text="@string/current_account"
-        android:textColor="@color/tv_black" />
+        android:textColor="@color/common_tv_black"
+        android:textSize="@dimen/commom_tv_size_14" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/account_bind" />
+        android:layout_height="@dimen/commom_margin_28"
+        android:layout_marginLeft="@dimen/commom_margin_30"
+        android:background="@color/common_bg_light_gray"
+        android:gravity="center_vertical"
+        android:text="@string/account_bind"
+        android:textColor="@color/common_tv_dark_gray"
+        android:textSize="@dimen/commom_tv_size_12" />
 
     <com.alpha.alphaapp.ui.widget.set.AccountBindItemView
         android:id="@+id/account_sec_abi_alpha_acc"
@@ -49,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         custom:txt_left="@string/phone_number"
-        custom:txt_right="@string/bind_add" />
+        custom:txt_right="@string/bind" />
 
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
@@ -60,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         custom:txt_left="@string/wechat"
-        custom:txt_right="@string/bind_add" />
+        custom:txt_right="@string/bind" />
 
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
@@ -71,16 +78,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         custom:txt_left="@string/qq"
-        custom:txt_right="@string/has_bind" />
+        custom:txt_right="@string/bind" />
 
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/sec_set" />
+        android:layout_height="@dimen/commom_margin_28"
+        android:layout_marginLeft="@dimen/commom_margin_30"
+        android:background="@color/common_bg_light_gray"
+        android:gravity="center_vertical"
+        android:text="@string/sec_set"
+        android:textColor="@color/common_tv_dark_gray"
+        android:textSize="@dimen/commom_tv_size_12" />
 
     <com.alpha.alphaapp.ui.widget.set.AccountBindItemView
         android:id="@+id/account_sec_abi_pweditpw"

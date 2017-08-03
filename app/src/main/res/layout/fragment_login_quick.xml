@@ -6,26 +6,27 @@
     android:orientation="vertical">
 
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
         android:id="@+id/log_fast_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hint="@string/input_valid_eleven_number"
-        app:icon_type="@drawable/icon_phone" />
+        app:icon_type="@drawable/icon_phone_jpg" />
 
     <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
         android:id="@+id/log_fast_ivet"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/commom_margin_5" />
 
-    <TextView
+
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/log_fast_tv_error"
-        style="@style/tv_error_com"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="invisible" />
-
     <Button
         android:id="@+id/log_fast_btn_login"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/login" />
 </LinearLayout>

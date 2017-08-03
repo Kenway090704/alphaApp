@@ -41,7 +41,7 @@
     <!--提示对话框样式-->
     <style name="dialog_alert" parent="android:Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/shape_dialog_bg_white</item>
+        <item name="android:windowBackground">@color/common_bg_white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -49,111 +49,91 @@
 
     <!--**********控件使用的style***************-->
     <!--btn通用样式-->
-
-    <!--btn_login_com-->
-    <style name="btn_login_com_gray">
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:background">@drawable/shape_btn_bg_gray</item>
-        <item name="android:enabled">false</item>
-        <item name="android:textSize">18sp</item>
+    <style name="btn_com_gray">
+        <item name="android:layout_height">@dimen/commom_btn_height_40</item>
+        <item name="android:background">@color/common_bg_dark_gray</item>
+        <item name="android:textSize">@dimen/commom_tv_size_18</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="btn_login_com_white">
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:background">@drawable/shape_btn_bg_white</item>
-        <item name="android:textSize">18sp</item>
+    <style name="btn_com_red">
+        <item name="android:layout_height">@dimen/commom_btn_height_40</item>
+        <item name="android:background">@color/common_bg_red</item>
+        <item name="android:textSize">@dimen/commom_tv_size_18</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="btn_com_white">
+        <item name="android:layout_height">@dimen/commom_btn_height_40</item>
+        <item name="android:background">@color/common_bg_white</item>
+        <item name="android:textSize">@dimen/commom_tv_size_18</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="btn_login_com_red">
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:background">@drawable/shape_btn_bg_red</item>
-        <item name="android:enabled">true</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-
-    <style name="btn_com_gray">
+    <!--一行只有一个btn-->
+    <style name="btn_one_com_gray">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginLeft">15dp</item>
-
-        <item name="android:background">@drawable/shape_btn_bg_gray</item>
+        <item name="android:layout_height">@dimen/commom_btn_height_40</item>
+        <item name="android:layout_marginRight">@dimen/commom_margin_30</item>
+        <item name="android:layout_marginLeft">@dimen/commom_margin_30</item>
+        <item name="android:background">@color/common_bg_dark_gray</item>
         <item name="android:enabled">false</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/commom_tv_size_18</item>
+        <item name="android:textColor">@color/common_tv_white</item>
     </style>
-
-    <style name="btn_com_blue">
+    <style name="btn_one_com_red">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:background">@drawable/shape_btn_bg_blue</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_height">@dimen/commom_btn_height_40</item>
+        <item name="android:layout_marginRight">@dimen/commom_margin_30</item>
+        <item name="android:layout_marginLeft">@dimen/commom_margin_30</item>
+        <item name="android:background">@color/common_bg_red</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textSize">@dimen/commom_tv_size_18</item>
+        <item name="android:textColor">@color/common_tv_white</item>
     </style>
-    <!--底部弹出框的Button-->
-    <style name="btn_com_bottom">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginRight">8dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginBottom">4dp</item>
-        <item name="android:background">@drawable/shape_btn_bg_blue</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-    <!--et通用样式-->
-    <style name="et_com">
-
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:background">@drawable/shape_et_bg_gray</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:maxLength">30</item>
-        <item name="android:textSize">@dimen/register_item_hint_sp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:drawableStart">@drawable/icon_user</item>
-    </style>
-
     <!--tv_error通用样式-->
     <style name="tv_error_com">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">20dp</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:drawableLeft">@drawable/icon_tv_error</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/error_red</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:visibility">invisible</item>
     </style>
 
-    <!--tv_error_two_line有两行通用样式-->
-    <style name="tv_error_com_two_line">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">5dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginTop">2dp</item>
-        <item name="android:layout_marginBottom">2dp</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/error_red</item>
+    <!--dialog中的样式-->
+    <style name="dialog_com_tv_gray">
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/common_tv_dark_gray</item>
+        <item name="android:textSize">@dimen/commom_tv_size_18</item>
     </style>
+   <!--资料设置页中的又边箭头-->
+    <style name="mine_next">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/commom_margin_30</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textColor">@color/common_tv_dark_gray</item>
+        <item name="android:src">@drawable/mine_set_next_2</item>
+    </style>
+    <style name="mine_left_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/commom_margin_30</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/common_tv_black</item>
+        <item name="android:textSize">@dimen/commom_tv_size_14</item>
+    </style>
+
+    <style name="mine_mid_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/commom_margin_13</item>
+        <item name="android:textColor">@color/common_tv_dark_gray</item>
+        <item name="android:textSize">@dimen/commom_tv_size_14</item>
+    </style>
+
+
+
+
+
     <!--dialog_custom样式-->
     <style name="Dialog" parent="android:style/Theme.Dialog">
         <item name="android:background">#00000000</item>
@@ -169,7 +149,7 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/common_bg_white</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
@@ -199,12 +179,11 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/common_bg_white</item>
         <item name="android:backgroundDimEnabled">false</item>
 
 
     </style>
-
     <style name="BottomToTopAnim" parent="android:Animation">
         <item name="@android:windowEnterAnimation">@anim/anim_bottomview_enter</item>
         <item name="@android:windowExitAnimation">@anim/anim_bottomview_exit</item>
@@ -224,7 +203,6 @@
     <style name="login_tab_txtSize">
         <item name="android:textSize">12sp</item>
     </style>
-
     <style name="Widget_GifView"></style>
 
 

@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:paddingTop="@dimen/commom_margin_25"
+    android:paddingBottom="@dimen/commom_margin_10">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/commom_margin_30"
+
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/ott_tv_one"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/one_two_three_bg_no_select"
+        <ImageView
+            android:id="@+id/ott_iv_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="1"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:src="@drawable/icon_normal_1" />
 
         <TextView
             android:id="@+id/ott_tv_first_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:maxLines="1"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/commom_margin_7"
             android:gravity="center_vertical"
-            android:textSize="14sp" />
+            android:maxLines="1"
+            android:text="验证身份"
+            android:textColor="@color/common_tv_dark_gray"
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,58 +40,57 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/commom_margin_10"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/ott_tv_two"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/one_two_three_bg_no_select"
+        <ImageView
+            android:id="@+id/ott_iv_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="2"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:src="@drawable/icon_normal_2" />
 
         <TextView
             android:id="@+id/ott_tv_second_msg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:maxLines="1"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/commom_margin_7"
             android:gravity="center_vertical"
-            android:textSize="14sp" />
+            android:maxLines="1"
+            android:text="提交绑定手机"
+            android:textColor="@color/common_tv_dark_gray"
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ott_layout_three"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:layout_marginRight="@dimen/commom_margin_30"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/ott_tv_three"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/one_two_three_bg_no_select"
+        <ImageView
+            android:id="@+id/ott_iv_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="3"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:src="@drawable/icon_normal_3" />
 
         <TextView
             android:id="@+id/ott_tv_third_msg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:maxLines="1"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/commom_margin_7"
             android:gravity="center_vertical"
-            android:textSize="14sp" />
+            android:maxLines="1"
+            android:text="输入奥飞帐号"
+            android:textColor="@color/common_tv_dark_gray"
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
 
 </LinearLayout>

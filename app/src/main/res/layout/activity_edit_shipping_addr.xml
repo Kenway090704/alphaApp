@@ -36,7 +36,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/bg_gray" />
+        android:background="@color/common_bg_light_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/bg_gray" />
+        android:background="@color/common_bg_light_gray" />
 
     <LinearLayout
         android:id="@+id/edit_shiping_addr_liner_area"
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plz_choose"
-            android:textColor="@color/tv_gray"
+            android:textColor="@color/common_tv_dark_gray"
             android:textSize="12sp" />
 
         <ImageView
@@ -104,7 +104,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/bg_gray" />
+        android:background="@color/common_bg_light_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -131,7 +131,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/bg_gray" />
+        android:background="@color/common_bg_light_gray" />
 
     <LinearLayout
         android:id="@+id/edit_shiping_addr_liner_detail"
@@ -153,7 +153,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/bg_gray" />
+        android:background="@color/common_bg_light_gray" />
 
     <LinearLayout
 
@@ -186,11 +186,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/bg_gray" />
+        android:background="@color/common_bg_light_gray" />
 
     <Button
         android:id="@+id/edit_shiping_addr_btn_save"
-        style="@style/btn_login_com_red"
+        style="@style/btn_one_com_red"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save" />

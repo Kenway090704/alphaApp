@@ -15,8 +15,10 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
+import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.StringUtils;
-import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
+import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -75,6 +77,22 @@ public class ModifyInfoETItemView extends LinearLayout {
      * 设置监听事件
      */
     private void initEvents() {
+        layout_one.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_one.setVisibility(INVISIBLE);
+                layout_two.setVisibility(VISIBLE);
+                two_et.setText(one_tv_info.getText().toString());
+                //强制使输入框获取焦点
+                if (layout_two.getVisibility() == VISIBLE) {
+                    two_et.setFocusable(true);
+                    two_et.setFocusableInTouchMode(true);
+                    two_et.requestFocus();
+                    two_et.setSelection(two_et.getText().length());
+                    KeyBoardUtils.openKeybord(two_et, context);
+                }
+            }
+        });
         one_iv_right.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,18 +197,22 @@ public class ModifyInfoETItemView extends LinearLayout {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
             info2.setName(nickname);
-            ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
+
+
+
+            OnModelCallback<Object> back = new OnModelCallback<Object>() {
                 @Override
-                public void onEditInfoSuccuss() {
-//                    setMsg(nickname);
+                public void onModelSuccessed(Object o) {
+
                 }
 
                 @Override
-                public void onEditInfoFailed(String failMsg) {
+                public void onModelFailed(String failedMsg) {
                     setMsg(info.getName());
+                    Log.e(TAG, "failed==" + failedMsg);
                 }
             };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_NICK_NAME, call);
+            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_NICK_NAME, back);
         }
         //修改完成
         finishEdit();
@@ -211,18 +233,21 @@ public class ModifyInfoETItemView extends LinearLayout {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
             info2.setTrue_name(name);
-            ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
+
+
+            OnModelCallback<Object> back = new OnModelCallback<Object>() {
                 @Override
-                public void onEditInfoSuccuss() {
+                public void onModelSuccessed(Object o) {
                     setMsg(name);
                 }
 
                 @Override
-                public void onEditInfoFailed(String failMsg) {
+                public void onModelFailed(String failedMsg) {
                     setMsg(info.getTrue_name());
+                    Log.e(TAG, "failed==" + failedMsg);
                 }
             };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_TRUE_NAME, call);
+            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_TRUE_NAME, back);
         }
         //修改完成
         finishEdit();
@@ -243,18 +268,22 @@ public class ModifyInfoETItemView extends LinearLayout {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
             info2.setQq(qq);
-            ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
+
+
+
+            OnModelCallback<Object> back = new OnModelCallback<Object>() {
                 @Override
-                public void onEditInfoSuccuss() {
+                public void onModelSuccessed(Object o) {
                     setMsg(qq);
                 }
 
                 @Override
-                public void onEditInfoFailed(String failMsg) {
+                public void onModelFailed(String failedMsg) {
                     setMsg(info.getTrue_name());
+                    Log.e(TAG, "failed==" + failedMsg);
                 }
             };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_QQ, call);
+            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_QQ, back);
         }
         //修改完成
         finishEdit();
@@ -275,18 +304,21 @@ public class ModifyInfoETItemView extends LinearLayout {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
             info2.setContact_phone(phone);
-            ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
+
+            OnModelCallback<Object> back = new OnModelCallback<Object>() {
                 @Override
-                public void onEditInfoSuccuss() {
+                public void onModelSuccessed(Object o) {
                     setMsg(phone);
                 }
 
                 @Override
-                public void onEditInfoFailed(String failMsg) {
+                public void onModelFailed(String failedMsg) {
                     setMsg(info.getContact_phone());
+                    Log.e(TAG, "failed==" + failedMsg);
                 }
             };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_CONTACT_PHONE, call);
+
+            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_CONTACT_PHONE, back);
         }
         //修改完成
         finishEdit();

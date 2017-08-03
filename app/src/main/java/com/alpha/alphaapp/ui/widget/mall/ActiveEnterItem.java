@@ -9,11 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.comm.TypeConstants;
-import com.alpha.alphaapp.model.mall.bean.ActiveEnterItemInfo;
+import com.alpha.lib_stub.comm.TypeConstants;
+import com.alpha.alphaapp.model.v_1_1.bean.ActiveEnterItemInfo;
 import com.alpha.alphaapp.ui.WebActivity;
-import com.alpha.alphaapp.ui.mall.active.ActiveActivity;
-import com.alpha.alphaapp.ui.mall.active.ActiveRecordActivity;
+import com.alpha.alphaapp.ui.v_1_1.mall.active.ActiveActivity;
+import com.alpha.alphaapp.ui.v_1_1.mall.active.ActiveRecordActivity;
 
 /**
  * Created by kenway on 17/7/17 14:43
@@ -73,7 +73,6 @@ public class ActiveEnterItem extends LinearLayout {
     }
 
     public void setDataforView(final ActiveEnterItemInfo info) {
-
         switch (info.getProduct_id()) {
             case TypeConstants.PRODUCT_ID.TRANSFROM_CAR:
                 setDataforTrans(info);

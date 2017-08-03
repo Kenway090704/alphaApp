@@ -1,87 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_bg_white"
     android:orientation="vertical">
     <!--加入标题栏-->
-    <ImageView
-        android:id="@+id/register_guide_iv_back"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:src="@drawable/register_guide_back" />
-
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/circle_bg" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <com.alpha.alphaapp.ui.widget.TitleLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:txt_title="@string/register_way_choose" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="46.5dp"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:text="@string/app_user_center"
-        android:textColor="@color/tv_black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="22.5dp"
+        android:src="@drawable/alpha_logo" />
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:background="@color/common_bg_white"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/register_guide_layout_acc"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/commom_margin_55"
+            android:background="@color/common_bg_white"
             android:clickable="true"
-            android:gravity="center"
+
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/icon_user" />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/user_big" />
+
+            <TextView
+                android:layout_width="@dimen/commom_margin_89"
+                android:layout_height="@dimen/commom_margin_25"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bg_red"
+                android:gravity="center"
+
                 android:text="@string/account_register"
-                android:textColor="@color/tv_black"
-                android:textSize="14sp" />
+                android:textColor="@color/common_tv_white"
+                android:textSize="@dimen/commom_tv_size_12" />
         </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:id="@+id/register_guide_layout_phone"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginRight="@dimen/commom_margin_55"
+            android:background="@color/common_bg_white"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/icon_phone" />
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/phone_big" />
+
+            <TextView
+                android:layout_width="@dimen/commom_margin_89"
+                android:layout_height="@dimen/commom_margin_25"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bg_red"
+                android:gravity="center"
                 android:text="@string/phone_register"
-                android:textColor="@color/tv_black"
-                android:textSize="14sp" />
+                android:textColor="@color/common_tv_white"
+                android:textSize="@dimen/commom_tv_size_12" />
         </LinearLayout>
 
     </LinearLayout>
@@ -96,17 +97,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/register_one_account_can_user_for_all"
-        android:textSize="18sp" />
+        android:textColor="@color/common_tv_dark_gray"
+        android:textSize="@dimen/commom_tv_size_13" />
 
     <TextView
         android:id="@+id/register_guide_tv_hasAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="@dimen/commom_margin_22"
         android:clickable="true"
         android:text="@string/already_has_account"
-        android:textColor="@color/tv_blue"
-        android:textSize="16sp" />
+        android:textColor="@color/common_tv_dark_red"
+        android:textSize="@dimen/commom_tv_size_12" />
 </LinearLayout>

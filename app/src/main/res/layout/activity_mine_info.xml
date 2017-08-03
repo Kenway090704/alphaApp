@@ -13,8 +13,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@android:color/white" />
+        android:layout_height="@dimen/commom_margin_10"
+        android:background="@color/common_bg_light_gray" />
 
     <com.alpha.alphaapp.ui.widget.mine.ModifyIconView
         android:id="@+id/mine_info_miv_icon"
@@ -63,8 +63,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@android:color/white" />
+        android:layout_height="@dimen/commom_margin_10"
+        android:background="@color/common_bg_light_gray" />
 
     <com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView
         android:id="@+id/mine_info_school"

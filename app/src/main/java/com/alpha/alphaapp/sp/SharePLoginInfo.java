@@ -3,7 +3,7 @@ package com.alpha.alphaapp.sp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.alpha.alphaapp.model.login.LoginLogic;
+import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
 import com.alpha.lib_sdk.app.log.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

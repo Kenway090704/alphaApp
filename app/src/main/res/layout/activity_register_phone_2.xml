@@ -8,7 +8,7 @@
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:txt_title="@string/input_account" />
+        app:txt_title="@string/phone_register" />
 
     <com.alpha.alphaapp.ui.widget.OneTwoThreeItemView
         android:layout_width="match_parent"
@@ -19,29 +19,20 @@
         app:txt_second="@string/input_verify"
         app:txt_third="@string/set_pw" />
 
-    <TextView
-        android:id="@+id/reg_phone_2_tv_msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:gravity="center"
-        android:lineSpacingExtra="2dp"
-        android:maxLines="2"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/tv_black"
-        android:textSize="14sp" />
+
     <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
         android:id="@+id/reg_phone_2_ivet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/reg_phone_2tv_error"
-        style="@style/tv_error_com" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/reg_phone_2_btn_setpw"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/set_pw" />
 </LinearLayout>

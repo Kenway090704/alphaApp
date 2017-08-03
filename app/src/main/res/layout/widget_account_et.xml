@@ -13,7 +13,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="center"
-        android:src="@drawable/icon_user" />
+        />
 
     <EditText
         android:id="@+id/acc_edit_et_hint"
@@ -26,7 +26,7 @@
         android:gravity="center_vertical"
         android:maxLength="30"
         android:maxLines="1"
-        android:textColor="@color/tv_black"
+        android:textColor="@color/common_tv_black"
         android:textSize="14sp" />
 
     <ImageView

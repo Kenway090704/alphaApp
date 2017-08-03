@@ -1,7 +1,6 @@
 package com.alpha.alphaapp.ui.widget.et;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_stub.model.CountDownManager;
+import com.alpha.alphaapp.model.CountDownManager;
 
 /**
  * Created by kenway on 17/6/13 17:04
@@ -123,7 +122,6 @@ public class InputVerifyEditText extends LinearLayout {
     }
 
 
-
     /**
      * 清楚输入框的文字
      */
@@ -132,14 +130,19 @@ public class InputVerifyEditText extends LinearLayout {
             et.getText().clear();
         }
     }
+
     public void start() {
         if (!Util.isNull(cmd))
             cmd.start();
+        if (!Util.isNull(tv_getVerify))
+            tv_getVerify.setBackgroundResource(R.drawable.shape_com_bg_gray);
 
     }
 
     public void cancel() {
         if (!Util.isNull(cmd))
             cmd.cancel();
+        if (!Util.isNull(tv_getVerify))
+            tv_getVerify.setBackgroundResource(R.drawable.shape_bg_red);
     }
 }

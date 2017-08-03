@@ -19,21 +19,20 @@
         app:txt_second="@string/insure_account"
         app:txt_third="@string/reset_pw" />
 
-    <com.alpha.alphaapp.ui.widget.et.AccountEditText
+    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
         android:id="@+id/wx_getpw3_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hint="@string/pw_format"
-        app:icon_type="@drawable/icon_lock" />
-    <TextView
+        app:icon_type="@drawable/icon_password" />
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/wx_getpw3_tv_error"
         style="@style/tv_error_com"
-        android:maxLines="2"
     />
 
     <Button
         android:id="@+id/wx_getpw3_btn_submit"
-        style="@style/btn_com_gray"
+        style="@style/btn_one_com_gray"
         android:text="@string/submit"
         />
 </LinearLayout>

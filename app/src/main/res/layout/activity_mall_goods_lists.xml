@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/common_bg_white"
     android:orientation="vertical">
 
     <com.alpha.alphaapp.ui.widget.TitleLayout
         android:id="@+id/goods_list_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:txt_title="@string/transforms_car" />
+        app:txt_title="@string/transforms_car_score_exchange" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/goods_list_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 </LinearLayout>

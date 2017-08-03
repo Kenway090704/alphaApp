@@ -9,6 +9,7 @@ android {
         cruncherEnabled = false
         useNewCruncher = false
     }
+    //在android 标签下,唯一的属性就是compileSdkVersion,buildToolsVersion
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
@@ -50,21 +51,20 @@ def String getDebugVersionNameSuffix() {
     String buildTimeStr = simpleDateFormat.format(buildTime);
     return buildTimeStr;
 }
+
 dependencies {
+    //当有很多包时,使用这个就是将所有libs下添加为依赖
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     testCompile rootProject.ext.dependencies["junit"]
-
-    compile files('libs/open_sdk_r5788_lite.jar')
-    compile files('libs/bottomView.jar')
-    compile files('libs/xUtils-2.6.14.jar')
-    //微信 记得后面修改为gradle模式
-    compile files('libs/wechat-sdk-android-without-mta-1.3.4.jar')
-
-
+    //    这里不需要添加这么多compile,第一行就是执行该操作的
+    //    compile files('libs/open_sdk_r5788_lite.jar')
+    //    compile files('libs/bottomView.jar')
+    //    compile files('libs/xUtils-2.6.14.jar')
+    //    //微信 记得后面修改为gradle模式
+    //    compile files('libs/wechat-sdk-android-without-mta-1.3.4.jar')
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["support-design"]
     compile rootProject.ext.dependencies["support-v4"]
@@ -72,15 +72,12 @@ dependencies {
     compile rootProject.ext.dependencies["Android-PickerView"]
     compile rootProject.ext.dependencies["XTabLayout"]
     compile rootProject.ext.dependencies["XTabLayout"]
-    compile rootProject.ext.dependencies["fastjson"]
-    compile rootProject.ext.dependencies["fastjson_android"]
     compile rootProject.ext.dependencies["status-bar-compat"]
+    compile rootProject.ext.dependencies["okhttp"]
 
-    releaseCompile project(path: ":lib_sdk", configuration: "release");
-    releaseCompile project(path: ":lib_stub", configuration: "release");
-
-    debugCompile project(path: ":lib_sdk", configuration: "debug");
-    debugCompile project(path: ":lib_stub", configuration: "debug");
-
-
+    releaseCompile project(path: ':lib_sdk', configuration: 'release')
+    releaseCompile project(path: ':lib_stub', configuration: 'release')
+    debugCompile project(path: ':lib_sdk', configuration: 'debug')
+    debugCompile project(path: ':lib_stub', configuration: 'debug')
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

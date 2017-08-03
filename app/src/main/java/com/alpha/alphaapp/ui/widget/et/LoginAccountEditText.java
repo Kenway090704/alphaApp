@@ -9,6 +9,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,12 +26,12 @@ import com.alpha.lib_sdk.app.tool.Util;
 public class LoginAccountEditText extends LinearLayout {
     private static final String TAG = "AccountEditText";
     private Context context;
-
     private EditText et;
     private ImageView iv_del, iv_icon;
     private Drawable icon_left;
     private String txt_hint;
     private String input_type;
+    private boolean isHasIcon;
 
 
     public LoginAccountEditText(Context context) {
@@ -87,6 +88,8 @@ public class LoginAccountEditText extends LinearLayout {
         iv_icon = (ImageView) view.findViewById(R.id.acc_edit_iv_lock);
         et = (EditText) view.findViewById(R.id.acc_edit_et_hint);
         iv_del = (ImageView) view.findViewById(R.id.acc_edit_iv_del);
+        //没有左边的图标的时候不显示图标,et距离左边变为30dp
+
         if (!Util.isNull(icon_left))
             iv_icon.setImageDrawable(icon_left);
         if (!Util.isNullOrBlank(txt_hint))

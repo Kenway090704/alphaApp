@@ -2,8 +2,6 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-
-
     <dimen name="title_bar_height">50dp</dimen>
     <dimen name="app_bar_height">240dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
@@ -12,18 +10,71 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
 
-    <!--注册页面-->
-    <dimen name="register_item_left_margin">10dp</dimen>
-    <dimen name="register_item_top_margin">10dp</dimen>
-    <dimen name="register_item_5dp">5dp</dimen>
-    <dimen name="register_item_text_sp">18sp</dimen>
-    <dimen name="register_item_hint_sp">14sp</dimen>
-    <!--登录页面-->
 
+    <!--margin-->
+    <dimen name="commom_margin_3">3dp</dimen>
+    <dimen name="commom_margin_4">4dp</dimen>
+    <dimen name="commom_margin_5">5dp</dimen>
+    <dimen name="commom_margin_7">7dp</dimen>
+    <dimen name="commom_margin_8">8dp</dimen>
+    <dimen name="commom_margin_10">10dp</dimen>
+    <dimen name="commom_margin_12">12dp</dimen>
+    <dimen name="commom_margin_13">13dp</dimen>
+    <dimen name="commom_margin_14">14dp</dimen>
+    <dimen name="commom_margin_15">15dp</dimen>
+    <dimen name="commom_margin_16">16dp</dimen>
+    <dimen name="commom_margin_18">18dp</dimen>
+    <dimen name="commom_margin_20">20dp</dimen>
+    <dimen name="commom_margin_22">22dp</dimen>
+    <dimen name="commom_margin_23">23dp</dimen>
+    <dimen name="commom_margin_24">24dp</dimen>
+    <dimen name="commom_margin_25">25dp</dimen>
+    <dimen name="commom_height_27">27dp</dimen>
+    <dimen name="commom_margin_28">28dp</dimen>
+    <dimen name="commom_margin_30">30dp</dimen>
+    <dimen name="commom_margin_33">33dp</dimen>
+    <dimen name="commom_margin_35">35dp</dimen>
+    <dimen name="commom_margin_42">42dp</dimen>
+    <dimen name="commom_margin_45">45dp</dimen>
+    <dimen name="commom_margin_47">47dp</dimen>
+    <dimen name="commom_margin_48">48dp</dimen>
+    <dimen name="commom_margin_55">55dp</dimen>
+    <dimen name="commom_margin_89">89dp</dimen>
+    <dimen name="commom_radius_50">50dp</dimen>
+    <dimen name="commom_radius">84dp</dimen>
 
-    <!--修改个人信息界面-->
-    <dimen name="left_item_width">70dp</dimen>
-    <dimen name="margin_item_left">10dp</dimen>
+    <!-- 高度-->
+
+    <dimen name="commom_height_32">32dp</dimen>
+    <dimen name="commom_height_23">23dp</dimen>
+    <dimen name="commom_height_35">35dp</dimen>
+    <dimen name="commom_btn_height_40">40dp</dimen>
+    <dimen name="commom_height_48">48dp</dimen>
+    <dimen name="commom_height_54">54dp</dimen>
+    <dimen name="commom_heigth_55">55dp</dimen>
+    <dimen name="commom_height_56">56dp</dimen>
+    <dimen name="commom_height_290">290dp</dimen>
+    <dimen name="commom_heigth_144">144dp</dimen>
+    <dimen name="commom_heigth_180">180dp</dimen>
+    <dimen name="commom_heigth_220">220dp</dimen>
+    <dimen name="commom_heigth_159">159dp</dimen>
+
+    <!-- 长度-->
+    <dimen name="commom_length_70">70dp</dimen>
+    <dimen name="commom_length_103">103dp</dimen>
+    <dimen name="commom_length_118">118dp</dimen>
+    <dimen name="commom_length_125">125dp</dimen>
+    <dimen name="commom_length_170">170dp</dimen>
+    <dimen name="commom_length_301">301dp</dimen>
+
+    <!--最小字号为12sp,10sp为tab文字-->
+    <dimen name="commom_tv_size_10">10sp</dimen>
+    <dimen name="commom_tv_size_12">12sp</dimen>
+    <dimen name="commom_tv_size_13">13sp</dimen>
+    <dimen name="commom_tv_size_14">14sp</dimen>
+    <dimen name="commom_tv_size_15">15sp</dimen>
+    <dimen name="commom_tv_size_16">16sp</dimen>
+    <dimen name="commom_tv_size_18">18sp</dimen>
 
 
     <!--版本更新-->

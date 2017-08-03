@@ -10,17 +10,8 @@
         android:layout_height="wrap_content"
         android:text="@string/my_score" />
 
-    <Button
-        android:id="@+id/fragment_score_mall_btn_for_exhange_record"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/exchange_record" />
 
-    <Button
-        android:id="@+id/fragment_score_mall_btn_change_record"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/change_record" />
+
 
     <Button
         android:id="@+id/fragment_score_mall_btn_shiping_addr"

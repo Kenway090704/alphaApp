@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
-import com.alpha.alphaapp.model.modifyinfo.ModifyUserInfoLogic;
+import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
+import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.tandong.bottomview.view.BottomView;
 
@@ -34,8 +36,9 @@ public class ModifySexView extends LinearLayout {
     //底部弹出布局
     private BottomView bottomView;
     private View btmView;
-    private TextView tv_men, tv_women;
+    private TextView tv_men, tv_women, tv_sercret;
     private Button btn_cancel;
+    private View view;
 
     public ModifySexView(Context context) {
         super(context);
@@ -54,7 +57,7 @@ public class ModifySexView extends LinearLayout {
 
 
     private void initView() {
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_modify_info_item, this);
+        view = LayoutInflater.from(context).inflate(R.layout.widget_modify_info_item, this);
         tv_left = (TextView) view.findViewById(R.id.widget_mod_info_tv_left);
         tv_info = (TextView) view.findViewById(R.id.widget_mod_info_tv_msg);
         iv_right = (ImageView) view.findViewById(R.id.widget_mod_info_iv_right);
@@ -72,6 +75,7 @@ public class ModifySexView extends LinearLayout {
         btmView = bottomView.getView();
         tv_men = (TextView) btmView.findViewById(R.id.widget_mod_set_tv_men);
         tv_women = (TextView) btmView.findViewById(R.id.widget_mod_set_tv_women);
+        tv_sercret = (TextView) btmView.findViewById(R.id.widget_mod_set_tv_secret);
         btn_cancel = (Button) btmView.findViewById(R.id.widget_mod_set_btn_cancel);
 
     }
@@ -108,6 +112,14 @@ public class ModifySexView extends LinearLayout {
             }
         });
 
+        tv_sercret.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doModifySex(2);
+                dismiss();
+            }
+        });
+
     }
 
     /**
@@ -116,7 +128,11 @@ public class ModifySexView extends LinearLayout {
      * @param listener
      */
     public void setRightIVOnClicklistener(OnClickListener listener) {
-        iv_right.setOnClickListener(listener);
+
+        if (!Util.isNull(listener)){
+            view.setOnClickListener(listener);
+            iv_right.setOnClickListener(listener);
+        }
     }
 
     /**
@@ -130,7 +146,7 @@ public class ModifySexView extends LinearLayout {
         } else if (sex == 1) {
             tv_info.setText("男");
         } else {
-            tv_info.setText("");
+            tv_info.setText("保密");
         }
     }
 
@@ -161,7 +177,7 @@ public class ModifySexView extends LinearLayout {
      * 修改性别
      */
     public void doModifySex(final int sex) {
-        //如果点击其他取悦判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
+
         final UserInfo info = AccountManager.getInstance().getUserInfo();
         int sex_Server = info.getSex();
         if (sex_Server == sex) {
@@ -170,18 +186,20 @@ public class ModifySexView extends LinearLayout {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
             info2.setSex(sex);
-            ModifyUserInfoLogic.EditInfoCallBack call = new ModifyUserInfoLogic.EditInfoCallBack() {
+
+            OnModelCallback<Object> back = new OnModelCallback<Object>() {
                 @Override
-                public void onEditInfoSuccuss() {
+                public void onModelSuccessed(Object o) {
                     setMsg(sex);
                 }
 
                 @Override
-                public void onEditInfoFailed(String failMsg) {
+                public void onModelFailed(String failedMsg) {
                     setMsg(info.getSex());
+                    Log.e(TAG, "failed==" + failedMsg);
                 }
             };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_SEX, call);
+            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_SEX, back);
         }
 
     }

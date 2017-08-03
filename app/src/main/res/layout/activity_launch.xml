@@ -34,6 +34,6 @@
         android:layout_marginBottom="50dp"
         android:textSize="16sp"
         android:layout_alignParentBottom="true"
-        android:textColor="@color/tv_red" />
+        android:textColor="@color/common_tv_dark_red" />
 
 </RelativeLayout>

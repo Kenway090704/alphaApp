@@ -42,6 +42,7 @@
         <attr name="input_type" format="string" />
     </declare-styleable>
 
+
     <!--自定义滚动tab-->
     <attr name="item_count" format="integer"></attr>
 
@@ -60,6 +61,7 @@
         <attr name="gif" format="reference" />
         <attr name="paused" format="boolean" />
     </declare-styleable>
+
     <declare-styleable name="CustomTheme">
         <attr name="gifViewStyle" format="reference" />
     </declare-styleable>

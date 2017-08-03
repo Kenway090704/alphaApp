@@ -3,14 +3,21 @@
     <string name="app_user_center">奥飞用户中心</string>
     <string name="version">v1.0</string>
     <string name="agreement">协议文本</string>
+    <string name="about_us_msg">\u3000\u3000这是一个关于我们的奥飞协议样式文本***********************************************************************</string>
     <!-- 注册页面-->
+    <string name="register_way_choose">注册方式选择</string>
+    <string name="advise">意见建议</string>
+    <string name="fuction_bug">功能BUG</string>
+
+
     <string name="account_register">帐号注册</string>
     <string name="phone_register">手机号注册</string>
     <string name="user_agreement_alpha">用户协议-奥飞</string>
     <string name="input_alpha_account">输入奥飞帐号</string>
     <string name="set_pw_register_success">设置密码,注册成功</string>
     <string name="register_and_login">注册并登录</string>
-    <string name="register_and_agree_alpha_rules">注册即同意奥飞用户协议</string>
+    <string name="register_and_agree">注册即同意</string>
+    <string name="alpha_rules">奥飞用户协议</string>
     <string name="alpha_account">奥飞帐号</string>
     <string name="already_has_account">已有帐号</string>
     <string name="register_one_account_can_user_for_all">注册一号通行奥飞旗下产品</string>
@@ -67,7 +74,7 @@
     <string name="settings">设置</string>
     <string name="settings_account_bind_set">帐号和绑定设置</string>
     <string name="feedback">意见反馈</string>
-    <string name="score">欢迎评分</string>
+    <string name="wel_comment">欢迎评分</string>
     <string name="about_us">关于我们</string>
     <string name="account_bing_set">帐号和绑定设置</string>
     <string name="exit_account">退出当前账号</string>
@@ -84,12 +91,12 @@
     <!--Feedback-->
     <string name="submit_text">提交</string>
     <!--Account Security-->
-    <string name="current_account">当前登录账号:</string>
+    <string name="current_account">当前登录账号 :</string>
     <string name="modify_password">修改密码</string>
     <string name="bind_phone_number">绑定手机号</string>
     <string name="bind_IM_account">社交账号绑定</string>
     <string name="now_set">立即设置</string>
-    <string name="bind_add">+ 绑定</string>
+
     <string name="bind">绑定</string>
     <string name="wechat">微信</string>
     <string name="qq">QQ</string>
@@ -141,17 +148,21 @@
     <string name="en_account_set">英文帐号设置</string>
     <string name="save">保存</string>
     <string name="save_success">保存成功</string>
-    <string name="set_en_account_sucess_use_account_login">英文帐号设置成功,可使用该英文帐号进行登录</string>
+    <string name="set_en_account_sucess">英文帐号设置成功</string>
+    <string name="you_use_account_login">可使用该英文帐号进行登录</string>
     <!--bind-->
     <string name="bind_had_account">关联已有帐号</string>
     <string name="no_bind">暂不关联,直接创建新帐号</string>
     <string name="submit">提交</string>
     <string name="insure_bind_account">确定关联该帐号么?</string>
-    <string name="bind_success_you_use_wechat_phone_login">关联成功,可用该手机号或者微信号登录。</string>
-    <string name="bind_success_you_use_wechat_account_login">关联成功,可用该帐号或者微信号登录。</string>
+    <string name="insure_bind_">确定关联</string>
+    <string name="this_account">该帐号么?</string>
+    <string name="bind_success">绑定成功</string>
+    <string name="you_use_wechat_phone_login">可用该手机号或者微信号登录</string>
+    <string name="you_use_wechat_account_login">可用该帐号或者微信号登录</string>
     <!--phone bind-->
     <string name="phone_bind">手机号绑定</string>
-    <string name="phone_bind_sucess_use_phone_login">绑定成功,可用绑定的手机号登录</string>
+    <string name="you_use_phone_login">可用绑定的手机号登录</string>
 
 
     <!--forget_pw-->
@@ -164,7 +175,9 @@
     <string name="reset_pw">重设密码</string>
     <string name="get_phone_verify">获取手机验证码</string>
     <string name="pw_form">密码(6-12位字符)</string>
-    <string name="pw_reset_success_msg">密码重置成功,点击"确认"返回登录页面</string>
+    <string name="pw_reset_success">密码重置成功</string>
+    <string name="plz_next_login_use_new_pw">请下次登录时使用新密码</string>
+    <string name="return_login_ac">返回登录页面</string>
     <string name="insure">确认</string>
     <string name="look_wx_bind_account">查看绑定的英文帐号</string>
     <string name="the_wx_no_set_en_account">该微信号未设置英文帐号,请立即设置。设置成功后,请点击下方按钮。</string>
@@ -172,7 +185,7 @@
     <string name="wx_has_login_alpha">该微信号已注册为奥飞用户</string>
     <string name="now_login_set">立即登录设置</string>
     <string name="if_reset_pw_for_the_account">如确认为该帐号重设密码,请点击下方按钮</string>
-    <string name="account_alpha_format">奥飞帐号(小写字母为开头,6-12未字符)</string>
+    <string name="account_alpha_format">奥飞帐号(小写字母为开头,6-12位字符)</string>
     <string name="your_alpha_account_format">您的奥飞英文帐号为:</string>
     <string name="wx_no_set_alpha_account">该微信号未设置英文帐号,请立即设置。设置成功后,点击下方按钮。</string>
     <string name="we_already">我们已经向</string>
@@ -194,7 +207,7 @@
     <string name="my_info">我的资料</string>
     <string name="avatar">头像</string>
     <string name="nickname">昵称</string>
-    <string name="user_msg">个人信息></string>
+    <string name="user_msg">个人信息</string>
     <string name="name">姓名</string>
     <string name="sex">性别</string>
     <string name="birthday">出生日期</string>
@@ -209,6 +222,7 @@
     <string name="input_school">请输入学校名称</string>
     <string name="man">男</string>
     <string name="women">女</string>
+    <string name="secrect">保密</string>
     <!--签到-->
     <string name="sign">签到</string>
     <string name="now_sign">立即签到</string>
@@ -234,10 +248,14 @@
     <string name="my_score">我的积分</string>
     <string name="active_code">激活码</string>
     <string name="exchange_record">兑换记录</string>
-    <string name="change_record">变动记录</string>
+    <string name="change_record">积分变动记录</string>
     <string name="shipping_addr">收获地址</string>
     <string name="do_active_code">激活激活码</string>
     <string name="order_detail">订单详情</string>
+    <string name="score_">积分 :</string>
+    <string name="score"></string>
+
+    <string name="super_coin_">乐币 :</string>
 
     <!--积分兑换-->
     <string name="product_name_">商品名称 :</string>
@@ -246,6 +264,7 @@
     <string name="exchange_count_">兑换数量 :</string>
     <string name="my_score_">我的积分 :</string>
     <string name="warm_prompt_">温馨提示:</string>
+    <string name="exchange_declare_">兑换说明:</string>
     <string name="express_is_arrival_pay">快递都以到付的形式寄送,请知悉!</string>
     <string name="order_code_"> 订单编号 : </string>
     <string name="expense_score_"> 消费积分 : </string>
@@ -258,6 +277,11 @@
     <string name="had_been_shipping">已发货</string>
     <string name="have_the_goods">已收获</string>
     <string name="order_close">已关闭</string>
+    <string name="actual_goods">实际物品</string>
+    <string name="virtual_goods">虚拟物品</string>
+    <string name="no_have_shiping_addr">当前没有收获地址,请添加收货</string>
+    <string name="no_have_goods_list">当前没有商品信息</string>
+    <string name="insure_exchange_this_goods">确认兑换该商品么?</string>
 
 
     <string name="channel_">渠道 :</string>
@@ -289,8 +313,11 @@
     <string name="add_new_shipping_addr">添加收货地址</string>
     <string name="insure_order">确认订单</string>
     <string name="exchange">兑换</string>
-    <string name="transforms_car">爆裂飞车积分兑换</string>
+    <string name="transforms_car_score_exchange">爆裂飞车积分兑换</string>
+    <string name="speed_score_exchange">零速争霸积分兑换</string>
+    <string name="super_score_exchange">超级飞侠积分兑换</string>
     <string name="look_exchang_record">查看兑换记录></string>
+    <string name="none_product_id">没有产品id</string>
     <string name="look_official_web">去官网看看></string>
 
     <!--激活-->
@@ -312,6 +339,10 @@
     <string name="active_status_">激活状态 :</string>
     <string name="has_active">已激活</string>
     <string name="no_active">未激活</string>
+    <string name="empty_active_data_hint">当前没有激活激活码记录!</string>
+
+
+    <string name="contact_ways">联系方式: 电话/邮箱/QQ                    必填</string>
 
 
 </resources>
