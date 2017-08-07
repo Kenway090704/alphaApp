@@ -1,6 +1,6 @@
 package com.alpha.lib_sdk.app.tool;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +24,7 @@ public class StringUtils {
         int c = a1.length < b1.length ? a1.length : b1.length;
         for (int i = 0; i < c; i++) {
             if (a1[i] != b1[i]) {
-                Log.e("xk", "错误位置" + i + ",str1=" + a1[i - 2] + a1[i - 1] + a1[i] + ",str2=" + b1[i - 2] + b1[i - 1] + b1[i]);
+                LogUtils.e("xk", "错误位置" + i + ",str1=" + a1[i - 2] + a1[i - 1] + a1[i] + ",str2=" + b1[i - 2] + b1[i - 1] + b1[i]);
                 break;
             }
         }

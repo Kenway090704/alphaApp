@@ -1,6 +1,6 @@
 package com.alpha.lib_sdk.app.core.event;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class RxEventBus {
      */
     public boolean publish(RxEvent event) {
         if (event == null) {
-            Log.e(TAG, "publish event failed,event is null");
+            LogUtils.e(TAG, "publish event failed,event is null");
             return false;
         }
         mBus.onNext(event);
@@ -63,7 +63,7 @@ public class RxEventBus {
         if (event.callBack != null) {
             event.callBack.onCallback(event);
         }
-        Log.i(TAG, "publish event(%s) successfully", event);
+        LogUtils.i(TAG, "publish event(%s) successfully", event);
 
         return true;
     }
@@ -75,11 +75,11 @@ public class RxEventBus {
 
     public boolean register(final String action, final EventObserver observer) {
         if (observer == null) {
-            Log.i(TAG, "register event observer failed ,observer is null");
+            LogUtils.i(TAG, "register event observer failed ,observer is null");
             return false;
         }
         if (action == null || action.length() == 0) {
-            Log.i(TAG, "register event observer failed,action is null");
+            LogUtils.i(TAG, "register event observer failed,action is null");
             return false;
         }
         ObserverWrapper ow = new ObserverWrapper(observer);
@@ -90,26 +90,26 @@ public class RxEventBus {
             list = new LinkedList<>();
             mMaps.put(action, list);
         } else if (list.contains(ow)) {
-            Log.i(TAG, "register event observer failed ,the observer has been already register");
+            LogUtils.i(TAG, "register event observer failed ,the observer has been already register");
             return false;
         }
 
         ow.subscription = createSubScription(action, observer);
         list.add(ow);
-        Log.i(TAG, "register event(%s) observer (%s) successfully", action, observer);
+        LogUtils.i(TAG, "register event(%s) observer (%s) successfully", action, observer);
         return true;
 
     }
 
     public boolean unregister(final String action, final EventObserver observer) {
         if (action == null || action.length() == 0 || observer == null) {
-            Log.w(TAG, "unregister  event(%s) observer(%s) failed ,action or observer is null ", action, observer);
+            LogUtils.w(TAG, "unregister  event(%s) observer(%s) failed ,action or observer is null ", action, observer);
             return false;
         }
 
         List<ObserverWrapper> list = mMaps.get(action);
         if (list == null) {
-            Log.w(TAG, "unregister event observer failed,can not find the observer(%s) list by action(%s). ", observer, action);
+            LogUtils.w(TAG, "unregister event observer failed,can not find the observer(%s) list by action(%s). ", observer, action);
             return false;
         }
         ObserverWrapper ow = null;
@@ -120,7 +120,7 @@ public class RxEventBus {
             }
         }
         if (ow == null) {
-            Log.e(TAG, "unregister event observer failed ,can not find the observer(%s) int the list by action(%S) ", observer, action);
+            LogUtils.e(TAG, "unregister event observer failed ,can not find the observer(%s) int the list by action(%S) ", observer, action);
             return false;
         }
         if (list.isEmpty()) {
@@ -129,13 +129,13 @@ public class RxEventBus {
 
         Subscription subscription=ow.subscription;
         if (subscription == null) {
-            Log.w(TAG, "unregister event(%s) observer(%s) successfully, but subscription is null.", action, observer);
+            LogUtils.w(TAG, "unregister event(%s) observer(%s) successfully, but subscription is null.", action, observer);
             return true;
         }
         if (!subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
-        Log.i(TAG, "unregister event(%s) observer(%s) successfully.", action, observer);
+        LogUtils.i(TAG, "unregister event(%s) observer(%s) successfully.", action, observer);
         return true;
     }
 
@@ -150,7 +150,7 @@ public class RxEventBus {
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                Log.e(TAG, throwable.getMessage());
+                LogUtils.e(TAG, throwable.getMessage());
             }
         });
         return subscription;

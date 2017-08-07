@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.logic.BindActiveLogic;
@@ -104,7 +104,7 @@ public class ActiveRecordActivity extends BaseActivity {
                     for (int j = 0; j < bean.getCdk_items().size(); j++) {
                         CdkDatasBean.CdkItemsBean cdkItemsBean = bean.getCdk_items().get(j);
                         cdkItemsBean.setLot_number(lot_num);
-                        Log.e(TAG,"cdkItemsBean=="+cdkItemsBean.toString());
+                        LogUtils.e(TAG,"cdkItemsBean=="+cdkItemsBean.toString());
                         itemsBeen.add(cdkItemsBean);
                         adapter.notifyDataSetChanged();
                     }

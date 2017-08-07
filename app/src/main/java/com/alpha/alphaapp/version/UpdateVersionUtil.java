@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.LaunchActivity;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.JsonUtil;
@@ -162,7 +161,7 @@ public class UpdateVersionUtil {
             int clientVersionCode = ApkUtils.getVersionCode(context);
             int serverVersionCode = mVersionInfo.getVersionCode();
 
-            Log.e(TAG, "clientVersionCode==" + clientVersionCode + ",serverVersionCode==" + serverVersionCode);
+            LogUtils.e(TAG, "clientVersionCode==" + clientVersionCode + ",serverVersionCode==" + serverVersionCode);
             //有新版本
             if (clientVersionCode < serverVersionCode) {
 
@@ -219,7 +218,7 @@ public class UpdateVersionUtil {
                         context.startActivity(intent);
                     } else {
                         //没有下载,则开启服务下载最新版本
-                        Log.e(TAG, "新版本即将开始下载。。。。");
+                        LogUtils.e(TAG, "新版本即将开始下载。。。。");
                         Intent intent = new Intent(context, UpdateVersionService.class);
                         intent.putExtra("downloadUrl", versionInfo.getDownloadUrl());
                         context.startService(intent);

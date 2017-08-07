@@ -1,7 +1,6 @@
 package com.alpha.alphaapp.model.v_1_1.logic;
 
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;

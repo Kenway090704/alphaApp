@@ -1,13 +1,11 @@
 package com.alpha.lib_sdk.app.net;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Handler;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -132,14 +130,14 @@ public class RequestManager {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     failedCallBack("访问失败", callBack);
-                    com.alpha.lib_sdk.app.log.Log.e(TAG, e.toString());
+                    LogUtils.e(TAG, e.toString());
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        com.alpha.lib_sdk.app.log.Log.e(TAG, "response ----->" + string);
+                        LogUtils.e(TAG, "response ----->" + string);
                         successCallBack((T) string, callBack);
                     } else {
                         failedCallBack("服务器错误", callBack);
@@ -149,7 +147,7 @@ public class RequestManager {
 
             return call;
         } catch (Exception e) {
-            Log.e(TAG, e.toString());
+            LogUtils.e(TAG, e.toString());
 
         }
         return null;
@@ -172,14 +170,14 @@ public class RequestManager {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     failedCallBack("访问失败", callBack);
-                    Log.e(TAG, "这里发生了错误==" + e.toString());
+                    LogUtils.e(TAG, "这里发生了错误==" + e.toString());
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        Log.e(TAG, "response ----->" + string);
+                        LogUtils.e(TAG, "response ----->" + string);
                         successCallBack((T) string, callBack);
                     } else {
                         failedCallBack("服务器错误", callBack);
@@ -188,7 +186,7 @@ public class RequestManager {
             });
             return call;
         } catch (Exception e) {
-            Log.e(TAG, e.toString());
+            LogUtils.e(TAG, e.toString());
 
         }
         return null;
@@ -206,7 +204,7 @@ public class RequestManager {
      */
     public <T> Call requestPostByJsonAsyn(String actionUrl, String json, final ReqCallBack<T> callBack) {
         try {
-            Log.e(TAG, "url==" + actionUrl);
+            LogUtils.e(TAG, "url==" + actionUrl);
             RequestBody body = RequestBody.create(JSON, json);
             Request request = new Request.Builder().url(actionUrl).post(body).build();
             final Call call = mOkHttpClient.newCall(request);
@@ -214,14 +212,14 @@ public class RequestManager {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     failedCallBack("访问失败", callBack);
-                    Log.e(TAG, e.toString());
+                    LogUtils.e(TAG, e.toString());
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String string = response.body().string();
-                        Log.e(TAG, "response ----->" + string);
+                        LogUtils.e(TAG, "response ----->" + string);
 
                         successCallBack((T) string, callBack);
                     } else {
@@ -231,7 +229,7 @@ public class RequestManager {
             });
             return call;
         } catch (Exception e) {
-            Log.e(TAG, e.toString());
+            LogUtils.e(TAG, e.toString());
         }
         return null;
     }
@@ -259,7 +257,7 @@ public class RequestManager {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     failedCallBack("访问失败", callBack);
-                    Log.e(TAG, e.toString());
+                    LogUtils.e(TAG, e.toString());
                 }
 
                 @Override
@@ -274,7 +272,7 @@ public class RequestManager {
             });
             return call;
         } catch (Exception e) {
-            Log.e(TAG, e.toString());
+            LogUtils.e(TAG, e.toString());
         }
         return null;
     }

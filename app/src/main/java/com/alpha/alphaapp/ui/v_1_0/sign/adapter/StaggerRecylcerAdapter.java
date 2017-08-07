@@ -15,7 +15,7 @@ import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.model.v_1_0.bean.GetIconBean;
 import com.alpha.alphaapp.ui.v_1_0.sign.SignActivity;
 import com.alpha.lib_sdk.app.glide.ImageLoader;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 
@@ -137,7 +137,7 @@ public class StaggerRecylcerAdapter extends RecyclerView.Adapter<StaggerRecylcer
                         }
                         //将现在选中的变为选中
                         selectedIcon = list.get(position);//更新选中项
-                        Log.e(TAG, "new selectedIcon==" + selectedIcon);
+                        LogUtils.e(TAG, "new selectedIcon==" + selectedIcon);
                         map.put(list.get(position), true);
                         holder.cb.setChecked(true);
                         holder.cb.setVisibility(View.VISIBLE);

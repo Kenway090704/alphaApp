@@ -12,8 +12,8 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
 import com.alpha.alphaapp.model.v_1_0.register.RegisterLogic;
@@ -40,7 +40,7 @@ public class RegisterPhoneActivity3 extends BaseActivity {
     protected int getLayoutId() {
         phone = getIntent().getStringExtra("phone");
         verify = getIntent().getStringExtra("verify");
-        Log.e(TAG, "phone==" + phone + ".verify==" + verify);
+        LogUtils.e(TAG, "phone==" + phone + ".verify==" + verify);
         return R.layout.activity_register_phone_3;
     }
 
@@ -141,7 +141,7 @@ public class RegisterPhoneActivity3 extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                Log.e(TAG, "failedMsg==" + failedMsg);
+                LogUtils.e(TAG, "failedMsg==" + failedMsg);
                 ToastUtils.showLong(RegisterPhoneActivity3.this, failedMsg);
             }
         };

@@ -16,7 +16,7 @@ import com.alpha.alphaapp.ui.FeedbackActivity;
 import com.alpha.alphaapp.ui.v_1_0.login.LoginActivity;
 import com.alpha.alphaapp.ui.widget.set.SetingItemView;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 
@@ -107,7 +107,7 @@ public class SettingsActivity extends BaseActivity {
             }
             @Override
             public void onModelFailed(String failedMsg) {
-                Log.e(TAG, "failedMsg==" + failedMsg);
+                LogUtils.e(TAG, "failedMsg==" + failedMsg);
             }
         };
         LoginOutLogic.doLoginOut(sskey, back);

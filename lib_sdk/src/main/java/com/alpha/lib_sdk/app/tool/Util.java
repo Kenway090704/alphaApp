@@ -1,6 +1,6 @@
 package com.alpha.lib_sdk.app.tool;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class Util {
         try {
             kg = KeyGenerator.getInstance("AES");
         } catch (NoSuchAlgorithmException e) {
-            Log.e(TAG, "%s", e.toString());
+            LogUtils.e(TAG, "%s", e.toString());
             return buildInAESKey;
         }
 
@@ -46,17 +46,17 @@ public class Util {
         kg.init(128);
         SecretKey sk = kg.generateKey();
         if (Util.isNull(sk)) {
-            Log.e(TAG, "sk is null");
+            LogUtils.e(TAG, "sk is null");
             return buildInAESKey;
         }
 
         byte[] ret = sk.getEncoded();
         if (Util.isNullOrNil(ret)) {
-            Log.e(TAG, "generate aes key fail!!!, ret is null or nil");
+            LogUtils.e(TAG, "generate aes key fail!!!, ret is null or nil");
             return buildInAESKey;
         }
 
-        Log.d(TAG, "build aes ramdon key successful, length = %d", ret.length);
+        LogUtils.d(TAG, "build aes ramdon key successful, length = %d", ret.length);
         return ret;
     }
 

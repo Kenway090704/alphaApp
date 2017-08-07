@@ -6,7 +6,7 @@ import com.alpha.alphaapp.wxapi.WXManager;
 import com.alpha.alphaapp.wxapi.WechatAuthCallBack;
 import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -64,11 +64,11 @@ public class WxAuthManger {
                 public void onAuthSuccess(WxAccessTokenInfo info) {
                     if (!Util.isNullOrBlank(info.getOpenId())) {
                         getWxUserInfo(info, back);
-                        Log.e(TAG, info.getOpenId());
+                        LogUtils.e(TAG, info.getOpenId());
                     } else {
                         if (!Util.isNull(back))
                             back.onAuthFailed("无法获取微信Openid");
-                        Log.e(TAG, "无法获取微信Openid");
+                        LogUtils.e(TAG, "无法获取微信Openid");
                     }
 
                 }
@@ -78,7 +78,7 @@ public class WxAuthManger {
                     if (!Util.isNull(back))
                         back.onAuthFailed(errmsg);
 
-                    Log.e(TAG, errmsg);
+                    LogUtils.e(TAG, errmsg);
                 }
             };
             //拉起微信授权，授权结果在WXEntryActivity中接收处理

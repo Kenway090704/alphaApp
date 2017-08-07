@@ -8,6 +8,7 @@ import com.alpha.alphaapp.wxapi.WxAccessTokenInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.app.EnvirenmentArgsHolder;
 import com.alpha.lib_sdk.app.crashhandler.CrashHandler;
+import com.alpha.lib_sdk.app.log.LogCatch;
 import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -57,6 +58,11 @@ public class MyApplication extends Application {
 
         //加载地区地址数据
         GetPCityAreaData.getInstance().init(this);
+
+
+        LogUtils.d( "start input file logs");
+        LogCatch.getInstance(this).stop();
+        LogCatch.getInstance(this).start();
 
     }
 

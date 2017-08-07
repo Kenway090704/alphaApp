@@ -11,7 +11,6 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.v_1_1.mall.Tools;
 import com.alpha.alphaapp.model.v_1_1.bean.OrderBean;
 import com.alpha.alphaapp.ui.v_1_1.mall.exchange.ExchangeRecordDetailActivity;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 
 import java.util.List;
@@ -73,7 +72,7 @@ public class ExchangeRecordAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public int getItemCount() {
 
         //这里是主要是为了显示没有数据时展示的界面
-//        Log.e(TAG, "list.size()==" + list.size());
+//        LogUtils.e(TAG, "list.size()==" + list.size());
         return (null != list && list.size() > 0) ? list.size() : 1;
     }
 

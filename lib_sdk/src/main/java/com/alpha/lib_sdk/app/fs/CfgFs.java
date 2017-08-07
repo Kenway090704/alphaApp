@@ -1,7 +1,7 @@
 package com.alpha.lib_sdk.app.fs;
 
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 import java.io.File;
@@ -31,7 +31,7 @@ public final class CfgFs implements KeyValueAccessor<Integer> {
 
     public CfgFs(String filePath) {
         if (!new File(filePath).exists()) {
-            Log.e(TAG, "CfgFs not exit path[%s]", filePath);
+            LogUtils.e(TAG, "CfgFs not exit path[%s]", filePath);
         }
         this.mFilePath = filePath;
         openCfg();
@@ -56,11 +56,11 @@ public final class CfgFs implements KeyValueAccessor<Integer> {
             File file = new File(mFilePath);
             if (!file.exists()) {
                 boolean created = file.createNewFile();
-                Log.w(TAG, "CfgFs openCfg not exit path[%s], created[%b]", mFilePath, created);
+                LogUtils.w(TAG, "CfgFs openCfg not exit path[%s], created[%b]", mFilePath, created);
             }
             if (file.length() == 0) {
                 mKeyValues = new HashMap<Integer, Object>();
-                Log.w(TAG, "CfgFs openCfg file len == 0 path[%s]", mFilePath);
+                LogUtils.w(TAG, "CfgFs openCfg file len == 0 path[%s]", mFilePath);
                 return;
             }
             fis = new FileInputStream(file);
@@ -68,10 +68,10 @@ public final class CfgFs implements KeyValueAccessor<Integer> {
             ois = new ObjectInputStream(fis);
             mKeyValues = (Map<Integer, Object>) ois.readObject();
             mOccurExceptionWhenOpen = false;
-            Log.i(TAG, "openCfg end, keys count:%d", mKeyValues.size());
+            LogUtils.i(TAG, "openCfg end, keys count:%d", mKeyValues.size());
         } catch (Exception e) {
             mKeyValues = new HashMap<Integer, Object>();
-            Log.e(TAG, "openCfg Exception : %s", Util.getStack(e));
+            LogUtils.e(TAG, "openCfg Exception : %s", Util.getStack(e));
             mOccurExceptionWhenOpen = true;
         } finally {
             try {
@@ -105,9 +105,9 @@ public final class CfgFs implements KeyValueAccessor<Integer> {
             oos.writeObject(mKeyValues);
             fos.flush();
             long end = System.currentTimeMillis();
-            Log.d(TAG, "writeCfg end, keys count : %d time : %d", mKeyValues.keySet().toArray().length, end - begin);
+            LogUtils.d(TAG, "writeCfg end, keys count : %d time : %d", mKeyValues.keySet().toArray().length, end - begin);
         } catch (IOException e) {
-            Log.e(TAG, "exception : %s", Util.getStack(e));
+            LogUtils.e(TAG, "exception : %s", Util.getStack(e));
         } finally {
             try {
                 if (oos != null) {
@@ -124,13 +124,13 @@ public final class CfgFs implements KeyValueAccessor<Integer> {
                     fileLock = null;
                 }
             } catch (Exception e) {
-                Log.e(TAG, "e==" + e);
+                LogUtils.e(TAG, "e==" + e);
             }
         }
     }
 
     public synchronized void reset() {
-        Log.i(TAG, "CfgFs reset ");
+        LogUtils.i(TAG, "CfgFs reset ");
         File file = new File(mFilePath);
         if (file.exists()) {
             file.delete();

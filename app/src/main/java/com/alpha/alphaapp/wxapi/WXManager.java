@@ -11,7 +11,7 @@ import android.content.Intent;
 
 import com.alpha.alphaapp.app.MyApplication;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -104,7 +104,7 @@ public class WXManager {
                     if (wxcallBack != null) {
                         wxcallBack.onAuthFailed("invalid code");
                     }
-                    Log.e(TAG, result);
+                    LogUtils.e(TAG, result);
                 }
             }
 
@@ -145,7 +145,7 @@ public class WXManager {
                     if (wxcallBack != null) {
                         wxcallBack.onAuthFailed("invalid code");
                     }
-                    Log.e(TAG, result);
+                    LogUtils.e(TAG, result);
                 }
 
                 WxAccessTokenInfo wxAccessTokenInfo = WxAccessTokenInfo.getWxAccessTokenFromJsonStr(result);
@@ -173,7 +173,7 @@ public class WXManager {
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
-                Log.e(TAG, "wx_info==" + result);
+                LogUtils.e(TAG, "wx_info==" + result);
                 //如果返回错误的时候则不可以执行
 //                WxAccessTokenInfo wxAccessTokenInfo = WxAccessTokenInfo.getWxAccessTokenFromJsonStr(result);
 //                resp.onSuccess(wxAccessTokenInfo);

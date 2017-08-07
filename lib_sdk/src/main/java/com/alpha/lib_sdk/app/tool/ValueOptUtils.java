@@ -1,6 +1,6 @@
 package com.alpha.lib_sdk.app.tool;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.util.Random;
 
@@ -23,7 +23,7 @@ public class ValueOptUtils {
      */
     public static final String genRandomString(int length, String src) {
         if (Util.isNullOrNil(src) || length <= 0) {
-            Log.e(TAG, "Target string length(%d) or source string(%s) is illegaled.", length, src);
+            LogUtils.e(TAG, "Target string length(%d) or source string(%s) is illegaled.", length, src);
             return null;
         }
         int count = src.length();

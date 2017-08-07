@@ -10,10 +10,10 @@ import android.widget.EditText;
 import com.alpha.alphaapp.R;
 
 import com.alpha.alphaapp.model.v_1_0.bean.SchoolBean;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.ui.widget.wheel.WheelView;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -121,7 +121,7 @@ public class GetSchoolLogic {
                 .listener(new WheelView.OnWheelViewItemSelectListener() {
                     @Override
                     public void onItemSelect(final int index) {
-                       Log.e(TAG, "current select" + wheelView.getSelectItem());
+                       LogUtils.e(TAG, "current select" + wheelView.getSelectItem());
                     }
                 }).build();
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -207,12 +207,12 @@ public class GetSchoolLogic {
         map.put("c", city);
         map.put("area", area);
         map.put("text", searchMsg);
-        Log.e(TAG, "province==" + province + ",city==" + city + ",area==" + area + ",searchMsg==" + searchMsg);
+        LogUtils.e(TAG, "province==" + province + ",city==" + city + ",area==" + area + ",searchMsg==" + searchMsg);
         ReqCallBack<String> call = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
                 options1Items = (ArrayList<SchoolBean>) SchoolBean.arraySchoolBeanFromData(result);
-                Log.e(TAG, options1Items.toString());
+                LogUtils.e(TAG, options1Items.toString());
                 mHandler.sendEmptyMessage(MSG_LOAD_SUCCESS);
             }
 

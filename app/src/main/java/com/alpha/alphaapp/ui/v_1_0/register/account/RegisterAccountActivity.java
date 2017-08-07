@@ -12,7 +12,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.register.CheckAccoutLogic;
@@ -198,7 +198,7 @@ public class RegisterAccountActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                Log.e(TAG, "failedMsg==" + failedMsg);
+                LogUtils.e(TAG, "failedMsg==" + failedMsg);
             }
         };
         CheckAccoutLogic.checkAccountIsHas(account, type, callback);
@@ -222,7 +222,7 @@ public class RegisterAccountActivity extends BaseActivity {
             @Override
             public void onModelFailed(String failedMsg) {
 
-                Log.e(TAG, "failed==" + failedMsg);
+                LogUtils.e(TAG, "failed==" + failedMsg);
                 ToastUtils.showToast(RegisterAccountActivity.this, failedMsg);
             }
         };
@@ -247,7 +247,7 @@ public class RegisterAccountActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                Log.e(TAG, "failedMsg==" + failedMsg);
+                LogUtils.e(TAG, "failedMsg==" + failedMsg);
                 ToastUtils.showLong(RegisterAccountActivity.this, failedMsg);
             }
         };

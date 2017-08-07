@@ -10,7 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class BindAccountActivity extends BaseFragmentActivity {
     protected int getLayoutId() {
         openid = getIntent().getStringExtra("openid");
         loginType = getIntent().getIntExtra("loginType", -1);
-        Log.e(TAG, "openid==" + openid + ",loginType=" + loginType);
+        LogUtils.e(TAG, "openid==" + openid + ",loginType=" + loginType);
         return R.layout.activity_bind;
     }
 

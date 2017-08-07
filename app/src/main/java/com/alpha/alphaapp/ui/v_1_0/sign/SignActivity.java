@@ -14,7 +14,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.SignInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.model.v_1_0.bean.GetIconBean;
@@ -140,7 +140,7 @@ public class SignActivity extends BaseFragmentActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                Log.e(TAG, "failedMsg==" + failedMsg);
+                LogUtils.e(TAG, "failedMsg==" + failedMsg);
                 ToastUtils.showToast(context, failedMsg);
             }
         };

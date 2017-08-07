@@ -8,7 +8,7 @@ import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.bean.GoodsBean;
 import com.alpha.alphaapp.model.v_1_0.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
@@ -131,7 +131,7 @@ public class GetGoodsDetailLogic {
            GoodsBean bean = GoodsBean.objectFromData(result);
             if (!Util.isNull(callback))
                 callback.onModelSuccessed(bean);
-            Log.e(TAG, "result===" + result);
+            LogUtils.e(TAG, "result===" + result);
         } else {
             if (!Util.isNull(callback))
                 callback.onModelFailed("无法获取商品详细信息");

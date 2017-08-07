@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.text.TextUtils;
 
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.tencent.connect.UserInfo;
@@ -98,7 +98,7 @@ public class QQLoginManager {
                     if (!Util.isNull(logincall)) {
                         logincall.onQQAuthFailed("授权失败");
                     }
-                    Log.e(TAG, uiError.toString());
+                    LogUtils.e(TAG, uiError.toString());
                 }
 
                 @Override
@@ -106,7 +106,7 @@ public class QQLoginManager {
                     if (!Util.isNull(logincall)) {
                         logincall.onQQAuthFailed("授权取消");
                     }
-                    Log.e(TAG, "cancel");
+                    LogUtils.e(TAG, "cancel");
                 }
             };
             mTencent.login(activity, "all", iUiListener);
@@ -128,7 +128,7 @@ public class QQLoginManager {
             String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
             String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
             String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
-            Log.e(TAG, "openid==" + openId + ",token==" + token);
+            LogUtils.e(TAG, "openid==" + openId + ",token==" + token);
             if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires) && !TextUtils.isEmpty(openId)) {
                 //设置身份的token
                 mTencent.setAccessToken(token, expires);
@@ -167,7 +167,7 @@ public class QQLoginManager {
                     return;
                 }
                 try {
-                    Log.e(TAG, "获取信息==" + o.toString());
+                    LogUtils.e(TAG, "获取信息==" + o.toString());
                     JSONObject jo = (JSONObject) o;
                     String nickName = jo.getString("nickname");
                     String gender = jo.getString("gender");
@@ -189,12 +189,12 @@ public class QQLoginManager {
 
             @Override
             public void onError(UiError uiError) {
-                Log.e(TAG, "获取信息==UiError" + uiError.toString());
+                LogUtils.e(TAG, "获取信息==UiError" + uiError.toString());
             }
 
             @Override
             public void onCancel() {
-                Log.e(TAG, "获取信息==onCancel");
+                LogUtils.e(TAG, "获取信息==onCancel");
             }
         };
         if (mTencent != null && mTencent.isSessionValid()) {

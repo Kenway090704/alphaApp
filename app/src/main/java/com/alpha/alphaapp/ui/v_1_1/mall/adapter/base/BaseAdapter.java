@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alpha.alphaapp.R;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.tool.Util;
 
 import java.util.List;
 

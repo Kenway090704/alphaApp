@@ -2,7 +2,7 @@ package com.alpha.lib_sdk.app.core.download;
 
 
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 import java.io.File;
@@ -69,11 +69,11 @@ public class DownLoadTask implements Runnable {
             connection.setConnectTimeout(30 * 1000);
             connection.setRequestProperty("User-Agent", "Bemetoy-bp");
             connection.setRequestProperty("Range", "bytes=" + startPoint + "-" + (startPoint + dataLength - 1));
-            Log.d(TAG, "Current thread name is [%s], startPosition is [%d], endPoint is [%d], dataLength is [%s]",
+            LogUtils.d(TAG, "Current thread name is [%s], startPosition is [%d], endPoint is [%d], dataLength is [%s]",
                     Thread.currentThread().getName(), startPoint, startPoint + dataLength - 1, dataLength);
             connection.connect();
             if (connection.getResponseCode() == HttpURLConnection.HTTP_PARTIAL || connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Log.d(TAG, "content length from the server %d", connection.getContentLength());
+                LogUtils.d(TAG, "content length from the server %d", connection.getContentLength());
                 ins = connection.getInputStream();
                 accessFile = new RandomAccessFile(new File(mFilePth), "rwd");
                 accessFile.seek(startPoint);
@@ -87,7 +87,7 @@ public class DownLoadTask implements Runnable {
                 if(listener != null) {
                     listener.onTaskFinish();
                 }
-                Log.d(TAG, "current download length is %d", totalLength);
+                LogUtils.d(TAG, "current download length is %d", totalLength);
             }
         } catch (Exception e) {
             e.printStackTrace();

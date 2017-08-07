@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.alpha.lib_sdk.app.core.thread.ArgsTransferHelper;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.reflect.ReflectStaticFieldSmith;
 import com.alpha.lib_sdk.app.sync.LockEntity;
 
@@ -54,18 +54,22 @@ public class WorkerThread<TaskType> extends Thread {
 
     @Override
     public void run() {
+
+
         try {
             if (mLooper != null) {
+
                 //check Looper中有一个"sThreadLocal"成员属性
                 ThreadLocal<Looper> tl = new ReflectStaticFieldSmith<ThreadLocal<Looper>>(Looper.class, "sThreadLocal").getWithoutThrow();
                 if (tl != null && tl.get() == null) {
-                    Log.d(TAG, "create a new Looper ThreadLocal variable.");
+                    LogUtils.i(TAG, "create a new Looper ThreadLocal variable.");
                     tl.set(mLooper);
                 } else {
-                    Log.d(TAG, "ThreadLocal Looper variable is null or has set.(%s)", tl);
+                    LogUtils.i(TAG, "ThreadLocal Looper variable is null or has set.(%s)", tl);
                 }
                 mHandler = new Handler(mLooper);
             }
+
             DoTaskProxy<TaskType> task = null;
             while (!mIsStop) {
                 if (mTasks.size() == 0) {
@@ -81,9 +85,12 @@ public class WorkerThread<TaskType> extends Thread {
                 if (task == null) {
                     continue;
                 }
+                //这个测试得到task.isDoInLooper()==false,这样的话无法执行
+
                 if (task.isDoInLooper()) {
                     if (mHandler == null) {
-                        Log.i(TAG, "Looper is null, can not do task in a null Looper.");
+                        LogUtils.i(TAG, "Looper is null, can not do task in a null Looper.");
+
                         continue;
                     }
                     mHandler.post(new TransferArgsRunnable(task) {
@@ -159,7 +166,7 @@ public class WorkerThread<TaskType> extends Thread {
         private boolean doInLooper;
 
         /**
-         * @param token    the token can be used to remove task from the task queue,know more see{@link WorkerThread#removeTask(Object)}
+         * @param token    the token can be used to remove task from the task queue,know more see{@link WorkerThread removeTask(Object)}
          * @param taskType can be data or a real task to do in
          *                 {@link #doTask(Object)}
          * @param args     arguments to transfer into the {@link DoTaskProxy} and
@@ -184,7 +191,7 @@ public class WorkerThread<TaskType> extends Thread {
         }
 
         public final boolean isDoInLooper() {
-            return doInLooper;
+            return true;
         }
 
         public abstract void doTask(TaskType task);

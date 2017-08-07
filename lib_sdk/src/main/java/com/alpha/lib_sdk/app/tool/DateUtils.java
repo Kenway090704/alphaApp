@@ -1,6 +1,6 @@
 package com.alpha.lib_sdk.app.tool;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -156,7 +156,7 @@ public class DateUtils {
      */
     public static String getMonthAndDayDuration(String beginDate, String endDate) {
         if ((beginDate == null || beginDate.length() == 0) || (endDate == null || endDate.length() == 0)) {
-            Log.e(TAG, "beginDate and endDate should not be null");
+            LogUtils.e(TAG, "beginDate and endDate should not be null");
             return null;
         }
 
@@ -271,7 +271,7 @@ public class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         try {
-            Log.e(TAG, "doArrToString(ymd)===" + doArrToString(ymd));
+            LogUtils.e(TAG, "doArrToString(ymd)===" + doArrToString(ymd));
             Date date = sdf.parse(doArrToString(ymd));
             calendar.setTime(date);
         } catch (ParseException e) {
@@ -298,5 +298,68 @@ public class DateUtils {
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
+
+
+
+
+    public static String getFileName() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String date = format.format(new Date(System.currentTimeMillis()));
+        return date;
+    }
+
+    public static String getDateEN() {
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date1 = format1.format(new Date(System.currentTimeMillis()));
+        return date1;
+    }
+
+    public static String getDateHMS() {
+        SimpleDateFormat format1 = new SimpleDateFormat("HH:mm:ss");
+        String date1 = format1.format(new Date(System.currentTimeMillis()));
+        return date1;
+    }
+
+    /**
+     * 获取该时间的 "yyyy-MM-dd"
+     *
+     * @param time
+     * @return "yyyy-MM-dd"
+     */
+    public static String getTimeStr(long time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String date = format.format(new Date(time));
+        return date;
+    }
+
+    /**
+     * 获取几天前的日期
+     * 获取几天前的日期
+     * @param day --几天
+     * @return yyyy-MM-dd
+     */
+    public static String getBefomeSomeDay(int day) {
+        final Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);//获取当前年
+        int month = cal.get(Calendar.MONTH) + 1;//获取当前月
+        int nowday = cal.get(Calendar.DAY_OF_MONTH);//获取当前日
+        cal.set(Calendar.DAY_OF_YEAR, nowday - day);
+        int beforeDay = cal.get(Calendar.DAY_OF_MONTH);
+        int beforeMonth = month;
+        int beforeYear = year;
+        //判断前面的日期如果大于当前日期,那么月分减一
+        if (beforeDay > nowday) {
+            beforeMonth -= 1;
+        }
+        //判断前面的月如果大于当前月,那么年份分减一
+        if (beforeMonth > month) {
+            beforeYear -= 1;
+        }
+        cal.set(beforeYear, beforeMonth - 1, beforeDay);
+        Date date = cal.getTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String dateBefore = format.format(date);
+        return dateBefore;
+    }
 
 }

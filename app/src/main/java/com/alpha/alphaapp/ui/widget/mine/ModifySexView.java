@@ -16,7 +16,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.tandong.bottomview.view.BottomView;
 
@@ -196,7 +196,7 @@ public class ModifySexView extends LinearLayout {
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getSex());
-                    Log.e(TAG, "failed==" + failedMsg);
+                    LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };
             ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_SEX, back);

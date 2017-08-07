@@ -4,10 +4,8 @@ import android.content.Context;
 
 import com.alpha.lib_sdk.BuildConfig;
 import com.alpha.lib_sdk.R;
-import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.Base64Util;
-import com.alpha.lib_sdk.app.fs.CfgFs;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 /**
  * Created by kenway on 17/5/23 13:39
@@ -48,7 +46,7 @@ public class JsonEncryptUtil {
                     .append("\"sign\":").append("\"" + sign + "\",")
                     .append("\"data\":").append(data)
                     .append("}");
-            Log.e(TAG, "josn=" + sb.toString());
+            LogUtils.e(TAG, "josn=" + sb.toString());
             return sb.toString();
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,7 +60,7 @@ public class JsonEncryptUtil {
      * @return
      */
     public static void getDefaultKey() {
-        Log.e(TAG, "BuildConfig.DEBUG==" + BuildConfig.DEBUG);
+        LogUtils.e(TAG, "BuildConfig.DEBUG==" + BuildConfig.DEBUG);
         if (true) {
             //debug
             APPKEY = "0lLYgBbML3axJk3z";
@@ -78,7 +76,7 @@ public class JsonEncryptUtil {
 //            APPKEY = sb.toString();
 //            APPID = "9FprO7RiGjFknxPo";
         }
-        Log.e(TAG, "APPKEY===" + APPKEY + ",APPID==" + APPID);
+        LogUtils.e(TAG, "APPKEY===" + APPKEY + ",APPID==" + APPID);
     }
 
     /**

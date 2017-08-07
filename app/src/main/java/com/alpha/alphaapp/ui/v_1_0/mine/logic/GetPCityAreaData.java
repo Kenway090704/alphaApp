@@ -6,8 +6,8 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.model.v_1_0.bean.AreaBean;
 import com.alpha.alphaapp.model.v_1_0.bean.CityBean;
 import com.alpha.alphaapp.model.v_1_0.bean.ProviceBean;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.URLConstans;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -85,7 +85,7 @@ public class GetPCityAreaData {
 
             @Override
             public void onReqFailed(String errorMsg) {
-                Log.e(TAG, errorMsg);
+                LogUtils.e(TAG, errorMsg);
             }
         };
 

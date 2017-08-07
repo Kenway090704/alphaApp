@@ -10,6 +10,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.v_1_0.userinfo.BindLogic;
@@ -25,7 +26,6 @@ import com.alpha.alphaapp.ui.v_1_0.modifypw.ModifyPwByPwActivity;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.alphaapp.ui.widget.set.AccountBindItemView;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
@@ -207,7 +207,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                Log.e(TAG, "qq_openid==" + qq_openid);
+                LogUtils.e(TAG, "qq_openid==" + qq_openid);
                 checkAuthBind(qq_openid, TypeConstants.ACCOUNT_TYPE.AUTH_QQ);
 
             }

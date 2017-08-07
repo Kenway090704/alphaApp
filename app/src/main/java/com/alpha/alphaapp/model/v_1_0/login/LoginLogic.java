@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.lib_stub.comm.TypeConstants;
@@ -19,7 +20,6 @@ import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.MD5;
 import com.alpha.lib_sdk.app.core.thread.ThreadPool;
 import com.alpha.lib_sdk.app.fs.CfgFs;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.IPAdressUtils;
@@ -268,7 +268,7 @@ public class LoginLogic {
                 break;
         }
         String json = JsonEncryptUtil.getPostJsonSignString(data);
-        Log.e(TAG, "json==" + json);
+        LogUtils.e(TAG, "json==" + json);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
@@ -374,13 +374,13 @@ public class LoginLogic {
         String username = cfgFs.getString(StorageConstants.Info_Key.USER_NAME, null);
         String password = cfgFs.getString(StorageConstants.Info_Key.MD5_PASSWORD, null);
         int loginType = cfgFs.getInt(StorageConstants.Info_Key.LOGIN_TYPE, -1);
-        Log.e(TAG, "userName==" + username + ",password==" + password + ",loginType==" + loginType);
+        LogUtils.e(TAG, "userName==" + username + ",password==" + password + ",loginType==" + loginType);
         if (username == null || password == null || loginType == -1) {
-            Log.e(TAG, "username or password is null");
+            LogUtils.e(TAG, "username or password is null");
             return false;
         }
         if (loginType == TypeConstants.LOGIN_TYPE.AUTH_QQ || loginType == TypeConstants.LOGIN_TYPE.AUTH_WX || loginType == TypeConstants.LOGIN_TYPE.PHONE_QUICK) {
-            Log.e(TAG, "LoginType不是帐号密码和手机密码登录");
+            LogUtils.e(TAG, "LoginType不是帐号密码和手机密码登录");
             return false;
         }
 
@@ -389,7 +389,7 @@ public class LoginLogic {
             @Override
             public void onModelSuccessed(String s) {
                 //自动登录成功后进入到Home页面
-                Log.e(TAG, "自动登录成功,进入HomeActivity");
+                LogUtils.e(TAG, "自动登录成功,进入HomeActivity");
                 ThreadPool.post(new Runnable() {
                     @Override
                     public void run() {
@@ -401,7 +401,7 @@ public class LoginLogic {
             @Override
             public void onModelFailed(String failedMsg) {
                 //如果登录失败进入登录页面
-                Log.e(TAG, "自动登录失败,进入LoginActivity中");
+                LogUtils.e(TAG, "自动登录失败,进入LoginActivity中");
                 LoginActivity.actionStartClearStack(activity, null, null);
             }
         };

@@ -1,6 +1,9 @@
 package com.alpha.lib_sdk.app.log.log;
 
 
+import android.os.Looper;
+import android.util.Log;
+
 import com.alpha.lib_sdk.app.core.thread.ThreadPool;
 import com.alpha.lib_sdk.app.log.thread.WorkerThread;
 import com.alpha.lib_sdk.app.protocols.LocalDataConstants;
@@ -22,7 +25,7 @@ import java.util.Date;
  */
 public class DefaultLogWriter implements ILogWriter {
 
-    private static final String TAG = "Log.DefaultLogWriter";
+    private static final String TAG = "LogUtils.DefaultLogWriter";
 
     private volatile boolean mHasStarted;
     private File mFile;
@@ -40,6 +43,8 @@ public class DefaultLogWriter implements ILogWriter {
             android.util.Log.w(TAG, "File output stream has been closed or the writer has not started at all.");
             return;
         }
+
+
         StringBuffer sb = new StringBuffer();
         sb.append("[priority:").append(priority).append("]");
         sb.append("[pid:").append(mPid).append(",tid:").append(tid).append("]");
@@ -48,6 +53,7 @@ public class DefaultLogWriter implements ILogWriter {
         sb.append("[tag:").append(tag).append("]");
         sb.append(log);
         sb.append("\n");
+
         if (mWorkerThread != null) {
             mWorkerThread.addTask(new DoTaskProxyImpl(sb, mFileOutputStream));
         }
@@ -60,6 +66,7 @@ public class DefaultLogWriter implements ILogWriter {
             return false;
         }
         String path = dir + File.separator + fileName;
+
         if (!DeviceUtils.hasSDCard()) {
             android.util.Log.w(TAG, ValueOptUtils.format("try to create file failed, sdcard do not exist.(%s)", path));
             return false;
@@ -71,12 +78,14 @@ public class DefaultLogWriter implements ILogWriter {
          * When new FileOutputStream(mFile, true) throw exception
          * mWorkerThread will be null.
          */
+
         try {
             mFileOutputStream = new FileOutputStream(mFile, true);
-            mWorkerThread = ThreadPool.newWorkerThread(StringBuffer.class);
+            // Looper.myLooper() 返回一个当前线程的looper
+            mWorkerThread = ThreadPool.newWorkerThread(StringBuffer.class, Looper.getMainLooper());
             mWorkerThread.setName("Thread-LogWriter");
             mWorkerThread.start();
-            android.util.Log.i(TAG, "Start Log writer successfully.");
+            android.util.Log.i(TAG, "Start LogUtils writer successfully.");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -98,7 +107,7 @@ public class DefaultLogWriter implements ILogWriter {
                 mWorkerThread.shutdown();
                 mWorkerThread = null;
                 mFileOutputStream = null;
-                android.util.Log.i(TAG, "Shutdown Log writer successfully.");
+                android.util.Log.i(TAG, "Shutdown LogUtils writer successfully.");
             }
         }
     }
@@ -121,6 +130,8 @@ public class DefaultLogWriter implements ILogWriter {
                 android.util.Log.w(TAG, "fos is null.");
                 return;
             }
+
+
             byte[] buffer = null;
             try {
                 buffer = sBuffer.toString().getBytes(LocalDataConstants.Charset.LOG_CHARSET);

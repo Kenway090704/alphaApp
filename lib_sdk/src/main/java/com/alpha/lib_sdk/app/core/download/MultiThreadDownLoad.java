@@ -2,7 +2,7 @@ package com.alpha.lib_sdk.app.core.download;
 
 
 import com.alpha.lib_sdk.app.core.thread.ThreadPool;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.FileUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -45,7 +45,7 @@ public class MultiThreadDownLoad {
 
     public boolean start() {
         if (Util.isNullOrBlank(mTargetUrl) || Util.isNullOrBlank(mFilePath)) {
-            Log.w(TAG, "target url or mFilePath is null or blank");
+            LogUtils.w(TAG, "target url or mFilePath is null or blank");
             return false;
         }
 
@@ -77,7 +77,7 @@ public class MultiThreadDownLoad {
             connection.connect();
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 long contentLength = connection.getContentLength();
-                Log.d(TAG, "target url content-length is %s", contentLength);
+                LogUtils.d(TAG, "target url content-length is %s", contentLength);
                 accessFile = new RandomAccessFile(file, "rwd");
                 accessFile.setLength(contentLength);
                 long taskSize = (contentLength % mThreadCount == 0 ? contentLength / mThreadCount : contentLength / mThreadCount + 1);
@@ -93,7 +93,7 @@ public class MultiThreadDownLoad {
                     }
                 }
             } else {
-                Log.d(TAG, "response code is %d", connection.getResponseCode());
+                LogUtils.d(TAG, "response code is %d", connection.getResponseCode());
             }
         } catch (Exception e) {
             e.printStackTrace();

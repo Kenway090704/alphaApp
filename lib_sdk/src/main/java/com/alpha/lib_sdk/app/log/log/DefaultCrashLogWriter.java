@@ -1,6 +1,8 @@
 package com.alpha.lib_sdk.app.log.log;
 
 
+import android.os.Looper;
+
 import com.alpha.lib_sdk.app.core.thread.ThreadPool;
 import com.alpha.lib_sdk.app.log.thread.WorkerThread;
 import com.alpha.lib_sdk.app.protocols.LocalDataConstants;
@@ -63,9 +65,11 @@ public class DefaultCrashLogWriter implements ILogWriter {
         String filePath = dir + File.separator + fileName;
         File file = new File(filePath);
         FileUtils.createFileIfNeed(file);
+
+        //删除七天以上的log
         try {
             mFileOutputStream = new FileOutputStream(file, true);
-            mWorkThread = ThreadPool.newWorkerThread(String.class);
+            mWorkThread = ThreadPool.newWorkerThread(String.class,Looper.getMainLooper());
             mWorkThread.setName("Thread-CrashLogWriter");
             mWorkThread.start();
             mHasStarted = true;
@@ -90,7 +94,7 @@ public class DefaultCrashLogWriter implements ILogWriter {
             mHasStarted = false;
             mWorkThread.shutdown();
             mFileOutputStream = null;
-            android.util.Log.i(TAG, "Shutdown Crash Log writer successfully.");
+            android.util.Log.i(TAG, "Shutdown Crash LogUtils writer successfully.");
         }
     }
 
@@ -100,13 +104,13 @@ public class DefaultCrashLogWriter implements ILogWriter {
             android.util.Log.w(TAG, "File output stream has been closed or the writer has not started at all.");
             return;
         }
-        mWorkThread.addTask(new DoTaskProxyImpl(log, mFileOutputStream,mLockEntity));
+        mWorkThread.addTask(new DoTaskProxyImpl(log, mFileOutputStream, mLockEntity));
     }
 
 
     private static final class DoTaskProxyImpl extends WorkerThread.DoTaskProxy<String> {
 
-        private static final String TAG = "Log.CrashLogWriterTask";
+        private static final String TAG = "LogUtils.CrashLogWriterTask";
 
         private FileOutputStream mFileOutputStream;
         private LockEntity mLockEntity;
@@ -115,6 +119,7 @@ public class DefaultCrashLogWriter implements ILogWriter {
             super(data, data);
             this.mFileOutputStream = fos;
             this.mLockEntity = entity;
+
         }
 
         @Override
@@ -129,7 +134,6 @@ public class DefaultCrashLogWriter implements ILogWriter {
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
-
             if (buffer == null) {
                 return;
             }

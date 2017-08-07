@@ -12,7 +12,7 @@ import com.alpha.alphaapp.model.v_1_1.bean.ShippingAddrBean;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.ChooseShipingAddrAdapter;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class ChooseShippingAddrActivity extends BaseActivity {
             @Override
             public void onModelFailed(String failMsg) {
                 ToastUtils.showToast(ChooseShippingAddrActivity.this, failMsg);
-                Log.e(TAG, failMsg);
+                LogUtils.e(TAG, failMsg);
             }
         });
     }

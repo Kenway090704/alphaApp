@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -126,14 +126,14 @@ public class SharePLoginInfo {
         if (isBind == null) {
             return;
         }
-        Log.e(TAG, "isBind===" + isBind);
+        LogUtils.e(TAG, "isBind===" + isBind);
         editorData.putBoolean(ISBIND, isBind);
         editorData.commit();
     }
 
     public Boolean getIsBindAccount() {
         boolean isbindac = preferencesData.getBoolean(ISBIND, true);
-        Log.e(TAG, "isBind===" + isbindac);
+        LogUtils.e(TAG, "isBind===" + isbindac);
         return isbindac;
     }
 

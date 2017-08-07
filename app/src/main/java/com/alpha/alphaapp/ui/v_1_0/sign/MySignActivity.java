@@ -9,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.sign.adapter.MySignDateAdapter;
 import com.alpha.alphaapp.ui.widget.dialog.MySignDialog;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.DateUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.bumptech.glide.Glide;
@@ -110,7 +110,7 @@ public class MySignActivity extends BaseActivity {
 
                 String date = DateUtils.doArrToString(selectDate);
                 int maxDay = DateUtils.getDaysOfMonth(date);
-                Log.e(TAG,"maxday=="+maxDay);
+                LogUtils.e(TAG,"maxday=="+maxDay);
                 map.clear();
                 for (int i = 1; i < maxDay+1; i++) {
                         map.put(i, 0);
@@ -126,7 +126,7 @@ public class MySignActivity extends BaseActivity {
                 selectDate = DateUtils.getBeforeMonth(selectDate);
                 String date = DateUtils.doArrToString(selectDate);
                 int maxDay = DateUtils.getDaysOfMonth(date);
-                Log.e(TAG,"maxday=="+maxDay);
+                LogUtils.e(TAG,"maxday=="+maxDay);
                 map.clear();
                 for (int i = 1; i < maxDay+1; i++) {
                     if (i % 2 == 0) {

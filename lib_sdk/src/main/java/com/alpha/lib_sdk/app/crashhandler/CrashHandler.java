@@ -3,7 +3,7 @@ package com.alpha.lib_sdk.app.crashhandler;
 import android.os.Build;
 
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.log.log.DefaultCrashLogWriter;
 import com.alpha.lib_sdk.app.log.log.ILogWriter;
 import com.alpha.lib_sdk.app.protocols.StorageConstants;
@@ -59,7 +59,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 ApplicationContext.getPidKey(ApplicationContext.getApplication(),
                         android.os.Process.myPid()), "_", DateUtils.getDateFormat("yyyy-MM-dd", msec), ".", LOG_FILE_SUFFIX);
         mILogWriter.start(CRASH_LOG_DIR, fileName, android.os.Process.myPid(), thread.getId(), msec);
-        mILogWriter.writeLog(thread.getId(), msec, Log.ASSERT, TAG, getCrashInfoFormat(thread, ex));
+        mILogWriter.writeLog(thread.getId(), msec, LogUtils.ASSERT, TAG, getCrashInfoFormat(thread, ex));
         mILogWriter.shutdown();
         uploadCrashLog();
 
@@ -70,7 +70,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     /**
      * 获取异常信息字符串
-     *
      * @param thread
      * @param throwable
      * @return

@@ -16,7 +16,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -209,7 +209,7 @@ public class ModifyInfoETItemView extends LinearLayout {
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getName());
-                    Log.e(TAG, "failed==" + failedMsg);
+                    LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };
             ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_NICK_NAME, back);
@@ -244,7 +244,7 @@ public class ModifyInfoETItemView extends LinearLayout {
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getTrue_name());
-                    Log.e(TAG, "failed==" + failedMsg);
+                    LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };
             ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_TRUE_NAME, back);
@@ -280,7 +280,7 @@ public class ModifyInfoETItemView extends LinearLayout {
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getTrue_name());
-                    Log.e(TAG, "failed==" + failedMsg);
+                    LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };
             ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_QQ, back);
@@ -314,7 +314,7 @@ public class ModifyInfoETItemView extends LinearLayout {
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getContact_phone());
-                    Log.e(TAG, "failed==" + failedMsg);
+                    LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };
 

@@ -1,6 +1,6 @@
 package com.alpha.lib_sdk.app.core.event;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 /**
  * Created by kenway on 17/6/26 13:56
@@ -18,7 +18,7 @@ public abstract class AccurateEventObserver<EventType extends RxEvent> implement
 
             event = (EventType) rxEvent;
         } catch (Exception e) {
-            Log.v(TAG, "cast RxEvent failed. %s", e);
+            LogUtils.v(TAG, "cast RxEvent failed. %s", e);
             return;
         }
         if (event != null) {

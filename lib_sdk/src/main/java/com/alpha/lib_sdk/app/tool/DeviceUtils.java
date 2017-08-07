@@ -6,7 +6,7 @@ import android.os.Environment;
 import android.os.Vibrator;
 import android.telephony.TelephonyManager;
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 
 /**
@@ -32,7 +32,7 @@ public class DeviceUtils {
                     return deviceId == null ? "UNKNOWN DEVICE ID" : deviceId.trim();
                 }
             } catch (Exception e) {
-                Log.e(TAG, "getDeviceId failed, exception : %s.", e);
+                LogUtils.e(TAG, "getDeviceId failed, exception : %s.", e);
             }
         }
         return "UNKNOWN DEVICE ID";
@@ -49,9 +49,9 @@ public class DeviceUtils {
                 if (tm != null) {
                     return tm.getLine1Number();
                 }
-                Log.i(TAG, "get line1 number failed, null tm");
+                LogUtils.i(TAG, "get line1 number failed, null tm");
             } catch (SecurityException e) {
-                Log.e(TAG, "getLine1Number failed, exception : %s.", e);
+                LogUtils.e(TAG, "getLine1Number failed, exception : %s.", e);
             } catch (Exception e) {
                 e.printStackTrace();
             }

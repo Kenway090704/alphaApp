@@ -9,6 +9,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.model.v_1_0.bean.GetIconBean;
@@ -23,7 +24,6 @@ import com.alpha.alphaapp.ui.widget.mine.ModifyIconView;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoETItemView;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView;
 import com.alpha.alphaapp.ui.widget.mine.ModifySexView;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.DateUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -46,7 +46,6 @@ public class MineInfoActivity extends AccountChangeActivity {
     private ModifySexView msv_sex;
     private UserInfo info;
     private Map<String, Boolean> map;
-
     private GetBirthdayLogic logic_birday;//修改生日
 
     @Override
@@ -159,7 +158,7 @@ public class MineInfoActivity extends AccountChangeActivity {
 
                                         UserInfo userInfo = new UserInfo();
                                         //这里需要提交图片的名字
-                                        Log.e(TAG, str);
+                                        LogUtils.e(TAG, str);
                                         userInfo.setIcon(str);
 
                                         OnModelCallback<Object> back = new OnModelCallback<Object>() {
@@ -170,7 +169,7 @@ public class MineInfoActivity extends AccountChangeActivity {
 
                                             @Override
                                             public void onModelFailed(String failedMsg) {
-                                                Log.e(TAG, "failed==" + failedMsg);
+                                                LogUtils.e(TAG, "failed==" + failedMsg);
                                             }
                                         };
                                         ModifyUserInfoLogic.doModifyUserInfo(sskey, userInfo, ModifyUserInfoLogic.MODIFY_ICON, back);
@@ -184,7 +183,7 @@ public class MineInfoActivity extends AccountChangeActivity {
 
                     @Override
                     public void onModelFailed(String failedMsg) {
-                        Log.e(TAG, "failedMsg==" + failedMsg);
+                        LogUtils.e(TAG, "failedMsg==" + failedMsg);
                         ToastUtils.showToast(MineInfoActivity.this, failedMsg);
                     }
                 };
@@ -256,13 +255,13 @@ public class MineInfoActivity extends AccountChangeActivity {
                 OnModelCallback<Object> back = new OnModelCallback<Object>() {
                     @Override
                     public void onModelSuccessed(Object o) {
-                        Log.e(TAG, "DateUtils.getStringformYMD(year, month, day)==" + DateUtils.getStringformYMD(year, month, day));
+                        LogUtils.e(TAG, "DateUtils.getStringformYMD(year, month, day)==" + DateUtils.getStringformYMD(year, month, day));
                         mod_birthday.setMsg(DateUtils.getStringformYMD(year, month, day));
                     }
 
                     @Override
                     public void onModelFailed(String failedMsg) {
-                        Log.e(TAG, "failed==" + failedMsg);
+                        LogUtils.e(TAG, "failed==" + failedMsg);
                     }
                 };
                 ModifyUserInfoLogic.doModifyUserInfo(sskey, info, ModifyUserInfoLogic.MODIFY_BIRTHDAY, back);
@@ -281,7 +280,7 @@ public class MineInfoActivity extends AccountChangeActivity {
     @Override
     public void onAccountUpdate(UserInfo info) {
         //当用户修改数据时回调修改页面数据
-        Log.e(TAG, info.toString());
+        LogUtils.e(TAG, info.toString());
         this.info = info;
         setViewData();
     }

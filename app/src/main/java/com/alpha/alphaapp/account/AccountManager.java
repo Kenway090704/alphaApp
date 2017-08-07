@@ -7,7 +7,7 @@ import com.alpha.alphaapp.model.v_1_0.userinfo.GetUserInfoLogic;
 import com.alpha.alphaapp.ui.v_1_0.login.LoginActivity;
 import com.alpha.lib_sdk.app.core.event.RxEventBus;
 import com.alpha.lib_sdk.app.core.event.acc.AccountUpdataEvent;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -94,7 +94,7 @@ public class AccountManager {
 
                 @Override
                 public void onModelFailed(String failedMsg) {
-                    Log.e(TAG, "failedMsg==" + failedMsg);
+                    LogUtils.e(TAG, "failedMsg==" + failedMsg);
 
                 }
             };

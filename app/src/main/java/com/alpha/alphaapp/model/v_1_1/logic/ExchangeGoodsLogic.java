@@ -1,8 +1,7 @@
 package com.alpha.alphaapp.model.v_1_1.logic;
 
 import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.app.MyApplication;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.SystemUtils;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.TypeConstants;
@@ -134,7 +133,7 @@ public class ExchangeGoodsLogic {
      */
     public static void doExchangeGoods(int goods_id, int exchangeCount, int addrId, int product_id, OnModelCallback<Object> callback) {
         String data = null;
-        Log.e(TAG,"product-id=="+product_id);
+        LogUtils.e(TAG,"product-id=="+product_id);
             switch (product_id) {
                 case TypeConstants.PRODUCT_ID.NONE_PRODUCT:
                     data = getJsonforExchangeGoods(goods_id, exchangeCount, addrId);

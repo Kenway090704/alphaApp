@@ -18,7 +18,7 @@ import com.alpha.alphaapp.model.v_1_1.bean.ShippingAddrBean;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.base.EmptyViewHolder;
 import com.alpha.alphaapp.ui.v_1_1.mall.addr.EditShippingAddrActvity;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
@@ -209,7 +209,7 @@ public class ShipingAddrAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             public void onModelFailed(String failMsg) {
 
                 ToastUtils.showToast(context, "无法刷新收货地址");
-                Log.e(TAG, "list===" + failMsg);
+                LogUtils.e(TAG, "list===" + failMsg);
             }
         });
     }

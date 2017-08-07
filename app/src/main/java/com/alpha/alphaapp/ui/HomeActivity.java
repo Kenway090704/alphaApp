@@ -3,7 +3,6 @@ package com.alpha.alphaapp.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -12,6 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallFragment;
 import com.alpha.alphaapp.ui.v_1_0.mine.MineFragment;
 import com.alpha.alphaapp.ui.v_1_0.recom.RecomFragment;
+
 
 /**
  * Created by kenway on 17/5/24 14:59
@@ -28,7 +28,7 @@ public class HomeActivity extends BaseFragmentActivity {
 
     @Override
     protected int getLayoutId() {
-
+        LogUtils.e("我是测试的log");
         return R.layout.activity_home;
     }
 

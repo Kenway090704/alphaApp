@@ -2,7 +2,7 @@ package com.alpha.lib_sdk.app.reflect;
 
 
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 import java.lang.reflect.Field;
@@ -61,7 +61,7 @@ public class ReflectStaticFieldSmith<FieldType> {
             if (!ignoreFieldNoExist) {
                 throw new NoSuchFieldException();
             }
-            Log.w(TAG, "Field %s is no exists.", mFieldName);
+            LogUtils.w(TAG, "Field %s is no exists.", mFieldName);
             return null;
         }
         FieldType fieldVal = null;
@@ -105,7 +105,7 @@ public class ReflectStaticFieldSmith<FieldType> {
             if (!ignoreFieldNoExist) {
                 throw new NoSuchFieldException("Method " + mFieldName + " is not exists.");
             }
-            Log.w(TAG, "Field %s is no exists.", mFieldName);
+            LogUtils.w(TAG, "Field %s is no exists.", mFieldName);
             return false;
         }
         mField.set(null, val);

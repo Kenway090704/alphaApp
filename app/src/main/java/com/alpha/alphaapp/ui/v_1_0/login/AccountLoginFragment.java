@@ -11,7 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
 import com.alpha.lib_sdk.app.tool.StringUtils;
@@ -233,7 +233,7 @@ public class AccountLoginFragment extends BaseFragment {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                Log.e(TAG, "onModelFailed==" + failedMsg);
+                LogUtils.e(TAG, "onModelFailed==" + failedMsg);
                 tv_error.setText(failedMsg);
                 tv_error.setVisibility(View.VISIBLE);
             }
@@ -334,7 +334,6 @@ public class AccountLoginFragment extends BaseFragment {
                 ToastUtils.showLong(getActivity(), "你好," + nickname);
                 UserOpenidLogin(openid, TypeConstants.LOGIN_TYPE.AUTH_WX);
             }
-
             @Override
             public void onAuthFailed(String failedMsg) {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {

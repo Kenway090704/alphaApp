@@ -7,7 +7,7 @@ import android.view.Window;
 
 import com.alpha.alphaapp.R;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.githang.statusbar.StatusBarCompat;
 
 /**
@@ -74,6 +74,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        Log.e(TAG, "onTrimMemory invoked the level is", level);
+        LogUtils.e(TAG, "onTrimMemory invoked the level is", level);
     }
 }

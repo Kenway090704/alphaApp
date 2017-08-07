@@ -68,10 +68,11 @@
         android:layout_marginTop="@dimen/commom_margin_8"
         android:gravity="center"
         android:textSize="@dimen/commom_tv_size_18"
-        app:hint="@string/contact_ways" />
+        app:hint="@string/developer_member" />
 
     <Button
-        style="@style/btn_one_com_gray"
+       android:id="@+id/feedback_btn_submit"
+        style="@style/btn_one_com_red"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="@dimen/commom_margin_20"
         android:text="@string/submit" />

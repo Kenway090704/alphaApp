@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import com.alpha.alphaapp.R;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**

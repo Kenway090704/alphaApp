@@ -4,7 +4,7 @@ import android.os.Looper;
 
 import com.alpha.lib_sdk.BuildConfig;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.lib_sdk.app.tool.DateUtils;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -12,13 +12,14 @@ import com.alpha.lib_sdk.app.tool.ValueOptUtils;
 
 
 /**
- * A default LogPrinter. Invoked {@link Log#setLogPrinter(ILogPrinter)} to set a
- * {@link ILogPrinter} for the Log tools.
+ * A default LogPrinter. Invoked {@link LogUtils#setLogPrinter(ILogPrinter)} to set a
+ * {@link ILogPrinter} for the LogUtils tools.
  *
  * @author AlbieLiang
- * @see Log#setLogPrinter(ILogPrinter)
+ * @see LogUtils#setLogPrinter(ILogPrinter)
  */
 public class DefaultLogPrinter implements ILogPrinter {
+    private static final String TAG = "DefaultLogPrinter";
 
     private static final String LOG_BASE_DIR = StorageConstants.SDCard.LOG_STORAGE_DIR;
     private static final String LOG_FILE_NAME = "";
@@ -42,10 +43,12 @@ public class DefaultLogPrinter implements ILogPrinter {
             return;
         }
         String msg = ValueOptUtils.format(format, args);
+
         if (Util.isNull(msg)) {
             return;
         }
         android.util.Log.println(priority, tag, msg);
+//
         mLogWriter.writeLog(Thread.currentThread().getId(), System.currentTimeMillis(), priority, tag, msg);
     }
 
@@ -56,9 +59,9 @@ public class DefaultLogPrinter implements ILogPrinter {
 
     @Override
     public int getPriority() {
-        int priority = Log.VERBOSE;
+        int priority = LogUtils.VERBOSE;
         if (!BuildConfig.DEBUG) {
-            priority = Log.INFO;
+            priority = LogUtils.INFO;
         }
         return priority;
     }

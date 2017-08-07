@@ -15,7 +15,7 @@ import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetSchoolLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
@@ -121,7 +121,7 @@ public class ModifySchoolActivity extends BaseActivity {
             @Override
             public void onModelFailed(String failedMsg) {
 
-                Log.e(TAG, "failed==" + failedMsg);
+                LogUtils.e(TAG, "failed==" + failedMsg);
             }
         };
         String sskey = AccountManager.getInstance().getSskey();

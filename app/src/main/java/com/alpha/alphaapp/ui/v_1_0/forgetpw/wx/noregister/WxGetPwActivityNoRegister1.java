@@ -7,13 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.account.AccountManager;
-import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.v_1_0.forgetpw.wx.hasregister.WxGetPwActivityHasAccount;
-import com.alpha.alphaapp.ui.v_1_0.forgetpw.wx.hasregister.WxGetPwActivityHasRegister1;
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.tool.Util;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
@@ -71,7 +66,7 @@ public class WxGetPwActivityNoRegister1 extends BaseActivity {
 
                     @Override
                     public void onModelFailed(String failedMsg) {
-                        Log.e(TAG, "failedMsg==" + failedMsg);
+                        LogUtils.e(TAG, "failedMsg==" + failedMsg);
                         ToastUtils.showLong(WxGetPwActivityNoRegister1.this, failedMsg);
                     }
                 };

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.logic.BindActiveLogic;
@@ -16,7 +17,6 @@ import com.alpha.alphaapp.model.v_1_1.logic.UserScoreLogic;
 import com.alpha.alphaapp.model.v_1_1.bean.UserScoreBean;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
@@ -56,9 +56,9 @@ public class ActiveActivity extends BaseActivity {
                 if (!Util.isNullOrBlank(et_active_code.getText().toString()) && product_id != -1) {
                     doActiveProduct(product_id);
 
-                    Log.e(TAG, "激活有产品ID");
+                    LogUtils.e(TAG, "激活有产品ID");
                 } else if (!Util.isNullOrBlank(et_active_code.getText().toString())) {
-                    Log.e(TAG, "激活没有产品ID");
+                    LogUtils.e(TAG, "激活没有产品ID");
                     doActivieNoProduct();
                 }
             }
@@ -127,7 +127,7 @@ public class ActiveActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                Log.e(TAG, "failMsg===" + failMsg);
+                LogUtils.e(TAG, "failMsg===" + failMsg);
                 ToastUtils.showLong(ActiveActivity.this, failMsg);
             }
         });

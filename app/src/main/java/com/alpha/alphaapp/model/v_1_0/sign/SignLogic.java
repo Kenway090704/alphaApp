@@ -3,11 +3,11 @@ package com.alpha.alphaapp.model.v_1_0.sign;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.SignInfo;
 import com.alpha.alphaapp.account.UserInfo;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.model.v_1_0.result.ResponseInfo;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.net.ReqCallBack;
 import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
@@ -29,7 +29,7 @@ public class SignLogic {
      */
     private static String getJsonStrSign(String product_id) {
         UserInfo info = AccountManager.getInstance().getUserInfo();
-        Log.e(TAG, "uuid==" + info.getUuid());
+        LogUtils.e(TAG, "uuid==" + info.getUuid());
         if (Util.isNullOrBlank(info.getUuid()))
             return null;
         StringBuilder sb = new StringBuilder();
@@ -49,7 +49,7 @@ public class SignLogic {
      */
     private static String getJsonStrForGetSignInfo() {
         UserInfo info = AccountManager.getInstance().getUserInfo();
-        Log.e(TAG, "uuid==" + info.getUuid());
+        LogUtils.e(TAG, "uuid==" + info.getUuid());
         if (Util.isNullOrBlank(info.getUuid()))
             return null;
         StringBuilder sb = new StringBuilder();
@@ -106,7 +106,7 @@ public class SignLogic {
                 if (!Util.isNullOrBlank(result)) {
                     //将获取的数据转换为SignInfo
 //                    SignInfo info = SignInfo.objectFromData(result);
-//                    Log.e(TAG,"SignInfo.objectFromData(result)=="+info.toString());
+//                    LogUtils.e(TAG,"SignInfo.objectFromData(result)=="+info.toString());
                     SignInfo info=SignInfo.parseData(result);
                     if (!Util.isNull(call))
                         call.onGetSignInfoSuccessed(info);

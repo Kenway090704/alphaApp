@@ -11,7 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_sdk.app.tool.StringUtils;
@@ -102,7 +102,7 @@ public class RegisterPhoneActivity1 extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                Log.e(TAG,"failedMsg=="+failedMsg);
+                LogUtils.e(TAG,"failedMsg=="+failedMsg);
                 ToastUtils.showToast(RegisterPhoneActivity1.this,failedMsg);
             }
         };

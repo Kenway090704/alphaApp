@@ -13,7 +13,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
 
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.util.List;
 
@@ -56,13 +56,13 @@ public class NetWorkUtil {
         try {
             ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
-            Log.e(TAG, "isAvailable " + activeNetInfo.isAvailable());
-            Log.e(TAG, "isConnected " + activeNetInfo.isConnected());
-            Log.e(TAG, "isRoaming " + activeNetInfo.isRoaming());
-            Log.e(TAG, "isFailover " + activeNetInfo.isFailover());
-            Log.e(TAG, "getSubtypeName " + activeNetInfo.getSubtypeName());
-            Log.e(TAG, "getExtraInfo " + activeNetInfo.getExtraInfo());
-            Log.e(TAG, "activeNetInfo " + activeNetInfo.toString());
+            LogUtils.e(TAG, "isAvailable " + activeNetInfo.isAvailable());
+            LogUtils.e(TAG, "isConnected " + activeNetInfo.isConnected());
+            LogUtils.e(TAG, "isRoaming " + activeNetInfo.isRoaming());
+            LogUtils.e(TAG, "isFailover " + activeNetInfo.isFailover());
+            LogUtils.e(TAG, "getSubtypeName " + activeNetInfo.getSubtypeName());
+            LogUtils.e(TAG, "getExtraInfo " + activeNetInfo.getExtraInfo());
+            LogUtils.e(TAG, "activeNetInfo " + activeNetInfo.toString());
 
         } catch (Exception e) {
 
@@ -96,7 +96,7 @@ public class NetWorkUtil {
             return "WIFI";
 
         } else {
-            Log.d(TAG, "activeNetInfo extra=%s, type=%d", activeNetInfo.getExtraInfo(), activeNetInfo.getType());
+            LogUtils.d(TAG, "activeNetInfo extra=%s, type=%d", activeNetInfo.getExtraInfo(), activeNetInfo.getType());
             if (activeNetInfo.getExtraInfo() != null) {
                 return activeNetInfo.getExtraInfo();
             }
@@ -119,7 +119,7 @@ public class NetWorkUtil {
             return WIFI;
 
         } else {
-            Log.d(TAG, "activeNetInfo extra=%s, type=%d", activeNetInfo.getExtraInfo(), activeNetInfo.getType());
+            LogUtils.d(TAG, "activeNetInfo extra=%s, type=%d", activeNetInfo.getExtraInfo(), activeNetInfo.getType());
             if (activeNetInfo.getExtraInfo() != null) {
                 if (activeNetInfo.getExtraInfo().equalsIgnoreCase("uninet"))
                     return UNINET;
@@ -305,11 +305,11 @@ public class NetWorkUtil {
             PackageManager pmPack = context.getPackageManager();
             List<PackageInfo> packinfos = pmPack.getInstalledPackages(0);
             if (packinfos != null && packinfos.size() > 0) {
-                Log.e(TAG, "package  size" + packinfos.size());
+                LogUtils.e(TAG, "package  size" + packinfos.size());
 
                 for (int i = 0; i < packinfos.size(); i++) {
                     try {
-                        Log.e(TAG, "package " + packinfos.get(i).packageName);
+                        LogUtils.e(TAG, "package " + packinfos.get(i).packageName);
                         Intent mainIntent = new Intent();
                         mainIntent.setPackage(packinfos.get(i).packageName);
                         List<ResolveInfo> sampleActivityInfos = pmPack.queryIntentActivities(mainIntent, 0);
@@ -317,7 +317,7 @@ public class NetWorkUtil {
                         if (activityCount > 0) {
 
                             try {
-                                Log.e(TAG, "activityName count " + activityCount);
+                                LogUtils.e(TAG, "activityName count " + activityCount);
                                 for (int j = 0; j < activityCount; j++) {
                                     ActivityInfo activityInfo = sampleActivityInfos.get(j).activityInfo;
                                     String activityName = activityInfo.name;

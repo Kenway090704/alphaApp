@@ -7,10 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebView;
 
-import com.alpha.lib_sdk.app.log.Log;
-import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.DensityUtils;
 
 import java.util.ArrayList;

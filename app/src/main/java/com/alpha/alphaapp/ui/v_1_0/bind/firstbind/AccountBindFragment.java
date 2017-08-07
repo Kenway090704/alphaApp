@@ -13,7 +13,6 @@ import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;

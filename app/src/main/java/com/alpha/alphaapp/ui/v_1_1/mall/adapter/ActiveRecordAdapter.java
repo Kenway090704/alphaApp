@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.v_1_1.bean.CdkDatasBean;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.base.EmptyViewHolder;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 import java.util.List;
@@ -97,7 +97,7 @@ public class ActiveRecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public void setData(CdkDatasBean.CdkItemsBean bean) {
             if (!Util.isNull(bean)) {
-                Log.e(TAG, "bean===" + bean.toString());
+                LogUtils.e(TAG, "bean===" + bean.toString());
                 tv_active_code.setText(bean.getCode());
                 tv_code_type.setText(bean.getLot_number());
                 tv_product.setText(bean.getLot_number());

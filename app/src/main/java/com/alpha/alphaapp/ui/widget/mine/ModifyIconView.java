@@ -19,7 +19,7 @@ import com.alpha.alphaapp.model.v_1_0.bean.GetIconBean;
 import com.alpha.alphaapp.ui.v_1_0.mine.adapter.IconListVPAdapter;
 import com.alpha.alphaapp.ui.v_1_0.mine.adapter.IconRecylcerAdapter;
 import com.alpha.lib_sdk.app.glide.ImageLoader;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.tandong.bottomview.view.BottomView;
@@ -139,7 +139,7 @@ public class ModifyIconView extends LinearLayout {
         for (int i = 0; i < listData.size(); i++) {
             addCustomTab(listData, i);
 //            tabLayout.addTab(tabLayout.newTab().setText(listData.get(i).getName()));
-            Log.e(TAG, "添加" + (i + 1) + "tab");
+            LogUtils.e(TAG, "添加" + (i + 1) + "tab");
             RecyclerView recyclerView = new RecyclerView(context);
             recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
             IconRecylcerAdapter adapter2 = new IconRecylcerAdapter(context, listData.get(i), map);

@@ -14,7 +14,7 @@ import com.alpha.alphaapp.model.v_1_1.bean.GoodsBean;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.base.EmptyViewHolder;
 import com.alpha.alphaapp.ui.v_1_1.mall.exchange.GoodsExchangeActivity;
 import com.alpha.lib_sdk.app.glide.ImageLoader;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.URLConstans;
 
 import java.util.List;
@@ -102,7 +102,7 @@ public class GoodsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         void setData(final GoodsBean bean) {
 
             tv_title.setText(bean.getGoods_name());
-            Log.e(TAG,"picture==="+URLConstans.GOODS_PICTURE_URL.GOODS_ICON + bean.getPictures().get(0));
+            LogUtils.e(TAG,"picture==="+URLConstans.GOODS_PICTURE_URL.GOODS_ICON + bean.getPictures().get(0));
             ImageLoader.load(context, URLConstans.GOODS_PICTURE_URL.GOODS_ICON + bean.getPictures().get(0), iv_logo);
             tv_need_score_count.setText("兑换积分 : " + bean.getScore() + "分");
             tv_has_exchange_count.setText("已兑换 : " + bean.getExchange_count() + "件");

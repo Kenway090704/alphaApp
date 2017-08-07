@@ -1,18 +1,12 @@
 package com.alpha.alphaapp.ui.widget.dialog;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
-import com.alpha.lib_sdk.app.log.Log;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**

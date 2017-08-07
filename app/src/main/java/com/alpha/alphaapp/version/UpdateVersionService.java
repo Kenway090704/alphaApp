@@ -3,7 +3,7 @@ package com.alpha.alphaapp.version;
 import java.io.File;
 
 import com.alpha.alphaapp.R;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ApkUtils;
 import com.alpha.lib_sdk.app.unitily.SDCardUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -169,7 +169,7 @@ public class UpdateVersionService extends Service {
     public void onDestroy() {
         //下载完成时，清除该通知，自动安装
         nm.cancel(titleId);
-        Log.e(TAG, "UpdateVersionService----onDestroy");
+        LogUtils.e(TAG, "UpdateVersionService----onDestroy");
 //		try {
 //			GdmsaecApplication.db.deleteAll(VersionInfo.class);
 //		} catch (DbException e) {

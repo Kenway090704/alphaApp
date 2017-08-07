@@ -10,9 +10,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.HomeActivity;
-import com.alpha.alphaapp.ui.v_1_0.register.phone.RegisterPhoneActivity3;
-import com.alpha.lib_sdk.app.log.Log;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
@@ -73,7 +71,7 @@ public class WxGetPwActivityHasRegister1 extends BaseActivity {
 
                     @Override
                     public void onModelFailed(String failedMsg) {
-                        Log.e(TAG, "failedMsg==" + failedMsg);
+                        LogUtils.e(TAG, "failedMsg==" + failedMsg);
                         ToastUtils.showLong(WxGetPwActivityHasRegister1.this, failedMsg);
                     }
                 };
