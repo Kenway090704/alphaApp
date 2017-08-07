@@ -4,12 +4,11 @@
     <string name="version">v1.0</string>
     <string name="agreement">协议文本</string>
     <string name="about_us_msg">\u3000\u3000这是一个关于我们的奥飞协议样式文本***********************************************************************</string>
+    <!--基本功能 v1.0.1-->
     <!-- 注册页面-->
     <string name="register_way_choose">注册方式选择</string>
     <string name="advise">意见建议</string>
     <string name="fuction_bug">功能BUG</string>
-
-
     <string name="account_register">帐号注册</string>
     <string name="phone_register">手机号注册</string>
     <string name="user_agreement_alpha">用户协议-奥飞</string>
@@ -24,52 +23,30 @@
     <string name="get_verify">获取验证码</string>
     <string name="input_pw">输入密码</string>
     <string name="insure_pw">确认密码</string>
-    <string name="pw_empty">请确认密码</string>
-    <string name="pw_different">两次密码不同</string>
-    <string name="tui_guang">推广员编号</string>
-    <string name="verify_code">验证码</string>
     <string name="register">注册</string>
-    <string name="back">上一步</string>
-    <string name="verify_code_phone">手机验证码</string>
     <string name="input_account">请输入用户名</string>
     <string name="account_had">该用户名已存在，请更换</string>
     <string name="account_format">用户名格式须为小写字母开头，6-12位字符</string>
     <string name="pw_format">密码格式须6-12位字符</string>
-    <string name="insure_pw_msg">两次密码保持一致</string>
     <string name="register_success">注册成功</string>
-    <string name="input_tuiguangid">请输入推广员编号</string>
     <string name="phone_number">手机号</string>
-    <string name="eleven_number">11位纯数字</string>
     <string name="input_valid_eleven_number">请输入11位有效的手机号</string>
-    <string name="phone_verify">手机验证码</string>
     <string name="msg_verify">短信验证码</string>
     <string name="verify_form_error">验证码格式错误</string>
     <string name="input_verify">输入验证码</string>
     <string name="phone_had">该手机号已经注册</string>
     <string name="pw_error_format">密码格式需为6-12位字符</string>
     <string name="get_msg_verify">获取短信验证码</string>
-    <string name="verify_code_error">验证码错误</string>
+
     <!--登录页面-->
-    <string name="user_account">用户帐号</string>
     <string name="alpha_account_or_phonenumber">奥飞帐号\\\ 手机号</string>
     <string name="pw">密码</string>
     <string name="forget_pw">忘记密码</string>
-    <string name="free_register">免费注册</string>
-    <string name="i_want_register">我要注册</string>
     <string name="login">登录</string>
-    <string name="login_success">登录成功</string>
     <string name="account_or_verify_error">手机号或者验证码格式不正确</string>
     <string name="user_auth_login">使用其他登录方式</string>
     <string name="logining">努力登录中...</string>
 
-    <!--Home Activity-->
-
-    <string name="recommend">推荐</string>
-    <string name="block">版块</string>
-    <string name="shoppingmall">积分商城</string>
-    <string name="mine">我的</string>
-
-    <string name="title_activity_settings">SettingsActivity</string>
     <!--Settings Activity-->
     <string name="settings">设置</string>
     <string name="settings_account_bind_set">帐号和绑定设置</string>
@@ -78,83 +55,46 @@
     <string name="about_us">关于我们</string>
     <string name="account_bing_set">帐号和绑定设置</string>
     <string name="exit_account">退出当前账号</string>
-    <string name="account_security">账号安全</string>
-    <string name="message_settings">消息设置</string>
-    <string name="general_settings">通用设置</string>
-    <string name="clear_cache">清除缓存</string>
-    <string name="clear_history">清除浏览历史</string>
-    <string name="clear_draft">清除草稿</string>
 
-
-    <!--About us-->
-    <string name="about_us_copyright">Alpha Group Co., Ltd. \nCopyright 2017</string>
-    <!--Feedback-->
-    <string name="submit_text">提交</string>
     <!--Account Security-->
     <string name="current_account">当前登录账号 :</string>
-    <string name="modify_password">修改密码</string>
-    <string name="bind_phone_number">绑定手机号</string>
-    <string name="bind_IM_account">社交账号绑定</string>
     <string name="now_set">立即设置</string>
-
     <string name="bind">绑定</string>
     <string name="wechat">微信</string>
     <string name="qq">QQ</string>
-    <string name="has_account">已设置</string>
-    <string name="has_bind">已绑定</string>
     <string name="old_pw_edit_pw">旧密码验证修改密码</string>
     <string name="has_bind_phone_edit_pw">绑定手机修改密码</string>
     <string name="edit">修改</string>
     <string name="sec_set">安全设置</string>
 
     <!--Modify Password-->
-    <string name="by_phone">手机验证</string>
-
     <string name="by_password">密码验证</string>
-    <string name="by_wechat">微信验证</string>
     <string name="old_password">旧密码</string>
     <string name="new_password">新密码(6-12位字符)</string>
     <string name="old_pw_format_error">旧密码输入错误</string>
     <string name="twice_newpw_diffrent">两次输入的密码不同</string>
     <string name="confirm_password">确认密码</string>
-    <string name="success_change_pwd">修改密码成功</string>
-    <string name="please_relogin">请重新登录</string>
-    <string name="fail_to_modify_pwd">修改密码失败</string>
     <string name="input_phone">输入手机号</string>
     <string name="set_pw">设置密码</string>
-    <string name="sucess_send_verify_code">验证码已经发送，请注意查收</string>
-    <string name="phone_has_registered">该手机号码已经注册，请重新输入</string>
-    <string name="phone_not_registered">该手机号暂未注册</string>
-    <string name="verify_code_has_existed">验证码已经存在</string>
-    <string name="messages_exceed_max">超过每天获取短信条数</string>
-    <string name="plz_input_verify_code">请输入验证码</string>
-    <string name="user_not_exist">用户不存在</string>
-    <string name="data_package_wrong">数据包错误</string>
-    <string name="pwd_format_wrong">密码格式错误</string>
-    <string name="verify_code_wrong_input_again">验证码输入错误，请重新输入</string>
-    <string name="phone_number_wrong">手机号错误</string>
-    <string name="phone_number_wrong_input_again">手机号输入错误或者未绑定，请重新输入</string>
+
     <!--Bind phone number-->
     <string name="success_bind_phone_number">绑定成功</string>
-    <string name="phone_bind_already">手机号已经绑定，请重新输入！</string>
-    <string name="account_exist_already">账号已经存在，请重新输入</string>
     <string name="account_bind">帐号绑定</string>
     <string name="next">下一步</string>
     <string name="submit_bind_phone">提交绑定手机</string>
-    <string name="plz_input_has_bind_phone">请输入已绑定的手机号</string>
     <string name="plz_input_new_bind_phone">请输入新绑定的手机号</string>
-    <string name="bind_success_plz_phone_login">绑定成功,请使用新绑定的手机号进行登录</string>
+
     <!--Bind alpha acc-->
     <string name="en_account_set">英文帐号设置</string>
     <string name="save">保存</string>
-    <string name="save_success">保存成功</string>
+
     <string name="set_en_account_sucess">英文帐号设置成功</string>
     <string name="you_use_account_login">可使用该英文帐号进行登录</string>
     <!--bind-->
     <string name="bind_had_account">关联已有帐号</string>
     <string name="no_bind">暂不关联,直接创建新帐号</string>
     <string name="submit">提交</string>
-    <string name="insure_bind_account">确定关联该帐号么?</string>
+
     <string name="insure_bind_">确定关联</string>
     <string name="this_account">该帐号么?</string>
     <string name="bind_success">绑定成功</string>
@@ -169,7 +109,7 @@
     <string name="find_pw">找回密码</string>
     <string name="by_bind_phone_get">通过绑定的手机号找回</string>
     <string name="by_bind_wx_get">通过绑定的微信找回</string>
-    <string name="by_bind_wechat_set">通过绑定的微信设置</string>
+
     <string name="insure_account">确认帐号</string>
     <string name="verify_msg">验证身份</string>
     <string name="reset_pw">重设密码</string>
@@ -180,14 +120,12 @@
     <string name="return_login_ac">返回登录页面</string>
     <string name="insure">确认</string>
     <string name="look_wx_bind_account">查看绑定的英文帐号</string>
-    <string name="the_wx_no_set_en_account">该微信号未设置英文帐号,请立即设置。设置成功后,请点击下方按钮。</string>
     <string name="wx_no_login_alpha">该微信号未登录过奥飞用户中心,请登录后在帐号设置中,设置帐号再进行相关操作。</string>
     <string name="wx_has_login_alpha">该微信号已注册为奥飞用户</string>
     <string name="now_login_set">立即登录设置</string>
     <string name="if_reset_pw_for_the_account">如确认为该帐号重设密码,请点击下方按钮</string>
     <string name="account_alpha_format">奥飞帐号(小写字母为开头,6-12位字符)</string>
     <string name="your_alpha_account_format">您的奥飞英文帐号为:</string>
-    <string name="wx_no_set_alpha_account">该微信号未设置英文帐号,请立即设置。设置成功后,点击下方按钮。</string>
     <string name="we_already">我们已经向</string>
     <string name="send_phone_verify_plz_look">下发了手机验证码,请及时查收并输入</string>
     <string name="pw_isnot_empty">密码不能为空</string>
@@ -243,18 +181,15 @@
     <string name="sign_rule_1">1、每天可签到一次,每次可获得1点经验值</string>
     <string name="sign_rule_2">2、累计的经验值后期可获取相关特权或礼品,敬请期待!</string>
 
-    <!--积分商城-->
+    <!--积分商城  v 1.1.0-->
     <!--我的积分-->
     <string name="my_score">我的积分</string>
-    <string name="active_code">激活码</string>
     <string name="exchange_record">兑换记录</string>
     <string name="change_record">积分变动记录</string>
     <string name="shipping_addr">收获地址</string>
     <string name="do_active_code">激活激活码</string>
     <string name="order_detail">订单详情</string>
     <string name="score_">积分 :</string>
-    <string name="score"></string>
-
     <string name="super_coin_">乐币 :</string>
 
     <!--积分兑换-->
@@ -340,8 +275,6 @@
     <string name="has_active">已激活</string>
     <string name="no_active">未激活</string>
     <string name="empty_active_data_hint">当前没有激活激活码记录!</string>
-
-
     <string name="contact_ways">联系方式: 电话/邮箱/QQ                    必填</string>
     <string name="developer_member">254903810@qq.com</string>
 
