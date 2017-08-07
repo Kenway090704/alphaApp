@@ -43,6 +43,8 @@ public class AccountLoginFragment extends BaseFragment {
     private ImageView iv_weixin, iv_qq;
     private CustomLoadingDialog loadingDialog;
 
+
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_login_account;
