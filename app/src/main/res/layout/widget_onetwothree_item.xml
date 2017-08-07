@@ -2,17 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingTop="@dimen/commom_margin_25"
-    android:paddingBottom="@dimen/commom_margin_10">
+    android:paddingBottom="@dimen/commom_margin_25">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/commom_margin_30"
-
         android:orientation="horizontal">
 
         <ImageView
@@ -34,12 +33,14 @@
             android:textColor="@color/common_tv_dark_gray"
             android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
-
-    <LinearLayout
+    <View
         android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
         android:gravity="center"
         android:layout_marginLeft="@dimen/commom_margin_10"
         android:orientation="horizontal">
@@ -63,7 +64,10 @@
             android:textColor="@color/common_tv_dark_gray"
             android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
-
+    <View
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
     <LinearLayout
         android:id="@+id/ott_layout_three"
         android:layout_width="wrap_content"

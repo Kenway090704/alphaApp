@@ -7,7 +7,8 @@
     <!--统一样式颜色-->
     <color name="common_red">#d54526</color>
     <color name="common_red_alpha_80">#ccd54526</color>
-    <color name="common_red_alpha_90">#e6d54526</color>
+
+
 
     <!--字体颜色-->
     <color name="common_tv_light_gray">#9c9c9c</color>
@@ -21,10 +22,13 @@
     <color name="common_bound_line_red">#d54526</color>
 
     <!--背景-->
+    <color name="common_bg_red_alpha_90">#e6d54526</color>
+    <color name="common_bg_white_alpha_90">#e6ffffff</color>
     <color name="common_bg_light_gray">#f4f4f4</color>
     <color name="common_bg_dark_gray">#9c9c9c</color>
     <color name="common_bg_white">#fff</color>
     <color name="common_bg_red">#d54526</color>
+
 
 
 

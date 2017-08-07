@@ -9,6 +9,7 @@ import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.app.EnvirenmentArgsHolder;
 import com.alpha.lib_sdk.app.crashhandler.CrashHandler;
 import com.alpha.lib_sdk.app.log.LogCatch;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;

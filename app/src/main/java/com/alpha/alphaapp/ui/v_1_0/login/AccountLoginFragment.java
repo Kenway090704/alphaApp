@@ -334,6 +334,7 @@ public class AccountLoginFragment extends BaseFragment {
                 ToastUtils.showLong(getActivity(), "你好," + nickname);
                 UserOpenidLogin(openid, TypeConstants.LOGIN_TYPE.AUTH_WX);
             }
+
             @Override
             public void onAuthFailed(String failedMsg) {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
