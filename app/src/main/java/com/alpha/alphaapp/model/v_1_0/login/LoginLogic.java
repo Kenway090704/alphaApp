@@ -315,7 +315,9 @@ public class LoginLogic {
                 OnModelCallback<UserInfo> back = new OnModelCallback<UserInfo>() {
                     @Override
                     public void onModelSuccessed(UserInfo info) {
-                        AccountManager.getInstance().saveUserInfo(info);
+
+
+
                         if (!Util.isNull(callback))
                             callback.onModelSuccessed(info2.getSskey());
                     }

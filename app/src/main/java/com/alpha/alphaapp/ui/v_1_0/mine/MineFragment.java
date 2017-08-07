@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.ui.v_1_0.mine;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.UserInfo;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.ui.AccountChangeFragment;
@@ -107,6 +109,9 @@ public class MineFragment extends AccountChangeFragment {
                 tv_name.setText(nickname);
             }
         } else {
+            //是否有昵称,有显示,没有,显示手机号,如果没有手机号,如果没有,显示帐号
+
+
             if (!Util.isNullOrBlank(info.getName())) {
                 tv_name.setText(info.getName());
             }else  if (!Util.isNullOrBlank(info.getMobile())){

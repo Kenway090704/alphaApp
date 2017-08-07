@@ -24,7 +24,7 @@ public class ImageLoader {
                 .load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)//让Glide既缓存全尺寸图片，下次在任何ImageView中加载图片的时候，全尺寸的图片将从缓存中取出，重新调整大小，然后缓存
                 .crossFade()
-                .placeholder(R.drawable.ic_launcher)
+                .placeholder(R.drawable.launcher)
                 .bitmapTransform(new CircleTransform(context))
                 .into(iv);
     }

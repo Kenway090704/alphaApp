@@ -30,6 +30,7 @@ public class CustomLoadingDialog extends Dialog {
         super(context, themeResId);
         // 设置对话框的布局
         setContentView(R.layout.dialog_loading);
+        setCanceledOnTouchOutside(false);
     }
     @Override
     public void dismiss() {

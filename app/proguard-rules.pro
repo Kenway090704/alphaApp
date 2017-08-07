@@ -1,4 +1,4 @@
-# Add project specific ProGuard rules here.
+    # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
 # in /Users/xiaokai/Library/Android/sdk/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
@@ -100,3 +100,15 @@
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
+
+# Gson
+-keep public class com.google.gson.**
+-keep public class com.google.gson.** {public private protected *;}
+-keepattributes Signature
+-keepattributes *Annotation*
+# 使用Gson时需要配置Gson的解析对象及变量都不混淆。不然Gson会找不到变量。
+# 将下面替换成自己的实体类
+-keep class com.alpha.alphaapp.account.** { *; }
+-keep class com.alpha.alphaapp.model.v_1_0.bean.** { *; }
+-keep class com.alpha.alphaapp.model.v_1_0.result.** { *; }
+-keep class com.alpha.alphaapp.model.v_1_1.bean.** { *; }

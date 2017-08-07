@@ -62,7 +62,7 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
             }
         }
 //        //使用Glide展示图片
-        ImageLoader.load(context,URLConstans.GET_ICON.ICON60 + list.get(position),holder.iv);
+        ImageLoader.load(context, URLConstans.GET_ICON.ICON100 + list.get(position), holder.iv);
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

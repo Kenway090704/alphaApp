@@ -59,7 +59,7 @@ public class AccountLoginFragment extends BaseFragment {
         iv_weixin = (ImageView) root.findViewById(R.id.log_ac_iv_auth_weixin);
         iv_qq = (ImageView) root.findViewById(R.id.log_ac_iv_auth_qq);
         loadingDialog = new CustomLoadingDialog(getActivity());
-        loadingDialog.setCancelable(false);
+
     }
 
     @Override
@@ -291,7 +291,7 @@ public class AccountLoginFragment extends BaseFragment {
     private void loginQQAuth() {
 
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(getActivity());
-        loadingDialog.setCancelable(false);
+
         loadingDialog.show();
 
         QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
@@ -321,7 +321,7 @@ public class AccountLoginFragment extends BaseFragment {
     public void loginWxAuth() {
 
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(getActivity());
-        loadingDialog.setCancelable(false);
+
         loadingDialog.show();
 
         //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册

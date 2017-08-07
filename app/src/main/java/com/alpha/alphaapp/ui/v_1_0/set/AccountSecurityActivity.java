@@ -198,7 +198,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
 
     private void loginQQAuth() {
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
-        loadingDialog.setCancelable(false);
+
         loadingDialog.show();
         //通过拉起QQ获取QQ的openid,检测该openid是否已经注册,如果未注册,
         QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
@@ -226,7 +226,6 @@ public class AccountSecurityActivity extends AccountChangeActivity {
 
     private void loginWxAuth() {
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
-        loadingDialog.setCancelable(false);
         loadingDialog.show();
         //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册
         WxAuthManger.OnWxAuthCallBack callBack = new WxAuthManger.OnWxAuthCallBack() {

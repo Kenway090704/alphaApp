@@ -101,7 +101,7 @@ public class ForgetPWGuideActivity extends BaseActivity {
     public void loginWxAuth() {
 
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
-        loadingDialog.setCancelable(false);
+
         loadingDialog.show();
 
         //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册

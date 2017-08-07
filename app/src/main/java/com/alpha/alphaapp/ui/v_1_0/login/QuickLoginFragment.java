@@ -46,7 +46,7 @@ public class QuickLoginFragment extends BaseFragment {
         tv_error = (ErrorTextView) root.findViewById(R.id.log_fast_tv_error);
         btn_login = (Button) root.findViewById(R.id.log_fast_btn_login);
         loadingDialog = new CustomLoadingDialog(getActivity());
-        loadingDialog.setCancelable(false);
+
     }
 
     @Override

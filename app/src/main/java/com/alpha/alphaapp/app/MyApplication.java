@@ -23,7 +23,7 @@ public class MyApplication extends Application {
     /**
      * 当前模式是否为debug
      */
-    public static  final  boolean  isDebug=true;
+    public static final boolean isDebug = false;
     private static MyApplication ins;
     // wechat appid  app_sercet
     public static final String WX_APP_ID = "wx6b2bf92fe1507d80";
@@ -61,7 +61,7 @@ public class MyApplication extends Application {
         GetPCityAreaData.getInstance().init(this);
 
 
-        LogUtils.d( "start input file logs");
+        LogUtils.d("start input file logs");
         LogCatch.getInstance(this).stop();
         LogCatch.getInstance(this).start();
 

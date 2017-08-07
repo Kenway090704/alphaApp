@@ -6,12 +6,14 @@
     android:orientation="horizontal"
     android:paddingTop="@dimen/commom_margin_25"
     android:paddingBottom="@dimen/commom_margin_25">
-
+    <View
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/commom_margin_30"
         android:orientation="horizontal">
 
         <ImageView
@@ -42,7 +44,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginLeft="@dimen/commom_margin_10"
         android:orientation="horizontal">
 
         <ImageView
@@ -73,8 +74,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/commom_margin_10"
-        android:layout_marginRight="@dimen/commom_margin_30"
         android:orientation="horizontal">
 
         <ImageView
@@ -96,5 +95,8 @@
             android:textColor="@color/common_tv_dark_gray"
             android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
-
+    <View
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"/>
 </LinearLayout>

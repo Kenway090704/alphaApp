@@ -79,7 +79,6 @@ public class ModifyIconView extends LinearLayout {
         riv_icon = (RoundedImageView) view.findViewById(R.id.widget_mod_icon_riv_msg);
         iv_right = (ImageView) view.findViewById(R.id.widget_mod_icon_iv_right);
     }
-
     /**
      * @param baseUrl
      * @param icon
