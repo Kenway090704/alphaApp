@@ -229,7 +229,7 @@ public class RequestManager {
             });
             return call;
         } catch (Exception e) {
-            LogUtils.e(TAG, e.toString());
+            LogUtils.e( e.toString());
         }
         return null;
     }

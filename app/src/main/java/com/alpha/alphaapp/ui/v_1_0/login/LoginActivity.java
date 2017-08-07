@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.anim.GifView;
 import com.alpha.alphaapp.ui.BaseFragmentActivity;
+import com.alpha.alphaapp.ui.BaseFragmentNoBarActivity;
 import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
 import com.alpha.alphaapp.ui.v_1_0.login.qq.QQLoginManager;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -23,7 +24,7 @@ import java.util.List;
  * Email : xiaokai090704@126.com
  */
 
-public class LoginActivity extends BaseFragmentActivity {
+public class LoginActivity extends BaseFragmentNoBarActivity {
     private static final String TAG = "LoginActivity";
     private TabLayout tabLayout;
     private ViewPager vp;

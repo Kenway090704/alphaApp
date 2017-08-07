@@ -36,7 +36,6 @@ public class GetPCityAreaData {
 
         downProvince();
     }
-
     private GetPCityAreaData() {
 
     }

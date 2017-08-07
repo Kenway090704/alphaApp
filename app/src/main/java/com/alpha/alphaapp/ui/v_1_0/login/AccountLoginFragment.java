@@ -291,9 +291,7 @@ public class AccountLoginFragment extends BaseFragment {
     private void loginQQAuth() {
 
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(getActivity());
-
         loadingDialog.show();
-
         QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
             @Override
             public void onQQAuthSuccessed(String qq_openid, String nickName) {
@@ -319,11 +317,8 @@ public class AccountLoginFragment extends BaseFragment {
      * 微信授权登录
      */
     public void loginWxAuth() {
-
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(getActivity());
-
         loadingDialog.show();
-
         //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册
         WxAuthManger.OnWxAuthCallBack callBack = new WxAuthManger.OnWxAuthCallBack() {
             @Override
