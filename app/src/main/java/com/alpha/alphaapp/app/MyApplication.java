@@ -11,6 +11,7 @@ import com.alpha.lib_sdk.app.crashhandler.CrashHandler;
 import com.alpha.lib_sdk.app.log.LogCatch;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.JsonEncryptUtil;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -65,6 +66,8 @@ public class MyApplication extends Application {
         LogCatch.getInstance(this).stop();
         LogCatch.getInstance(this).start();
 
+         //在测试阶段建议设置成true，发布时设置为false。
+        CrashReport.initCrashReport(getApplicationContext(), "95a2a31773", false);
     }
 
 

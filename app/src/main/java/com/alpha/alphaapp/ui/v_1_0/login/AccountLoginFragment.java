@@ -27,6 +27,7 @@ import com.alpha.alphaapp.ui.widget.et.PwInputEditText;
 import com.alpha.alphaapp.ui.v_1_0.register.RegisterGuideActivity;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * Created by kenway on 17/5/26 11:27
@@ -162,6 +163,7 @@ public class AccountLoginFragment extends BaseFragment {
             public void onClick(View v) {
 //                debugQQFunc("AGf8889800100", TypeConstants.ACCOUNT_TYPE.AUTH_QQ );
                 loginQQAuth();
+              
             }
         });
         iv_weixin.setOnClickListener(new View.OnClickListener() {

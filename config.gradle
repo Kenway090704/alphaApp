@@ -22,6 +22,8 @@ ext {
             "XTabLayout"        : 'com.androidkun:XTabLayout:1.1.1',
             "status-bar-compat" : 'com.githang:status-bar-compat:0.3',
             "recyclerview-v7"   : 'com.android.support:recyclerview-v7:23.2.0',
+            "crashreport"       : 'com.tencent.bugly:crashreport:latest.release',
+            "crashreport-native": 'com.tencent.bugly:nativecrashreport:latest.release',
 
             "junit"             : 'junit:junit:4.12',
             "volley"            : 'com.android.volley:volley:1.0.0',

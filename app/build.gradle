@@ -2,9 +2,18 @@ import java.text.SimpleDateFormat
 
 apply plugin: 'com.android.application'
 
+//tencent bugly 使用
+apply plugin: 'bugly'
+bugly {
+    appId = '95a2a31773'
+    appKey = '8d8658e2-a74a-4d4d-8079-91e170b29e20'
+    upload = true
+    //这里默认为false,
+    debug = true
+}
+
+
 android {
-
-
     aaptOptions {
         cruncherEnabled = false
         useNewCruncher = false
@@ -31,7 +40,7 @@ android {
             //混淆
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [appName: "奥飞用户中心", bugly_debug:false]
+            manifestPlaceholders = [appName: "奥飞用户中心", bugly_debug: false]
             buildConfigField "int", "buildTime", getDebugVersionNameSuffix()
         }
 
@@ -39,11 +48,12 @@ android {
             debuggable true
             versionNameSuffix "-debug"
             applicationIdSuffix ".debug"
-            manifestPlaceholders = [appName: "奥飞用户中心-dev", bugly_debug:true]
+            manifestPlaceholders = [appName: "奥飞用户中心-dev", bugly_debug: true]
             buildConfigField "int", "buildTime", getDebugVersionNameSuffix()
         }
     }
 }
+
 //版本编译时间
 def String getDebugVersionNameSuffix() {
     Date buildTime = new Date();
@@ -74,6 +84,9 @@ dependencies {
     compile rootProject.ext.dependencies["XTabLayout"]
     compile rootProject.ext.dependencies["status-bar-compat"]
     compile rootProject.ext.dependencies["okhttp"]
+    //腾讯bugly日志
+    compile rootProject.ext.dependencies["crashreport"];
+    compile rootProject.ext.dependencies["crashreport-native"]
 
     releaseCompile project(path: ':lib_sdk', configuration: 'release')
     releaseCompile project(path: ':lib_stub', configuration: 'release')

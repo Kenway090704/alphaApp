@@ -112,3 +112,7 @@
 -keep class com.alpha.alphaapp.model.v_1_0.bean.** { *; }
 -keep class com.alpha.alphaapp.model.v_1_0.result.** { *; }
 -keep class com.alpha.alphaapp.model.v_1_1.bean.** { *; }
+
+# Bugly腾讯
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
