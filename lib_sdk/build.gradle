@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+//com.android.library 标识这是一个库模块
 android {
 
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -24,6 +24,8 @@ android {
             buildConfigField "boolean", "LOG_HTTP_CALLS","false"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //proguard-android.txt 在Android SDK目录下，里面是所有项目的混淆规则
+            //proguard-rules.pro 是当前项目的根目录下的，里面可以编写特有的混淆规则
         }
         //debug
         debug {

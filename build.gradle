@@ -5,10 +5,14 @@ apply from : "config.gradle"
 buildscript {
     repositories {
         jcenter()
+
+        //是一个类似于github的代码托管仓库，声明了此配置，
+        //可以轻松引用 jcenter上的开源项目
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0'
-
+        //gradle是一个强大的项目构建工具，不仅可以构建Android，还可以构建java，C++等
+        //此处引用android的插件
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 

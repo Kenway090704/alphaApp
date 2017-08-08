@@ -139,7 +139,6 @@
     <string name="launch_wx">拉起微信授权</string>
     <string name="wechat_not_installed">未安装微信</string>
     <!--mine fragement-->
-
     <string name="no_sign">您今天还未签到</string>
     <!--mineinfo activity-->
     <string name="my_info">我的资料</string>
