@@ -125,7 +125,7 @@
     <string name="plz_use_new_login_now">请用新密码登录</string>
     <string name="insure">确认</string>
     <string name="look_wx_bind_account">查看绑定的英文账号</string>
-    <string name="wx_no_login_alpha">该微信号未登录过奥飞用户中心,请登录后在账号设置中,设置账号再进行相关操作。</string>
+    <string name="wx_no_login_alpha">该微信号未注册奥飞账号，如需找回，请点击下方的“立即登录设置”按钮。</string>
     <string name="wx_has_login_alpha">该微信号已注册为奥飞用户</string>
     <string name="now_login_set">立即登录设置</string>
     <string name="if_reset_pw_for_the_account">如确认为该账号重设密码,请点击下方按钮</string>

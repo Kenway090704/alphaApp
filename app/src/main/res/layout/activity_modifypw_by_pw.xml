@@ -45,5 +45,6 @@
     <Button
         android:id="@+id/modify_pbpw_btn_save"
         style="@style/btn_one_com_gray"
-        android:text="@string/get_phone_verify" />
+        android:text="@string/submit"
+     />
 </LinearLayout>

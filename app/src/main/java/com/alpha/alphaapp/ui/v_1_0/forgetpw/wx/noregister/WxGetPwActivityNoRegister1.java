@@ -28,8 +28,7 @@ public class WxGetPwActivityNoRegister1 extends BaseActivity {
     private TextView tv_msg;
     private Button btn_loginset;
     private CustomLoadingDialog loadingDialog;
-    //是否是不让用户察觉的登录
-    private boolean isInnerLogin;
+
     private String wx_openid;
 
     @Override

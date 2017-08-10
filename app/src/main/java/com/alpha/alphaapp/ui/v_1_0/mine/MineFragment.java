@@ -10,6 +10,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.ui.AccountChangeFragment;
@@ -121,7 +122,7 @@ public class MineFragment extends AccountChangeFragment {
             if (!Util.isNullOrBlank(info.getName())) {
                 tv_name.setText(info.getName());
             } else if (!Util.isNullOrBlank(info.getMobile())) {
-                tv_name.setText(info.getMobile());
+                tv_name.setText(StringUtils.getHideMidPhone(info.getMobile()));
             } else if (!Util.isNullOrBlank(info.getAccount())) {
                 tv_name.setText(info.getAccount());
             }

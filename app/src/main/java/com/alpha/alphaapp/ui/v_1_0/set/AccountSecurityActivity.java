@@ -109,13 +109,13 @@ public class AccountSecurityActivity extends AccountChangeActivity {
         }
         //微信这里要使用getName,现在使用openid
         if (!Util.isNullOrBlank(info.getOpenid_weixin())) {
-            abi_wx.setMsg(info.getOpenid_weixin());
+            abi_wx.setMsg("");
             abi_wx.setRightTxtAndBg("已绑定", R.drawable.shape_com_bg_gray);
         } else {
             abi_wx.setRightTxtAndBg("绑定", R.drawable.shape_com_bg_red);
         }
         if (!Util.isNullOrBlank(info.getOpenid_qq())) {
-            abi_qq.setMsg(info.getOpenid_qq());
+            abi_qq.setMsg("");
             abi_qq.setRightTxtAndBg("已绑定", R.drawable.shape_com_bg_gray);
         } else {
             abi_qq.setRightTxtAndBg("绑定", R.drawable.shape_com_bg_red);
