@@ -23,16 +23,16 @@
         android:id="@+id/wx_getpw_no_register_1_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/commom_margin_50"
+        android:layout_marginRight="@dimen/commom_margin_50"
+        android:layout_marginBottom="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_10"
         android:gravity="center"
         android:lineSpacingExtra="5dp"
         android:maxLines="2"
+        android:textSize="@dimen/commom_tv_size_12"
         android:text="@string/wx_no_login_alpha"
-        android:textColor="@color/common_tv_black" />
+        android:textColor="@color/common_tv_dark_gray" />
 
     <Button
         android:id="@+id/wx_getpw_no_register_1_btn_loginset"

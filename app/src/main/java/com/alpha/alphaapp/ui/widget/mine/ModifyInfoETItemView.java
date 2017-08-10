@@ -22,7 +22,9 @@ import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by kenway on 17/6/8 11:16
@@ -44,6 +46,12 @@ public class ModifyInfoETItemView extends LinearLayout {
     private LinearLayout layout_two;
     private EditText two_et;
     private ImageView two_iv;
+
+
+    private int modifyType;
+
+
+    private ErrorTextView tv_error;
 
     public ModifyInfoETItemView(Context context) {
         super(context);
@@ -119,10 +127,14 @@ public class ModifyInfoETItemView extends LinearLayout {
                     } else {
                         two_iv.setVisibility(INVISIBLE);
                     }
+                    //当item获取焦点的时候,不显示
+                    tv_error.setViewGone();
                 } else {
                     layout_two.setVisibility(GONE);
                     layout_one.setVisibility(VISIBLE);
                     KeyBoardUtils.closeKeybord(two_et, context);
+                    //当失去焦点的时候执行修改信息的动作
+                    doModifyInfo(modifyType);
                 }
             }
         });
@@ -166,167 +178,146 @@ public class ModifyInfoETItemView extends LinearLayout {
         }
     }
 
+
+    /**
+     * 设置修改类型,只有以下四种
+     * <p>ModifyUserInfoLogic.MODIFY_NICK_NAME</p>
+     * <p>ModifyUserInfoLogic.MODIFY_TRUE_NAME</p>
+     * <p>ModifyUserInfoLogic.MODIFY_CONTACT_PHONE</p>
+     * <p>ModifyUserInfoLogic.MODIFY_QQ</p>
+     *
+     * @param modifyType
+     * @param tv_error   显示错误信息的TextView
+     */
+    public void setModifyType(int modifyType, ErrorTextView tv_error) {
+        this.modifyType = modifyType;
+        this.tv_error = tv_error;
+    }
+
     /**
      * 获取输入框控件中的字符串
      *
      * @return
      */
     public String getEditTextStr() {
-        return two_et.getText().toString();
+
+
+        if (!Util.isNull(two_et)) {
+            return two_et.getText().toString();
+        }
+//        return one_tv_info.getText().toString();
+        return "";
     }
 
     /**
      * 完成修改
      */
     public void finishEdit() {
+
         layout_two.setVisibility(GONE);
         layout_one.setVisibility(VISIBLE);
     }
 
-    /**
-     * 修改昵称
-     */
-    public void doModifyNickname(final ErrorTextView tv_error) {
-        if (layout_two.getVisibility() != VISIBLE) return;
-        //如果点击其他区域判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
-        final String nickname = getEditTextStr();
-        final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(nickname) || !StringUtils.isName(nickname) ) {
-            tv_error.setText("昵称输入有误");
-            setMsg(info.getName());
-        } else {
-            String sskey = AccountManager.getInstance().getSskey();
-            final UserInfo info2 = new UserInfo();
-            info2.setName(nickname);
-
-            OnModelCallback<Object> back = new OnModelCallback<Object>() {
-                @Override
-                public void onModelSuccessed(Object o) {
-                    tv_error.setViewGone();
-                }
-
-                @Override
-                public void onModelFailed(String failedMsg) {
-                    setMsg(info.getName());
-                    LogUtils.e(TAG, "failed==" + failedMsg);
-                    tv_error.setText(failedMsg);
-                }
-            };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_NICK_NAME, back);
-        }
-        //修改完成
-        finishEdit();
-    }
-
-    /**
-     * 修改真实名字
-     */
-    public void doModifyTruename(final ErrorTextView tv_error) {
-        if (layout_two.getVisibility() != VISIBLE) return;
-        //如果点击其他区域判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
-        final String name = getEditTextStr();
-        final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(name) || !StringUtils.isTrueName(name) ) {
-            tv_error.setText("姓名输入有误");
-            setMsg(info.getTrue_name());
-        } else {
-            String sskey = AccountManager.getInstance().getSskey();
-            final UserInfo info2 = new UserInfo();
-            info2.setTrue_name(name);
-
-
-            OnModelCallback<Object> back = new OnModelCallback<Object>() {
-                @Override
-                public void onModelSuccessed(Object o) {
-                    setMsg(name);
-                    tv_error.setViewGone();
-                }
-
-                @Override
-                public void onModelFailed(String failedMsg) {
-                    setMsg(info.getTrue_name());
-                    tv_error.setText(failedMsg);
-                    LogUtils.e(TAG, "failed==" + failedMsg);
-                }
-            };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_TRUE_NAME, back);
-        }
-        //修改完成
-        finishEdit();
-    }
-
-    /**
-     * 修改QQ号码
-     */
-    public void doModifyQQ(final ErrorTextView tv_error) {
-        if (layout_two.getVisibility() != VISIBLE) return;
-        //如果点击其他取悦判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
-        final String qq = getEditTextStr();
-        final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(qq)  || !StringUtils.isQQ(qq)) {
-            setMsg(info.getQq());
-            tv_error.setText("QQ号码输入有误");
-
-        } else {
-            String sskey = AccountManager.getInstance().getSskey();
-            final UserInfo info2 = new UserInfo();
-            info2.setQq(qq);
-
-
-            OnModelCallback<Object> back = new OnModelCallback<Object>() {
-                @Override
-                public void onModelSuccessed(Object o) {
-                    setMsg(qq);
-                    tv_error.setViewGone();
-                }
-
-                @Override
-                public void onModelFailed(String failedMsg) {
-                    setMsg(info.getQq());
-                    tv_error.setText(failedMsg);
-                    LogUtils.e(TAG, "failed==" + failedMsg);
-                }
-            };
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_QQ, back);
-        }
-        //修改完成
-        finishEdit();
-    }
 
     /**
      * 修改通讯电话
      */
-    public void doModifyContactPhone(final ErrorTextView tv_error) {
-        if (layout_two.getVisibility() != VISIBLE) return;
-        //如果点击其他判断是否有内容,如果有内容,且符合手机号规则,则修改修改,如果没有内容,则不修改内容,
-        final String phone = getEditTextStr();
-        final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(phone)  || !StringUtils.isPhoneNum(phone)) {
-            setMsg(info.getContact_phone());
-            tv_error.setText("手机号码输入有误");
 
-        } else {
-            String sskey = AccountManager.getInstance().getSskey();
-            final UserInfo info2 = new UserInfo();
-            info2.setContact_phone(phone);
+    private void doModifyInfo(int modifyType) {
 
-            OnModelCallback<Object> back = new OnModelCallback<Object>() {
-                @Override
-                public void onModelSuccessed(Object o) {
-                    setMsg(phone);
-                    tv_error.setViewGone();
+
+        final UserInfo defaultInfo = AccountManager.getInstance().getUserInfo();
+        final String msg = getEditTextStr();
+        UserInfo modifyInfo = new UserInfo();
+        switch (modifyType) {
+
+            case ModifyUserInfoLogic.MODIFY_NICK_NAME:
+                if (Util.isNullOrBlank(msg) || !StringUtils.isName(msg)) {
+                    setMsg(defaultInfo.getName());
+                    tv_error.setText(ResourceUtil.resToStr(R.string.nickname_format));
+                    return;
+                } else {
+                    modifyInfo.setName(msg);
                 }
-
-                @Override
-                public void onModelFailed(String failedMsg) {
-                    setMsg(info.getContact_phone());
-                    tv_error.setText(failedMsg);
-                    LogUtils.e(TAG, "failed==" + failedMsg);
+                break;
+            case ModifyUserInfoLogic.MODIFY_TRUE_NAME:
+                if (Util.isNullOrBlank(msg) || !StringUtils.isTrueName(msg)) {
+                    setMsg(defaultInfo.getTrue_name());
+                    tv_error.setText(ResourceUtil.resToStr(R.string.truename_format));
+                    return;
+                } else {
+                    modifyInfo.setTrue_name(msg);
                 }
-            };
+                break;
+            case ModifyUserInfoLogic.MODIFY_CONTACT_PHONE:
 
-            ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_CONTACT_PHONE, back);
+                if (Util.isNullOrBlank(msg) || !StringUtils.isPhoneNum(msg)) {
+                    setMsg(defaultInfo.getContact_phone());
+
+                    tv_error.setText(ResourceUtil.resToStr(R.string.contact_phone_format));
+                    return;
+                } else {
+                    modifyInfo.setContact_phone(msg);
+                }
+                break;
+            case ModifyUserInfoLogic.MODIFY_QQ:
+
+                if (Util.isNullOrBlank(msg) || !StringUtils.isQQ(msg)) {
+                    setMsg(defaultInfo.getQq());
+                    tv_error.setText(ResourceUtil.resToStr(R.string.qq_format));
+                    return;
+                } else {
+                    modifyInfo.setQq(msg);
+                }
+                break;
+
         }
+
+        if (msg.equals(one_tv_info.getText().toString())) {
+            tv_error.setViewGone();
+        } else if (Util.isNullOrBlank(msg)) {
+            //修改信息
+            tv_error.setViewGone();
+        } else {
+            doModify(modifyInfo, modifyType);
+        }
+
+
+    }
+
+    private void doModify(final UserInfo info, final int modifyType) {
+
+        String sskey = AccountManager.getInstance().getSskey();
+        OnModelCallback<Object> back = new OnModelCallback<Object>() {
+            @Override
+            public void onModelSuccessed(Object o) {
+                switch (modifyType) {
+                    case ModifyUserInfoLogic.MODIFY_NICK_NAME:
+
+                        setMsg(info.getName());
+                        break;
+                    case ModifyUserInfoLogic.MODIFY_TRUE_NAME:
+                        setMsg(info.getTrue_name());
+                        break;
+                    case ModifyUserInfoLogic.MODIFY_CONTACT_PHONE:
+                        setMsg(info.getContact_phone());
+                        break;
+                    case ModifyUserInfoLogic.MODIFY_QQ:
+                        setMsg(info.getQq());
+                        break;
+                }
+                tv_error.setViewGone();
+            }
+
+            @Override
+            public void onModelFailed(String failedMsg) {
+                setMsg(info.getContact_phone());
+                tv_error.setText(failedMsg);
+                LogUtils.e(failedMsg);
+            }
+        };
+
+        ModifyUserInfoLogic.doModifyUserInfo(sskey, info, modifyType, back);
         //修改完成
         finishEdit();
     }

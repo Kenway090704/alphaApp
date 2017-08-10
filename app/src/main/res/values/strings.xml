@@ -165,6 +165,10 @@
     <string name="man">男</string>
     <string name="women">女</string>
     <string name="secrect">保密</string>
+    <string name="nickname_format">昵称格式4-12字符，支持中文</string>
+    <string name="truename_format">姓名格式1-12字符，支持中文</string>
+    <string name="contact_phone_format">联系电话格式1-20位字符</string>
+    <string name="qq_format">"QQ格式1-20纯数字"</string>
     <!--签到-->
     <string name="sign">签到</string>
     <string name="now_sign">立即签到</string>

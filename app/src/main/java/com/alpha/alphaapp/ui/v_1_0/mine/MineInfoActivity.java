@@ -72,6 +72,11 @@ public class MineInfoActivity extends AccountChangeActivity {
         tv_error = (ErrorTextView) findViewById(R.id.mine_info_tv_error);
 
 
+        mieiv_nickname.setModifyType(ModifyUserInfoLogic.MODIFY_NICK_NAME, tv_error);
+        mieiv_truename.setModifyType(ModifyUserInfoLogic.MODIFY_TRUE_NAME, tv_error);
+        mieiv_qq.setModifyType(ModifyUserInfoLogic.MODIFY_QQ, tv_error);
+        mieiv_contact_phone.setModifyType(ModifyUserInfoLogic.MODIFY_CONTACT_PHONE, tv_error);
+
         setViewData();
     }
 
@@ -108,6 +113,7 @@ public class MineInfoActivity extends AccountChangeActivity {
 
     /**
      * 这个应该写在Activty中
+     * 当点击到item外时修改昵称,姓名,qq,联系电话
      *
      * @param event
      * @return
@@ -117,25 +123,25 @@ public class MineInfoActivity extends AccountChangeActivity {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-
+                //当点击的位置不是以下四个item ,就让这四个item失去焦点
                 if (event.getY() > (mieiv_nickname.getY() + mieiv_nickname.getHeight()) || event.getY() < mieiv_nickname.getY()) {
                     //修改昵称
-                    mieiv_nickname.doModifyNickname(tv_error);
+//                    mieiv_nickname.doModifyInfo(ModifyUserInfoLogic.MODIFY_NICK_NAME);
+                    mieivFinished();
                 }
                 if (event.getY() > (mieiv_truename.getY() + mieiv_truename.getHeight()) || event.getY() < mieiv_truename.getY()) {
-                    //修改昵称
-
-                    mieiv_truename.doModifyTruename(tv_error);
+                    //修改真实姓名
+                    mieivFinished();
                 }
                 if (event.getY() > (mieiv_qq.getY() + mieiv_qq.getHeight()) || event.getY() < mieiv_qq.getY()) {
-                    //修改昵称
+                    //修改QQ
+//
+                    mieivFinished();
 
-                    mieiv_qq.doModifyQQ(tv_error);
                 }
                 if (event.getY() > (mieiv_contact_phone.getY() + mieiv_contact_phone.getHeight()) || event.getY() < mieiv_contact_phone.getY()) {
                     //修改昵称
-
-                    mieiv_contact_phone.doModifyContactPhone(tv_error);
+                    mieivFinished();
                 }
 
         }
@@ -200,7 +206,6 @@ public class MineInfoActivity extends AccountChangeActivity {
 
                     }
                 };
-
                 GetIconListLogic.doGetIconList(AccountManager.getInstance().getSskey(), callBack);
             }
         });
@@ -241,10 +246,12 @@ public class MineInfoActivity extends AccountChangeActivity {
      * 让有输入的控件变为完成状态
      */
     private void mieivFinished() {
+        //这里是不是可以判断然后调用请
         mieiv_nickname.finishEdit();
         mieiv_truename.finishEdit();
         mieiv_qq.finishEdit();
         mieiv_contact_phone.finishEdit();
+
     }
 
 
