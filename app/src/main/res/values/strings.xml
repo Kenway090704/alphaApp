@@ -46,6 +46,7 @@
     <string name="account_or_verify_error">手机号或者验证码格式不正确</string>
     <string name="user_auth_login">使用其他登录方式</string>
     <string name="logining">努力登录中...</string>
+    <string name="loading">努力加载中...</string>
     <string name="verify_input_error">验证码输入错误</string>
     <string name="account_or_pw_error">帐号或者密码输入错误</string>
 
@@ -106,6 +107,7 @@
     <!--phone bind-->
     <string name="phone_bind">手机号绑定</string>
     <string name="you_use_phone_login">可用绑定的手机号登录</string>
+    <string name="you_use_phone_relogin">请用更改的手机号重新登录</string>
 
 
     <!--forget_pw-->

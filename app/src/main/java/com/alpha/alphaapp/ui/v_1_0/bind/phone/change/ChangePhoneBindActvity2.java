@@ -56,7 +56,7 @@ public class ChangePhoneBindActvity2 extends BaseActivity {
         tv_error = (ErrorTextView) findViewById(R.id.change_phone_bind_2_tv_error);
         btn_bind = (Button) findViewById(R.id.change_phone_bind_2_btn_bind);
 
-        dialog = DialogUtils.createSingleChoiceDialog(this, R.string.bind_success, R.string.you_use_phone_login, new View.OnClickListener() {
+        dialog = DialogUtils.createSingleChoiceDialog(this, R.string.bind_success, R.string.you_use_phone_relogin, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!Util.isNull(dialog) && dialog.isShowing())

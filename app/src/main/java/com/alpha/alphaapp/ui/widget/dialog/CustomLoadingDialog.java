@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 
@@ -17,11 +18,23 @@ import com.alpha.alphaapp.R;
 public class CustomLoadingDialog extends Dialog {
     private Context mContext;
     private Animation anim;
+    private TextView tv_hint;
 
     public CustomLoadingDialog(Context context) {
         this(context, R.style.dialog_loading);
         mContext = context;
         ImageView imageView = (ImageView) findViewById(R.id.dialog_loading_circle_iv);
+        tv_hint = (TextView) findViewById(R.id.dialog_loading_tv_hint);
+        anim = AnimationUtils.loadAnimation(context, R.anim.anim_loading_rotate);
+        imageView.startAnimation(anim);
+    }
+
+    public CustomLoadingDialog(Context context,String hint) {
+        this(context, R.style.dialog_loading);
+        mContext = context;
+        ImageView imageView = (ImageView) findViewById(R.id.dialog_loading_circle_iv);
+        tv_hint = (TextView) findViewById(R.id.dialog_loading_tv_hint);
+        tv_hint.setText(hint);
         anim = AnimationUtils.loadAnimation(context, R.anim.anim_loading_rotate);
         imageView.startAnimation(anim);
     }
@@ -32,6 +45,7 @@ public class CustomLoadingDialog extends Dialog {
         setContentView(R.layout.dialog_loading);
         setCanceledOnTouchOutside(false);
     }
+
     @Override
     public void dismiss() {
         anim.cancel();

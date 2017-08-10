@@ -12,6 +12,7 @@ import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.v_1_0.userinfo.BindLogic;
 import com.alpha.alphaapp.model.v_1_0.register.CheckAccoutLogic;
@@ -197,7 +198,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
     }
 
     private void loginQQAuth() {
-        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
+        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this, ResourceUtil.resToStr(R.string.loading));
 
         loadingDialog.show();
         //通过拉起QQ获取QQ的openid,检测该openid是否已经注册,如果未注册,
@@ -227,7 +228,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
     }
 
     private void loginWxAuth() {
-        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this);
+        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this,ResourceUtil.resToStr(R.string.loading));
         loadingDialog.show();
         //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册
         WxAuthManger.OnWxAuthCallBack callBack = new WxAuthManger.OnWxAuthCallBack() {
