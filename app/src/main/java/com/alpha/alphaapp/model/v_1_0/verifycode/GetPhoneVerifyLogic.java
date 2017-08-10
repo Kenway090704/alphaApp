@@ -1,5 +1,6 @@
 package com.alpha.alphaapp.model.v_1_0.verifycode;
 
+import com.alpha.lib_sdk.app.tool.SystemUtils;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -36,7 +37,7 @@ public class GetPhoneVerifyLogic {
                 .append("\"user_ip\":").append("\"" + IPAdressUtils.getIpAdress(ApplicationContext.getCurrentContext()) + "\",")
                 .append("\"terminal_type\":").append("\"" + TypeConstants.TERMINAL_TYPE.PHONE + "\",")
                 .append("\"get_verify\":").append("" + verifyType + ",")
-                .append("\"ts\":").append(System.currentTimeMillis())
+                .append("\"ts\":").append(SystemUtils.getCurrentTimeMillis())
                 .append("}");
         return sb.toString();
     }
@@ -58,7 +59,7 @@ public class GetPhoneVerifyLogic {
      * @param back       GetPhoneVerify内部的CallBack
      */
     public static void doGetPhoneVerify(String phone, int verifyType, final OnGetVerifyCallBack back) {
-        String data = GetPhoneVerifyLogic.getJsonStrPhoneVerify(phone, verifyType);
+        String data = getJsonStrPhoneVerify(phone, verifyType);
         String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {
             @Override
@@ -95,6 +96,10 @@ public class GetPhoneVerifyLogic {
                         if (!Util.isNull(back))
                             back.onGetVerifyFailed(info.getMsg());
                         //提示获取验证码次数太多
+                        break;
+                    default:
+                        if (!Util.isNull(back))
+                            back.onGetVerifyFailed(info.getMsg());
                         break;
                 }
 

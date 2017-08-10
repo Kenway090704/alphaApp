@@ -25,12 +25,10 @@ import java.util.List;
  */
 
 public class LoginActivity extends BaseFragmentNoBarActivity {
-    private static final String TAG = "LoginActivity";
     private TabLayout tabLayout;
     private ViewPager vp;
     private List<Fragment> fragments;
     private GifView gif_sheep, gif_super;
-
     private Handler handler = new Handler();
     private Runnable runnable;
     private boolean isStop;

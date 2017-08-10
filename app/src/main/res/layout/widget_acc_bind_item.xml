@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/commom_height_23"
         android:layout_marginRight="@dimen/commom_margin_25"
-        android:background="@drawable/shape_bg_red"
+        android:background="@drawable/shape_com_bg_red"
         android:textColor="@color/common_tv_white"
         android:textSize="@dimen/commom_tv_size_12" />
 

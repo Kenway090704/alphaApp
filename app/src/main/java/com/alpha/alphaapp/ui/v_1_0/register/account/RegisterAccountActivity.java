@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
@@ -34,7 +34,7 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 public class RegisterAccountActivity extends BaseActivity {
     private static final String TAG = "RegisterAccountActivity";
     private OneTwoThreeItemView ott;
-    private LoginAccountEditText aet_acc, aet_pw, aet_insurepw;
+    private AccountEditText aet_acc, aet_pw, aet_insurepw;
     private ErrorTextView tv_error;
     private Button btn_reg;
     private TextView tv_protocal;
@@ -47,9 +47,9 @@ public class RegisterAccountActivity extends BaseActivity {
     @Override
     protected void initView() {
         ott = (OneTwoThreeItemView) findViewById(R.id.reg_account_ott);
-        aet_acc = (LoginAccountEditText) findViewById(R.id.reg_account_aet_acc);
-        aet_pw = (LoginAccountEditText) findViewById(R.id.reg_account_aet_pw);
-        aet_insurepw = (LoginAccountEditText) findViewById(R.id.reg_account_aet_insurepw);
+        aet_acc = (AccountEditText) findViewById(R.id.reg_account_aet_acc);
+        aet_pw = (AccountEditText) findViewById(R.id.reg_account_aet_pw);
+        aet_insurepw = (AccountEditText) findViewById(R.id.reg_account_aet_insurepw);
         tv_error = (ErrorTextView) findViewById(R.id.reg_account_tv_error);
         btn_reg = (Button) findViewById(R.id.reg_account_btn_reg_and_login);
         tv_protocal = (TextView) findViewById(R.id.reg_account_tv_protocal);
@@ -133,14 +133,14 @@ public class RegisterAccountActivity extends BaseActivity {
      *
      * @param aet
      */
-    private void isEditTextNull(LoginAccountEditText aet) {
+    private void isEditTextNull(AccountEditText aet) {
         if (Util.isNullOrBlank(aet_acc.getEditTextStr()) || Util.isNullOrBlank(aet_pw.getEditTextStr()) || Util.isNullOrBlank(aet_insurepw.getEditTextStr())) {
             btn_reg.setEnabled(Boolean.FALSE);
             btn_reg.setBackgroundResource(R.drawable.shape_com_bg_gray);
 
         } else {
             btn_reg.setEnabled(Boolean.TRUE);
-            btn_reg.setBackgroundResource(R.drawable.shape_bg_red);
+            btn_reg.setBackgroundResource(R.drawable.shape_com_bg_red);
             ott.setCurrentUI(2);
 
         }
@@ -215,7 +215,6 @@ public class RegisterAccountActivity extends BaseActivity {
             @Override
             public void onModelSuccessed(Object o) {
                 //注册成功后弹出对话框其实,让用户登录
-                ToastUtils.showLong(RegisterAccountActivity.this, R.string.register_success);
                 doLogin(account, pw);
             }
 

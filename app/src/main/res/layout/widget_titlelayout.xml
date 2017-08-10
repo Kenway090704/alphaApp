@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/commom_height_48"
-    android:background="@drawable/shape_bg_red"
+    android:background="@drawable/shape_com_bg_red"
     android:padding="10dp">
     <LinearLayout
         android:id="@+id/title_layout_back"

@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alpha.lib_sdk.app.app.ApplicationContext;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,11 +30,15 @@ public class ResourceUtil {
         return context.getString(strId);
     }
 
+    public static String resToStr(int strId) {
+        return ApplicationContext.getCurrentContext().getString(strId);
+    }
+
     public static View inflate(Context context, int viewId, ViewGroup root) {
         return LayoutInflater.from(context).inflate(viewId, root, false);
     }
 
-    public static int resToColor(Context context, int colorId){
+    public static int resToColor(Context context, int colorId) {
         return context.getResources().getColor(colorId);
     }
 }

@@ -11,7 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
@@ -22,7 +22,6 @@ import com.alpha.alphaapp.model.v_1_0.login.LoginOutLogic;
 import com.alpha.alphaapp.model.v_1_0.verifycode.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
-import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -34,7 +33,7 @@ import com.alpha.lib_sdk.app.tool.Util;
 
 public class PhoneBindFragment extends BaseFragment {
     private static final String TAG = "PhoneBindFragment";
-    private LoginAccountEditText et_phone;
+    private AccountEditText et_phone;
     private InputVerifyEditText ivet;
     private ErrorTextView tv_error;
     private Button btn_submit;
@@ -54,8 +53,9 @@ public class PhoneBindFragment extends BaseFragment {
 
     @Override
     protected void initViews(View root) {
-        et_phone = (LoginAccountEditText) root.findViewById(R.id.bind_phone_aet_phone);
+        et_phone = (AccountEditText) root.findViewById(R.id.bind_phone_aet_phone);
         ivet = (InputVerifyEditText) root.findViewById(R.id.bind_phone_ivet);
+
         tv_error = (ErrorTextView) root.findViewById(R.id.bind_phone_tv_error);
         btn_submit = (Button) root.findViewById(R.id.bind_phone_btn_submit);
         tv_no_bind = (TextView) root.findViewById(R.id.bind_phone_tv_no_bind);
@@ -108,7 +108,7 @@ public class PhoneBindFragment extends BaseFragment {
 
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
-                    btn_submit.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_submit.setBackgroundResource(R.drawable.shape_com_bg_red);
 
                 }
 
@@ -125,10 +125,10 @@ public class PhoneBindFragment extends BaseFragment {
 
             }
         });
-        ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
+        ivet.setGetVerifyListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getVerify();
+                ivet.getVerify(et_phone.getEditTextStr(),TypeConstants.GET_VERIFY_TYPE.LOGIN,tv_error);
             }
         });
         ivet.setWatcherListener(new TextWatcher() {
@@ -145,7 +145,7 @@ public class PhoneBindFragment extends BaseFragment {
 
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
-                    btn_submit.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_submit.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
 
                 if (Util.isNullOrBlank(ivet.getEditTextStr())) {
@@ -192,22 +192,17 @@ public class PhoneBindFragment extends BaseFragment {
         });
     }
 
-    /**
-     * 获取验证码
-     */
-    private void getVerify() {
-        if (!StringUtils.isPhoneNum(et_phone.getEditTextStr())) {
-            //验证手机号码格式是否正确
+
+    private void getVerify(String phone, int verifyType, final ErrorTextView tv_error) {
+        if (!StringUtils.isPhoneNum(phone)) {
+            //验证手机号格式是否正确
             tv_error.setText(R.string.input_valid_eleven_number);
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        //获取手机验证码
-        String phone = et_phone.getEditTextStr();
         GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
             @Override
             public void onGetVerifySuccess() {
-                //启动多少秒内不可获取验证码
                 ivet.start();
             }
 
@@ -217,9 +212,8 @@ public class PhoneBindFragment extends BaseFragment {
                 tv_error.setVisibility(View.VISIBLE);
             }
         };
-        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.LOGIN, callBack);
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, verifyType, callBack);
     }
-
 
     @Override
     protected void initData() {

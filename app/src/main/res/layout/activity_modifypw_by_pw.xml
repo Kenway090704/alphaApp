@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/modify_pbpw_aet_oldpw"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/commom_margin_20"
@@ -20,7 +20,7 @@
         app:input_type="password"
         app:icon_type="@drawable/icon_password" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/modify_pbpw_aet_newpw"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/commom_margin_5"
@@ -29,7 +29,7 @@
         app:input_type="password"
         app:icon_type="@drawable/icon_password" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/modify_pbpw_aet_insurepw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

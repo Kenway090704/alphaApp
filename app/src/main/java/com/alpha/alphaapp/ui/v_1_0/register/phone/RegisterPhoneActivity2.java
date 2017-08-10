@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.model.v_1_0.verifycode.VerifyMsgCodeLogic;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_sdk.app.tool.StringUtils;
@@ -67,7 +69,7 @@ public class RegisterPhoneActivity2 extends BaseActivity {
                     ivet.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     btn_setpw.setEnabled(Boolean.TRUE);
-                    btn_setpw.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_setpw.setBackgroundResource(R.drawable.shape_com_bg_red);
                     ivet.getImageViewRight().setVisibility(View.VISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);
@@ -79,12 +81,15 @@ public class RegisterPhoneActivity2 extends BaseActivity {
             }
         });
 
-        ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
+
+
+        ivet.setGetVerifyListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getVerify();
+                ivet.getVerify(phone,TypeConstants.GET_VERIFY_TYPE.REGISTER,tv_error);
             }
         });
+
         btn_setpw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,25 +98,6 @@ public class RegisterPhoneActivity2 extends BaseActivity {
         });
     }
 
-    /**
-     * 获取验证码
-     */
-    private void getVerify() {
-        //重新获取验证码
-        GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
-            @Override
-            public void onGetVerifySuccess() {
-                ivet.start();
-            }
-
-            @Override
-            public void onGetVerifyFailed(String failMsg) {
-                tv_error.setText(failMsg);
-                tv_error.setVisibility(View.VISIBLE);
-            }
-        };
-        GetPhoneVerifyLogic.doGetPhoneVerify(phone, TypeConstants.GET_VERIFY_TYPE.REGISTER, callBack);
-    }
 
     private void jumpNextActivity() {
         if (!StringUtils.isPhoneVerify(ivet.getEditTextStr())) {
@@ -120,8 +106,23 @@ public class RegisterPhoneActivity2 extends BaseActivity {
             tv_error.setVisibility(View.VISIBLE);
             return;
         }
-        //进入第三页
-        RegisterPhoneActivity3.actionStart(RegisterPhoneActivity2.this, phone, ivet.getEditTextStr());
+
+        //验证验证码是否正确
+        OnModelCallback<Object> callback = new OnModelCallback<Object>() {
+            @Override
+            public void onModelSuccessed(Object o) {
+                //进入第三页
+                RegisterPhoneActivity3.actionStart(RegisterPhoneActivity2.this, phone, ivet.getEditTextStr());
+            }
+
+            @Override
+            public void onModelFailed(String failedMsg) {
+                tv_error.setText(failedMsg);
+                tv_error.setVisibility(View.VISIBLE);
+            }
+        };
+        VerifyMsgCodeLogic.doVerigyMsgCode(phone, ivet.getEditTextStr(), TypeConstants.GET_VERIFY_TYPE.REGISTER, callback);
+
     }
 
     public static void actionStart(Context context, String phone) {

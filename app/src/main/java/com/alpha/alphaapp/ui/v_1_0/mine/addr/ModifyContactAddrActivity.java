@@ -2,8 +2,11 @@ package com.alpha.alphaapp.ui.v_1_0.mine.addr;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -16,6 +19,7 @@ import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView;
+import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
@@ -31,9 +35,11 @@ import com.alpha.lib_sdk.app.unitily.ToastUtils;
 public class ModifyContactAddrActivity extends BaseActivity {
     private static final String TAG = "ModifyContactAddrActivity";
     private TitleLayout titlelayout;
-    private ModifyInfoItemView miiv_pca, miiv_street;
+    private ModifyInfoItemView miiv_pca;
     private LinearLayout layout;
     private EditText et_detail;
+    private ErrorTextView tv_error;
+    private Button btn_save;
 
     /**
      * 地区选中器
@@ -49,9 +55,11 @@ public class ModifyContactAddrActivity extends BaseActivity {
     protected void initView() {
         titlelayout = (TitleLayout) findViewById(R.id.mod_contact_addr_titlelayout);
         miiv_pca = (ModifyInfoItemView) findViewById(R.id.mod_contact_addr_miiv_pca);
-        miiv_street = (ModifyInfoItemView) findViewById(R.id.mod_contact_addr_miiv_street);
+
         layout = (LinearLayout) findViewById(R.id.mod_contact_addr_layout);
         et_detail = (EditText) findViewById(R.id.mod_contact_addr_et_detail);
+        tv_error = (ErrorTextView) findViewById(R.id.mod_contact_addr_tv_error);
+        btn_save = (Button) findViewById(R.id.mod_contact_addr_btn_save);
         logic_pca = new GetPCityAreaLogic(this);
     }
 
@@ -79,19 +87,30 @@ public class ModifyContactAddrActivity extends BaseActivity {
                 logic_pca.show();
             }
         });
-        miiv_street.setIvRightOnClicklistener(new View.OnClickListener() {
+        et_detail.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if (!Util.isNullOrBlank(miiv_pca.getMsg())) {
-                    layout.setVisibility(View.VISIBLE);
-                    et_detail.setFocusable(true);
-                    et_detail.requestFocus();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (Util.isNullOrBlank(et_detail.getText().toString())) {
+                    btn_save.setEnabled(Boolean.FALSE);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_gray);
                 } else {
-                    ToastUtils.showShort(ModifyContactAddrActivity.this, "请先选者省市区");
+                    btn_save.setEnabled(Boolean.TRUE);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
+                tv_error.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
+
         logic_pca.setBtnSaveOnListener(new GetPCityAreaLogic.OnBtnSaveListener() {
             @Override
             public void onSubmit(String province, String city, String area) {
@@ -100,6 +119,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
         });
 
     }
+
     /**
      * 修改联系方式
      */
@@ -134,12 +154,12 @@ public class ModifyContactAddrActivity extends BaseActivity {
                     layout.setVisibility(View.GONE);
                     KeyBoardUtils.closeKeybord(et_detail, this);
                     // 将信息提交修改信息
-                    miiv_street.setMsg(et_detail.getText().toString());
+
                     //保存该数据为用户的通信地址,如果信息与填写的内容相同,则不修改
-                    String addr = miiv_pca.getMsg() + miiv_street.getMsg();
+                    String addr = miiv_pca.getMsg() + et_detail.getText().toString();
                     //地址是否与当前地址相同
                     boolean isSame = addr.equals(AccountManager.getInstance().getUserInfo().getContact_addr());
-                    if (!Util.isNullOrBlank(miiv_street.getMsg()) && !isSame) {
+                    if (!Util.isNullOrBlank(et_detail.getText().toString()) && !isSame) {
                         doModifyContactAddr(addr);
                     }
                 }

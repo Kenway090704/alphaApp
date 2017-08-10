@@ -88,6 +88,15 @@ public class ModifyIconView extends LinearLayout {
         ImageLoader.loadCircle(context, url, riv_icon);
     }
 
+    /**
+     * 加载默认图片
+     * @param baseUrl
+     */
+    public void setIcon(String baseUrl) {
+        String url = baseUrl;
+        ImageLoader.loadCircle(context, url, riv_icon);
+    }
+
     public void setRightIVOnClicklistener(OnClickListener listener) {
         if (!Util.isNull(listener)){
             view.setOnClickListener(listener);

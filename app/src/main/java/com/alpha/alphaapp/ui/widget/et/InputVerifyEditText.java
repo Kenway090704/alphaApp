@@ -12,8 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.model.v_1_0.verifycode.GetPhoneVerifyLogic;
+import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.alphaapp.model.CountDownManager;
+import com.alpha.lib_stub.comm.TypeConstants;
 
 /**
  * Created by kenway on 17/6/13 17:04
@@ -43,7 +47,7 @@ public class InputVerifyEditText extends LinearLayout {
 
     private void initViews() {
         cmd = new CountDownManager();
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_verify_et, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.widget_et_verify, this);
         iv_del = (ImageView) view.findViewById(R.id.verify_edit_iv_del);
         et = (EditText) view.findViewById(R.id.verify_edit_et);
         tv_getVerify = (TextView) view.findViewById(R.id.verify_edit_tv_getVerify);
@@ -115,12 +119,42 @@ public class InputVerifyEditText extends LinearLayout {
 
     }
 
-    public void setGetVerifyTextViewListener(OnClickListener listener) {
+    /**
+     * 获取验证码控件点击事件
+     * @param listener
+     */
+
+    public void setGetVerifyListener(OnClickListener listener) {
         if (Util.isNull(tv_getVerify))
             return;
         tv_getVerify.setOnClickListener(listener);
     }
 
+
+    /**
+     * 获取手机验证码
+     */
+    public void getVerify(String phone, int verifyType, final ErrorTextView tv_error) {
+        if (!StringUtils.isPhoneNum(phone)) {
+            //验证手机号格式是否正确
+            tv_error.setText(R.string.input_valid_eleven_number);
+            tv_error.setVisibility(View.VISIBLE);
+            return;
+        }
+        GetPhoneVerifyLogic.OnGetVerifyCallBack callBack = new GetPhoneVerifyLogic.OnGetVerifyCallBack() {
+            @Override
+            public void onGetVerifySuccess() {
+                start();
+            }
+
+            @Override
+            public void onGetVerifyFailed(String failMsg) {
+                tv_error.setText(failMsg);
+                tv_error.setVisibility(View.VISIBLE);
+            }
+        };
+        GetPhoneVerifyLogic.doGetPhoneVerify(phone, verifyType, callBack);
+    }
 
     /**
      * 清楚输入框的文字
@@ -143,6 +177,6 @@ public class InputVerifyEditText extends LinearLayout {
         if (!Util.isNull(cmd))
             cmd.cancel();
         if (!Util.isNull(tv_getVerify))
-            tv_getVerify.setBackgroundResource(R.drawable.shape_bg_red);
+            tv_getVerify.setBackgroundResource(R.drawable.shape_com_bg_red);
     }
 }

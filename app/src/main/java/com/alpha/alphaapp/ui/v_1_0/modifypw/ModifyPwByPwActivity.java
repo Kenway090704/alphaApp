@@ -12,7 +12,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.pw.ModifyPwdLogic;
@@ -30,7 +30,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
 
     private static final String TAG = "ModifyPwByPwActivity";
     private TitleLayout titleLayout;
-    private LoginAccountEditText et_oldpw, et_newPw, et_insurePw;
+    private AccountEditText et_oldpw, et_newPw, et_insurePw;
     private ErrorTextView tv_error;
     private Button btn_save;
     private Dialog dialog;
@@ -44,9 +44,9 @@ public class ModifyPwByPwActivity extends BaseActivity {
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.modify_pbpw_titlelayou);
         titleLayout.setTitleText(R.string.by_password);
-        et_oldpw = (LoginAccountEditText) findViewById(R.id.modify_pbpw_aet_oldpw);
-        et_newPw = (LoginAccountEditText) findViewById(R.id.modify_pbpw_aet_newpw);
-        et_insurePw = (LoginAccountEditText) findViewById(R.id.modify_pbpw_aet_insurepw);
+        et_oldpw = (AccountEditText) findViewById(R.id.modify_pbpw_aet_oldpw);
+        et_newPw = (AccountEditText) findViewById(R.id.modify_pbpw_aet_newpw);
+        et_insurePw = (AccountEditText) findViewById(R.id.modify_pbpw_aet_insurepw);
         tv_error = (ErrorTextView) findViewById(R.id.modify_pbpw_tv_error);
         btn_save = (Button) findViewById(R.id.modify_pbpw_btn_save);
         dialog = DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success, R.string.plz_next_login_use_new_pw, new View.OnClickListener() {
@@ -83,7 +83,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_com_bg_gray);
                 } else {
                     btn_save.setEnabled(Boolean.TRUE);
-                    btn_save.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
                 //这里的监听方法有问题
                 if (Util.isNullOrBlank(et_oldpw.getEditTextStr())) {
@@ -112,7 +112,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_com_bg_gray);
                 } else {
                     btn_save.setEnabled(Boolean.TRUE);
-                    btn_save.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
                 //这里的监听方法有问题
                 if (Util.isNullOrBlank(et_insurePw.getEditTextStr())) {
@@ -142,7 +142,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
                     btn_save.setBackgroundResource(R.drawable.shape_com_bg_gray);
                 } else {
                     btn_save.setEnabled(Boolean.TRUE);
-                    btn_save.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
                 //这里的监听方法有问题
                 if (Util.isNullOrBlank(et_newPw.getEditTextStr())) {

@@ -141,12 +141,25 @@ public class ModifySexView extends LinearLayout {
      * @param sex
      */
     public void setMsg(int sex) {
+
         if (sex == 0) {
             tv_info.setText("女");
+            tv_women.setTextColor(context.getResources().getColor(R.color.common_tv_dark_red));
+            tv_men.setTextColor(context.getResources().getColor(R.color.common_tv_black));
+            tv_sercret.setTextColor(context.getResources().getColor(R.color.common_tv_black));
+
         } else if (sex == 1) {
             tv_info.setText("男");
+            tv_men.setTextColor(context.getResources().getColor(R.color.common_tv_dark_red));
+            tv_women.setTextColor(context.getResources().getColor(R.color.common_tv_black));
+            tv_sercret.setTextColor(context.getResources().getColor(R.color.common_tv_black));
         } else {
             tv_info.setText("保密");
+
+            tv_sercret.setTextColor(context.getResources().getColor(R.color.common_tv_dark_red));
+
+            tv_men.setTextColor(context.getResources().getColor(R.color.common_tv_black));
+            tv_women.setTextColor(context.getResources().getColor(R.color.common_tv_black));
         }
     }
 

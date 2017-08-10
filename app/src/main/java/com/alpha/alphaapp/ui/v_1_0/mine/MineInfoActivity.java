@@ -9,6 +9,8 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
+import com.alpha.lib_sdk.app.glide.ImageLoader;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -44,6 +46,7 @@ public class MineInfoActivity extends AccountChangeActivity {
     private ModifyInfoItemView mod_birthday, mod_school, mod_contact_addr;
     private ModifyInfoETItemView mieiv_nickname, mieiv_truename, mieiv_contact_phone, mieiv_qq;
     private ModifySexView msv_sex;
+    private ErrorTextView tv_error;
     private UserInfo info;
     private Map<String, Boolean> map;
     private GetBirthdayLogic logic_birday;//修改生日
@@ -66,13 +69,19 @@ public class MineInfoActivity extends AccountChangeActivity {
         mieiv_qq = (ModifyInfoETItemView) findViewById(R.id.mine_info_mieiv_qq);
         mieiv_contact_phone = (ModifyInfoETItemView) findViewById(R.id.mine_info_mieiv_contact_phone);
         mod_contact_addr = (ModifyInfoItemView) findViewById(R.id.mine_info_contact_addr);
+        tv_error = (ErrorTextView) findViewById(R.id.mine_info_tv_error);
+
 
         setViewData();
     }
 
     private void setViewData() {
-        if (!Util.isNullOrBlank(info.getIcon()))
+        if (!Util.isNullOrBlank(info.getIcon())) {
             mod_icon.setIcon(URLConstans.GET_ICON.ICON60, info.getIcon());
+        } else {
+            mod_icon.setIcon(URLConstans.GET_ICON.ICON_DEFAULT);
+        }
+
         if (!Util.isNullOrBlank(info.getName()))
             mieiv_nickname.setMsg(info.getName());
         if (!Util.isNullOrBlank(info.getTrue_name()))
@@ -108,21 +117,25 @@ public class MineInfoActivity extends AccountChangeActivity {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+
                 if (event.getY() > (mieiv_nickname.getY() + mieiv_nickname.getHeight()) || event.getY() < mieiv_nickname.getY()) {
                     //修改昵称
-                    mieiv_nickname.doModifyNickname();
+                    mieiv_nickname.doModifyNickname(tv_error);
                 }
                 if (event.getY() > (mieiv_truename.getY() + mieiv_truename.getHeight()) || event.getY() < mieiv_truename.getY()) {
                     //修改昵称
-                    mieiv_truename.doModifyTruename();
+
+                    mieiv_truename.doModifyTruename(tv_error);
                 }
                 if (event.getY() > (mieiv_qq.getY() + mieiv_qq.getHeight()) || event.getY() < mieiv_qq.getY()) {
                     //修改昵称
-                    mieiv_qq.doModifyQQ();
+
+                    mieiv_qq.doModifyQQ(tv_error);
                 }
                 if (event.getY() > (mieiv_contact_phone.getY() + mieiv_contact_phone.getHeight()) || event.getY() < mieiv_contact_phone.getY()) {
                     //修改昵称
-                    mieiv_contact_phone.doModifyContactPhone();
+
+                    mieiv_contact_phone.doModifyContactPhone(tv_error);
                 }
 
         }

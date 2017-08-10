@@ -24,7 +24,7 @@
     <!--背景-->
     <color name="common_bg_red_alpha_90">#e6d54526</color>
     <color name="common_bg_white_alpha_90">#e6ffffff</color>
-    <color name="common_bg_light_gray">#f4f4f4</color>
+    <color name="common_bg_light_gray">#f6f7f7</color>
     <color name="common_bg_dark_gray">#9c9c9c</color>
     <color name="common_bg_white">#fff</color>
     <color name="common_bg_red">#d54526</color>

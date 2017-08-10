@@ -20,7 +20,7 @@
         app:txt_second="@string/input_verify"
         app:txt_third="@string/set_pw" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/reg_phone_1_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

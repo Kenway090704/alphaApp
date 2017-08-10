@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -29,7 +29,7 @@ import com.alpha.lib_sdk.app.tool.Util;
 public class WxGetPwActivityNoAccount extends BaseActivity {
     private static final String TAG = "WxGetPwActivityNoAccount";
     private TitleLayout titleLayout;
-    private LoginAccountEditText et_account;
+    private AccountEditText et_account;
 
     private ErrorTextView tv_error;
 
@@ -43,7 +43,7 @@ public class WxGetPwActivityNoAccount extends BaseActivity {
     @Override
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.wx_getpw_no_account_titlelayout);
-        et_account = (LoginAccountEditText) findViewById(R.id.wx_getpw_no_account_aet_account);
+        et_account = (AccountEditText) findViewById(R.id.wx_getpw_no_account_aet_account);
 
         tv_error = (ErrorTextView) findViewById(R.id.wx_getpw_no_account_tv_error);
 
@@ -74,7 +74,7 @@ public class WxGetPwActivityNoAccount extends BaseActivity {
                     et_account.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     btn_resetpw.setEnabled(Boolean.TRUE);
-                    btn_resetpw.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_resetpw.setBackgroundResource(R.drawable.shape_com_bg_red);
                     et_account.getImageViewRight().setVisibility(View.INVISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);

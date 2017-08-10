@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.pw.PhoneFindPwLogic;
@@ -31,7 +31,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
     private static final String TAG = "PhoneGetPwActivity3";
     private String phone, verify;
     private TitleLayout titleLayout;
-    private LoginAccountEditText aet_pw;
+    private AccountEditText aet_pw;
     private ErrorTextView tv_error;
     private Button btn_submit;
     private Dialog dialog;
@@ -46,7 +46,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
     @Override
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.phone_get_pw_3_titlelayout);
-        aet_pw = (LoginAccountEditText) findViewById(R.id.phone_get_pw_3_aet_pw);
+        aet_pw = (AccountEditText) findViewById(R.id.phone_get_pw_3_aet_pw);
         tv_error = (ErrorTextView) findViewById(R.id.phone_get_pw_3_tv_error);
         btn_submit = (Button) findViewById(R.id.phone_get_pw_3_btn_submit);
         dialog= DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success,R.string.return_login_ac, new View.OnClickListener() {
@@ -73,7 +73,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
 
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
-                    btn_submit.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_submit.setBackgroundResource(R.drawable.shape_com_bg_red);
 
                 }
                 tv_error.setVisibility(View.INVISIBLE);

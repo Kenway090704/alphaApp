@@ -65,7 +65,7 @@ public class PhoneGetPwActivity1 extends BaseActivity {
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     btn_getVerify.setEnabled(Boolean.TRUE);
-                    btn_getVerify.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_getVerify.setBackgroundResource(R.drawable.shape_com_bg_red);
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);

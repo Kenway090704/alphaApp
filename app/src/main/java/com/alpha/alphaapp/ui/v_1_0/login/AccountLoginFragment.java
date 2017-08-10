@@ -13,7 +13,7 @@ import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.register.CheckAccoutLogic;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
@@ -27,7 +27,6 @@ import com.alpha.alphaapp.ui.widget.et.PwInputEditText;
 import com.alpha.alphaapp.ui.v_1_0.register.RegisterGuideActivity;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
-import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * Created by kenway on 17/5/26 11:27
@@ -36,7 +35,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 public class AccountLoginFragment extends BaseFragment {
     private static final String TAG = "AccountLoginFragment";
-    private LoginAccountEditText laet_user;
+    private AccountEditText laet_user;
     private PwInputEditText piet_pw;
     private ErrorTextView tv_error;
     private Button btn_login, btn_register;
@@ -51,7 +50,7 @@ public class AccountLoginFragment extends BaseFragment {
 
     @Override
     protected void initViews(View root) {
-        laet_user = (LoginAccountEditText) root.findViewById(R.id.log_ac_aet_accout);
+        laet_user = (AccountEditText) root.findViewById(R.id.log_ac_aet_accout);
         piet_pw = (PwInputEditText) root.findViewById(R.id.log_ac_piet_pw);
         tv_error = (ErrorTextView) root.findViewById(R.id.log_ac_tv_error);
         btn_login = (Button) root.findViewById(R.id.log_ac_btn_login);
@@ -85,7 +84,7 @@ public class AccountLoginFragment extends BaseFragment {
 
                 } else {
                     btn_login.setEnabled(Boolean.TRUE);
-                    btn_login.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_login.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
                 if (Util.isNullOrBlank(laet_user.getEditTextStr())) {
                     laet_user.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -116,7 +115,7 @@ public class AccountLoginFragment extends BaseFragment {
                     btn_login.setBackgroundResource(R.drawable.shape_com_bg_gray);
                 } else {
                     btn_login.setEnabled(Boolean.TRUE);
-                    btn_login.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_login.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
 
                 if (Util.isNullOrBlank(piet_pw.getEditTextStr())) {
@@ -328,7 +327,7 @@ public class AccountLoginFragment extends BaseFragment {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                ToastUtils.showLong(getActivity(), "你好," + nickname);
+//                ToastUtils.showLong(getActivity(), "你好," + nickname);
                 UserOpenidLogin(openid, TypeConstants.LOGIN_TYPE.AUTH_WX);
             }
 

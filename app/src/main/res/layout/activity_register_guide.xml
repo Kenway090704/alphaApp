@@ -44,7 +44,7 @@
                 android:layout_width="@dimen/commom_margin_89"
                 android:layout_height="@dimen/commom_margin_25"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/shape_bg_red"
+                android:background="@drawable/shape_com_bg_red"
                 android:gravity="center"
 
                 android:text="@string/account_register"
@@ -78,7 +78,7 @@
                 android:layout_width="@dimen/commom_margin_89"
                 android:layout_height="@dimen/commom_margin_25"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/shape_bg_red"
+                android:background="@drawable/shape_com_bg_red"
                 android:gravity="center"
                 android:text="@string/phone_register"
                 android:textColor="@color/common_tv_white"

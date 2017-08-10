@@ -28,8 +28,19 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
 
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    //多渠道打包
+    productFlavors {
+
+        wandoujia {}
+        baidu {}
+        c360 {}
+        uc {}
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
     }
 
 
@@ -40,20 +51,59 @@ android {
             //混淆
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [appName: "奥飞用户中心", bugly_debug: false]
+            manifestPlaceholders = [appName: "奥飞用户中心"]
             buildConfigField "int", "buildTime", getDebugVersionNameSuffix()
+
+            //设置release版本只包含armeabi和armeabi-v7a的so包
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a"
+            }
+
+            // 输出自定义的apkm名,与多道打包配合,名称如输出名为AppName_vv 1.1.0_2017-08-08_productA.apk的apk,build--gener sign apk 选取productA渠道,
+//            applicationVariants.all { variant ->
+//                variant.outputs.each { output ->
+//                    def outputFile = output.outputFile
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                        // 输出名为AppName_vv 1.1.0_2017-08-08_productA.apk的apk
+//                        def apkFile = "AppName_v${defaultConfig.versionName}_${buildTime()}" +
+//                                "_${variant.productFlavors[0].name}.apk"
+//                        output.outputFile = new File(outputFile.parent, apkFile)
+//                    }
+//                }
+//            }
         }
 
         debug {
             debuggable true
+            //生成的apk名字添加-debug,如   BuildConfig.VERSION_NAME=="v 1.1.0-debg"
             versionNameSuffix "-debug"
+            //为debug版本的包名添加.debug后缀
             applicationIdSuffix ".debug"
-            manifestPlaceholders = [appName: "奥飞用户中心-dev", bugly_debug: true]
+
+            //manifest中的占位符
+            manifestPlaceholders = [appName: "奥飞用户中心-dev"]
+
+            //这里会在BuildConfig中生成一个buildTime参数, BuildConfig.buildTime
+            //  注：buildConfigField 配置格式为： "type","name","value" 形式，
+            // 如果参数是String类型，"value"外部需加单引号申明内部是String类型的，或者使用转移符 \ ,
+            // 如：        buildConfigField "String", "CustomValue",'"buildType"'("\"buildType\"")
             buildConfigField "int", "buildTime", getDebugVersionNameSuffix()
+
+            //设置debug版本包含x86的so文件,为了在模拟器上进行测试
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a", "x86"
+            }
         }
     }
+
 }
 
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy-MM-dd', TimeZone.getTimeZone("UTC"))
+    return formattedDate
+}
 //版本编译时间
 def String getDebugVersionNameSuffix() {
     Date buildTime = new Date();
@@ -81,7 +131,6 @@ dependencies {
     compile rootProject.ext.dependencies["roundedimageview"]
     compile rootProject.ext.dependencies["Android-PickerView"]
     compile rootProject.ext.dependencies["XTabLayout"]
-    compile rootProject.ext.dependencies["XTabLayout"]
     compile rootProject.ext.dependencies["status-bar-compat"]
     compile rootProject.ext.dependencies["okhttp"]
     //腾讯bugly日志
@@ -92,5 +141,5 @@ dependencies {
     releaseCompile project(path: ':lib_stub', configuration: 'release')
     debugCompile project(path: ':lib_sdk', configuration: 'debug')
     debugCompile project(path: ':lib_stub', configuration: 'debug')
-    compile 'com.squareup.picasso:picasso:2.5.2'
+
 }

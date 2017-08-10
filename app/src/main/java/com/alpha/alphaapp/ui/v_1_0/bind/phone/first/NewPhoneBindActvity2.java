@@ -7,11 +7,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.model.v_1_0.verifycode.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
@@ -74,13 +74,16 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
 
     @Override
     protected void initListener() {
-        ivet.setGetVerifyTextViewListener(new View.OnClickListener() {
+
+        ivet.setWatcherListener(this);
+
+        ivet.setGetVerifyListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //再一次获取验证码
+                ivet.getVerify(phone,TypeConstants.GET_VERIFY_TYPE.BIND_PHONE,tv_error);
             }
         });
-        ivet.setWatcherListener(this);
+
         btn_bind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +125,7 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
         context.startActivity(intent);
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -144,7 +148,7 @@ public class NewPhoneBindActvity2 extends BaseActivity implements TextWatcher {
             ivet.getImageViewRight().setVisibility(View.INVISIBLE);
         } else {
             btn_bind.setEnabled(Boolean.TRUE);
-            btn_bind.setBackgroundResource(R.drawable.shape_bg_red);
+            btn_bind.setBackgroundResource(R.drawable.shape_com_bg_red);
             ivet.getImageViewRight().setVisibility(View.VISIBLE);
         }
         tv_error.setVisibility(View.INVISIBLE);

@@ -16,6 +16,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
@@ -185,31 +186,30 @@ public class ModifyInfoETItemView extends LinearLayout {
     /**
      * 修改昵称
      */
-    public void doModifyNickname() {
+    public void doModifyNickname(final ErrorTextView tv_error) {
         if (layout_two.getVisibility() != VISIBLE) return;
         //如果点击其他区域判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
         final String nickname = getEditTextStr();
         final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(nickname) || !StringUtils.isName(nickname) || info.getName().equals(nickname)) {
-            ToastUtils.showShort(context, "昵称输入有误");
+        if (Util.isNullOrBlank(nickname) || !StringUtils.isName(nickname) ) {
+            tv_error.setText("昵称输入有误");
             setMsg(info.getName());
         } else {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
             info2.setName(nickname);
 
-
-
             OnModelCallback<Object> back = new OnModelCallback<Object>() {
                 @Override
                 public void onModelSuccessed(Object o) {
-
+                    tv_error.setViewGone();
                 }
 
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getName());
                     LogUtils.e(TAG, "failed==" + failedMsg);
+                    tv_error.setText(failedMsg);
                 }
             };
             ModifyUserInfoLogic.doModifyUserInfo(sskey, info2, ModifyUserInfoLogic.MODIFY_NICK_NAME, back);
@@ -221,13 +221,13 @@ public class ModifyInfoETItemView extends LinearLayout {
     /**
      * 修改真实名字
      */
-    public void doModifyTruename() {
+    public void doModifyTruename(final ErrorTextView tv_error) {
         if (layout_two.getVisibility() != VISIBLE) return;
-        //如果点击其他取悦判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
+        //如果点击其他区域判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
         final String name = getEditTextStr();
         final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(name) || !StringUtils.isTrueName(name) || info.getTrue_name().equals(name)) {
-            ToastUtils.showShort(context, "姓名输入有误");
+        if (Util.isNullOrBlank(name) || !StringUtils.isTrueName(name) ) {
+            tv_error.setText("姓名输入有误");
             setMsg(info.getTrue_name());
         } else {
             String sskey = AccountManager.getInstance().getSskey();
@@ -239,11 +239,13 @@ public class ModifyInfoETItemView extends LinearLayout {
                 @Override
                 public void onModelSuccessed(Object o) {
                     setMsg(name);
+                    tv_error.setViewGone();
                 }
 
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getTrue_name());
+                    tv_error.setText(failedMsg);
                     LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };
@@ -256,30 +258,32 @@ public class ModifyInfoETItemView extends LinearLayout {
     /**
      * 修改QQ号码
      */
-    public void doModifyQQ() {
+    public void doModifyQQ(final ErrorTextView tv_error) {
         if (layout_two.getVisibility() != VISIBLE) return;
         //如果点击其他取悦判断是否有内容,如果有内容,则修改名字,如果没有内容,则不修改内容,
         final String qq = getEditTextStr();
         final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(qq) || info.getQq().equals(qq) || !StringUtils.isQQ(qq)) {
+        if (Util.isNullOrBlank(qq)  || !StringUtils.isQQ(qq)) {
             setMsg(info.getQq());
-            ToastUtils.showShort(context, "QQ号码输入有误");
+            tv_error.setText("QQ号码输入有误");
+
         } else {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
             info2.setQq(qq);
 
 
-
             OnModelCallback<Object> back = new OnModelCallback<Object>() {
                 @Override
                 public void onModelSuccessed(Object o) {
                     setMsg(qq);
+                    tv_error.setViewGone();
                 }
 
                 @Override
                 public void onModelFailed(String failedMsg) {
-                    setMsg(info.getTrue_name());
+                    setMsg(info.getQq());
+                    tv_error.setText(failedMsg);
                     LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };
@@ -292,14 +296,15 @@ public class ModifyInfoETItemView extends LinearLayout {
     /**
      * 修改通讯电话
      */
-    public void doModifyContactPhone() {
+    public void doModifyContactPhone(final ErrorTextView tv_error) {
         if (layout_two.getVisibility() != VISIBLE) return;
         //如果点击其他判断是否有内容,如果有内容,且符合手机号规则,则修改修改,如果没有内容,则不修改内容,
         final String phone = getEditTextStr();
         final UserInfo info = AccountManager.getInstance().getUserInfo();
-        if (Util.isNullOrBlank(phone) || info.getContact_phone().equals(phone) || !StringUtils.isPhoneNum(phone)) {
+        if (Util.isNullOrBlank(phone)  || !StringUtils.isPhoneNum(phone)) {
             setMsg(info.getContact_phone());
-            ToastUtils.showShort(context, "手机号码输入有误");
+            tv_error.setText("手机号码输入有误");
+
         } else {
             String sskey = AccountManager.getInstance().getSskey();
             final UserInfo info2 = new UserInfo();
@@ -309,11 +314,13 @@ public class ModifyInfoETItemView extends LinearLayout {
                 @Override
                 public void onModelSuccessed(Object o) {
                     setMsg(phone);
+                    tv_error.setViewGone();
                 }
 
                 @Override
                 public void onModelFailed(String failedMsg) {
                     setMsg(info.getContact_phone());
+                    tv_error.setText(failedMsg);
                     LogUtils.e(TAG, "failed==" + failedMsg);
                 }
             };

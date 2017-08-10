@@ -645,4 +645,18 @@ public class CommStants {
         int RESULT_OK = 0;
     }
 
+    /**
+     * (Cs)验证验证码是否正确
+     */
+    public interface VERIFY_MSG_CODE_RESULT {
+        /**
+         * 验证码正确
+         */
+        int RESULT_OK = 0;
+        /**
+         * * 验证码错误
+         */
+        int RESULT_ERROR = 1;
+    }
+
 }

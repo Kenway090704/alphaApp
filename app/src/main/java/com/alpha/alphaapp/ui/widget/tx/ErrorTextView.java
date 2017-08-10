@@ -23,6 +23,7 @@ public class ErrorTextView extends LinearLayout {
     private static final String TAG = "ErrorTextView";
     private Context context;
     private TextView tv_error;
+
     public ErrorTextView(Context context) {
         super(context);
         this.context = context;
@@ -47,11 +48,20 @@ public class ErrorTextView extends LinearLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.widget_error_hint_tv, this);
         tv_error = (TextView) view.findViewById(R.id.error_hint_tv);
     }
+
     public void setText(int strID) {
         tv_error.setText(strID);
+        setVisibility(VISIBLE);
     }
+
     public void setText(String str) {
         tv_error.setText(str);
+        setVisibility(VISIBLE);
     }
+
+    public void setViewGone() {
+        setVisibility(GONE);
+    }
+
 
 }

@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -27,7 +27,7 @@ import com.alpha.lib_sdk.app.tool.Util;
 
 public class RegisterPhoneActivity1 extends BaseActivity {
     private static final String TAG = "RegisterAccountActivity";
-    private LoginAccountEditText aet_phone;
+    private AccountEditText aet_phone;
     private ErrorTextView tv_error;
     private Button btn_getVerify;
 
@@ -38,7 +38,7 @@ public class RegisterPhoneActivity1 extends BaseActivity {
 
     @Override
     protected void initView() {
-        aet_phone = (LoginAccountEditText) findViewById(R.id.reg_phone_1_aet_phone);
+        aet_phone = (AccountEditText) findViewById(R.id.reg_phone_1_aet_phone);
         tv_error = (ErrorTextView) findViewById(R.id.reg_phone_1_tv_error);
         btn_getVerify = (Button) findViewById(R.id.reg_phone_1_btn_getverfify);
 
@@ -96,7 +96,6 @@ public class RegisterPhoneActivity1 extends BaseActivity {
                 } else {
                     //请求验证码,请求成功后进入第二个页面
                     doGetVerify(phone);
-                    RegisterPhoneActivity2.actionStart(RegisterPhoneActivity1.this, phone);
                 }
             }
 
@@ -138,7 +137,7 @@ public class RegisterPhoneActivity1 extends BaseActivity {
             aet_phone.getImageViewRight().setVisibility(View.INVISIBLE);
         } else {
             btn_getVerify.setEnabled(Boolean.TRUE);
-            btn_getVerify.setBackgroundResource(R.drawable.shape_bg_red);
+            btn_getVerify.setBackgroundResource(R.drawable.shape_com_bg_red);
             aet_phone.getImageViewRight().setVisibility(View.VISIBLE);
         }
         tv_error.setVisibility(View.INVISIBLE);

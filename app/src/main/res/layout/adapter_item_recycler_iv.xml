@@ -21,7 +21,7 @@
         android:layout_height="91dp"
         android:layout_gravity="center"
         android:button="@null"
-        android:background="@drawable/shape_iv_bg"
+        android:background="@drawable/shape_icon_red_bound"
         android:clickable="false"
         android:enabled="false"
         android:visibility="gone" />

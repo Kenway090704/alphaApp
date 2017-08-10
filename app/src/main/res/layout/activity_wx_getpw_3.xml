@@ -19,7 +19,7 @@
         app:txt_second="@string/insure_account"
         app:txt_third="@string/reset_pw" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/wx_getpw3_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

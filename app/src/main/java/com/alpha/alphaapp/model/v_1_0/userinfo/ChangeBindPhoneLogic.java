@@ -51,9 +51,8 @@ public class ChangeBindPhoneLogic {
      * @param back       GetPhoneVerify内部的CallBack
      */
     public static void doVerifyOldPhone(String sskey, String phone, String verifyCode, final OnModelCallback<Object> back) {
-        if (Util.isNullOrBlank(sskey) || Util.isNullOrBlank(phone) || Util.isNullOrBlank(verifyCode) || Util.isNull(back)) {
-            ToastUtils.showShort(EnvirenmentArgsHolder.getContext(), "旧手机验证失败");
-        }
+        if (Util.isNullOrBlank(sskey) || Util.isNullOrBlank(phone) || Util.isNullOrBlank(verifyCode) || Util.isNull(back))
+            return;
         String data = getJsonStrChangeBindPhone(sskey, phone, verifyCode);
         String json = JsonEncryptUtil.getPostJsonSignString(data);
         ReqCallBack<String> callBack = new ReqCallBack<String>() {

@@ -101,4 +101,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         custom:txt_item="@string/contact_addr" />
+    　
+
+
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
+        android:id="@+id/mine_info_tv_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 </LinearLayout>

@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
@@ -20,7 +19,6 @@ import com.alpha.alphaapp.model.v_1_0.userinfo.SetEnAccountLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.set.AccountSecurityActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -81,7 +79,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
 
                 } else {
                     btn_save.setEnabled(Boolean.TRUE);
-                    btn_save.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
 
                 }
                 if (Util.isNullOrBlank(aet_account.getEditTextStr())) {
@@ -112,7 +110,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
 
                 } else {
                     btn_save.setEnabled(Boolean.TRUE);
-                    btn_save.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
 
                 }
                 if (Util.isNullOrBlank(aet_pw.getEditTextStr())) {

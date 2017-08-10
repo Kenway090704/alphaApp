@@ -1,0 +1,46 @@
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/release/mapping.txt
+sha1=b904dd300053ef3c8c9d53227e2c67a66dac65cb
+appId=95a2a31773
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/productA/release/mapping.txt
+sha1=b904dd300053ef3c8c9d53227e2c67a66dac65cb
+appId=95a2a31773
+appChannel=productA
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/productB/release/mapping.txt
+sha1=b904dd300053ef3c8c9d53227e2c67a66dac65cb
+appId=95a2a31773
+appChannel=productB
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/baidu/release/mapping.txt
+sha1=b904dd300053ef3c8c9d53227e2c67a66dac65cb
+appId=95a2a31773
+appChannel=baidu
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/c360/release/mapping.txt
+sha1=b904dd300053ef3c8c9d53227e2c67a66dac65cb
+appId=95a2a31773
+appChannel=c360
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/uc/release/mapping.txt
+sha1=b904dd300053ef3c8c9d53227e2c67a66dac65cb
+appId=95a2a31773
+appChannel=uc
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/wandoujia/release/mapping.txt
+sha1=b904dd300053ef3c8c9d53227e2c67a66dac65cb
+appId=95a2a31773
+appChannel=wandoujia
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+

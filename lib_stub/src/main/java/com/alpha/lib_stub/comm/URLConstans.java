@@ -23,7 +23,6 @@ public class URLConstans {
     public static final String URL_ROOT = "http://192.168.199.102:8089/user/";
 
 
-
     /**
      * 获取省、市、县的url
      */
@@ -70,6 +69,11 @@ public class URLConstans {
          * 图片大小 300*300
          */
         String ICON300 = "http://cdn.gdalpha.com/icon/300/";
+
+        /**
+         * 默认头像
+         */
+        String ICON_DEFAULT = "http://cdn.gdalpha.com/icon/100/9901.jpg";
     }
 
     /**
@@ -93,11 +97,11 @@ public class URLConstans {
     /**
      * 获取商品goods图片的url
      */
-    public  interface  GOODS_PICTURE_URL{
+    public interface GOODS_PICTURE_URL {
         /**
-         *https://bms.gdalpha.com/Public/uploads/CoverImages/2017-06-19/Ci_8251149785560010000.jpg
+         * https://bms.gdalpha.com/Public/uploads/CoverImages/2017-06-19/Ci_8251149785560010000.jpg
          */
-        String GOODS_ICON="https://bms.gdalpha.com/";
+        String GOODS_ICON = "https://bms.gdalpha.com/";
     }
 
     public interface URL {
@@ -255,6 +259,10 @@ public class URLConstans {
          * (CJ)获取用户中心签到信息
          */
         String GET_SINGINFO = URL_ROOT + "getSignInfo";
+        /**
+         * (CS)验证验证码是否正确
+         */
+        String VERIFY_MSG_CODE = URL_ROOT + "checkVerify";
     }
 
 

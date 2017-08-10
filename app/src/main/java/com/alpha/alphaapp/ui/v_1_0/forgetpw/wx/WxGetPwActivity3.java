@@ -7,12 +7,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
@@ -23,7 +22,6 @@ import com.alpha.alphaapp.model.v_1_0.pw.ResetPwLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.login.LoginActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
-import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -37,7 +35,7 @@ public class WxGetPwActivity3 extends BaseActivity {
     public static final boolean BIND = true;
     public static final boolean UNBIND = false;
     private TitleLayout titleLayout;
-    private LoginAccountEditText aet_pw;
+    private AccountEditText aet_pw;
     private ErrorTextView tv_error;
     private Button btn_submit;
     private String accont;
@@ -56,7 +54,7 @@ public class WxGetPwActivity3 extends BaseActivity {
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.wx_getpw3_titlelayout);
 
-        aet_pw = (LoginAccountEditText) findViewById(R.id.wx_getpw3_aet_pw);
+        aet_pw = (AccountEditText) findViewById(R.id.wx_getpw3_aet_pw);
         tv_error = (ErrorTextView) findViewById(R.id.wx_getpw3_tv_error);
         btn_submit = (Button) findViewById(R.id.wx_getpw3_btn_submit);
 
@@ -88,7 +86,7 @@ public class WxGetPwActivity3 extends BaseActivity {
                     aet_pw.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
-                    btn_submit.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_submit.setBackgroundResource(R.drawable.shape_com_bg_red);
                     aet_pw.getImageViewRight().setVisibility(View.VISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);

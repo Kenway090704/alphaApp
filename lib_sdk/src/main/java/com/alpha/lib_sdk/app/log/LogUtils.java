@@ -244,9 +244,4 @@ public class LogUtils {
         return logInfoStringBuilder.toString();
     }
 
-
-    public  static  void  feature1(Object a){
-
-    }
-
 }

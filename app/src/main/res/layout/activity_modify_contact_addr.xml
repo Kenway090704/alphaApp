@@ -23,11 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView
-        android:id="@+id/mod_contact_addr_miiv_street"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        custom:txt_item="@string/street" />
+
 
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
@@ -39,7 +35,7 @@
         android:layout_height="@dimen/commom_heigth_144"
         android:background="@color/common_bg_white"
         android:orientation="horizontal"
-        android:visibility="gone">
+        >
 
         <EditText
             android:id="@+id/mod_contact_addr_et_detail"
@@ -53,4 +49,14 @@
             android:textColor="@color/common_tv_light_gray"
             android:textSize="@dimen/commom_tv_size_14" />
     </LinearLayout>
+    <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
+        android:id="@+id/mod_contact_addr_tv_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+    <Button
+        android:id="@+id/mod_contact_addr_btn_save"
+        style="@style/btn_one_com_gray"
+        android:text="@string/save"
+      />
 </LinearLayout>

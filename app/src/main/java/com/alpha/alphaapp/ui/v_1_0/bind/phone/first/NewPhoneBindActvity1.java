@@ -6,16 +6,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.verifycode.GetPhoneVerifyLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
-import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.lib_sdk.app.tool.Util;
 
@@ -27,7 +25,7 @@ import com.alpha.lib_sdk.app.tool.Util;
 public class NewPhoneBindActvity1 extends BaseActivity {
     private static final String TAG = "NewPhoneBindActvity1";
     private TitleLayout titleLayout;
-    private LoginAccountEditText et_phone;
+    private AccountEditText et_phone;
     private ErrorTextView tv_error;
     private Button btn_getVerify;
 
@@ -39,7 +37,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
     @Override
     protected void initView() {
         titleLayout = (TitleLayout) findViewById(R.id.phone_bind_1_titlelayout);
-        et_phone = (LoginAccountEditText) findViewById(R.id.phone_bind_1_aet_phone);
+        et_phone = (AccountEditText) findViewById(R.id.phone_bind_1_aet_phone);
         tv_error = (ErrorTextView) findViewById(R.id.phone_bind_1_tv_error);
         btn_getVerify = (Button) findViewById(R.id.phone_bind_1_btn_getVerify);
     }
@@ -64,7 +62,7 @@ public class NewPhoneBindActvity1 extends BaseActivity {
                     et_phone.getImageViewRight().setVisibility(View.INVISIBLE);
                 } else {
                     btn_getVerify.setEnabled(Boolean.TRUE);
-                    btn_getVerify.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_getVerify.setBackgroundResource(R.drawable.shape_com_bg_red);
                     et_phone.getImageViewRight().setVisibility(View.VISIBLE);
                 }
                 tv_error.setVisibility(View.INVISIBLE);

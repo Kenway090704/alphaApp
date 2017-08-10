@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.model.v_1_0.verifycode.VerifyMsgCodeLogic;
+import com.alpha.alphaapp.ui.v_1_0.register.phone.RegisterPhoneActivity2;
+import com.alpha.alphaapp.ui.v_1_0.register.phone.RegisterPhoneActivity3;
 import com.alpha.alphaapp.ui.widget.et.EmptyVerifyEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_stub.comm.TypeConstants;
@@ -81,7 +85,24 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }
-                PhoneGetPwActivity3.actionStart(PhoneGetPwActivity2.this, phone, ivet.getEditTextStr());
+
+                //验证验证码是否正确
+                OnModelCallback<Object> callback=new OnModelCallback<Object>() {
+                    @Override
+                    public void onModelSuccessed(Object o) {
+                        //进入第三页
+                        PhoneGetPwActivity3.actionStart(PhoneGetPwActivity2.this, phone, ivet.getEditTextStr());
+
+                    }
+
+                    @Override
+                    public void onModelFailed(String failedMsg) {
+                        tv_error.setText(failedMsg);
+                        tv_error.setVisibility(View.VISIBLE);
+                    }
+                };
+                VerifyMsgCodeLogic.doVerigyMsgCode(phone,ivet.getEditTextStr(), TypeConstants.GET_VERIFY_TYPE.GET_PW,callback);
+
             }
         });
     }
@@ -126,7 +147,7 @@ public class PhoneGetPwActivity2 extends BaseActivity implements TextWatcher {
             ivet.getImageViewRight().setVisibility(View.INVISIBLE);
         } else {
             btn_resetpw.setEnabled(Boolean.TRUE);
-            btn_resetpw.setBackgroundResource(R.drawable.shape_bg_red);
+            btn_resetpw.setBackgroundResource(R.drawable.shape_com_bg_red);
             ivet.getImageViewRight().setVisibility(View.VISIBLE);
         }
         tv_error.setVisibility(View.INVISIBLE);

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/bind_phone_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

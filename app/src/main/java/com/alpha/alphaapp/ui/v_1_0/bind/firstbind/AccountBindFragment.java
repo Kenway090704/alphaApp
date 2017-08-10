@@ -11,7 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
@@ -33,8 +33,8 @@ import com.alpha.lib_sdk.app.tool.Util;
 
 public class AccountBindFragment extends BaseFragment {
     private static final String TAG = "AccountBindFragment";
-    private LoginAccountEditText et_account;
-    private LoginAccountEditText et_pw;
+    private AccountEditText et_account;
+    private AccountEditText et_pw;
     private Button btn_submit;
     private ErrorTextView tv_error;
     private TextView tv_no_bind;
@@ -54,8 +54,8 @@ public class AccountBindFragment extends BaseFragment {
 
     @Override
     protected void initViews(View root) {
-        et_account = (LoginAccountEditText) root.findViewById(R.id.bind_ac_aet_accout);
-        et_pw = (LoginAccountEditText) root.findViewById(R.id.bind_ac_aet_pw);
+        et_account = (AccountEditText) root.findViewById(R.id.bind_ac_aet_accout);
+        et_pw = (AccountEditText) root.findViewById(R.id.bind_ac_aet_pw);
         tv_error = (ErrorTextView) root.findViewById(R.id.bind_ac_tv_error);
         btn_submit = (Button) root.findViewById(R.id.bind_ac_btn_submit);
         tv_no_bind = (TextView) root.findViewById(R.id.bind_ac_tv_no_bind);
@@ -105,7 +105,7 @@ public class AccountBindFragment extends BaseFragment {
                     btn_submit.setBackgroundResource(R.drawable.shape_com_bg_gray);
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
-                    btn_submit.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_submit.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
                 if (Util.isNullOrBlank(et_account.getEditTextStr())) {
                     et_account.getImageViewRight().setVisibility(View.INVISIBLE);
@@ -134,7 +134,7 @@ public class AccountBindFragment extends BaseFragment {
 
                 } else {
                     btn_submit.setEnabled(Boolean.TRUE);
-                    btn_submit.setBackgroundResource(R.drawable.shape_bg_red);
+                    btn_submit.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
 
                 if (Util.isNullOrBlank(et_pw.getEditTextStr())) {

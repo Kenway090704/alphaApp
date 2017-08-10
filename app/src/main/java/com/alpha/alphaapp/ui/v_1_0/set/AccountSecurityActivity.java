@@ -95,15 +95,15 @@ public class AccountSecurityActivity extends AccountChangeActivity {
             abi_alpha.setMsg(info.getAccount());
             abi_alpha.setRightTxtAndBg("已绑定", R.drawable.shape_com_bg_gray);
         } else {
-            abi_alpha.setRightTxtAndBg("立即设置", R.drawable.shape_bg_red);
+            abi_alpha.setRightTxtAndBg("立即设置", R.drawable.shape_com_bg_red);
         }
         //信息中没有绑定手机号
         if (!Util.isNullOrBlank(info.getMobile())) {
             abi_phone.setMsg(info.getMobile());
-            abi_phone.setRightTxtAndBg("更改绑定", R.drawable.shape_bg_red);
-            abi_phoneeditpw.setRightTxtAndBg("修改", R.drawable.shape_bg_red);
+            abi_phone.setRightTxtAndBg("更改绑定", R.drawable.shape_com_bg_red);
+            abi_phoneeditpw.setRightTxtAndBg("修改", R.drawable.shape_com_bg_red);
         } else {
-            abi_phone.setRightTxtAndBg("绑定", R.drawable.shape_bg_red);
+            abi_phone.setRightTxtAndBg("绑定", R.drawable.shape_com_bg_red);
             abi_phoneeditpw.setRightTxtAndBg("未绑定手机", R.drawable.shape_com_bg_gray);
         }
         //微信这里要使用getName,现在使用openid
@@ -111,16 +111,16 @@ public class AccountSecurityActivity extends AccountChangeActivity {
             abi_wx.setMsg(info.getOpenid_weixin());
             abi_wx.setRightTxtAndBg("已绑定", R.drawable.shape_com_bg_gray);
         } else {
-            abi_wx.setRightTxtAndBg("绑定", R.drawable.shape_bg_red);
+            abi_wx.setRightTxtAndBg("绑定", R.drawable.shape_com_bg_red);
         }
         if (!Util.isNullOrBlank(info.getOpenid_qq())) {
             abi_qq.setMsg(info.getOpenid_qq());
             abi_qq.setRightTxtAndBg("已绑定", R.drawable.shape_com_bg_gray);
         } else {
-            abi_qq.setRightTxtAndBg("绑定", R.drawable.shape_bg_red);
+            abi_qq.setRightTxtAndBg("绑定", R.drawable.shape_com_bg_red);
         }
         if (!Util.isNullOrBlank(info.getMobile()) || !Util.isNullOrBlank(info.getAccount())) {
-            abi_pweditpw.setRightTxtAndBg("修改", R.drawable.shape_bg_red);
+            abi_pweditpw.setRightTxtAndBg("修改", R.drawable.shape_com_bg_red);
         } else {
             abi_pweditpw.setRightTxtAndBg("未绑定帐号", R.drawable.shape_com_bg_gray);
         }
@@ -215,6 +215,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
 
             @Override
             public void onQQAuthFailed(String failedMsg) {
+
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
@@ -292,5 +293,6 @@ public class AccountSecurityActivity extends AccountChangeActivity {
     @Override
     public void onAccountUpdate(UserInfo info) {
         setUIData(info);
+        initListener();
     }
 }

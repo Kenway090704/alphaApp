@@ -29,7 +29,6 @@ public class HomeActivity extends BaseFragmentActivity {
 
     @Override
     protected int getLayoutId() {
-        LogUtils.e("我是测试的log");
         return R.layout.activity_home;
     }
     @Override

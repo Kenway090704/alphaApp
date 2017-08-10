@@ -100,7 +100,13 @@ public class MineFragment extends AccountChangeFragment {
     private void updateUI(UserInfo info) {
         if (!Util.isNull(info)) {
             //使用Glide展示图片
-            ImageLoader.loadCircle(getActivity(), URLConstans.GET_ICON.ICON60 + info.getIcon(), riv_icon);
+            if (Util.isNullOrBlank(info.getIcon())) {
+                ImageLoader.loadCircle(getActivity(), URLConstans.GET_ICON.ICON_DEFAULT, riv_icon);
+            } else {
+                ImageLoader.loadCircle(getActivity(), URLConstans.GET_ICON.ICON60 + info.getIcon(), riv_icon);
+            }
+
+
         }
         //如果是微信/QQ登录,使用为微信或者QQ的昵称,如果是手机或者帐号登录,先判断是否有
         if (AccountManager.getInstance().getLoginType() == TypeConstants.LOGIN_TYPE.AUTH_QQ || AccountManager.getInstance().getLoginType() == TypeConstants.LOGIN_TYPE.AUTH_WX) {
@@ -114,9 +120,9 @@ public class MineFragment extends AccountChangeFragment {
 
             if (!Util.isNullOrBlank(info.getName())) {
                 tv_name.setText(info.getName());
-            }else  if (!Util.isNullOrBlank(info.getMobile())){
+            } else if (!Util.isNullOrBlank(info.getMobile())) {
                 tv_name.setText(info.getMobile());
-            }else if (!Util.isNullOrBlank(info.getAccount())){
+            } else if (!Util.isNullOrBlank(info.getAccount())) {
                 tv_name.setText(info.getAccount());
             }
         }

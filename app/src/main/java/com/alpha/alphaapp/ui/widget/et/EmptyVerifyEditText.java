@@ -43,7 +43,7 @@ public class EmptyVerifyEditText extends LinearLayout {
 
     private void initViews() {
         cmd = new CountDownManager();
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_empty_verify_et, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.widget_et_empty_verify, this);
         iv_del = (ImageView) view.findViewById(R.id.verify_edit_iv_del);
         et = (EditText) view.findViewById(R.id.verify_edit_et);
         tv_getVerify = (TextView) view.findViewById(R.id.verify_edit_tv_getVerify);
@@ -143,6 +143,6 @@ public class EmptyVerifyEditText extends LinearLayout {
         if (!Util.isNull(cmd))
             cmd.cancel();
         if (!Util.isNull(tv_getVerify))
-            tv_getVerify.setBackgroundResource(R.drawable.shape_bg_red);
+            tv_getVerify.setBackgroundResource(R.drawable.shape_com_bg_red);
     }
 }

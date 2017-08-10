@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/log_fast_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -2,10 +2,12 @@ package com.alpha.alphaapp.model.v_1_0.login;
 
 import android.app.Activity;
 
+import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_sdk.app.protocols.StorageConstants;
 import com.alpha.lib_stub.comm.TypeConstants;
@@ -347,11 +349,11 @@ public class LoginLogic {
                 //帐号或者密码错误
                 if (!Util.isNull(callback))
 //                    listener.onLoginFailed(info.getMsg());
-                    callback.onModelFailed("帐号或者密码错误,请重新输入。");
+                    callback.onModelFailed(ResourceUtil.resToStr(R.string.account_or_pw_error));
                 break;
             case CommStants.LOGIN_RESULT.RESULT_VERIFY_ERROR_OR_EMPTY:
                 if (!Util.isNull(callback))
-                    callback.onModelFailed(info.getMsg());
+                    callback.onModelFailed(ResourceUtil.resToStr(R.string.verify_input_error));
                 break;
             default:
                 if (!Util.isNull(callback))

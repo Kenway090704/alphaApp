@@ -8,9 +8,9 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="46.5dp"
+        android:layout_height="@dimen/commom_height_46"
         android:layout_gravity="center"
-        android:layout_marginTop="22.5dp"
+        android:layout_marginTop="@dimen/commom_margin_22"
         android:src="@drawable/alpha_logo" />
 
     <RelativeLayout
@@ -21,6 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/common_bg_light_gray"
             android:orientation="horizontal">
 
             <com.alpha.alphaapp.anim.GifView

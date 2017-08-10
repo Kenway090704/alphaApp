@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.alpha.lib_sdk.app.tool.DateUtils;
 import com.alpha.lib_sdk.app.tool.FileUtils;
+import com.alpha.lib_sdk.app.tool.Util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,20 +34,19 @@ public class LogCatch {
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {// 优先保存到SD卡中
             PATH_LOGCAT = FileUtils.DIR_LOG.getAbsolutePath();//app中的log 包  /storage/sdcard0/aofei/log
-            LogUtils.d(TAG, "path1 = " + PATH_LOGCAT);
         } else {// 如果SD卡不存在，就保存到本应用的目录下
             PATH_LOGCAT = context.getFilesDir().getAbsolutePath()
                     + File.separator + logdir;
-            LogUtils.d(TAG, "path2 = " + PATH_LOGCAT);
         }
         File file = new File(PATH_LOGCAT);
 
         if (!file.exists()) {
             file.mkdirs();
-            LogUtils.d(TAG, "mkdir");
         } else {
             LogUtils.d(TAG, "dir exists");
         }
+//
+        deleteOtherFile(PATH_LOGCAT, GetFileInfo());
     }
 
     public String GetFileInfo() {
@@ -92,9 +92,14 @@ public class LogCatch {
         public LogDumper(String pid, String dir) {
             mPID = pid;
             try {
-                //主要是让日志添加,不是每次开启都删除
+                //true,主要是让日志添加,不是每次开启都删除
                 out = new FileOutputStream(new File(dir, logdir + "-"
                         + DateUtils.getFileName() + ".log"), true);
+
+
+                //删除其他的文件
+
+
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
 //                e.printStackTrace();
@@ -107,7 +112,7 @@ public class LogCatch {
              * 显示当前mPID程序的 E和W等级的日志.
              * 只打印e级别的日志
              */
-            cmds = "logcat *:e  | grep \"(" + mPID + ")\"";
+              cmds = "logcat *:e  | grep \"(" + mPID + ")\"";
 //            cmds = "logcat  | grep \"(" + mPID + ")\"";//打印所有日志信息
             // cmds = "logcat -s way";//打印标签过滤信息
             //cmds = "logcat *:e *:i | grep \"(" + mPID + ")\"";
@@ -158,12 +163,37 @@ public class LogCatch {
                         out.close();
                     } catch (IOException e) {
                         /**使用方法*/
-                        LogUtils.e(TAG, Log.getStackTraceString(e));
+                        LogUtils.e(Log.getStackTraceString(e));
 //                        e.printStackTrace();
                     }
                     out = null;
                 }
 
+            }
+        }
+    }
+
+    /**
+     * 删除前一天log文档,只保留当天log文档
+     *
+     * @param fileAbsolutePath
+     * @param
+     */
+    public static void deleteOtherFile(String fileAbsolutePath, String todayFilePath) {
+        //PATH_LOGCAT==/storage/emulated/0/alphaApp/log,todayFilePath===/storage/emulated/0/alphaApp/log/log-2017-08-08.log
+
+        File file = new File(fileAbsolutePath);
+        File[] subFile = file.listFiles();
+
+        if (Util.isNull(subFile) ) return;
+        for (int iFileLength = 0; iFileLength < subFile.length; iFileLength++) {
+            // 判断是否为文件夹
+            if (!subFile[iFileLength].isDirectory()) {
+                String filePath = subFile[iFileLength].getAbsolutePath();
+                // 判断是否为MP4结尾
+                if (!filePath.trim().toLowerCase().equals(todayFilePath)) {
+                    subFile[iFileLength].delete();
+                }
             }
         }
     }

@@ -2,7 +2,6 @@ package com.alpha.alphaapp.ui.widget.et;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -81,7 +80,7 @@ public class EmptyEditText extends LinearLayout {
     }
 
     private void initViews() {
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_no_icon_et, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.widget_et_no_icon, this);
 
         et = (EditText) view.findViewById(R.id.acc_edit_et_hint);
         iv_del = (ImageView) view.findViewById(R.id.acc_edit_iv_del);

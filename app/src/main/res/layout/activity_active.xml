@@ -31,6 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/shape_bg_red"
+        android:background="@drawable/shape_com_bg_red"
         android:text="@string/now_active" />
 </LinearLayout>

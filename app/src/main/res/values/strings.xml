@@ -12,13 +12,13 @@
     <string name="account_register">帐号注册</string>
     <string name="phone_register">手机号注册</string>
     <string name="user_agreement_alpha">用户协议-奥飞</string>
-    <string name="input_alpha_account">输入奥飞帐号</string>
+    <string name="input_alpha_account">输入奥飞账号</string>
     <string name="set_pw_register_success">设置密码,注册成功</string>
     <string name="register_and_login">注册并登录</string>
     <string name="register_and_agree">注册即同意</string>
     <string name="alpha_rules">奥飞用户协议</string>
-    <string name="alpha_account">奥飞帐号</string>
-    <string name="already_has_account">已有帐号</string>
+    <string name="alpha_account">奥飞账号</string>
+    <string name="already_has_account">已有账号</string>
     <string name="register_one_account_can_user_for_all">注册一号通行奥飞旗下产品</string>
     <string name="get_verify">获取验证码</string>
     <string name="input_pw">输入密码</string>
@@ -39,17 +39,20 @@
     <string name="get_msg_verify">获取短信验证码</string>
 
     <!--登录页面-->
-    <string name="alpha_account_or_phonenumber">奥飞帐号\\\ 手机号</string>
+    <string name="alpha_account_or_phonenumber">奥飞账号\\\ 手机号</string>
     <string name="pw">密码</string>
     <string name="forget_pw">忘记密码</string>
     <string name="login">登录</string>
     <string name="account_or_verify_error">手机号或者验证码格式不正确</string>
     <string name="user_auth_login">使用其他登录方式</string>
     <string name="logining">努力登录中...</string>
+    <string name="verify_input_error">验证码输入错误</string>
+    <string name="account_or_pw_error">帐号或者密码输入错误</string>
+
 
     <!--Settings Activity-->
     <string name="settings">设置</string>
-    <string name="settings_account_bind_set">帐号和绑定设置</string>
+    <string name="settings_account_bind_set">账号和绑定设置</string>
     <string name="feedback">意见反馈</string>
     <string name="wel_comment">欢迎评分</string>
     <string name="about_us">关于我们</string>
@@ -88,18 +91,18 @@
     <string name="en_account_set">英文帐号设置</string>
     <string name="save">保存</string>
 
-    <string name="set_en_account_sucess">英文帐号设置成功</string>
-    <string name="you_use_account_login">可使用该英文帐号进行登录</string>
+    <string name="set_en_account_sucess">英文账号设置成功</string>
+    <string name="you_use_account_login">可使用该英文账号进行登录</string>
     <!--bind-->
-    <string name="bind_had_account">关联已有帐号</string>
-    <string name="no_bind">暂不关联,直接创建新帐号</string>
+    <string name="bind_had_account">关联已有账号</string>
+    <string name="no_bind">暂不关联,直接创建新账号</string>
     <string name="submit">提交</string>
 
     <string name="insure_bind_">确定关联</string>
     <string name="this_account">该帐号么?</string>
     <string name="bind_success">绑定成功</string>
     <string name="you_use_wechat_phone_login">可用该手机号或者微信号登录</string>
-    <string name="you_use_wechat_account_login">可用该帐号或者微信号登录</string>
+    <string name="you_use_wechat_account_login">可用该账号或者微信号登录</string>
     <!--phone bind-->
     <string name="phone_bind">手机号绑定</string>
     <string name="you_use_phone_login">可用绑定的手机号登录</string>
@@ -110,7 +113,7 @@
     <string name="by_bind_phone_get">通过绑定的手机号找回</string>
     <string name="by_bind_wx_get">通过绑定的微信找回</string>
 
-    <string name="insure_account">确认帐号</string>
+    <string name="insure_account">确认账号</string>
     <string name="verify_msg">验证身份</string>
     <string name="reset_pw">重设密码</string>
     <string name="get_phone_verify">获取手机验证码</string>
@@ -119,13 +122,13 @@
     <string name="plz_next_login_use_new_pw">请下次登录时使用新密码</string>
     <string name="return_login_ac">返回登录页面</string>
     <string name="insure">确认</string>
-    <string name="look_wx_bind_account">查看绑定的英文帐号</string>
-    <string name="wx_no_login_alpha">该微信号未登录过奥飞用户中心,请登录后在帐号设置中,设置帐号再进行相关操作。</string>
+    <string name="look_wx_bind_account">查看绑定的英文账号</string>
+    <string name="wx_no_login_alpha">该微信号未登录过奥飞用户中心,请登录后在账号设置中,设置账号再进行相关操作。</string>
     <string name="wx_has_login_alpha">该微信号已注册为奥飞用户</string>
     <string name="now_login_set">立即登录设置</string>
-    <string name="if_reset_pw_for_the_account">如确认为该帐号重设密码,请点击下方按钮</string>
-    <string name="account_alpha_format">奥飞帐号(小写字母为开头,6-12位字符)</string>
-    <string name="your_alpha_account_format">您的奥飞英文帐号为:</string>
+    <string name="if_reset_pw_for_the_account">如确认为该账号重设密码,请点击下方按钮</string>
+    <string name="account_alpha_format">奥飞账号(小写字母为开头,6-12位字符)</string>
+    <string name="your_alpha_account_format">您的奥飞英文账号为:</string>
     <string name="we_already">我们已经向</string>
     <string name="send_phone_verify_plz_look">下发了手机验证码,请及时查收并输入</string>
     <string name="pw_isnot_empty">密码不能为空</string>

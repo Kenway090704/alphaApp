@@ -18,7 +18,7 @@
         app:txt_first="@string/verify_msg"
         app:txt_second="@string/input_verify" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/phone_bind_1_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

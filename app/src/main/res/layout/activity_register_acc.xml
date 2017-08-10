@@ -19,13 +19,13 @@
         app:txt_first="@string/input_alpha_account"
         app:txt_second="@string/set_pw_register_success" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/reg_account_aet_acc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hint="@string/account_alpha_format" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/reg_account_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         app:icon_type="@drawable/icon_password"
         app:input_type="password" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/reg_account_aet_insurepw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

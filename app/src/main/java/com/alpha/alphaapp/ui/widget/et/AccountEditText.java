@@ -25,12 +25,12 @@ import com.alpha.lib_sdk.app.tool.Util;
 public class AccountEditText extends LinearLayout {
     private static final String TAG = "AccountEditText";
     private Context context;
-
     private EditText et;
     private ImageView iv_del, iv_icon;
     private Drawable icon_left;
     private String txt_hint;
     private String input_type;
+    private boolean isHasIcon;
 
 
     public AccountEditText(Context context) {
@@ -82,26 +82,17 @@ public class AccountEditText extends LinearLayout {
         return et;
     }
 
-    /**
-     * 清楚输入框的文字
-     */
-    public void clear() {
-        if (!Util.isNull(et)) {
-            et.getText().clear();
-        }
-    }
-
-
     private void initViews() {
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_account_et, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.widget_et_login, this);
         iv_icon = (ImageView) view.findViewById(R.id.acc_edit_iv_lock);
         et = (EditText) view.findViewById(R.id.acc_edit_et_hint);
         iv_del = (ImageView) view.findViewById(R.id.acc_edit_iv_del);
+        //没有左边的图标的时候不显示图标,et距离左边变为30dp
+
         if (!Util.isNull(icon_left))
             iv_icon.setImageDrawable(icon_left);
         if (!Util.isNullOrBlank(txt_hint))
             et.setHint(txt_hint);
-
         if (!Util.isNull(input_type))
             et.setTransformationMethod(PasswordTransformationMethod.getInstance());
         iv_del.setOnClickListener(new OnClickListener() {

@@ -49,6 +49,7 @@
     <dimen name="commom_height_23">23dp</dimen>
     <dimen name="commom_height_35">35dp</dimen>
     <dimen name="commom_btn_height_40">40dp</dimen>
+    <dimen name="commom_height_46">46dp</dimen>
     <dimen name="commom_height_48">48dp</dimen>
     <dimen name="commom_height_54">54dp</dimen>
     <dimen name="commom_heigth_55">55dp</dimen>

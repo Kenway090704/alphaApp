@@ -13,7 +13,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.v_1_0.set.AccountSecurityActivity;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
-import com.alpha.alphaapp.ui.widget.et.LoginAccountEditText;
+import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.pw.ModifyPwdLogic;
@@ -28,7 +28,7 @@ import com.alpha.lib_sdk.app.tool.Util;
 
 public class ModifyPwByPhoneActivity3 extends BaseActivity implements TextWatcher {
     private static final String TAG = "ModifyPwByPhoneActivity3";
-    private LoginAccountEditText et_pw;
+    private AccountEditText et_pw;
     private ErrorTextView tv_error;
     private Button btn_save;
     private String phone, verify;
@@ -47,7 +47,7 @@ public class ModifyPwByPhoneActivity3 extends BaseActivity implements TextWatche
     protected void initView() {
         TitleLayout titleLayout = (TitleLayout) findViewById(R.id.modify_pbph3_titlelayou);
         titleLayout.setTitleText(R.string.has_bind_phone_edit_pw);
-        et_pw = (LoginAccountEditText) findViewById(R.id.modify_pbph3_et_pw);
+        et_pw = (AccountEditText) findViewById(R.id.modify_pbph3_et_pw);
         tv_error = (ErrorTextView) findViewById(R.id.modify_pbph3_tv_error);
         btn_save = (Button) findViewById(R.id.modify_pbph3_btn_save);
         dialog = DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success, R.string.plz_next_login_use_new_pw, new View.OnClickListener() {
@@ -61,7 +61,7 @@ public class ModifyPwByPhoneActivity3 extends BaseActivity implements TextWatche
                 finish();
             }
         });
-        dialog.show();
+
     }
 
     @Override
@@ -132,7 +132,7 @@ public class ModifyPwByPhoneActivity3 extends BaseActivity implements TextWatche
 
         } else {
             btn_save.setEnabled(Boolean.TRUE);
-            btn_save.setBackgroundResource(R.drawable.shape_bg_red);
+            btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
         }
         tv_error.setVisibility(View.INVISIBLE);
     }

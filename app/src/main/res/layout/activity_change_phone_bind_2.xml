@@ -20,7 +20,7 @@
         app:txt_second="@string/submit_bind_phone"
         app:txt_third="@string/success_bind_phone_number" />
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/change_phone_bind_2_aet_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

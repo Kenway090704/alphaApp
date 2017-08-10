@@ -44,8 +44,7 @@
 
 
     <!--自定义滚动tab-->
-    <attr name="item_count" format="integer"></attr>
-
+    <attr name="item_count" format="integer"/>
     <declare-styleable name="ViewPagerIndicator">
         <attr name="item_count" />
     </declare-styleable>

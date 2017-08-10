@@ -6,7 +6,7 @@
     android:background="@color/common_bg_light_gray"
     android:orientation="vertical">
 
-    <com.alpha.alphaapp.ui.widget.et.LoginAccountEditText
+    <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/log_ac_aet_accout"
         android:layout_width="match_parent"
         android:layout_height="54dp"

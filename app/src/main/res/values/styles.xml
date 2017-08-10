@@ -65,7 +65,7 @@
 
     <style name="btn_com_white">
         <item name="android:layout_height">@dimen/commom_btn_height_40</item>
-        <item name="android:background">@color/common_bg_white</item>
+        <item name="android:background">@drawable/shape_com_bg_white</item>
         <item name="android:textSize">@dimen/commom_tv_size_18</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
@@ -81,6 +81,7 @@
         <item name="android:textSize">@dimen/commom_tv_size_18</item>
         <item name="android:textColor">@color/common_tv_white</item>
     </style>
+
     <style name="btn_one_com_red">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/commom_btn_height_40</item>
@@ -104,7 +105,7 @@
         <item name="android:textColor">@color/common_tv_dark_gray</item>
         <item name="android:textSize">@dimen/commom_tv_size_18</item>
     </style>
-   <!--资料设置页中的又边箭头-->
+    <!--资料设置页中的又边箭头-->
     <style name="mine_next">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -113,6 +114,7 @@
         <item name="android:textColor">@color/common_tv_dark_gray</item>
         <item name="android:src">@drawable/mine_set_next_2</item>
     </style>
+
     <style name="mine_left_item">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
@@ -129,9 +131,6 @@
         <item name="android:textColor">@color/common_tv_dark_gray</item>
         <item name="android:textSize">@dimen/commom_tv_size_14</item>
     </style>
-
-
-
 
 
     <!--dialog_custom样式-->
@@ -184,6 +183,7 @@
 
 
     </style>
+
     <style name="BottomToTopAnim" parent="android:Animation">
         <item name="@android:windowEnterAnimation">@anim/anim_bottomview_enter</item>
         <item name="@android:windowExitAnimation">@anim/anim_bottomview_exit</item>
@@ -203,6 +203,7 @@
     <style name="login_tab_txtSize">
         <item name="android:textSize">12sp</item>
     </style>
+
     <style name="Widget_GifView"></style>
 
 

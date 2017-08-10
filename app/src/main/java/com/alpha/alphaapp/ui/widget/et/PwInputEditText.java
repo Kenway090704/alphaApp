@@ -59,7 +59,7 @@ public class PwInputEditText extends LinearLayout {
     }
 
     private void initViews() {
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_pwinput_et, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.widget_et_pwinput, this);
         iv_left = (ImageView) view.findViewById(R.id.pw_edit_iv_lock);
         et = (EditText) view.findViewById(R.id.pw_edit_et_hint);
         iv_del = (ImageView) view.findViewById(R.id.pw_edit_iv_del);
