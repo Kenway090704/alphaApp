@@ -49,7 +49,7 @@ public class PhoneGetPwActivity3 extends BaseActivity {
         aet_pw = (AccountEditText) findViewById(R.id.phone_get_pw_3_aet_pw);
         tv_error = (ErrorTextView) findViewById(R.id.phone_get_pw_3_tv_error);
         btn_submit = (Button) findViewById(R.id.phone_get_pw_3_btn_submit);
-        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success,R.string.return_login_ac, new View.OnClickListener() {
+        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success,R.string.plz_use_new_login_now, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginActivity.actionStartClearStack(PhoneGetPwActivity3.this, null, null);

@@ -196,8 +196,8 @@ public class MineInfoActivity extends AccountChangeActivity {
 
                     @Override
                     public void onModelFailed(String failedMsg) {
-                        LogUtils.e(TAG, "failedMsg==" + failedMsg);
-                        ToastUtils.showToast(MineInfoActivity.this, failedMsg);
+                        LogUtils.e(failedMsg);
+
                     }
                 };
 

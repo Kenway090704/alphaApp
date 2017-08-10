@@ -125,11 +125,15 @@
     </style>
 
     <style name="mine_mid_tv">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginRight">@dimen/commom_margin_13</item>
+        <item name="android:layout_marginLeft">@dimen/commom_margin_13</item>
         <item name="android:textColor">@color/common_tv_dark_gray</item>
+        <item name="android:singleLine">true</item>
         <item name="android:textSize">@dimen/commom_tv_size_14</item>
+        <item name="android:gravity">right|center_vertical</item>
     </style>
 
 

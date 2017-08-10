@@ -152,7 +152,8 @@ public class ShipingAddrAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             @Override
             public void onModelFailed(String failedMsg) {
-                ToastUtils.showLong(context, failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         });
     }
@@ -179,7 +180,8 @@ public class ShipingAddrAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     public void onModelFailed(String failedMsg) {
                         if (!Util.isNull(dialog) && dialog.isShowing())
                             dialog.dismiss();
-                        ToastUtils.showShort(context, failedMsg);
+                        LogUtils.e(failedMsg);
+
                     }
                 });
             }

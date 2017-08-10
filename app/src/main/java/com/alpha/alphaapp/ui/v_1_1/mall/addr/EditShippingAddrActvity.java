@@ -19,6 +19,7 @@ import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
@@ -193,14 +194,17 @@ public class EditShippingAddrActvity extends BaseActivity {
 
         //1.判断是否有收货人
         if (Util.isNullOrBlank(et_name.getText().toString())) {
-            ToastUtils.showLong(EditShippingAddrActvity.this, "收货人不能为空");
+
+            LogUtils.e("收货人不能为空");
+
             return;
         } else {
             bean.setName(et_name.getText().toString());
         }
         // 2.判断电话号码是否正确
         if (!StringUtils.isPhoneNum(et_phone.getText().toString())) {
-            ToastUtils.showLong(EditShippingAddrActvity.this, "请填写11位有效手机号");
+            LogUtils.e("请填写11位有效手机号");
+
             return;
         } else {
             bean.setMobile(et_phone.getText().toString());
@@ -208,19 +212,21 @@ public class EditShippingAddrActvity extends BaseActivity {
 
         // 3.判断是否选择的区域不为空
         if (tv_area.getText().toString().length() < 3 || tv_area.getText().toString().length() == 3) {
-            ToastUtils.showLong(EditShippingAddrActvity.this, "请选择省市区");
+
+            LogUtils.e( "请选择省市区");
             return;
         }
         // 4.判断邮编是否为空
         if (!StringUtils.isPost_Code(et_postcode.getText().toString())) {
-            ToastUtils.showLong(EditShippingAddrActvity.this, "请填写邮编");
+            LogUtils.e("请填写邮编");
             return;
         } else {
             bean.setPost_code(et_postcode.getText().toString());
         }
         //5.详细地址不小于5个字
         if (et_detail.getText().toString().length() < 5) {
-            ToastUtils.showLong(EditShippingAddrActvity.this, "详细地址信息要大于5个字");
+            LogUtils.e("详细地址信息要大于5个字");
+
             return;
         } else {
             bean.setAddr_detail(et_detail.getText().toString());
@@ -238,14 +244,15 @@ public class EditShippingAddrActvity extends BaseActivity {
             @Override
             public void onModelSuccessed(Object o) {
                 //回到管理收货地址页面并Toast
-                ToastUtils.showShort(EditShippingAddrActvity.this, "修改地址成功");
+
                 finish();
             }
 
             @Override
             public void onModelFailed(String failedMsg) {
                 //Toast失败信息
-                ToastUtils.showShort(EditShippingAddrActvity.this, failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         });
 

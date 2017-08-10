@@ -74,7 +74,7 @@ public class MineFragment extends AccountChangeFragment {
             public void onClick(View v) {
                 //进入签到页面
 //                SignActivity.actionStart(getActivity());
-                ToastUtils.showShort(getActivity(), "进入到签到界面");
+
                 //进入到demo页面
 //              StaggerActivity.actionStart(getActivity());
             }

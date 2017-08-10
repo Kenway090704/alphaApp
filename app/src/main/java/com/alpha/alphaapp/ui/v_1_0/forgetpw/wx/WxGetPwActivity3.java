@@ -13,6 +13,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
@@ -58,7 +59,7 @@ public class WxGetPwActivity3 extends BaseActivity {
         tv_error = (ErrorTextView) findViewById(R.id.wx_getpw3_tv_error);
         btn_submit = (Button) findViewById(R.id.wx_getpw3_btn_submit);
 
-        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success,R.string.return_login_ac, new View.OnClickListener() {
+        dialog= DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success,R.string.plz_use_new_login_now, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginActivity.actionStartClearStack(WxGetPwActivity3.this, null, null);
@@ -138,7 +139,8 @@ public class WxGetPwActivity3 extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                ToastUtils.showToast(WxGetPwActivity3.this,failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         };
         ResetPwLogic.doResetPw(accont, pw, call);

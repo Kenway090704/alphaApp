@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
@@ -85,7 +86,8 @@ public class GetPCityAreaLogic {
                 .setOutSideCancelable(true)// default is true
                 .build();
         if (options1Items.size() == 0 || options2Items.size() == 0 || options3Items.size() == 0) {
-            ToastUtils.showShort(context, "地址数据获取有误,无法获取数据");
+
+            LogUtils.e("地址数据获取有误,无法获取数据");
             return;
         }
         pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器

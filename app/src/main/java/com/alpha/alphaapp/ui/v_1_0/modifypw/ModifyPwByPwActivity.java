@@ -49,7 +49,7 @@ public class ModifyPwByPwActivity extends BaseActivity {
         et_insurePw = (AccountEditText) findViewById(R.id.modify_pbpw_aet_insurepw);
         tv_error = (ErrorTextView) findViewById(R.id.modify_pbpw_tv_error);
         btn_save = (Button) findViewById(R.id.modify_pbpw_btn_save);
-        dialog = DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success, R.string.plz_next_login_use_new_pw, new View.OnClickListener() {
+        dialog = DialogUtils.createSingleChoiceDialog(this, R.string.pw_reset_success, R.string.plz_use_new_login_now, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

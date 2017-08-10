@@ -14,15 +14,12 @@
             android:id="@+id/mod_info_has_et_layout_one_tv_left"
             style="@style/mine_left_item" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+
 
         <TextView
             android:id="@+id/mod_info_has_et_layout_one_tv_msg"
             style="@style/mine_mid_tv"
-            android:gravity="center" />
+          />
 
         <ImageView
             android:id="@+id/mod_info_has_et_layout_one_iv_right"

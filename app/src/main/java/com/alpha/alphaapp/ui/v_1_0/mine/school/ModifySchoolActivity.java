@@ -93,7 +93,7 @@ public class ModifySchoolActivity extends BaseActivity {
             public void onClick(View v) {
 
                 if (Util.isNullOrBlank(miiv_pca.getMsg())) {
-                    ToastUtils.showLong(ModifySchoolActivity.this, "请先选者省市区");
+                    LogUtils.e("请先选者省市区");
                 } else {
                     if (!Util.isNull(logic_school)) {
                         logic_school.show();
@@ -115,13 +115,13 @@ public class ModifySchoolActivity extends BaseActivity {
         OnModelCallback<Object> back = new OnModelCallback<Object>() {
             @Override
             public void onModelSuccessed(Object o) {
-                ToastUtils.showShort(ModifySchoolActivity.this, "修改学校信息成功");
+
             }
 
             @Override
             public void onModelFailed(String failedMsg) {
 
-                LogUtils.e(TAG, "failed==" + failedMsg);
+                LogUtils.e( failedMsg);
             }
         };
         String sskey = AccountManager.getInstance().getSskey();

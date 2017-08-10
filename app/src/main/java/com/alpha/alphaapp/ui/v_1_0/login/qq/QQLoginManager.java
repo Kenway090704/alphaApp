@@ -171,7 +171,7 @@ public class QQLoginManager {
                     JSONObject jo = (JSONObject) o;
                     String nickName = jo.getString("nickname");
                     String gender = jo.getString("gender");
-                    ToastUtils.showShort(activity, "你好，" + nickName);
+
 
                     if (!Util.isNull(logincall)) {
                         if (!Util.isNull(nickName)) {

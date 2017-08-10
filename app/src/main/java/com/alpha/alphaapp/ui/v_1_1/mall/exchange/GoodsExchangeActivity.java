@@ -25,6 +25,7 @@ import com.alpha.alphaapp.ui.v_1_1.mall.addr.ShippingAddrActivity;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
 import com.alpha.alphaapp.ui.widget.mall.OrderAdrrItem;
 import com.alpha.lib_sdk.app.glide.ImageLoader;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -123,7 +124,8 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(GoodsExchangeActivity.this, failMsg);
+                LogUtils.e(failMsg);
+
             }
         });
 
@@ -171,7 +173,7 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
             @Override
             public void onModelSuccessed(Object o) {
                 dialog.dismiss();
-                ToastUtils.showLong(GoodsExchangeActivity.this, "兑换成功");
+
                 //获取刚生成的订单
                 GetExchangeRecordLogic.doGetScoreExchangeRecordList(product_id, new OnModelCallback<List<OrderBean>>() {
                     @Override
@@ -182,17 +184,20 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
                                 ExchangeRecordDetailActivity.actionStart(GoodsExchangeActivity.this, listBean.get(0));
                                 finish();
                             } else {
-                                ToastUtils.showToast(GoodsExchangeActivity.this, "订单信息获取失败");
+                                LogUtils.e("订单信息获取失败");
+
                             }
                         } else {
-                            ToastUtils.showToast(GoodsExchangeActivity.this, "订单信息获取失败");
+                            LogUtils.e("订单信息获取失败");
+
                         }
 
                     }
 
                     @Override
                     public void onModelFailed(String failMsg) {
-                        ToastUtils.showToast(GoodsExchangeActivity.this, failMsg);
+                        LogUtils.e( failMsg);
+
                     }
                 });
             }
@@ -200,7 +205,8 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
             @Override
             public void onModelFailed(String failMsg) {
                 dialog.dismiss();
-                ToastUtils.showLong(GoodsExchangeActivity.this, failMsg);
+                LogUtils.e(failMsg);
+
             }
         };
         //是否有收货地址

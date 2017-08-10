@@ -93,7 +93,8 @@ public class GetSchoolLogic {
             //自定义滚轮选取学校
             showWheelView();
         } else {
-            ToastUtils.showShort(context, "数据暂未解析成功，请等待");
+            LogUtils.e("数据暂未解析成功，请等待");
+
         }
     }
 

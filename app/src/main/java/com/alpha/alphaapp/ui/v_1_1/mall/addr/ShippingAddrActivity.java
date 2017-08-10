@@ -13,6 +13,7 @@ import com.alpha.alphaapp.model.v_1_1.logic.ShippingAddrLogic;
 import com.alpha.alphaapp.model.v_1_1.bean.ShippingAddrBean;
 import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.ShipingAddrAdapter;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 import java.util.ArrayList;
@@ -62,7 +63,8 @@ public class ShippingAddrActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-               ToastUtils.showToast(ShippingAddrActivity.this,failMsg);
+                LogUtils.e(failMsg);
+
             }
         });
     }
@@ -80,7 +82,8 @@ public class ShippingAddrActivity extends BaseActivity {
             public void onClick(View v) {
                 //判断收获地址是多少个,如果是5个,不允许添加
                 if (alist.size()==5){
-                    ToastUtils.showLong(ShippingAddrActivity.this,"收货地址最多可以添加5个");
+                    LogUtils.e("收货地址最多可以添加5个");
+
                 }else {
                     AddShippingAddrActivity.actionStart(ShippingAddrActivity.this);
                 }

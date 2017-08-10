@@ -66,7 +66,7 @@ public class SettingsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //
-                ToastUtils.showShort(SettingsActivity.this, "进入评分页面");
+
 //                Intent intent = new Intent(SettingsActivity.this, ScoreActivity.class);
 //                startActivity(intent);
             }

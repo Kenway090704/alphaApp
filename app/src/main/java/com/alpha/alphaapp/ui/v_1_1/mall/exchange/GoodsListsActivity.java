@@ -9,6 +9,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.v_1_1.logic.GetGoodsListLogic;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.GoodsListAdapter;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.GoodsListTextAdapter;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
@@ -95,7 +96,8 @@ public class GoodsListsActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(GoodsListsActivity.this, failMsg);
+                LogUtils.e(failMsg);
+
             }
         };
         GetGoodsListLogic.doGetGoodsList(product_id, TypeConstants.GET_GOODS_LIST_TYPE.EXCHANGE_COUNT, callBack);

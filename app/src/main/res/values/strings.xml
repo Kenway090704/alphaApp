@@ -9,7 +9,7 @@
     <string name="register_way_choose">注册方式选择</string>
     <string name="advise">意见建议</string>
     <string name="fuction_bug">功能BUG</string>
-    <string name="account_register">帐号注册</string>
+    <string name="account_register">账号注册</string>
     <string name="phone_register">手机号注册</string>
     <string name="user_agreement_alpha">用户协议-奥飞</string>
     <string name="input_alpha_account">输入奥飞账号</string>
@@ -120,7 +120,7 @@
     <string name="pw_form">密码(6-12位字符)</string>
     <string name="pw_reset_success">密码重置成功</string>
     <string name="plz_next_login_use_new_pw">请下次登录时使用新密码</string>
-    <string name="return_login_ac">返回登录页面</string>
+    <string name="plz_use_new_login_now">请用新密码登录</string>
     <string name="insure">确认</string>
     <string name="look_wx_bind_account">查看绑定的英文账号</string>
     <string name="wx_no_login_alpha">该微信号未登录过奥飞用户中心,请登录后在账号设置中,设置账号再进行相关操作。</string>

@@ -219,7 +219,8 @@ public class AccountSecurityActivity extends AccountChangeActivity {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         };
         QQLoginManager.getInstance().loginQQAuth(AccountSecurityActivity.this, callBack);
@@ -243,7 +244,8 @@ public class AccountSecurityActivity extends AccountChangeActivity {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                ToastUtils.showShort(AccountSecurityActivity.this, failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         };
         WxAuthManger.getInstance().doWxAuth(callBack);
@@ -255,22 +257,23 @@ public class AccountSecurityActivity extends AccountChangeActivity {
     private void checkAuthBind(final String openid, final int accountType) {
         final String sskey = AccountManager.getInstance().getSskey();
 
-        OnModelCallback<Boolean> call=new OnModelCallback<Boolean>() {
+        OnModelCallback<Boolean> call = new OnModelCallback<Boolean>() {
             @Override
             public void onModelSuccessed(Boolean isHas) {
                 if (isHas) {
-                    ToastUtils.showShort(AccountSecurityActivity.this, "该帐号已绑定");
+
+
                 } else {
 
-                    OnModelCallback<Object> call=new OnModelCallback<Object>() {
+                    OnModelCallback<Object> call = new OnModelCallback<Object>() {
                         @Override
                         public void onModelSuccessed(Object o) {
-                            ToastUtils.showShort(AccountSecurityActivity.this, "绑定成功");
+
                         }
 
                         @Override
                         public void onModelFailed(String failedMsg) {
-                            ToastUtils.showShort(AccountSecurityActivity.this, "绑定失败," + failedMsg);
+                            LogUtils.e(failedMsg);
                         }
                     };
                     BindLogic.doBindWxOrQQ(sskey, openid, accountType, call);
@@ -279,7 +282,8 @@ public class AccountSecurityActivity extends AccountChangeActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                ToastUtils.showShort(AccountSecurityActivity.this, "绑定失败," + failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         };
         CheckAccoutLogic.checkAccountIsHas(openid, accountType, call);

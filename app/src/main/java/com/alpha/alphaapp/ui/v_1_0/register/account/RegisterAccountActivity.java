@@ -221,8 +221,8 @@ public class RegisterAccountActivity extends BaseActivity {
             @Override
             public void onModelFailed(String failedMsg) {
 
-                LogUtils.e(TAG, "failed==" + failedMsg);
-                ToastUtils.showToast(RegisterAccountActivity.this, failedMsg);
+                LogUtils.e( failedMsg);
+
             }
         };
         RegisterLogic.doRegisterAccountPW(account, pw, back);
@@ -246,8 +246,8 @@ public class RegisterAccountActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                LogUtils.e(TAG, "failedMsg==" + failedMsg);
-                ToastUtils.showLong(RegisterAccountActivity.this, failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         };
         LoginLogic.doLogin(account, pw, TypeConstants.LOGIN_TYPE.ACCONUT_PW, callback);

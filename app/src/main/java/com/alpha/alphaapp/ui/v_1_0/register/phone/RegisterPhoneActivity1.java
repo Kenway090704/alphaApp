@@ -101,8 +101,8 @@ public class RegisterPhoneActivity1 extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                LogUtils.e(TAG,"failedMsg=="+failedMsg);
-                ToastUtils.showToast(RegisterPhoneActivity1.this,failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         };
         CheckAccoutLogic.checkAccountIsHas(phone, TypeConstants.ACCOUNT_TYPE.PHONE, callback);

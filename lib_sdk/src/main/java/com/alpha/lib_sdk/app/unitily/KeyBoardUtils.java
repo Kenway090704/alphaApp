@@ -42,14 +42,14 @@ public class KeyBoardUtils {
      * 让指定的EditText获取焦点,并使光标最后一个文字后面
      */
 
-    public  static  void  setFoucus(EditText mEditText,Context context){
+    public static void setFoucus(EditText mEditText, Context context) {
         mEditText.setFocusable(true);
         mEditText.setFocusableInTouchMode(true);
         mEditText.requestFocus();
         mEditText.setSelection(mEditText.getText().length());
-        KeyBoardUtils.openKeybord(mEditText, context);
+        //暂时不用打开键盘
+        //KeyBoardUtils.openKeybord(mEditText, context);
     }
 
 
-
-}  
+}

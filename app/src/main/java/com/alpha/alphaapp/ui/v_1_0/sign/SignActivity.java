@@ -140,8 +140,8 @@ public class SignActivity extends BaseFragmentActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                LogUtils.e(TAG, "failedMsg==" + failedMsg);
-                ToastUtils.showToast(context, failedMsg);
+                LogUtils.e( failedMsg);
+
             }
         };
         GetIconListLogic.doGetIconList(AccountManager.getInstance().getSskey(), callBack);

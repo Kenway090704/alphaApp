@@ -277,7 +277,7 @@ public class AccountLoginFragment extends BaseFragment {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                ToastUtils.showToast(getActivity(), failedMsg);
+                LogUtils.e(failedMsg);
             }
         };
         CheckAccoutLogic.checkAccountIsHas(openId, loginType, call);
@@ -301,7 +301,7 @@ public class AccountLoginFragment extends BaseFragment {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                ToastUtils.showShort(getActivity(), "授权成功");
+
                 UserOpenidLogin(qq_openid, TypeConstants.LOGIN_TYPE.AUTH_QQ);
             }
 
@@ -310,7 +310,8 @@ public class AccountLoginFragment extends BaseFragment {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                ToastUtils.showShort(getActivity(), failedMsg);
+                LogUtils.e(failedMsg);
+
             }
         };
         QQLoginManager.getInstance().loginQQAuth(getActivity(), callBack);
@@ -338,7 +339,7 @@ public class AccountLoginFragment extends BaseFragment {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                ToastUtils.showShort(getActivity(), failedMsg);
+                LogUtils.e(failedMsg);
             }
         };
         WxAuthManger.getInstance().doWxAuth(callBack);
@@ -362,7 +363,7 @@ public class AccountLoginFragment extends BaseFragment {
                         OnModelCallback<String> callback = new OnModelCallback<String>() {
                             @Override
                             public void onModelSuccessed(String s) {
-                                ToastUtils.showShort(getActivity(), "登录成功");
+
                                 HomeActivity.actionStartClearStack(getActivity(), null, null);
                                 getActivity().finish();
                             }
@@ -383,7 +384,8 @@ public class AccountLoginFragment extends BaseFragment {
 
                 @Override
                 public void onModelFailed(String failedMsg) {
-                    ToastUtils.showToast(getActivity(), failedMsg);
+                    LogUtils.e(failedMsg);
+
                 }
             };
             CheckAccoutLogic.checkAccountIsHas(openId, loginType, call);

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.alpha.alphaapp.R;
 
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.OnModelCallback;
@@ -48,7 +49,8 @@ public class ScoreExchangeEnterActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(ScoreExchangeEnterActivity.this, failMsg);
+                LogUtils.e(failMsg);
+
             }
         });
         //获取超级飞侠的积分
@@ -60,7 +62,8 @@ public class ScoreExchangeEnterActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(ScoreExchangeEnterActivity.this, failMsg);
+                LogUtils.e(failMsg);
+
             }
         });
 ////        //获取零速争霸的积分
@@ -72,7 +75,8 @@ public class ScoreExchangeEnterActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(ScoreExchangeEnterActivity.this, failMsg);
+                LogUtils.e(failMsg);
+
             }
         });
 

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.v_1_0.register.CheckAccoutLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
@@ -88,7 +89,7 @@ public class ForgetPWGuideActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                  ToastUtils.showToast(ForgetPWGuideActivity.this,"ForgetPWGuideActivity,failedMsg=="+failedMsg);
+                LogUtils.e( failedMsg);
             }
         };
         CheckAccoutLogic.checkAccountIsHas(wx_openid, TypeConstants.ACCOUNT_TYPE.AUTH_WECHAT, callback);
@@ -111,16 +112,17 @@ public class ForgetPWGuideActivity extends BaseActivity {
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
-                ToastUtils.showLong(ForgetPWGuideActivity.this, "你好," + nickname);
+
                 jumpWxgetPw(openid);
             }
 
             @Override
             public void onAuthFailed(String failedMsg) {
-                ToastUtils.showShort(ForgetPWGuideActivity.this, failedMsg);
+
                 if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
                     loadingDialog.dismiss();
                 }
+                LogUtils.e(failedMsg);
             }
         };
         WxAuthManger.getInstance().doWxAuth(callBack);

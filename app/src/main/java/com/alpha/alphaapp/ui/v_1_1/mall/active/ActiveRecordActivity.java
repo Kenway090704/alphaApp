@@ -113,7 +113,8 @@ public class ActiveRecordActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showLong(ActiveRecordActivity.this, failMsg);
+
+                LogUtils.e(failMsg);
             }
         });
     }

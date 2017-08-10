@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
 import com.alpha.alphaapp.model.OnModelCallback;
@@ -93,7 +94,7 @@ public class ActiveEnterActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(ActiveEnterActivity.this, failMsg);
+                LogUtils.e(failMsg);
             }
         });
     }

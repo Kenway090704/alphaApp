@@ -102,11 +102,12 @@
 
     <TextView
         android:id="@+id/register_guide_tv_hasAccount"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/commom_length_103"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/commom_margin_22"
         android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="@dimen/commom_margin_22"
+        android:gravity="center"
+        android:paddingBottom="@dimen/commom_margin_50"
         android:clickable="true"
         android:text="@string/already_has_account"
         android:textColor="@color/common_tv_dark_red"

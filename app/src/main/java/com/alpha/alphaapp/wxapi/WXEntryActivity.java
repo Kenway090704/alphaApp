@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.app.MyApplication;
+import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -35,7 +37,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler, WxA
     public void onResp(BaseResp resp) {
         //发送到微信请求的响应结果将回调到onResp方法
         int result = 0;
-        String strMsg;
+        String strMsg = null;
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
                 result = R.string.errcode_success;
@@ -68,7 +70,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler, WxA
                 break;
         }
         finish();
-        ToastUtils.showShort(WXEntryActivity.this, result);
+        LogUtils.e(strMsg);
+
     }
 
     @Override
@@ -79,7 +82,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler, WxA
 
     @Override
     public void onFailed(String statusCode) {
-        ToastUtils.showShort(WXEntryActivity.this, R.string.net_error_text);
+        LogUtils.e(ResourceUtil.resToStr(R.string.net_error_text));
         finish();
     }
 }

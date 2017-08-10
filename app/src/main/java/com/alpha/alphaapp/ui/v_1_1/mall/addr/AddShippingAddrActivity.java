@@ -19,6 +19,7 @@ import com.alpha.alphaapp.ui.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
@@ -230,7 +231,8 @@ public class AddShippingAddrActivity extends BaseActivity {
             @Override
             public void onModelFailed(String failMsg) {
                 //Toast失败信息
-                ToastUtils.showToast(AddShippingAddrActivity.this, failMsg);
+                LogUtils.e(failMsg);
+
             }
         });
 

@@ -119,8 +119,8 @@ public class WxGetPwActivityNoAccount extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                LogUtils.e(TAG, "failedMsg==" + failedMsg);
-                ToastUtils.showToast(WxGetPwActivityNoAccount.this, failedMsg);
+                LogUtils.e( failedMsg);
+
             }
         };
         CheckAccoutLogic.checkAccountIsHas(et_account.getEditTextStr(), TypeConstants.ACCOUNT_TYPE.ACCOUNT, callback);

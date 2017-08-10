@@ -131,7 +131,7 @@ public class StringUtils {
     public static boolean isPost_Code(String postCode) {
         postCode = postCode.trim();
         Pattern p = Pattern
-                .compile( "[1-9]\\d{5}");
+                .compile("[1-9]\\d{5}");
         Matcher m = p.matcher(postCode);
         return m.matches();
     }
@@ -158,6 +158,7 @@ public class StringUtils {
 
     /**
      * 获取授权登录时的昵称字符串
+     *
      * @param nickName
      * @return
      */
@@ -189,5 +190,89 @@ public class StringUtils {
                 .compile("[a-zA-Z0-9\\-]{10}");
         Matcher m = p.matcher(active_code);
         return m.matches();
+    }
+
+    /**
+     * 从一个联系地址中获取省市区的字符串
+     *
+     * @param contact_addr
+     * @return
+     */
+    public static String getPCAString(String contact_addr) {
+        contact_addr = contact_addr.trim();
+        //判断有没有区
+        int index = contact_addr.indexOf("区");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(0, index + 1);
+            return contact_addr;
+        }
+        index = contact_addr.indexOf("县");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(0, index + 1);
+            return contact_addr;
+        }
+
+        index = contact_addr.indexOf("市");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(0, index + 1);
+            return contact_addr;
+        }
+
+        index = contact_addr.indexOf("旗");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(0, index + 1);
+            return contact_addr;
+        }
+
+        index = contact_addr.indexOf("镇");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(0, index + 1);
+            return contact_addr;
+        }
+
+        return "";
+
+    }
+
+    /**
+     * 从一个联系地址中获取区以下的详细信息
+     *
+     * @param contact_addr
+     * @return
+     */
+    public static String getDetailAddrString(String contact_addr) {
+        contact_addr = contact_addr.trim();
+        //判断有没有区
+
+        int index = contact_addr.indexOf("区");
+        if (index != -1){
+            contact_addr = contact_addr.substring(index + 1);
+            return contact_addr;
+        }
+
+        index = contact_addr.indexOf("县");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(index + 1);
+            return contact_addr;
+        }
+
+        index = contact_addr.indexOf("市");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(index + 1);
+            return contact_addr;
+        }
+
+        index = contact_addr.indexOf("旗");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(index + 1);
+            return contact_addr;
+        }
+
+        index = contact_addr.indexOf("镇");
+        if (index != -1) {
+            contact_addr = contact_addr.substring(index + 1);
+            return contact_addr;
+        }
+        return "";
     }
 }

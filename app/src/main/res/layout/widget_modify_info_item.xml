@@ -8,14 +8,11 @@
     <TextView
         android:id="@+id/widget_mod_info_tv_left"
         style="@style/mine_left_item" />
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+
     <TextView
         android:id="@+id/widget_mod_info_tv_msg"
         style="@style/mine_mid_tv"
-        android:gravity="center" />
+         />
 
     <ImageView
         android:id="@+id/widget_mod_info_iv_right"

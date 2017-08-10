@@ -90,7 +90,7 @@ public class ActiveActivity extends BaseActivity {
                 if (!Util.isNullOrBlank(et_active_code.getText().toString())) {
                     dialog.show();
                 } else {
-                    ToastUtils.showLong(ActiveActivity.this, "激活码不能为空!");
+                    LogUtils.e("激活码不能为空!");
                 }
             }
         });
@@ -100,15 +100,12 @@ public class ActiveActivity extends BaseActivity {
         BindActiveLogic.doBindActiveCode(et_active_code.getText().toString().trim(), TypeConstants.PRODUCT_ID.NONE_PRODUCT, new OnModelCallback<UserScoreBean>() {
             @Override
             public void onModelSuccessed(UserScoreBean bean) {
-
-                ToastUtils.showLong(ActiveActivity.this, "绑定激活成功");
                 UserScoreLogic.doGetUserScoreInfo(TypeConstants.PRODUCT_ID.NONE_PRODUCT, null);
             }
 
             @Override
             public void onModelFailed(String failMsg) {
-
-                ToastUtils.showLong(ActiveActivity.this, failMsg);
+                LogUtils.e(failMsg);
             }
         });
     }
@@ -121,14 +118,14 @@ public class ActiveActivity extends BaseActivity {
         BindActiveLogic.doBindActiveCode(et_active_code.getText().toString().trim(), product_id, new OnModelCallback<UserScoreBean>() {
             @Override
             public void onModelSuccessed(UserScoreBean bean) {
-                ToastUtils.showLong(ActiveActivity.this, "绑定激活成功");
+
                 UserScoreLogic.doGetUserScoreInfo(TypeConstants.PRODUCT_ID.NONE_PRODUCT, null);
             }
 
             @Override
             public void onModelFailed(String failMsg) {
-                LogUtils.e(TAG, "failMsg===" + failMsg);
-                ToastUtils.showLong(ActiveActivity.this, failMsg);
+                LogUtils.e( failMsg);
+
             }
         });
     }

@@ -16,11 +16,13 @@ import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
 import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.v_1_0.mine.MineInfoActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
 import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -58,13 +60,22 @@ public class ModifyContactAddrActivity extends BaseActivity {
 
         layout = (LinearLayout) findViewById(R.id.mod_contact_addr_layout);
         et_detail = (EditText) findViewById(R.id.mod_contact_addr_et_detail);
+
         tv_error = (ErrorTextView) findViewById(R.id.mod_contact_addr_tv_error);
         btn_save = (Button) findViewById(R.id.mod_contact_addr_btn_save);
         logic_pca = new GetPCityAreaLogic(this);
+
+
     }
 
     @Override
     public void initData() {
+        String contact_addr = AccountManager.getInstance().getUserInfo().getContact_addr();
+        String pca = StringUtils.getPCAString(contact_addr);
+        String detail = StringUtils.getDetailAddrString(contact_addr);
+        miiv_pca.setMsg(pca);
+        et_detail.setText(detail);
+        KeyBoardUtils.setFoucus(et_detail,this);
 
     }
 
@@ -82,7 +93,6 @@ public class ModifyContactAddrActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 KeyBoardUtils.closeKeybord(et_detail, ModifyContactAddrActivity.this);
-                layout.setVisibility(View.GONE);
                 //弹出底部对话框
                 logic_pca.show();
             }
@@ -115,6 +125,26 @@ public class ModifyContactAddrActivity extends BaseActivity {
             @Override
             public void onSubmit(String province, String city, String area) {
                 miiv_pca.setMsg(province + city + area);
+                if (!miiv_pca.getMsg().equals(AccountManager.getInstance().getUserInfo().getContact_addr())){
+                    btn_save.setEnabled(Boolean.TRUE);
+                    btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
+                }
+            }
+        });
+
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KeyBoardUtils.closeKeybord(et_detail, ModifyContactAddrActivity.this);
+                // 将信息提交修改信息
+
+                //保存该数据为用户的通信地址,如果信息与填写的内容相同,则不修改
+                String addr = miiv_pca.getMsg() + et_detail.getText().toString();
+                //地址是否与当前地址相同
+                boolean isSame = addr.equals(AccountManager.getInstance().getUserInfo().getContact_addr());
+                if (!Util.isNullOrBlank(et_detail.getText().toString()) && !isSame) {
+                    doModifyContactAddr(addr);
+                }
             }
         });
 
@@ -132,40 +162,18 @@ public class ModifyContactAddrActivity extends BaseActivity {
         OnModelCallback<Object> back = new OnModelCallback<Object>() {
             @Override
             public void onModelSuccessed(Object o) {
-                ToastUtils.showShort(ModifyContactAddrActivity.this, "修改地址信息成功");
+                MineInfoActivity.actionStart(ModifyContactAddrActivity.this, null, null);
             }
 
             @Override
             public void onModelFailed(String failedMsg) {
+                tv_error.setText(failedMsg);
                 LogUtils.e(TAG, "failed==" + failedMsg);
             }
         };
         ModifyUserInfoLogic.doModifyUserInfo(sskey, info, ModifyUserInfoLogic.MODIFY_CONTACT_ADDR, back);
     }
 
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                if (event.getY() > (layout.getY() + layout.getHeight()) || event.getY() < layout.getY()) {
-                    //判断是否输入框中有内容,如果有,隐藏输入框,将文字显示到街道位置
-                    layout.setVisibility(View.GONE);
-                    KeyBoardUtils.closeKeybord(et_detail, this);
-                    // 将信息提交修改信息
-
-                    //保存该数据为用户的通信地址,如果信息与填写的内容相同,则不修改
-                    String addr = miiv_pca.getMsg() + et_detail.getText().toString();
-                    //地址是否与当前地址相同
-                    boolean isSame = addr.equals(AccountManager.getInstance().getUserInfo().getContact_addr());
-                    if (!Util.isNullOrBlank(et_detail.getText().toString()) && !isSame) {
-                        doModifyContactAddr(addr);
-                    }
-                }
-        }
-        return super.onTouchEvent(event);
-    }
 
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, ModifyContactAddrActivity.class);

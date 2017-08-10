@@ -114,7 +114,7 @@ public class RegisterPhoneActivity3 extends BaseActivity {
             @Override
             public void onModelSuccessed(Object o) {
                 //弹出对话框提示,然后确认后,登录成功
-                ToastUtils.showShort(RegisterPhoneActivity3.this, "注册成功");
+
                 doLogin(phone, pw);
             }
 
@@ -141,8 +141,8 @@ public class RegisterPhoneActivity3 extends BaseActivity {
 
             @Override
             public void onModelFailed(String failedMsg) {
-                LogUtils.e(TAG, "failedMsg==" + failedMsg);
-                ToastUtils.showLong(RegisterPhoneActivity3.this, failedMsg);
+                LogUtils.e( failedMsg);
+
             }
         };
         LoginLogic.doLogin(phone, pw, TypeConstants.LOGIN_TYPE.PHONE_PW, callback);

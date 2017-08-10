@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.logic.ScoreChangeListLogic;
@@ -68,7 +69,7 @@ public class ScoreChangeRecordActivity extends BaseActivity {
 
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(ScoreChangeRecordActivity.this, failMsg);
+                LogUtils.e(failMsg);
             }
         });
     }

@@ -66,8 +66,8 @@ public class WxGetPwActivityNoRegister1 extends BaseActivity {
 
                     @Override
                     public void onModelFailed(String failedMsg) {
-                        LogUtils.e(TAG, "failedMsg==" + failedMsg);
-                        ToastUtils.showLong(WxGetPwActivityNoRegister1.this, failedMsg);
+                        LogUtils.e(failedMsg);
+
                     }
                 };
                 LoginLogic.doLogin(wx_openid, null, TypeConstants.LOGIN_TYPE.AUTH_WX, callback);

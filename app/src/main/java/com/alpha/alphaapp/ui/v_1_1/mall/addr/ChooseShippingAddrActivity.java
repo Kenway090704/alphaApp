@@ -58,8 +58,8 @@ public class ChooseShippingAddrActivity extends BaseActivity {
             }
             @Override
             public void onModelFailed(String failMsg) {
-                ToastUtils.showToast(ChooseShippingAddrActivity.this, failMsg);
-                LogUtils.e(TAG, failMsg);
+
+                LogUtils.e(failMsg);
             }
         });
     }
