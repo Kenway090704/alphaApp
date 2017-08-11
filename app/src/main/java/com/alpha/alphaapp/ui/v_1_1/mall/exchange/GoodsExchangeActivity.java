@@ -112,8 +112,6 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
             });
 
         }
-
-
         ShippingAddrLogic.doGetAddress(new OnModelCallback<List<ShippingAddrBean>>() {
             @Override
             public void onModelSuccessed(List<ShippingAddrBean> list) {
@@ -135,7 +133,7 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        initData();
+//        initData();
     }
 
     @Override
@@ -153,13 +151,10 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
             }
         });
 
-
         btn_now_exchange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doExchang();
-
-
             }
         });
     }
