@@ -11,6 +11,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
 import com.alpha.alphaapp.ui.widget.tx.ErrorTextView;
+import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.ui.widget.et.AccountEditText;
@@ -42,7 +43,7 @@ public class AccountLoginFragment extends BaseFragment {
     private TextView tv_forget;
     private ImageView iv_weixin, iv_qq;
     private CustomLoadingDialog loadingDialog;
-
+    private CustomLoadingDialog loading_wx;
 
 
     @Override
@@ -164,7 +165,7 @@ public class AccountLoginFragment extends BaseFragment {
             public void onClick(View v) {
 //                debugQQFunc("AGf8889800100", TypeConstants.ACCOUNT_TYPE.AUTH_QQ );
                 loginQQAuth();
-              
+
             }
         });
         iv_weixin.setOnClickListener(new View.OnClickListener() {
@@ -314,21 +315,23 @@ public class AccountLoginFragment extends BaseFragment {
 
             }
         };
-        QQLoginManager.getInstance().loginQQAuth(getActivity(), callBack);
+        //让activity弱引用
+        ApplicationContext.setActivity(getActivity());
+        QQLoginManager.getInstance().loginQQAuth(callBack);
     }
 
     /**
      * 微信授权登录
      */
     public void loginWxAuth() {
-        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(getActivity());
-        loadingDialog.show();
+        loading_wx = new CustomLoadingDialog(getActivity());
+        loading_wx.show();
         //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册
         WxAuthManger.OnWxAuthCallBack callBack = new WxAuthManger.OnWxAuthCallBack() {
             @Override
             public void onAuthSuccessed(String openid, String nickname) {
-                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                if (!Util.isNull(loading_wx) && loading_wx.isShowing()) {
+                    loading_wx.dismiss();
                 }
 //                ToastUtils.showLong(getActivity(), "你好," + nickname);
                 UserOpenidLogin(openid, TypeConstants.LOGIN_TYPE.AUTH_WX);
@@ -336,8 +339,8 @@ public class AccountLoginFragment extends BaseFragment {
 
             @Override
             public void onAuthFailed(String failedMsg) {
-                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                if (!Util.isNull(loading_wx) && loading_wx.isShowing()) {
+                    loading_wx.dismiss();
                 }
                 LogUtils.e(failedMsg);
             }
@@ -398,8 +401,21 @@ public class AccountLoginFragment extends BaseFragment {
         if (loadingDialog != null) {
             loadingDialog.dismiss();
         }
+
+        if (loading_wx!=null){
+            loading_wx.dismiss();
+        }
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //无论微信授权是否成功,当返回登录页的时候,要让加载loading消失
+        if (loading_wx!=null){
+            loading_wx.dismiss();
+        }
+    }
 
     @Override
     public void onDestroy() {

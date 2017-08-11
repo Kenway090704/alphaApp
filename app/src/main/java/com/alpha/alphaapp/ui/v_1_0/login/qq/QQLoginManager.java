@@ -1,9 +1,12 @@
 package com.alpha.alphaapp.ui.v_1_0.login.qq;
 
 import android.app.Activity;
+import android.app.Application;
 import android.text.TextUtils;
 
 import com.alpha.alphaapp.account.AccountManager;
+import com.alpha.alphaapp.app.MyApplication;
+import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
@@ -24,7 +27,7 @@ import org.json.JSONObject;
 public class QQLoginManager {
     private static final String TAG = "QQLoginManager";
     private static QQLoginManager manager;
-    private Activity activity;
+
     private OnQQAuthLoginCallBack logincall;
     private Tencent mTencent;
     private IUiListener iUiListener;
@@ -69,48 +72,48 @@ public class QQLoginManager {
      * }
      * </p>
      */
-    public void loginQQAuth(final Activity activity, OnQQAuthLoginCallBack callBack) {
-        this.activity = activity;
+    public void loginQQAuth(OnQQAuthLoginCallBack callBack) {
+
         this.logincall = callBack;
         // Tencent类是SDK的主要实现类，开发者可通过Tencent类访问腾讯开放的OpenAPI。
         // 其中APP_ID是分配给第三方应用的appid，类型为String。
-        mTencent = Tencent.createInstance("1105613845", activity);
-       LogUtils.e("mTencent.isSessionValid()=="+mTencent.isSessionValid());
+        mTencent = Tencent.createInstance(MyApplication.QQ_APP_ID, ApplicationContext.getActivity());
+         //可以多次进行授权。
 //        if (!mTencent.isSessionValid()) {
-            //可以获取Openid和AccessToken
-            iUiListener = new IUiListener() {
-                @Override
-                public void onComplete(Object o) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(o.toString());
-                        int ret = jsonObject.getInt("ret");
-                        if (ret == 0) {
-                            initQQOpenidAndToken(jsonObject);
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        //可以获取Openid和AccessToken
+        iUiListener = new IUiListener() {
+            @Override
+            public void onComplete(Object o) {
+                try {
+                    JSONObject jsonObject = new JSONObject(o.toString());
+                    int ret = jsonObject.getInt("ret");
+                    if (ret == 0) {
+                        initQQOpenidAndToken(jsonObject);
                     }
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-                @Override
-                public void onError(UiError uiError) {
-                    if (!Util.isNull(logincall)) {
-                        logincall.onQQAuthFailed("授权失败");
-                    }
-                    LogUtils.e(TAG, uiError.toString());
-                }
+            }
 
-                @Override
-                public void onCancel() {
-                    if (!Util.isNull(logincall)) {
-                        logincall.onQQAuthFailed("授权取消");
-                    }
-                    LogUtils.e(TAG, "cancel");
+            @Override
+            public void onError(UiError uiError) {
+                if (!Util.isNull(logincall)) {
+                    logincall.onQQAuthFailed("授权失败");
                 }
-            };
-            mTencent.login(activity, "all", iUiListener);
+                LogUtils.e(TAG, uiError.toString());
+            }
+
+            @Override
+            public void onCancel() {
+                if (!Util.isNull(logincall)) {
+                    logincall.onQQAuthFailed("授权取消");
+                }
+                LogUtils.e(TAG, "cancel");
+            }
+        };
+        mTencent.login(ApplicationContext.getActivity(), "all", iUiListener);
 //        }
     }
 
@@ -199,7 +202,7 @@ public class QQLoginManager {
             }
         };
         if (mTencent != null && mTencent.isSessionValid()) {
-            UserInfo userInfo = new UserInfo(activity, mTencent.getQQToken());
+            UserInfo userInfo = new UserInfo(ApplicationContext.getActivity(), mTencent.getQQToken());
             userInfo.getUserInfo(userInfoListener);
         }
 
@@ -233,7 +236,7 @@ public class QQLoginManager {
      */
     public void logitout() {
         if (!Util.isNull(mTencent))
-            mTencent.logout(activity);
+            mTencent.logout(ApplicationContext.getActivity());
     }
 
 

@@ -190,7 +190,7 @@ public class StringUtils {
             return "奥飞用户" + nickName;
         } else {
             //如果昵称大于12个,可能需要重新判断,给出对应的值
-            return nickName.substring(0, nickName.length());
+            return nickName;
         }
 
     }

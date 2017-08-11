@@ -49,24 +49,28 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler, WxA
                     WXManager.instance().getAccessToken(code,this,strMsg);
                     return;
                 }
+                LogUtils.e("R.string.errcode_success");
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:
                 result = R.string.errcode_cancel;
                 strMsg=getResources().getString( R.string.errcode_cancel);
                 if(resp instanceof  SendAuth.Resp)
                     WXManager.instance().getAccessToken(null,this,strMsg);
+                LogUtils.e("发送取消");
                 break;
             case BaseResp.ErrCode.ERR_AUTH_DENIED:
                 result = R.string.errcode_deny;
                 strMsg=getResources().getString( R.string.errcode_deny);
                 if(resp instanceof  SendAuth.Resp)
                     WXManager.instance().getAccessToken(null, this,strMsg);
+                LogUtils.e("发送被拒绝");
                 break;
             default:
                 result = R.string.errcode_unknown;
                 strMsg=getResources().getString( R.string.errcode_unknown);
                 if(resp instanceof  SendAuth.Resp)
                     WXManager.instance().getAccessToken(null, this,strMsg);
+                LogUtils.e("发送返回");
                 break;
         }
         finish();

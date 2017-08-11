@@ -10,6 +10,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
+import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.unitily.ResourceUtil;
@@ -43,6 +44,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
     private AccountBindItemView abi_alpha, abi_phone, abi_wx, abi_qq, abi_pweditpw, abi_phoneeditpw;
 
     private UserInfo info;
+    private CustomLoadingDialog loading_wx;
 
     @Override
     protected int getLayoutId() {
@@ -202,6 +204,10 @@ public class AccountSecurityActivity extends AccountChangeActivity {
         final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this, ResourceUtil.resToStr(R.string.loading));
 
         loadingDialog.show();
+
+        //将activty设置为弱引用
+
+
         //通过拉起QQ获取QQ的openid,检测该openid是否已经注册,如果未注册,
         QQLoginManager.OnQQAuthLoginCallBack callBack = new QQLoginManager.OnQQAuthLoginCallBack() {
             @Override
@@ -225,26 +231,27 @@ public class AccountSecurityActivity extends AccountChangeActivity {
 
             }
         };
-        QQLoginManager.getInstance().loginQQAuth(AccountSecurityActivity.this, callBack);
+        ApplicationContext.setActivity(this);
+        QQLoginManager.getInstance().loginQQAuth( callBack);
     }
 
     private void loginWxAuth() {
-        final CustomLoadingDialog loadingDialog = new CustomLoadingDialog(this,ResourceUtil.resToStr(R.string.loading));
-        loadingDialog.show();
+        loading_wx = new CustomLoadingDialog(this, ResourceUtil.resToStr(R.string.loading));
+        loading_wx.show();
         //通过拉起Wx获取Wx的openid,检测该openid是否已经注册,如果未注册
         WxAuthManger.OnWxAuthCallBack callBack = new WxAuthManger.OnWxAuthCallBack() {
             @Override
             public void onAuthSuccessed(String openid, String nickname) {
-                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                if (!Util.isNull(loading_wx) && loading_wx.isShowing()) {
+                    loading_wx.dismiss();
                 }
                 checkAuthBind(openid, TypeConstants.ACCOUNT_TYPE.AUTH_WECHAT);
             }
 
             @Override
             public void onAuthFailed(String failedMsg) {
-                if (!Util.isNull(loadingDialog) && loadingDialog.isShowing()) {
-                    loadingDialog.dismiss();
+                if (!Util.isNull(loading_wx) && loading_wx.isShowing()) {
+                    loading_wx.dismiss();
                 }
                 LogUtils.e(failedMsg);
 
@@ -308,4 +315,13 @@ public class AccountSecurityActivity extends AccountChangeActivity {
         Tencent.onActivityResultData(requestCode, resultCode, data, QQLoginManager.getInstance().getQQIUiListener());
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //无论微信授权是否成功,当返回登录页的时候,要让加载loading消失
+        if (loading_wx!=null){
+            loading_wx.dismiss();
+        }
+    }
 }

@@ -65,8 +65,7 @@ public class ForgetPWGuideActivity extends BaseActivity {
                 //拉起微信,获取openid,然后判断进入哪个页面
                 //正式版的时候
                 loginWxAuth();
-
-//                checkAccountIsHas("arg000001012");
+//                checkAccountIsHas("arg000001015");
             }
         });
     }

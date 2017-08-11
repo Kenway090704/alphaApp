@@ -29,6 +29,9 @@ public class MyApplication extends Application {
     // wechat appid  app_sercet
     public static final String WX_APP_ID = "wx6b2bf92fe1507d80";
     public static final String WX_APP_SECRET = "b0edfec14306808b50a7412aeda39dbe";
+    //qq appid
+    public  static  final  String QQ_APP_ID="1105613845";
+    //
     //wechat tokeninfo
     private WxAccessTokenInfo wxAccessTokenInfo;
 

@@ -1,5 +1,6 @@
 package com.alpha.lib_sdk.app.app;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -20,6 +21,7 @@ public class ApplicationContext {
 
 	private static WeakReference<Application> sApplicationWeakRef;
 	private static WeakReference<Context> sCurrContextWeakRef;
+	private static WeakReference<Activity> sCurrActivityWeakRef;
 
 
 	public static Application getApplication() {
@@ -32,6 +34,18 @@ public class ApplicationContext {
 			return;
 		}
 		ApplicationContext.sApplicationWeakRef = new WeakReference<Application>(application);
+	}
+
+	public static void setActivity(Activity activity) {
+		if (activity == null) {
+			ApplicationContext.sCurrActivityWeakRef = null;
+			return;
+		}
+		ApplicationContext.sCurrActivityWeakRef = new WeakReference<Activity>(activity);
+	}
+
+	public static Activity getActivity() {
+		return sCurrActivityWeakRef != null ? sCurrActivityWeakRef.get() : null;
 	}
 
 	public static Context getCurrentContext() {
