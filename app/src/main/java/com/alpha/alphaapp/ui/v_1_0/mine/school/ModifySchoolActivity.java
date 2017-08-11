@@ -10,14 +10,13 @@ import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.v_1_0.bean.SchoolBean;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetSchoolLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.mine.ModifyInfoItemView;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/16 19:14

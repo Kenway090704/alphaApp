@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 
 /**
  * Created by kenway on 17/6/27 10:21

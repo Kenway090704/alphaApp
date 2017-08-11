@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.v_1_1.bean.OrderBean;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**

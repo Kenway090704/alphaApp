@@ -11,9 +11,8 @@ import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.logic.ScoreChangeListLogic;
 import com.alpha.alphaapp.model.v_1_1.bean.ScoreLogBean;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.ChangeRecordAdapter;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;

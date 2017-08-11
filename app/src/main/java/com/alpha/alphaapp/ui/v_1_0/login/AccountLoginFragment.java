@@ -18,7 +18,7 @@ import com.alpha.alphaapp.ui.widget.et.AccountEditText;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.register.CheckAccoutLogic;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
-import com.alpha.alphaapp.ui.BaseFragment;
+import com.alpha.alphaapp.ui.base.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.v_1_0.bind.firstbind.BindAccountActivity;
 import com.alpha.alphaapp.ui.v_1_0.forgetpw.ForgetPWGuideActivity;
@@ -27,7 +27,6 @@ import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.alphaapp.ui.widget.et.PwInputEditText;
 import com.alpha.alphaapp.ui.v_1_0.register.RegisterGuideActivity;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/5/26 11:27

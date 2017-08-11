@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
+import com.alpha.alphaapp.ui.base.BaseFragment;
 import com.alpha.lib_sdk.app.core.event.AccurateEventObserver;
 import com.alpha.lib_sdk.app.core.event.EventObserver;
 import com.alpha.lib_sdk.app.core.event.RxEventBus;

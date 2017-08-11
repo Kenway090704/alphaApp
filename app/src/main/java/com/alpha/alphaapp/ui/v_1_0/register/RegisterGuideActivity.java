@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.BaseFragmentActivity;
+import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.v_1_0.login.LoginActivity;
 import com.alpha.alphaapp.ui.v_1_0.register.account.RegisterAccountActivity;
 import com.alpha.alphaapp.ui.v_1_0.register.phone.RegisterPhoneActivity1;

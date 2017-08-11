@@ -8,8 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.BaseFragmentActivity;
-import com.alpha.alphaapp.ui.BaseFragmentPageAdapter;
+import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
+import com.alpha.alphaapp.ui.base.adapter.BaseFragmentPageAdapter;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 

@@ -20,7 +20,7 @@ import com.alpha.alphaapp.model.v_1_0.userinfo.BindLogic;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
 import com.alpha.alphaapp.model.v_1_0.login.LoginOutLogic;
 import com.alpha.alphaapp.model.v_1_0.verifycode.GetPhoneVerifyLogic;
-import com.alpha.alphaapp.ui.BaseFragment;
+import com.alpha.alphaapp.ui.base.BaseFragment;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.widget.et.InputVerifyEditText;
 import com.alpha.lib_sdk.app.tool.Util;

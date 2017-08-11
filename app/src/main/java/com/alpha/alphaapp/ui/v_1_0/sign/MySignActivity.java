@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.URLConstans;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.sign.adapter.MySignDateAdapter;
 import com.alpha.alphaapp.ui.widget.dialog.MySignDialog;
 import com.alpha.lib_sdk.app.tool.DateUtils;

@@ -18,7 +18,7 @@ import com.alpha.alphaapp.model.v_1_1.bean.GoodsBean;
 import com.alpha.alphaapp.model.v_1_1.bean.OrderBean;
 import com.alpha.alphaapp.model.v_1_1.bean.ShippingAddrBean;
 import com.alpha.alphaapp.model.v_1_1.bean.UserScoreBean;
-import com.alpha.alphaapp.ui.BaseChooseAddrActivity;
+import com.alpha.alphaapp.ui.base.BaseChooseAddrActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.Tools;
 import com.alpha.alphaapp.ui.v_1_1.mall.addr.ChooseShippingAddrActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.addr.ShippingAddrActivity;
@@ -150,7 +150,6 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
                 }
             }
         });
-
         btn_now_exchange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

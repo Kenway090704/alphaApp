@@ -12,9 +12,8 @@ import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.logic.BindActiveLogic;
 import com.alpha.alphaapp.model.v_1_1.bean.CdkDatasBean;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.ActiveRecordAdapter;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,7 +15,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.logic.ShippingAddrLogic;
 import com.alpha.alphaapp.model.v_1_1.bean.ShippingAddrBean;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.dialog.DialogUtils;

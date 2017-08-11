@@ -1,9 +1,7 @@
 package com.alpha.alphaapp.ui;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 
 public class AboutUsActivity extends BaseActivity {

@@ -8,10 +8,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.ui.base.BaseFragment;
+import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallFragment;
 import com.alpha.alphaapp.ui.v_1_0.mine.MineFragment;
 import com.alpha.alphaapp.ui.v_1_0.recom.RecomFragment;
-import com.alpha.lib_sdk.app.log.LogUtils;
 
 
 /**

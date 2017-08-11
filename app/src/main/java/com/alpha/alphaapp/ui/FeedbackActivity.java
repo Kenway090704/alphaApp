@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.lib_sdk.app.log.LogCatch;
 import com.alpha.lib_sdk.app.log.LogUtils;

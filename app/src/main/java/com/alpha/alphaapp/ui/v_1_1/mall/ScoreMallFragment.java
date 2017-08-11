@@ -4,11 +4,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.BaseFragment;
+import com.alpha.alphaapp.ui.base.BaseFragment;
 import com.alpha.alphaapp.ui.v_1_1.mall.active.ActiveEnterActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.addr.ShippingAddrActivity;
-import com.alpha.alphaapp.ui.v_1_1.mall.exchange.ExchangeRecordListActivity;
-import com.alpha.alphaapp.ui.v_1_1.mall.exchange.ScoreChangeRecordActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.exchange.ScoreExchangeEnterActivity;
 
 /**

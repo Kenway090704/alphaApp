@@ -3,7 +3,7 @@ package com.alpha.alphaapp.ui.v_1_0.recom;
 import android.view.View;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.BaseFragment;
+import com.alpha.alphaapp.ui.base.BaseFragment;
 
 /**
  * Created by kenway on 17/6/8 10:32

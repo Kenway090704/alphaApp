@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +14,7 @@ import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_0.userinfo.ModifyUserInfoLogic;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.MineInfoActivity;
 import com.alpha.alphaapp.ui.v_1_0.mine.logic.GetPCityAreaLogic;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
@@ -25,7 +24,6 @@ import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 
 /**

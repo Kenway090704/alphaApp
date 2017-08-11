@@ -8,15 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.v_1_1.logic.GetGoodsListLogic;
 import com.alpha.alphaapp.ui.v_1_1.mall.adapter.GoodsListAdapter;
-import com.alpha.alphaapp.ui.v_1_1.mall.adapter.GoodsListTextAdapter;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.OnModelCallback;
 
 import com.alpha.alphaapp.model.v_1_1.bean.GoodsBean;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 
 import java.util.ArrayList;

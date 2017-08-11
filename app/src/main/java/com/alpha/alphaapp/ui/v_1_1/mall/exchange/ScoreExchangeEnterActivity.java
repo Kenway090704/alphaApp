@@ -6,12 +6,11 @@ import android.content.Intent;
 import com.alpha.alphaapp.R;
 
 import com.alpha.lib_sdk.app.log.LogUtils;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.logic.UserScoreLogic;
 import com.alpha.alphaapp.model.v_1_1.bean.UserScoreBean;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.widget.mall.ScoreEnterItem;
 
 /**

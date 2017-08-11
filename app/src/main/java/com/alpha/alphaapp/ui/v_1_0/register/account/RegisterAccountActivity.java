@@ -18,13 +18,12 @@ import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.alphaapp.model.v_1_0.register.CheckAccoutLogic;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
 import com.alpha.alphaapp.model.v_1_0.register.RegisterLogic;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.HomeActivity;
 import com.alpha.alphaapp.ui.v_1_0.register.UserAgreementActivity;
 import com.alpha.alphaapp.ui.widget.OneTwoThreeItemView;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/22 10:04

@@ -8,11 +8,12 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.v_1_0.login.LoginLogic;
-import com.alpha.alphaapp.ui.BaseActivity;
+
 import com.alpha.alphaapp.ui.v_1_0.forgetpw.wx.hasregister.WxGetPwActivityNoAccount;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;

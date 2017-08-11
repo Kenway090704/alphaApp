@@ -3,7 +3,7 @@ package com.alpha.alphaapp.ui.v_1_0.sign;
 import android.view.View;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.BaseFragment;
+import com.alpha.alphaapp.ui.base.BaseFragment;
 
 /**
  * Created by kenway on 17/7/11 11:25

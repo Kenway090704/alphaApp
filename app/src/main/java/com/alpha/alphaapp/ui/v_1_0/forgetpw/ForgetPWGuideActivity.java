@@ -11,14 +11,13 @@ import com.alpha.alphaapp.ui.v_1_0.login.wx.WxAuthManger;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.alphaapp.model.v_1_0.register.CheckAccoutLogic;
-import com.alpha.alphaapp.ui.BaseActivity;
+import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.v_1_0.forgetpw.phone.PhoneGetPwActivity1;
 import com.alpha.alphaapp.ui.v_1_0.forgetpw.wx.hasregister.WxGetPwActivityHasRegister1;
 import com.alpha.alphaapp.ui.v_1_0.forgetpw.wx.noregister.WxGetPwActivityNoRegister1;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.alphaapp.ui.widget.dialog.CustomLoadingDialog;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 
 /**
  * Created by kenway on 17/6/6 14:20
