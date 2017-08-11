@@ -29,6 +29,7 @@ import com.alpha.alphaapp.ui.widget.set.AccountBindItemView;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ToastUtils;
+import com.tencent.tauth.Tencent;
 
 /**
  * 帐号和绑定设置界面
@@ -300,4 +301,11 @@ public class AccountSecurityActivity extends AccountChangeActivity {
         setUIData(info);
         initListener();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //qq授权登录使用
+        Tencent.onActivityResultData(requestCode, resultCode, data, QQLoginManager.getInstance().getQQIUiListener());
+    }
+
 }

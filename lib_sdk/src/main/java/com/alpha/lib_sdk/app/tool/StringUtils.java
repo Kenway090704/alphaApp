@@ -102,6 +102,12 @@ public class StringUtils {
      */
     public static boolean isName(String name) {
         name = name.trim();
+
+
+       //将中文替换为连个英文字符,这样就实现了一个中文为两个字节的问题
+        String regEx = "[\\u4e00-\\u9fa5]";
+        name = name.replaceAll(regEx, "aa");
+
         Pattern p = Pattern
                 .compile("[\\u4e00-\\u9fa5a-zA-Z0-9\\-]{4,12}");
         Matcher m = p.matcher(name);
@@ -116,6 +122,11 @@ public class StringUtils {
      */
     public static boolean isTrueName(String name) {
         name = name.trim();
+
+        //将中文替换为连个英文字符,这样就实现了一个中文为两个字节的问题
+        String regEx = "[\\u4e00-\\u9fa5]";
+        name = name.replaceAll(regEx, "aa");
+
         Pattern p = Pattern
                 .compile("[\\u4e00-\\u9fa5a-zA-Z0-9\\-]{1,12}");
         Matcher m = p.matcher(name);
@@ -129,7 +140,7 @@ public class StringUtils {
      * @return
      */
     public static boolean isPost_Code(String postCode) {
-        postCode = postCode.trim();
+       postCode = postCode.trim();
         Pattern p = Pattern
                 .compile("[1-9]\\d{5}");
         Matcher m = p.matcher(postCode);
@@ -158,7 +169,6 @@ public class StringUtils {
 
     /**
      * 获取授权登录时的昵称字符串
-     *
      * @param nickName
      * @return
      */
@@ -167,14 +177,22 @@ public class StringUtils {
             return null;
         }
         nickName = nickName.trim();
-        int size = nickName.length();
+       //当昵称小于四个字节的时候如果是中文,一个中午两个字节
+        String regEx = "[\\u4e00-\\u9fa5]";
+        String name = nickName.replaceAll(regEx, "aa");
+
+        //字符串中有多少个中文
+        int count = name.length()-nickName.length();
+        int size = name.length();
         if (size > 4 && size < 12) {
             return nickName;
         } else if (size < 4) {
             return "奥飞用户" + nickName;
         } else {
-            return nickName.substring(0, 12);
+            //如果昵称大于12个,可能需要重新判断,给出对应的值
+            return nickName.substring(0, nickName.length());
         }
+
     }
 
 
@@ -245,7 +263,7 @@ public class StringUtils {
         //判断有没有区
 
         int index = contact_addr.indexOf("区");
-        if (index != -1){
+        if (index != -1) {
             contact_addr = contact_addr.substring(index + 1);
             return contact_addr;
         }

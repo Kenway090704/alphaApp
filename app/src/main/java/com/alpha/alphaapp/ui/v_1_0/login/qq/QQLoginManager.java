@@ -75,7 +75,8 @@ public class QQLoginManager {
         // Tencent类是SDK的主要实现类，开发者可通过Tencent类访问腾讯开放的OpenAPI。
         // 其中APP_ID是分配给第三方应用的appid，类型为String。
         mTencent = Tencent.createInstance("1105613845", activity);
-        if (!mTencent.isSessionValid()) {
+       LogUtils.e("mTencent.isSessionValid()=="+mTencent.isSessionValid());
+//        if (!mTencent.isSessionValid()) {
             //可以获取Openid和AccessToken
             iUiListener = new IUiListener() {
                 @Override
@@ -110,7 +111,7 @@ public class QQLoginManager {
                 }
             };
             mTencent.login(activity, "all", iUiListener);
-        }
+//        }
     }
 
     /**
