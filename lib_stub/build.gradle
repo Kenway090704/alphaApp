@@ -41,4 +41,7 @@ dependencies {
 
     compile rootProject.ext.dependencies["support-design"]
 
+
+    releaseCompile project(path: ':lib_sdk', configuration: 'release')
+    debugCompile project(path: ':lib_sdk', configuration: 'debug')
 }

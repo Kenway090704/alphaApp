@@ -54,7 +54,7 @@ android {
             //混淆
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [appName: "奥飞用户中心"]
+            manifestPlaceholders = [appName: "奥飞用户中心", WX_APP_ID:"asdfjasfdsdf"]
             buildConfigField "int", "buildTime", getDebugVersionNameSuffix()
 
             //设置release版本只包含armeabi和armeabi-v7a的so包
