@@ -39,6 +39,7 @@ public class AccountLoginFragment extends BaseFragment {
     private PwInputEditText piet_pw;
     private ErrorTextView tv_error;
     private Button btn_login, btn_register;
+    private TextView tv_register;
     private TextView tv_forget;
     private ImageView iv_weixin, iv_qq;
     private CustomLoadingDialog loadingDialog;
@@ -56,7 +57,8 @@ public class AccountLoginFragment extends BaseFragment {
         piet_pw = (PwInputEditText) root.findViewById(R.id.log_ac_piet_pw);
         tv_error = (ErrorTextView) root.findViewById(R.id.log_ac_tv_error);
         btn_login = (Button) root.findViewById(R.id.log_ac_btn_login);
-        btn_register = (Button) root.findViewById(R.id.log_ac_btn_regiser);
+//        btn_register = (Button) root.findViewById(R.id.log_ac_btn_regiser);
+        tv_register= (TextView) root.findViewById(R.id.log_ac_tv_register);
         tv_forget = (TextView) root.findViewById(R.id.log_ac_tv_forgetpw);
         iv_weixin = (ImageView) root.findViewById(R.id.log_ac_iv_auth_weixin);
         iv_qq = (ImageView) root.findViewById(R.id.log_ac_iv_auth_qq);
@@ -66,7 +68,7 @@ public class AccountLoginFragment extends BaseFragment {
 
     @Override
     protected void initEnvent() {
-        btn_register.setOnClickListener(new View.OnClickListener() {
+        tv_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegisterGuideActivity.actionStart(getContext());

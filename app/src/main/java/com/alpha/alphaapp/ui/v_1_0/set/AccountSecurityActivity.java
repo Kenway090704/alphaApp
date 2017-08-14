@@ -158,7 +158,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
             @Override
             public void onClick(View v) {
                 if (!Util.isNullOrBlank(info.getMobile())) {
-                    ChangePhoneBindActvity1.actionStart(AccountSecurityActivity.this, null, null);
+                    ChangePhoneBindActvity1.actionStart(AccountSecurityActivity.this, info.getMobile());
                 } else {
                     NewPhoneBindActvity1.actionStart(AccountSecurityActivity.this, null, null);
                 }
@@ -232,7 +232,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
             }
         };
         ApplicationContext.setActivity(this);
-        QQLoginManager.getInstance().loginQQAuth( callBack);
+        QQLoginManager.getInstance().loginQQAuth(callBack);
     }
 
     private void loginWxAuth() {
@@ -320,7 +320,7 @@ public class AccountSecurityActivity extends AccountChangeActivity {
     public void onResume() {
         super.onResume();
         //无论微信授权是否成功,当返回登录页的时候,要让加载loading消失
-        if (loading_wx!=null){
+        if (loading_wx != null) {
             loading_wx.dismiss();
         }
     }

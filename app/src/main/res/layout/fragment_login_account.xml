@@ -38,15 +38,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/log_ac_btn_regiser"
-            style="@style/btn_com_white"
-            android:layout_width="0dp"
-            android:layout_marginLeft="@dimen/commom_margin_30"
-            android:layout_weight="1"
-            android:textSize="@dimen/commom_tv_size_18"
-            android:text="@string/register" />
+        <!--<Button-->
+            <!--android:id="@+id/log_ac_btn_regiser"-->
+            <!--style="@style/btn_com_white"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_marginLeft="@dimen/commom_margin_30"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="@dimen/commom_tv_size_18"-->
+            <!--android:text="@string/register" />-->
 
+
+
+
+          <TextView
+              android:id="@+id/log_ac_tv_register"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:textSize="@dimen/commom_tv_size_18"
+              android:textColor="@android:color/black"
+              android:text="@string/register"
+              android:gravity="center"
+              android:clickable="true"
+              android:layout_marginLeft="@dimen/commom_margin_30"
+              android:background="@drawable/shape_com_bg_white"
+              android:layout_height="@dimen/commom_btn_height_40" />
         <Button
             android:id="@+id/log_ac_btn_login"
             style="@style/btn_com_gray"

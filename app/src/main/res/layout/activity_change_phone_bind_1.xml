@@ -24,7 +24,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hint="@string/phone_number"
+        android:visibility="gone"
         app:icon_type="@drawable/icon_phone_jpg" />
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/common_bg_white"
+        android:id="@+id/change_phone_bind_1_tv_phone"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/commom_margin_30"
+        android:layout_height="@dimen/commom_height_54" />
 
     <com.alpha.alphaapp.ui.widget.et.InputVerifyEditText
         android:id="@+id/change_phone_bind_1_ivet"
