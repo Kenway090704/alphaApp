@@ -60,7 +60,7 @@ public class JsonEncryptUtil {
      * @return
      */
     public static void getDefaultKey() {
-        LogUtils.e(TAG, "BuildConfig.DEBUG==" + BuildConfig.DEBUG);
+
         if (true) {
             //debug
             APPKEY = "0lLYgBbML3axJk3z";
@@ -76,7 +76,7 @@ public class JsonEncryptUtil {
 //            APPKEY = sb.toString();
 //            APPID = "9FprO7RiGjFknxPo";
         }
-        LogUtils.e(TAG, "APPKEY===" + APPKEY + ",APPID==" + APPID);
+
     }
 
     /**

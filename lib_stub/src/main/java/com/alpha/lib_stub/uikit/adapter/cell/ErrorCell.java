@@ -3,7 +3,6 @@ package com.alpha.lib_stub.uikit.adapter.cell;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.SimpleAdapter;
 
 import com.alpha.lib_stub.R;
 import com.alpha.lib_stub.uikit.adapter.base.RVBaseViewHolder;

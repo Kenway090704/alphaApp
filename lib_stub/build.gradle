@@ -40,7 +40,7 @@ dependencies {
     compile rootProject.ext.dependencies["appcompat-v7"]
 
     compile rootProject.ext.dependencies["support-design"]
-
+    compile rootProject.ext.dependencies["status-bar-compat"]
 
     releaseCompile project(path: ':lib_sdk', configuration: 'release')
     debugCompile project(path: ':lib_sdk', configuration: 'debug')

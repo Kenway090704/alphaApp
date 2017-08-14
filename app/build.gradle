@@ -135,6 +135,7 @@ dependencies {
     compile rootProject.ext.dependencies["XTabLayout"]
     compile rootProject.ext.dependencies["status-bar-compat"]
     compile rootProject.ext.dependencies["okhttp"]
+    compile rootProject.ext.dependencies["convenientbanner"]
     //腾讯bugly日志
     compile rootProject.ext.dependencies["crashreport"];
     compile rootProject.ext.dependencies["crashreport-native"]

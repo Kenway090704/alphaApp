@@ -97,7 +97,7 @@ public class ActiveRecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public void setData(CdkDatasBean.CdkItemsBean bean) {
             if (!Util.isNull(bean)) {
-                LogUtils.e(TAG, "bean===" + bean.toString());
+                LogUtils.e(TAG, "TestBean===" + bean.toString());
                 tv_active_code.setText(bean.getCode());
                 tv_code_type.setText(bean.getLot_number());
                 tv_product.setText(bean.getLot_number());

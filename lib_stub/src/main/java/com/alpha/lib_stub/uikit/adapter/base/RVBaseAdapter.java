@@ -12,12 +12,12 @@ import java.util.List;
 /**
  * Created by kenway on 17/8/11 17:40
  * Email : xiaokai090704@126.com
+ * http://www.jianshu.com/p/727c18f4bf20
  */
 
 public abstract class RVBaseAdapter<C extends RVBaseCell> extends RecyclerView.Adapter<RVBaseViewHolder> {
     public static final String TAG = "RVBaseAdapter";
     protected List<C> mData;
-
     public RVBaseAdapter() {
         mData = new ArrayList<>();
     }

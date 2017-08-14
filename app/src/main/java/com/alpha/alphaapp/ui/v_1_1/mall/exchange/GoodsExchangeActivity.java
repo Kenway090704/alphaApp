@@ -40,7 +40,7 @@ import java.util.List;
 
 public class GoodsExchangeActivity extends BaseChooseAddrActivity {
     private static final String TAG = "GoodsExchangeActivity";
-    private static final String BEAN = "bean";
+    private static final String BEAN = "TestBean";
     private static final String PRODUCT_ID = "product_id";
 
     private GoodsBean bean;
@@ -146,6 +146,8 @@ public class GoodsExchangeActivity extends BaseChooseAddrActivity {
                     ShippingAddrActivity.actionStart(GoodsExchangeActivity.this);
                 } else {
                     //进入选择收获地址页面
+
+//                    ChooseShippingAddrActivity.actionStart(GoodsExchangeActivity.this);
                     ChooseShippingAddrActivity.actionStart(GoodsExchangeActivity.this);
                 }
             }

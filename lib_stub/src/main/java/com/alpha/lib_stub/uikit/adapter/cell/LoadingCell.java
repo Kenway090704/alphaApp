@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alpha.lib_stub.R;
-import com.alpha.lib_stub.uikit.adapter.base.Cell;
 import com.alpha.lib_stub.uikit.adapter.base.RVBaseViewHolder;
 import com.alpha.lib_stub.uikit.adapter.base.RVSimpleAdapter;
 
@@ -34,7 +33,4 @@ public class LoadingCell extends RVAbsStateCell {
 
     }
 
-    public void setLoadingView(View loadingView) {
-        this.mView = loadingView;
-    }
 }

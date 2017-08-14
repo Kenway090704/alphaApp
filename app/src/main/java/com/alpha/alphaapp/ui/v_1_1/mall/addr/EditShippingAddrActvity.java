@@ -54,7 +54,7 @@ public class EditShippingAddrActvity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        bean = (ShippingAddrBean) getIntent().getSerializableExtra("bean");
+        bean = (ShippingAddrBean) getIntent().getSerializableExtra("TestBean");
         return R.layout.activity_edit_shipping_addr;
     }
 
@@ -259,7 +259,7 @@ public class EditShippingAddrActvity extends BaseActivity {
 
     public static void actionStart(Context context, ShippingAddrBean bean) {
         Intent intent = new Intent(context, EditShippingAddrActvity.class);
-        intent.putExtra("bean", bean);
+        intent.putExtra("TestBean", bean);
         context.startActivity(intent);
     }
 }

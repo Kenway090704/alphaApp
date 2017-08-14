@@ -3,6 +3,7 @@ package com.alpha.alphaapp.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,6 +14,7 @@ import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallFragment;
 import com.alpha.alphaapp.ui.v_1_0.mine.MineFragment;
 import com.alpha.alphaapp.ui.v_1_0.recom.RecomFragment;
+import com.alpha.alphaapp.ui.v_1_2.ForumFragment;
 
 
 /**
@@ -24,7 +26,7 @@ public class HomeActivity extends BaseFragmentActivity {
     private static final String TAG = "HomeActivity";
     private RadioGroup radioGroup;
     private RadioButton rb_mine;
-    private BaseFragment[] fragments;
+    private Fragment[] fragments;
     private int lastIndex = 2;
 
 
@@ -60,11 +62,11 @@ public class HomeActivity extends BaseFragmentActivity {
      * 初始化fragment
      */
     private void initFragments() {
-        fragments = new BaseFragment[]{
-                new RecomFragment(), new ScoreMallFragment(), new MineFragment()
+        fragments = new Fragment[]{
+                new ForumFragment(), new ScoreMallFragment(), new MineFragment()
         };
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
-        for (BaseFragment frag : fragments) {
+        for (Fragment frag : fragments) {
             tran.add(R.id.home_content, frag);
             tran.hide(frag);
         }

@@ -25,6 +25,19 @@ public class TitleLayout extends LinearLayout {
     private ImageView iv_back;
     private TextView tv_title;
 
+    public TitleLayout(Context context,String title) {
+        super(context);
+
+        LayoutInflater.from(context).inflate(R.layout.widget_titlelayout, this);
+        layout_back = (LinearLayout) findViewById(R.id.title_layout_back);
+        iv_back = (ImageView) findViewById(R.id.title_iv_back);
+        tv_title = (TextView) findViewById(R.id.title_tv_title);
+
+        if (!Util.isNullOrBlank(title))
+            tv_title.setText(title);
+        setOnBackListener(null);
+    }
+
     public TitleLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.TitleLayout);

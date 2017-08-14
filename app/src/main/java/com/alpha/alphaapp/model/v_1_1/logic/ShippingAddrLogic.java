@@ -111,7 +111,7 @@ public class ShippingAddrLogic {
                 .append("\"mobile\":").append("\"" + bean.getMobile() + "\",")
                 .append("\"default_addr\":").append(bean.getDefault_addr())
                 .append("},")
-//                .append(JsonUtil.beanToJson(bean))
+//                .append(JsonUtil.beanToJson(TestBean))
                 .append("\"ts\":").append(System.currentTimeMillis())
                 .append("}");
         return sb.toString();
@@ -179,7 +179,7 @@ public class ShippingAddrLogic {
                 .append("\"mobile\":").append("\"" + bean.getMobile() + "\",")
                 .append("\"default_addr\":").append(bean.getDefault_addr())
                 .append("},")
-//                .append(JsonUtil.beanToJson(bean))
+//                .append(JsonUtil.beanToJson(TestBean))
                 .append("\"ts\":").append(System.currentTimeMillis())
                 .append("}");
         return sb.toString();

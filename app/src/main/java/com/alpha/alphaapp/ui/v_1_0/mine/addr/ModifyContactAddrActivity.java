@@ -73,7 +73,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
         String detail = StringUtils.getDetailAddrString(contact_addr);
         miiv_pca.setMsg(pca);
         et_detail.setText(detail);
-        KeyBoardUtils.setFoucus(et_detail,this);
+        KeyBoardUtils.setFoucus(et_detail, this);
 
     }
 
@@ -123,7 +123,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
             @Override
             public void onSubmit(String province, String city, String area) {
                 miiv_pca.setMsg(province + city + area);
-                if (!miiv_pca.getMsg().equals(AccountManager.getInstance().getUserInfo().getContact_addr())){
+                if (!miiv_pca.getMsg().equals(AccountManager.getInstance().getUserInfo().getContact_addr())) {
                     btn_save.setEnabled(Boolean.TRUE);
                     btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
@@ -161,6 +161,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
             @Override
             public void onModelSuccessed(Object o) {
                 MineInfoActivity.actionStart(ModifyContactAddrActivity.this, null, null);
+                finish();
             }
 
             @Override
