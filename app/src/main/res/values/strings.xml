@@ -48,7 +48,11 @@
     <string name="logining">努力登录中...</string>
     <string name="loading">努力加载中...</string>
     <string name="verify_input_error">验证码输入错误</string>
+    <string name="verify_get_two_much">获取验证码过于频繁</string>
+    <string name="phone_had_bind">手机已经被绑定</string>
+    <string name="phone_input_error">手机号输入错误</string>
     <string name="account_or_pw_error">帐号或者密码输入错误</string>
+    <string name="account_or_phone_intput_error">账号或手机号输入错误或未绑定</string>
 
 
     <!--Settings Activity-->

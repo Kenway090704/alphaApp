@@ -14,7 +14,7 @@ import com.alpha.alphaapp.R;
 public class CountDownManager {
     private TextView tv;
     // 实现倒计时功能
-    CountDownTimer timer = new CountDownTimer(5000, 1000) {
+    CountDownTimer timer = new CountDownTimer(120000, 1000) {
 
         @Override
         public void onTick(long millisUntilFinished) {

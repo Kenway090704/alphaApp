@@ -1,6 +1,8 @@
 package com.alpha.alphaapp.model.v_1_0.pw;
 
+import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -93,7 +95,7 @@ public class PhoneFindPwLogic {
                 break;
             case CommStants.BY_PHONE_FIND_PW.RESULT_PHONE_INPUT_ERROR:
                 if (!Util.isNull(callBack))
-                    callBack.onModelFailed(info.getMsg());
+                    callBack.onModelFailed(ResourceUtil.resToStr(R.string.account_or_phone_intput_error));
                 break;
             case CommStants.BY_PHONE_FIND_PW.RESULT_PW_FORM_ERROR:
                 if (!Util.isNull(callBack))

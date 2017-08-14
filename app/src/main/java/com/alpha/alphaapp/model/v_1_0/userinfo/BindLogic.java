@@ -1,7 +1,9 @@
 package com.alpha.alphaapp.model.v_1_0.userinfo;
 
+import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -169,18 +171,25 @@ public class BindLogic {
 //                        手机验证码手机号错误
 
                 if (!Util.isNull(call))
-                    call.onModelFailed(info.getMsg());
+                    call.onModelFailed(ResourceUtil.resToStr(R.string.verify_get_two_much));
                 break;
 //                    case  CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_IS_ERROR:
 //                        break;
 
             case CommStants.BIND_ACOUNT_RESULT.RESULT_VERIFY_IS_ERROR:
-                if (!Util.isNull(call))
-                    call.onModelFailed(info.getMsg());
+                if (info.getMsg().contains("手机号")){
+                    if (!Util.isNull(call))
+                        call.onModelFailed(ResourceUtil.resToStr(R.string.phone_input_error));
+                }else {
+                    if (!Util.isNull(call))
+                        call.onModelFailed(ResourceUtil.resToStr(R.string.verify_input_error));
+                }
+
                 break;
             case CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_HAD_BIND:
+
                 if (!Util.isNull(call))
-                    call.onModelFailed(info.getMsg());
+                    call.onModelFailed(ResourceUtil.resToStr(R.string.phone_had_bind));
                 break;
             default:
                 if (!Util.isNull(call))

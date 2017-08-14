@@ -1,6 +1,8 @@
 package com.alpha.alphaapp.model.v_1_0.register;
 
+import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -163,7 +165,7 @@ public class RegisterLogic {
                 break;
             case CommStants.REGISTER_RESULT.RESULT_VERIFY_ERROR_OR_ENPTY:
                 if (!Util.isNull(callBack))
-                    callBack.onModelFailed(info.getMsg());
+                    callBack.onModelFailed(ResourceUtil.resToStr(R.string.verify_input_error));
                 break;
         }
     }
