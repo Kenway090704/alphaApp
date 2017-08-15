@@ -12,6 +12,7 @@ import com.alpha.alphaapp.model.v_1_1.logic.ShippingAddrLogic;
 import com.alpha.alphaapp.ui.v_1_1.mall.cell.ShippingAddrCell;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.uikit.adapter.activity.AbsBaseActivity;
 import com.alpha.lib_stub.uikit.adapter.base.Cell;
@@ -74,7 +75,12 @@ public class ChooseShippingAddrActivity extends AbsBaseActivity {
                     @Override
                     public void run() {
                         mBaseAdapter.hideLoading();
-                        mBaseAdapter.addAll(getCells(list));
+                        if (Util.isNull(list)&&list.size()==0){
+                             mBaseAdapter.showEmpty();
+                        }else {
+                            mBaseAdapter.addAll(getCells(list));
+                        }
+
                     }
                 }, 0);
             }

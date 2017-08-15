@@ -24,8 +24,6 @@ import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
 import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Created by kenway on 17/6/8 11:16
  * Email : xiaokai090704@126.com
@@ -128,7 +126,7 @@ public class ModifyInfoETItemView extends LinearLayout {
                         two_iv.setVisibility(INVISIBLE);
                     }
                     //当item获取焦点的时候,不显示
-                    tv_error.setViewGone();
+                    tv_error.setViewInVisible();
                 } else {
                     layout_two.setVisibility(GONE);
                     layout_one.setVisibility(VISIBLE);
@@ -274,10 +272,10 @@ public class ModifyInfoETItemView extends LinearLayout {
         }
 
         if (msg.equals(one_tv_info.getText().toString())) {
-            tv_error.setViewGone();
+            tv_error.setViewInVisible();
         } else if (Util.isNullOrBlank(msg)) {
             //修改信息
-            tv_error.setViewGone();
+            tv_error.setViewInVisible();
         } else {
             doModify(modifyInfo, modifyType);
         }
@@ -306,7 +304,7 @@ public class ModifyInfoETItemView extends LinearLayout {
                         setMsg(info.getQq());
                         break;
                 }
-                tv_error.setViewGone();
+                tv_error.setViewInVisible();
             }
 
             @Override

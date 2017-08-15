@@ -19,15 +19,12 @@
         android:layout_marginTop="@dimen/commom_margin_10"
         custom:txt_item="@string/province_city_area" />
 
-    <com.alpha.alphaapp.ui.widget.LineView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
 
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 
     <LinearLayout
         android:id="@+id/mod_contact_addr_layout"

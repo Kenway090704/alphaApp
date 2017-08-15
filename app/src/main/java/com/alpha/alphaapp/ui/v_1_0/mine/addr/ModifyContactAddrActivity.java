@@ -24,6 +24,7 @@ import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.KeyBoardUtils;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 
 
 /**
@@ -110,7 +111,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
                     btn_save.setEnabled(Boolean.TRUE);
                     btn_save.setBackgroundResource(R.drawable.shape_com_bg_red);
                 }
-                tv_error.setVisibility(View.INVISIBLE);
+                tv_error.setViewInVisible();
             }
 
             @Override
@@ -135,14 +136,20 @@ public class ModifyContactAddrActivity extends BaseActivity {
             public void onClick(View v) {
                 KeyBoardUtils.closeKeybord(et_detail, ModifyContactAddrActivity.this);
                 // 将信息提交修改信息
-
+                if (Util.isNullOrBlank(miiv_pca.getMsg())) {
+                    tv_error.setText(ResourceUtil.resToStr(R.string.pca_must_not_be_empty));
+                    return;
+                }
                 //保存该数据为用户的通信地址,如果信息与填写的内容相同,则不修改
                 String addr = miiv_pca.getMsg() + et_detail.getText().toString();
                 //地址是否与当前地址相同
                 boolean isSame = addr.equals(AccountManager.getInstance().getUserInfo().getContact_addr());
+
                 if (!Util.isNullOrBlank(et_detail.getText().toString()) && !isSame) {
                     doModifyContactAddr(addr);
                 }
+
+
             }
         });
 
@@ -160,7 +167,7 @@ public class ModifyContactAddrActivity extends BaseActivity {
         OnModelCallback<Object> back = new OnModelCallback<Object>() {
             @Override
             public void onModelSuccessed(Object o) {
-                MineInfoActivity.actionStart(ModifyContactAddrActivity.this, null, null);
+//
                 finish();
             }
 

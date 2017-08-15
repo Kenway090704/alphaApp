@@ -29,6 +29,7 @@ public class ShippingAddrCell extends RVBaseCell<ShippingAddrBean> {
 
     @Override
     public RVBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         return new RVBaseViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_order_shiping_addr_item, null));
 
     }

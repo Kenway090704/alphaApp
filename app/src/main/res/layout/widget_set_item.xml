@@ -21,7 +21,7 @@
         android:layout_weight="1"
         android:textSize="@dimen/commom_tv_size_14"
         android:textColor="@color/common_tv_black"
-        android:text="@string/account_bing_set" />
+        android:text="@string/settings_account_bind_set" />
 
     <ImageView
         android:layout_width="wrap_content"

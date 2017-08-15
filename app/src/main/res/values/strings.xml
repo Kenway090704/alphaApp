@@ -51,7 +51,7 @@
     <string name="verify_get_two_much">获取验证码过于频繁</string>
     <string name="phone_had_bind">手机已经被绑定</string>
     <string name="phone_input_error">手机号输入错误</string>
-    <string name="account_or_pw_error">帐号或者密码输入错误</string>
+    <string name="account_or_pw_error">账号或者密码输入错误</string>
     <string name="account_or_phone_intput_error">账号或手机号输入错误或未绑定</string>
 
 
@@ -61,7 +61,6 @@
     <string name="feedback">意见反馈</string>
     <string name="wel_comment">欢迎评分</string>
     <string name="about_us">关于我们</string>
-    <string name="account_bing_set">帐号和绑定设置</string>
     <string name="exit_account">退出当前账号</string>
 
     <!--Account Security-->
@@ -87,13 +86,13 @@
 
     <!--Bind phone number-->
     <string name="success_bind_phone_number">绑定成功</string>
-    <string name="account_bind">帐号绑定</string>
+    <string name="account_bind">账号绑定</string>
     <string name="next">下一步</string>
     <string name="submit_bind_phone">提交绑定手机</string>
     <string name="plz_input_new_bind_phone">请输入新绑定的手机号</string>
 
     <!--Bind alpha acc-->
-    <string name="en_account_set">英文帐号设置</string>
+    <string name="en_account_set">英文账号号设置</string>
     <string name="save">保存</string>
 
     <string name="set_en_account_sucess">英文账号设置成功</string>
@@ -129,7 +128,7 @@
     <string name="plz_use_new_login_now">请用新密码登录</string>
     <string name="insure">确认</string>
     <string name="look_wx_bind_account">查看绑定的英文账号</string>
-    <string name="wx_no_login_alpha">该微信号未注册奥飞账号，如需找回，请点击下方的“立即登录设置”按钮。</string>
+    <string name="wx_no_login_alpha">该微信号未注册奥飞账号，如需找回，请点击下方的"立即登录设置"按钮。</string>
     <string name="wx_has_login_alpha">该微信号已注册为奥飞用户</string>
     <string name="now_login_set">立即登录设置</string>
     <string name="if_reset_pw_for_the_account">如确认为该账号重设密码,请点击下方按钮</string>
@@ -173,6 +172,8 @@
     <string name="truename_format">姓名格式1-12字符，支持中文</string>
     <string name="contact_phone_format">联系电话格式1-20位字符</string>
     <string name="qq_format">"QQ格式1-20纯数字"</string>
+
+    <string name="pca_must_not_be_empty">省市县不能为空</string>
     <!--签到-->
     <string name="sign">签到</string>
     <string name="now_sign">立即签到</string>

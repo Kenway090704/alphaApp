@@ -114,7 +114,7 @@ public class ModifySchoolActivity extends BaseActivity {
         OnModelCallback<Object> back = new OnModelCallback<Object>() {
             @Override
             public void onModelSuccessed(Object o) {
-
+                    finish();
             }
 
             @Override

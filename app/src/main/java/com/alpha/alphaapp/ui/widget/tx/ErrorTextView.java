@@ -59,8 +59,8 @@ public class ErrorTextView extends LinearLayout {
         setVisibility(VISIBLE);
     }
 
-    public void setViewGone() {
-        setVisibility(GONE);
+    public void setViewInVisible() {
+        setVisibility(INVISIBLE);
     }
 
 

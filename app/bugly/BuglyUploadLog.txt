@@ -72,3 +72,17 @@ appChannel=wandoujia
 appPackage=com.alpha.alphaapp
 appVersion=v 1.1.0
 
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/c360/release/mapping.txt
+sha1=c34edab6ecf9826569e93cc6f01881ccece86fef
+appId=95a2a31773
+appChannel=c360
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/c360/release/mapping.txt
+sha1=9e6965d4ca00dac9c79489844e1c61346609e315
+appId=95a2a31773
+appChannel=c360
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
