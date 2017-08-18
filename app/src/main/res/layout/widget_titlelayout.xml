@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/commom_height_48"
     android:background="@drawable/shape_com_bg_red"
-    android:padding="10dp">
+    android:padding="@dimen/commom_margin_10">
     <LinearLayout
         android:id="@+id/title_layout_back"
         android:layout_width="@dimen/commom_length_70"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:textColor="@android:color/white"
+        android:textColor="@color/common_tv_white"
         android:textSize="@dimen/commom_tv_size_15"
         android:textStyle="bold" />
 </RelativeLayout>

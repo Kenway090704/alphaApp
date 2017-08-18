@@ -17,8 +17,8 @@ import com.alpha.lib_stub.uikit.adapter.base.RVBaseViewHolder;
  * Email : xiaokai090704@126.com
  */
 
-public class ShippingAddrCell extends RVBaseCell<ShippingAddrBean> {
-    public ShippingAddrCell(ShippingAddrBean shippingAddrBean) {
+public class ChooseShippingAddrCell extends RVBaseCell<ShippingAddrBean> {
+    public ChooseShippingAddrCell(ShippingAddrBean shippingAddrBean) {
         super(shippingAddrBean);
     }
 
@@ -40,12 +40,12 @@ public class ShippingAddrCell extends RVBaseCell<ShippingAddrBean> {
         holder.setText(R.id.order_shiping_addr_item_tv_mobile,mData.getMobile());
         holder.setText(R.id.order_shiping_addr_item_tv_addr,mData.getAddrAll());
 
-        holder.getmItemView().setOnClickListener(new View.OnClickListener() {
+        holder.getItemView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //通知相关的注册页面进行用户信息更新
                 RxEventBus.getBus().publish(new ChoooseShippingAddrUpdateEvent<>(mData));
-                ((ChooseShippingAddrActivity) holder.getmItemView().getContext()).finish();
+                ((ChooseShippingAddrActivity) holder.getItemView().getContext()).finish();
             }
         });
     }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/frag_forum_setting_btn_notification"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="@string/accept_notification_or_not" />
+
+
+    <Button
+        android:id="@+id/frag_forum_setting_btn_alert_notification"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="@string/alert_notification" />
+
+    <Button
+        android:id="@+id/frag_forum_setting_btn_picture_quality"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="@string/picture_quality" />
+
+    <Button
+        android:id="@+id/frag_forum_setting_btn_font_size"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="@string/font_size" />
+
+    <Button
+        android:id="@+id/frag_forum_setting_btn_clear_cache"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="@string/clear_cache" />
+
+    <Button
+        android:id="@+id/frag_forum_setting_btn_clear_history"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="@string/clear_history" />
+
+    <Button
+        android:id="@+id/frag_forum_setting_btn_clear_draft"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="@string/clear_draft" />
+</LinearLayout>

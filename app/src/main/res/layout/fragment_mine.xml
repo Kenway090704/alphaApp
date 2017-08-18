@@ -18,17 +18,17 @@
             android:orientation="horizontal">
 
             <FrameLayout
-                android:layout_width="84dp"
-                android:layout_height="84dp"
+                android:layout_width="@dimen/commom_length_84"
+                android:layout_height="@dimen/commom_height_84"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/commom_margin_16">
 
-                <ImageView
-                    android:layout_width="@dimen/commom_radius"
-                    android:layout_height="@dimen/commom_radius"
-                    android:layout_gravity="center"
-                    android:src="@drawable/photo_bg_circle" />
 
+                <ImageView
+                    android:layout_width="@dimen/commom_radius_84"
+                    android:layout_height="@dimen/commom_radius_84"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_photo_bg_circle" />
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/frag_mine_riv"
                     android:layout_width="@dimen/commom_radius_50"
@@ -37,6 +37,8 @@
                     android:layout_gravity="center"
                     android:src="@drawable/launcher"
                     app:riv_oval="true" />
+
+
             </FrameLayout>
 
             <LinearLayout
@@ -60,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="@dimen/commom_margin_3"
                     android:orientation="horizontal">
 
                     <TextView
@@ -128,6 +130,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/commom_height_1"
         android:background="@color/common_bound_line_gray" />
 </LinearLayout>

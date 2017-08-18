@@ -178,7 +178,7 @@ public class StaggerRecylcerAdapter extends RecyclerView.Adapter<StaggerRecylcer
             params_cb.width = width / 2;
             params_cb.height = height + 2;
             cb.setLayoutParams(params_cb);
-            ImageLoader.load(context, URLConstans.GET_ICON.ICON100 + icon, iv);
+            ImageLoader.load(context, URLConstans.getICONUrl(context) + icon, iv);
         }
     }
 }

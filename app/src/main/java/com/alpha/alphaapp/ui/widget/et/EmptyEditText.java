@@ -109,7 +109,6 @@ public class EmptyEditText extends LinearLayout {
                 }
             }
         });
-
     }
 
     /**

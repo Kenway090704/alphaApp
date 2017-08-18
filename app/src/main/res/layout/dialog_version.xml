@@ -12,23 +12,23 @@
         <!-- Title -->
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="45dp">
+            android:layout_height="@dimen/commom_height_45">
 
             <ImageView
                 android:id="@+id/umeng_wifi_indicator"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/commom_height_30"
+                android:layout_height="@dimen/commom_height_30"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/commom_margin_10"
                 android:src="@drawable/ic_launcher" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="发现新版本"
+                android:text="@string/find_new_version"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/black"
+                android:textColor="@color/common_tv_black"
                 android:textSize="@dimen/normal_text_size" />
 
         </RelativeLayout>
@@ -37,17 +37,17 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#d8d8d8" />
+            android:layout_height="@dimen/commom_height_1"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:layout_marginRight="@dimen/commom_margin_10"
+            android:background="@color/common_bg_white" />
         <!-- Content -->
 
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="10dp">
+            android:padding="@dimen/commom_margin_10">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -58,27 +58,27 @@
                     android:id="@+id/tv_update_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="最新版本：智慧海事v2.2.1"
-                    android:textColor="@color/black"
+                    android:text="@string/new_version_name"
+                    android:textColor="@color/common_tv_black"
                     android:textSize="@dimen/medium_text_size" />
 
                 <TextView
                     android:id="@+id/tv_update_msg_size"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="新版本大小：19.07M"
-                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/commom_margin_10"
+                    android:text="@string/version_size"
+                    android:textColor="@color/common_tv_black"
                     android:textSize="@dimen/medium_text_size" />
 
                 <TextView
                     android:id="@+id/tv_update_content"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="3dp"
-                    android:minHeight="60dp"
-                    android:text="\n更新内容：\n1、处理了海图上长按定点查询附近通航要素和船舶的bug\n2、新增点击消息列表查看消息类容\n3、调整经纬度变化距离获取消息通知，以及优化消息列表的显示样式\n4、海图切换窗口里面新增 显示当前屏幕范围内的AIS数据\n"
-                    android:textColor="@color/black"
+                    android:lineSpacingExtra="@dimen/commom_margin_3"
+                    android:minHeight="@dimen/commom_height_60"
+                    android:text="@string/update_message"
+                    android:textColor="@color/common_tv_black"
                     android:textSize="@dimen/medium_text_size" />
             </LinearLayout>
         </ScrollView>
@@ -95,27 +95,27 @@
             <Button
                 android:id="@+id/btn_update_id_cancel"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
+                android:layout_height="@dimen/commom_height_40"
+                android:layout_marginBottom="@dimen/commom_margin_10"
+                android:layout_marginLeft="@dimen/commom_margin_10"
+                android:layout_marginRight="@dimen/commom_margin_5"
                 android:layout_weight="1"
                 android:background="@drawable/dialog_cancel_btn_bg"
-                android:text="以后再说"
-                android:textColor="@color/black"
+                android:text="@string/talk_to_you_later"
+                android:textColor="@color/common_tv_black"
                 android:textSize="@dimen/normal_text_size" />
 
 
             <Button
                 android:id="@+id/btn_update_id_ok"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="@dimen/commom_height_40"
+                android:layout_marginBottom="@dimen/commom_margin_10"
+                android:layout_marginLeft="@dimen/commom_margin_5"
+                android:layout_marginRight="@dimen/commom_margin_5"
                 android:layout_weight="1"
                 android:background="@drawable/dialog_ok_btn_bg"
-                android:text="立即更新"
+                android:text="@string/now_right_update"
                 android:textColor="@color/common_tv_white"
                 android:textSize="@dimen/normal_text_size" />
         </LinearLayout>

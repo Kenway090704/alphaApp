@@ -27,11 +27,11 @@
 
 
         <TextView
+            android:id="@+id/aboutus_tv_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/commom_margin_5"
-            android:gravity="center"
-            android:text="@string/version"
+
             android:textColor="@color/common_tv_dark_gray"
             android:textSize="@dimen/commom_tv_size_14"
             android:textStyle="bold" />

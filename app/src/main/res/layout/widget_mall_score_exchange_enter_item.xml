@@ -10,10 +10,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/commom_margin_10"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:layout_marginRight="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_10"
         android:layout_weight="3"
         android:scaleType="centerCrop"
         android:src="@drawable/speed_logo" />
@@ -21,15 +21,15 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="@dimen/commom_margin_10"
+        android:layout_marginLeft="@dimen/commom_margin_10"
         android:layout_weight="7"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/commom_margin_10">
 
             <TextView
                 android:id="@+id/my_score_item_tv_hint"
@@ -40,52 +40,52 @@
                 android:id="@+id/my_score_item_tv_curr_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/white"
+                android:layout_marginLeft="@dimen/commom_margin_10"
+                android:textColor="@color/common_tv_white"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/commom_margin_5">
 
             <TextView
                 android:id="@+id/my_score_item_tv_review_exchange_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="@dimen/commom_margin_10"
                 android:clickable="true"
-                android:text="查看兑换记录>"
-                android:textSize="12sp" />
+                android:text="@string/look_exchang_record"
+                android:textSize="@dimen/commom_tv_size_12" />
 
             <TextView
                 android:id="@+id/my_score_item_tv_look_web"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="去官网看看 >"
+                android:text="@string/look_official_web"
 
-                android:textSize="12sp" />
+                android:textSize="@dimen/commom_tv_size_12" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/my_score_item_tv_score_log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="积分变动记录"
+            android:layout_marginTop="@dimen/commom_margin_5"
+            android:text="@string/score_chang_record"
 
-            android:textSize="12sp" />
+            android:textSize="@dimen/commom_tv_size_12" />
 
         <TextView
             android:id="@+id/my_score_item_tv_exchange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="我要兑换"
-            android:textColor="@color/red"
+            android:layout_marginTop="@dimen/commom_margin_5"
+            android:text="@string/i_want_exchange"
+            android:textColor="@color/common_tv_dark_red"
             android:textStyle="bold" />
 
 

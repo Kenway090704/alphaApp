@@ -8,6 +8,7 @@ import com.alpha.lib_sdk.app.tool.DeviceUtils;
 import com.alpha.lib_sdk.app.unitily.DensityUtils;
 import com.alpha.lib_stub.R;
 import com.alpha.lib_stub.uikit.adapter.base.RVBaseViewHolder;
+import com.alpha.lib_stub.uikit.adapter.base.RVSimpleAdapter;
 
 /**
  * Created by kenway on 17/8/11 18:43
@@ -30,7 +31,7 @@ public class LoadMoreCell extends RVAbsStateCell {
 
     @Override
     public int getItemType() {
-        return 0;
+        return RVSimpleAdapter.LOAD_MORE_TYPE;
     }
 
     @Override

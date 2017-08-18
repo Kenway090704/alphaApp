@@ -11,81 +11,60 @@
         android:layout_height="wrap_content"
         app:txt_title="@string/register_way_choose" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="46.5dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="22.5dp"
-        android:src="@drawable/alpha_logo" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/register_guide_layout_acc"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/commom_margin_50"
         android:background="@color/common_bg_white"
-        android:orientation="horizontal">
+        android:clickable="true"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/register_guide_layout_acc"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/commom_margin_55"
-            android:background="@color/common_bg_white"
-            android:clickable="true"
+            android:src="@drawable/user_big" />
 
-            android:orientation="vertical">
+        <TextView
+            android:layout_width="@dimen/commom_margin_89"
+            android:layout_height="@dimen/commom_margin_25"
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/user_big" />
-
-            <TextView
-                android:layout_width="@dimen/commom_margin_89"
-                android:layout_height="@dimen/commom_margin_25"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape_com_bg_red"
-                android:gravity="center"
-
-                android:text="@string/account_register"
-                android:textColor="@color/common_tv_white"
-                android:textSize="@dimen/commom_tv_size_12" />
-        </LinearLayout>
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:id="@+id/register_guide_layout_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/commom_margin_55"
-            android:background="@color/common_bg_white"
-            android:clickable="true"
+            android:background="@drawable/shape_com_bg_red"
             android:gravity="center"
-            android:orientation="vertical">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/phone_big" />
-
-            <TextView
-                android:layout_width="@dimen/commom_margin_89"
-                android:layout_height="@dimen/commom_margin_25"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape_com_bg_red"
-                android:gravity="center"
-                android:text="@string/phone_register"
-                android:textColor="@color/common_tv_white"
-                android:textSize="@dimen/commom_tv_size_12" />
-        </LinearLayout>
-
+            android:text="@string/account_register"
+            android:textColor="@color/common_tv_white"
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/register_guide_layout_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/commom_margin_50"
+        android:background="@color/common_bg_white"
+        android:clickable="true"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone_big" />
+
+        <TextView
+            android:layout_width="@dimen/commom_margin_89"
+            android:layout_height="@dimen/commom_margin_25"
+            android:background="@drawable/shape_com_bg_red"
+            android:gravity="center"
+            android:text="@string/phone_register"
+            android:textColor="@color/common_tv_white"
+            android:textSize="@dimen/commom_tv_size_12" />
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -104,11 +83,11 @@
         android:id="@+id/register_guide_tv_hasAccount"
         android:layout_width="@dimen/commom_length_103"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/commom_margin_22"
         android:layout_gravity="center"
+        android:clickable="true"
         android:gravity="center"
         android:paddingBottom="@dimen/commom_margin_50"
-        android:clickable="true"
+        android:paddingTop="@dimen/commom_margin_22"
         android:text="@string/already_has_account"
         android:textColor="@color/common_tv_dark_red"
         android:textSize="@dimen/commom_tv_size_12" />

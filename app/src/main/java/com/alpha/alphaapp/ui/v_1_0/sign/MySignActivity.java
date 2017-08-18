@@ -70,7 +70,7 @@ public class MySignActivity extends BaseActivity {
         if (!Util.isNullOrBlank(icon)) {
             //使用Glide展示图片
 
-            Glide.with(this).load(URLConstans.GET_ICON.ICON300 + icon).into(iv_signIcon);
+            Glide.with(this).load(URLConstans.getICONUrl(this) + icon).into(iv_signIcon);
         }
         //初始化Recyclerview的数据
         map = new HashMap<>();

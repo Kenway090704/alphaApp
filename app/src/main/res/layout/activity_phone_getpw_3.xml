@@ -24,7 +24,8 @@
         android:id="@+id/phone_get_pw_3_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hint="@string/pw_form"
+        app:hint="@string/pw"
+        app:hint_bracket_msg="@string/pw_form"
         app:input_type="password"
         app:icon_type="@drawable/icon_password" />
 

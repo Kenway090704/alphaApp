@@ -7,47 +7,47 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/commom_margin_42"
         android:gravity="center_horizontal"
         android:text="@string/sign_rule_declare"
         android:textColor="@color/common_tv_black"
-        android:textSize="18sp"
+        android:textSize="@dimen/commom_tv_size_18"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:layout_marginRight="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_20"
         android:textColor="@color/common_tv_black"
         android:gravity="center_horizontal"
         android:text="@string/sign_rule_1"
-        android:textSize="12sp" />
+        android:textSize="@dimen/commom_tv_size_12" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:layout_marginRight="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_5"
         android:textColor="@color/common_tv_black"
         android:maxLines="2"
-        android:lineSpacingExtra="9dp"
+        android:lineSpacingExtra="@dimen/commom_margin_10"
         android:text="@string/sign_rule_2"
-        android:textSize="12sp" />
+        android:textSize="@dimen/commom_tv_size_12" />
 
     <Button
         android:id="@+id/dialog_my_sign_btn_ikown"
-        android:layout_width="100dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/commom_length_100"
+        android:layout_height="@dimen/commom_height_23"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/commom_margin_20"
         android:background="@color/common_bg_dark_gray"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingLeft="@dimen/commom_margin_5"
+        android:paddingRight="@dimen/commom_margin_5"
         android:text="@string/i_kown"
-        android:layout_marginBottom="14dp"
-        android:textSize="12sp" />
+        android:layout_marginBottom="@dimen/commom_margin_14"
+        android:textSize="@dimen/commom_tv_size_12" />
 
 </LinearLayout>

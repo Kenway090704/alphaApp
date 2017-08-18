@@ -15,8 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:layout_marginTop="@dimen/commom_margin_10">
 
             <TextView
                 android:id="@+id/order_shiping_addr_item_tv_name"
@@ -29,7 +29,7 @@
                 android:id="@+id/order_shiping_addr_item_tv_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="@dimen/commom_margin_10"
 
                 android:textColor="@color/common_tv_black" />
         </LinearLayout>
@@ -38,15 +38,15 @@
             android:id="@+id/order_shiping_addr_item_tv_addr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:layout_marginTop="@dimen/commom_margin_10"
             android:maxLines="2"
             android:textColor="@color/common_tv_black" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/commom_height_1"
+            android:layout_marginTop="@dimen/commom_margin_10"
             android:background="@color/common_bound_line_gray" />
     </LinearLayout>
 
@@ -58,14 +58,14 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:visibility="gone"
-        android:padding="10dp"
-        android:text="当前没有收货地址,请添加收货地址"
+        android:padding="@dimen/commom_margin_10"
+        android:text="@string/no_had_shipping_addr"
  />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="@dimen/commom_margin_10"
         android:src="@drawable/icon_mysign_next" />
 </LinearLayout>

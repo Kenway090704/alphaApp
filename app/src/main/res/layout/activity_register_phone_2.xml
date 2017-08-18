@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:curent_select="2"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/commom_margin_10"
         app:txt_first="@string/input_phone"
         app:txt_second="@string/input_verify"
         app:txt_third="@string/set_pw" />

@@ -19,8 +19,8 @@
         android:layout_height="@dimen/commom_height_290" />
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="2dp"
+        android:layout_height="@dimen/commom_height_1"
+        android:layout_marginBottom="@dimen/commom_margin_3"
         android:background="@color/common_bound_line_gray" />
 
     <Button

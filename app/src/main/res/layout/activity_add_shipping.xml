@@ -14,38 +14,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="@dimen/commom_margin_10">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textSize="12sp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:textSize="@dimen/commom_tv_size_12"
             android:text="@string/shipping_person" />
 
         <EditText
             android:id="@+id/add_shiping_addr_et_name"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:textSize="12sp" />
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:background="@color/common_bg_light_gray"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/commom_height_1"/>
 
     <LinearLayout
-        android:padding="10dp"
+        android:padding="@dimen/commom_margin_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textSize="12sp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:textSize="@dimen/commom_tv_size_12"
             android:text="@string/contact_phone" />
 
         <EditText
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:textSize="12sp" />
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
         android:layout_height="1dp"/>
     <LinearLayout
         android:id="@+id/add_shiping_addr_liner_area"
-        android:padding="10dp"
+        android:padding="@dimen/commom_margin_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -71,8 +71,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textSize="12sp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:textSize="@dimen/commom_tv_size_12"
             android:text="@string/area" />
 
         <View
@@ -86,74 +86,74 @@
             android:layout_height="wrap_content"
             android:text="@string/plz_choose"
             android:textColor="@color/common_tv_dark_gray"
-            android:textSize="12sp" />
+            android:textSize="@dimen/commom_tv_size_12" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:layout_marginRight="@dimen/commom_margin_10"
             android:src="@drawable/icon_mysign_next" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="@dimen/commom_margin_10">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textSize="12sp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:textSize="@dimen/commom_tv_size_12"
             android:text="@string/post_code" />
 
         <EditText
             android:id="@+id/add_shiping_addr_et_postcode"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:textSize="12sp" />
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:background="@color/common_bg_light_gray"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/commom_height_1"/>
     <LinearLayout
         android:id="@+id/add_shiping_addr_liner_detail"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:padding="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_height="@dimen/commom_height_70"
+        android:padding="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_10">
 
         <EditText
             android:id="@+id/add_shiping_addr_et_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:background="@null"
             android:hint="@string/plz_input_detail_addr_more_than_5_bite"
-            android:textSize="12sp" />
+            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:background="@color/common_bg_light_gray"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/commom_height_1"/>
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:padding="10dp"
+            android:padding="@dimen/commom_margin_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="@string/set_default_addr"
             android:layout_gravity="center"
-            android:textSize="12sp" />
+            android:textSize="@dimen/commom_tv_size_12" />
 
         <View
             android:layout_width="0dp"
@@ -162,16 +162,16 @@
 
         <ToggleButton
             android:id="@+id/add_shiping_addr_toggle_setdefault"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/commom_length_103"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="@dimen/commom_margin_10" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:background="@color/common_bg_light_gray"
-        android:layout_height="5dp"/>
+        android:layout_height="@dimen/commom_height_5"/>
     <Button
         android:id="@+id/add_shiping_addr_btn_save"
         android:layout_width="match_parent"

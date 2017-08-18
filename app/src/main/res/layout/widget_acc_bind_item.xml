@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/commom_margin_30"
         android:gravity="center_vertical"
-        android:text="奥飞帐号"
+        android:text="@string/alpha_account"
         android:textColor="@color/common_tv_black"
         android:textSize="@dimen/commom_tv_size_14" />
 
@@ -21,13 +21,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:layout_marginRight="@dimen/commom_margin_10"
         android:layout_weight="1"
         android:gravity="center"
         android:maxLines="1"
         android:textColor="@color/common_tv_black"
-        android:textSize="12sp" />
+        android:textSize="@dimen/commom_tv_size_12" />
 
     <Button
         android:id="@+id/widget_acc_bind_btn_right"

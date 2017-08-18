@@ -1,6 +1,19 @@
 package com.alpha.lib_stub.comm;
 
 
+import android.content.Context;
+
+import com.alpha.lib_sdk.app.app.ApplicationContext;
+import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_sdk.app.unitily.NetUtils;
+import com.alpha.lib_sdk.app.unitily.NetWorkUtil;
+
+import static com.alpha.lib_stub.comm.URLConstans.GET_ICON.ICON100;
+import static com.alpha.lib_stub.comm.URLConstans.GET_ICON.ICON200;
+import static com.alpha.lib_stub.comm.URLConstans.GET_ICON.ICON300;
+import static com.alpha.lib_stub.comm.URLConstans.GET_ICON.ICON_DEFAULT;
+
+
 /**
  * Created by kenway on 17/5/23 17:20
  * Email : xiaokai090704@126.com
@@ -74,6 +87,43 @@ public class URLConstans {
          * 默认头像
          */
         String ICON_DEFAULT = "http://cdn.gdalpha.com/icon/100/9901.jpg";
+    }
+
+    /**
+     * 根据网络状态选取不同的图片质量
+     * ,默认是ICON100
+     * @return
+     */
+    public static  String  getICONUrl(Context context){
+
+       if (NetWorkUtil.is2G(context)||NetWorkUtil.is3G(context)){
+
+           return ICON100;
+       }
+
+        if (NetWorkUtil.is4G(context)){
+
+            return ICON200;
+        }
+
+        if (NetWorkUtil.isWifi(context)){
+
+            return  ICON300;
+        }
+
+        return ICON100;
+
+    }
+
+    /**
+     * 默认头像
+     * @return
+     */
+    public static  String  getDefaultICONUrl(Context context){
+
+
+        return ICON_DEFAULT;
+
     }
 
     /**
@@ -265,5 +315,14 @@ public class URLConstans {
         String VERIFY_MSG_CODE = URL_ROOT + "checkVerify";
     }
 
+    /**
+     * 论坛使用URL
+     */
+    public interface  FORUM_URL{
+        /**
+         * 热门帖子的URL
+         */
+        String HOTHIT_POST_URL="http://club.auldey.com/index.php?m=design&c=api&token=npDH2bFWOP&id=13&format=json";
+    }
 
 }

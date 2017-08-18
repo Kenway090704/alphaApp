@@ -82,9 +82,10 @@ public class MineInfoActivity extends AccountChangeActivity {
 
     private void setViewData() {
         if (!Util.isNullOrBlank(info.getIcon())) {
-            mod_icon.setIcon(URLConstans.GET_ICON.ICON60, info.getIcon());
+            mod_icon.setIcon(URLConstans.getICONUrl(this)
+                    , info.getIcon());
         } else {
-            mod_icon.setIcon(URLConstans.GET_ICON.ICON_DEFAULT);
+            mod_icon.setIcon(URLConstans.getDefaultICONUrl(this));
         }
 
         if (!Util.isNullOrBlank(info.getName()))
@@ -183,7 +184,7 @@ public class MineInfoActivity extends AccountChangeActivity {
                                         OnModelCallback<Object> back = new OnModelCallback<Object>() {
                                             @Override
                                             public void onModelSuccessed(Object o) {
-                                                mod_icon.setIcon(URLConstans.GET_ICON.ICON60, str);
+                                                mod_icon.setIcon(URLConstans.getICONUrl(MineInfoActivity.this), str);
                                             }
 
                                             @Override

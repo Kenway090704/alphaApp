@@ -15,11 +15,11 @@
         android:id="@+id/active_enter_aei_tranform_car"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="@dimen/commom_margin_10" />
 
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="@dimen/commom_height_1" />
 
     <com.alpha.alphaapp.ui.widget.mall.ActiveEnterItem
         android:id="@+id/active_enter_aei_speed"
@@ -28,7 +28,7 @@
 
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="@dimen/commom_height_1" />
 
     <com.alpha.alphaapp.ui.widget.mall.ActiveEnterItem
         android:id="@+id/active_enter_aei_super"

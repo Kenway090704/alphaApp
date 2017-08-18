@@ -1,5 +1,10 @@
 package com.alpha.lib_sdk.app.tool;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
+import android.widget.EditText;
+
 import com.alpha.lib_sdk.app.log.LogUtils;
 
 import java.util.regex.Matcher;
@@ -293,4 +298,21 @@ public class StringUtils {
         }
         return "";
     }
+
+    /**
+     * 输入框中的文字,如果有括号的将文字变小为正常的0.8
+     * @param normal
+     * @param change
+     * @param et
+     */
+
+    public static  void  setHintTxtBySpannableString(String normal, String change, EditText et){
+        SpannableString spanText = new SpannableString(normal+change);
+        spanText.setSpan(new RelativeSizeSpan(0.8f), normal.length(), spanText.length(),
+                Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        et.setHint(spanText);
+    }
+
+
+
 }

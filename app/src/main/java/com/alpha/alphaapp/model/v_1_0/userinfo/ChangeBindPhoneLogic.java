@@ -1,7 +1,9 @@
 package com.alpha.alphaapp.model.v_1_0.userinfo;
 
+import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.comm.CommStants;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -130,7 +132,7 @@ public class ChangeBindPhoneLogic {
                         break;
                     case CommStants.CHANGE_BIND_PHONE_BIND_NEW_PHONE.RESULT_DATA_PACKAGE_ERROR:
                         if (!Util.isNull(back))
-                            back.onModelFailed(info.getMsg());
+                            back.onModelFailed(ResourceUtil.resToStr(R.string.verify_input_error));
                         break;
 
                     default:

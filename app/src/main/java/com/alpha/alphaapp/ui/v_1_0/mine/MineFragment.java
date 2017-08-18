@@ -102,9 +102,9 @@ public class MineFragment extends AccountChangeFragment {
         if (!Util.isNull(info)) {
             //使用Glide展示图片
             if (Util.isNullOrBlank(info.getIcon())) {
-                ImageLoader.loadCircle(getActivity(), URLConstans.GET_ICON.ICON_DEFAULT, riv_icon);
+                ImageLoader.loadCircle(getActivity(),URLConstans.getDefaultICONUrl(  getContext()) , riv_icon);
             } else {
-                ImageLoader.loadCircle(getActivity(), URLConstans.GET_ICON.ICON60 + info.getIcon(), riv_icon);
+                ImageLoader.loadCircle(getActivity(), URLConstans.getICONUrl(getContext()) + info.getIcon(), riv_icon);
             }
 
 

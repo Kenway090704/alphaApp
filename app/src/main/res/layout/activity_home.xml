@@ -27,10 +27,20 @@
             android:button="@null"
             android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
-            android:text="推荐"
+            android:text="@string/recomment"
             android:textColor="@drawable/selector_radio_txt_color"
             android:textSize="@dimen/commom_tv_size_10" />
-
+        <RadioButton
+            android:id="@+id/home_rb_forum_setting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/icon_mine"
+            android:gravity="center"
+            android:text="@string/forum_setting"
+            android:textColor="@drawable/selector_radio_txt_color"
+            android:textSize="@dimen/commom_tv_size_10" />
         <RadioButton
             android:id="@+id/home_rb_score"
             android:layout_width="0dp"
@@ -39,7 +49,7 @@
             android:button="@null"
             android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
-            android:text="积分商城"
+            android:text="@string/score_mall"
             android:textColor="@drawable/selector_radio_txt_color"
             android:textSize="@dimen/commom_tv_size_10" />
 
@@ -50,10 +60,10 @@
             android:layout_weight="1"
             android:button="@null"
             android:checked="true"
-            android:drawablePadding="5dp"
+            android:drawablePadding="@dimen/commom_margin_5"
             android:drawableTop="@drawable/icon_mine"
             android:gravity="center"
-            android:text="我的"
+            android:text="@string/mine"
             android:textColor="@drawable/selector_radio_txt_color"
             android:textSize="@dimen/commom_tv_size_10" />
     </RadioGroup>

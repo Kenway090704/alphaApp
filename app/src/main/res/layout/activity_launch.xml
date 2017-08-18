@@ -15,24 +15,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:textSize="16sp" />
+        android:layout_marginBottom="@dimen/commom_margin_100"
+        android:textSize="@dimen/commom_tv_size_16" />
 
     <Button
         android:id="@+id/launch_btn_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="开始检测新版本" />
+        android:text="@string/start_checkout_new_version" />
 
 
     <TextView
         android:id="@+id/launch_tv_buildtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="V 0.0.6"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:textSize="16sp"
+        android:layout_marginBottom="@dimen/commom_margin_50"
+        android:textSize="@dimen/commom_tv_size_16"
         android:layout_alignParentBottom="true"
         android:textColor="@color/common_tv_dark_red" />
 

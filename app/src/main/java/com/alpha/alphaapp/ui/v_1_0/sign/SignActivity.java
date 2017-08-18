@@ -219,7 +219,7 @@ public class SignActivity extends BaseFragmentActivity {
                         };
                         SignLogic.doGetSignInfo(callBack);
                         if (!Util.isNull(signDialog)) {
-                            signDialog.setSignIcon(URLConstans.GET_ICON.ICON100 + str);
+                            signDialog.setSignIcon(URLConstans.getICONUrl(SignActivity.this) + str);
                             signDialog.show();
                             signDialog.setBtnLookOnClickListener(new View.OnClickListener() {
                                 @Override

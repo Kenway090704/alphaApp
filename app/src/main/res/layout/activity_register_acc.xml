@@ -23,14 +23,16 @@
         android:id="@+id/reg_account_aet_acc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hint="@string/account_alpha_format" />
+        app:hint_bracket_msg="@string/account_alpha_format"
+        app:hint="@string/alpha_account" />
 
     <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/reg_account_aet_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/commom_margin_5"
-        app:hint="@string/pw_form"
+        app:hint="@string/pw"
+        app:hint_bracket_msg="@string/pw_form"
         app:icon_type="@drawable/icon_password"
         app:input_type="password" />
 

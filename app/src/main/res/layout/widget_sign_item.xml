@@ -7,11 +7,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="@dimen/commom_margin_16"
+        android:layout_marginTop="@dimen/commom_margin_16"
         android:gravity="center"
-        android:text="选择一张图片可立即签到"
-        android:textSize="14sp" />
+
+        android:textSize="@dimen/commom_tv_size_14" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sign_item_recyclerView"

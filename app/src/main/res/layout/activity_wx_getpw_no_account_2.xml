@@ -23,14 +23,15 @@
         android:id="@+id/wx_getpw_no_account_aet_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hint="@string/account_alpha_format"
+        app:hint_bracket_msg="@string/account_alpha_format"
+        app:hint="@string/alpha_account"
         app:icon_type="@drawable/icon_user_super" />
 
 
     <com.alpha.alphaapp.ui.widget.tx.ErrorTextView
         android:id="@+id/wx_getpw_no_account_tv_error"
         style="@style/tv_error_com"
-        android:lineSpacingExtra="6dp" />
+        android:lineSpacingExtra="@dimen/commom_margin_6" />
 
     <Button
         android:id="@+id/wx_getpw_no_account_btn_resetpw"

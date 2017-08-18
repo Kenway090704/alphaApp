@@ -39,7 +39,7 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
     @Override
     public IconRecylcerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                context).inflate(R.layout.adapter_item_recycler_iv, parent,
+                context).inflate(R.layout.adapter_icon_item_recycler_iv, parent,
                 false));
         return holder;
     }
@@ -62,7 +62,7 @@ public class IconRecylcerAdapter extends RecyclerView.Adapter<IconRecylcerAdapte
             }
         }
 //        //使用Glide展示图片
-        ImageLoader.load(context, URLConstans.GET_ICON.ICON100 + list.get(position), holder.iv);
+        ImageLoader.load(context, URLConstans.getICONUrl(context) + list.get(position), holder.iv);
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

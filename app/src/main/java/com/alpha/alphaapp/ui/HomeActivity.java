@@ -9,12 +9,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.ui.base.BaseFragment;
 import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallFragment;
 import com.alpha.alphaapp.ui.v_1_0.mine.MineFragment;
-import com.alpha.alphaapp.ui.v_1_0.recom.RecomFragment;
-import com.alpha.alphaapp.ui.v_1_2.ForumFragment;
+
+import com.alpha.alphaapp.ui.v_1_2.ui.ForumFragment;
+import com.alpha.alphaapp.ui.v_1_2.ui.SetingFragment;
 
 
 /**
@@ -27,7 +27,7 @@ public class HomeActivity extends BaseFragmentActivity {
     private RadioGroup radioGroup;
     private RadioButton rb_mine;
     private Fragment[] fragments;
-    private int lastIndex = 2;
+    private int lastIndex = 3;
 
 
     @Override
@@ -63,7 +63,7 @@ public class HomeActivity extends BaseFragmentActivity {
      */
     private void initFragments() {
         fragments = new Fragment[]{
-                new ForumFragment(), new ScoreMallFragment(), new MineFragment()
+                new ForumFragment(),new SetingFragment(), new ScoreMallFragment(), new MineFragment()
         };
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
         for (Fragment frag : fragments) {
@@ -71,7 +71,7 @@ public class HomeActivity extends BaseFragmentActivity {
             tran.hide(frag);
         }
         // 默认显示第一个,这里显示的是最后一个
-        tran.show(fragments[2]);
+        tran.show(fragments[3]);
         // 提交事务
         tran.commit();
 
@@ -87,11 +87,15 @@ public class HomeActivity extends BaseFragmentActivity {
                         case R.id.home_rb_recom:
                             index = 0;
                             break;
-                        case R.id.home_rb_score:
+
+                        case R.id.home_rb_forum_setting:
                             index = 1;
                             break;
-                        case R.id.home_rb_mine:
+                        case R.id.home_rb_score:
                             index = 2;
+                            break;
+                        case R.id.home_rb_mine:
+                            index = 3;
                             break;
                     }
                     //判断若点击的是上一次的页面则不操作

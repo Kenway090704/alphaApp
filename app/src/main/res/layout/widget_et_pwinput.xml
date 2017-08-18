@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="54dp"
+    android:layout_height="@dimen/commom_height_54"
     android:background="@android:color/white"
     android:orientation="horizontal"
-    android:paddingRight="14dp"
-    android:paddingLeft="14dp">
+    android:paddingRight="@dimen/commom_margin_14"
+    android:paddingLeft="@dimen/commom_margin_14">
     <ImageView
         android:id="@+id/pw_edit_iv_lock"
         android:layout_width="wrap_content"
@@ -31,8 +31,8 @@
 
     <ImageView
         android:id="@+id/pw_edit_iv_del"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/commom_length_20"
+        android:layout_height="@dimen/commom_height_20"
         android:layout_gravity="center"
         android:layout_marginRight="@dimen/commom_margin_12"
         android:clickable="true"

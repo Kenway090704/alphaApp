@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/commom_margin_5"
             android:background="@color/common_bg_light_gray"
             android:lineSpacingExtra="@dimen/commom_margin_3"
-            android:text="       协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议"
+            android:text="@string/agree_hint"
             android:textColor="@color/common_tv_black"
             android:textSize="@dimen/commom_tv_size_14" />
 
@@ -48,7 +48,7 @@
             android:layout_marginTop="@dimen/commom_margin_20"
             android:background="@color/common_bg_light_gray"
             android:lineSpacingExtra="@dimen/commom_margin_3"
-            android:text="       协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议协议"
+            android:text="@string/agree_hint"
             android:textColor="@color/common_tv_black"
             android:textSize="@dimen/commom_tv_size_14" />
     </LinearLayout>
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/commom_margin_30"
-            android:text="1/5"
+            android:text="@string/num_1_5"
             android:textColor="@color/common_tv_white"
             android:textSize="@dimen/commom_tv_size_18"
             android:textStyle="bold" />

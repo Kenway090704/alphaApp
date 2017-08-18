@@ -90,12 +90,12 @@ public class ShipingAddrAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_name = (TextView) itemView.findViewById(R.id.shiping_addr_item_tv_name);
-            tv_mobile = (TextView) itemView.findViewById(R.id.shiping_addr_item_tv_mobile);
-            tv_addr = (TextView) itemView.findViewById(R.id.shiping_addr_item_tv_addr);
-            rb_setdefault = (RadioButton) itemView.findViewById(R.id.shiping_addr_item_rb_setdefault);
-            tv_edit = (TextView) itemView.findViewById(R.id.shiping_addr_item_tv_edit);
-            tv_del = (TextView) itemView.findViewById(R.id.shiping_addr_item_tv_del);
+            tv_name = (TextView) itemView.findViewById(R.id.adapter_shiping_addr_item_tv_name);
+            tv_mobile = (TextView) itemView.findViewById(R.id.adapter_shiping_addr_item_tv_mobile);
+            tv_addr = (TextView) itemView.findViewById(R.id.adapter_shiping_addr_item_tv_addr);
+            rb_setdefault = (RadioButton) itemView.findViewById(R.id.adapter_shiping_addr_item_rb_setdefault);
+            tv_edit = (TextView) itemView.findViewById(R.id.adapter_shiping_addr_item_tv_edit);
+            tv_del = (TextView) itemView.findViewById(R.id.adapter_shiping_addr_item_tv_del);
         }
 
         void setData(final ShippingAddrBean bean) {

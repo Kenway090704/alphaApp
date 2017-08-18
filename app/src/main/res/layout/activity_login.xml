@@ -15,8 +15,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="147.5dp"
-        android:layout_marginTop="24.5dp">
+        android:layout_height="@dimen/commom_heigth_147"
+        android:layout_marginTop="@dimen/commom_margin_25">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,10 +26,9 @@
 
             <com.alpha.alphaapp.anim.GifView
                 android:id="@+id/login_iv_sheep"
-                android:layout_width="147.5dp"
+                android:layout_width="@dimen/commom_heigth_147"
                 android:enabled="false"
-                android:layout_height="match_parent"
-               />
+                android:layout_height="match_parent" />
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -37,9 +36,8 @@
 
             <com.alpha.alphaapp.anim.GifView
                 android:id="@+id/login_iv_super"
-                android:layout_width="207dp"
+                android:layout_width="@dimen/commom_length_207"
                 android:enabled="false"
-                android:layout_marginRight="1dp"
                 android:layout_height="match_parent"
                 />
         </LinearLayout>

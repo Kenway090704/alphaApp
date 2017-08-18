@@ -19,6 +19,12 @@ public class SystemUtils {
         return System.currentTimeMillis()/1000;
     }
 
+    /**
+     * 获取当前时间
+     */
+    public static long getCurrentTimeMillisLong() {
+        return System.currentTimeMillis();
+    }
 
 
     /**

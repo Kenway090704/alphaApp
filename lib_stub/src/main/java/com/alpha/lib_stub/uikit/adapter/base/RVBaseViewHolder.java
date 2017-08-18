@@ -26,7 +26,7 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder {
      * 获取ItemView
      * @return
      */
-    public  View getmItemView(){
+    public  View getItemView(){
         return  mItemView;
     }
     public  View getView(int resId){

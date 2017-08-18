@@ -10,10 +10,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/commom_margin_10"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:layout_marginRight="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_10"
         android:layout_weight="3"
         android:scaleType="centerCrop"
         android:src="@drawable/speed_logo" />
@@ -21,15 +21,15 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_10"
         android:layout_weight="7"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/active_enter_item_layout_active_time_1"
             android:layout_width="match_parent"
-            android:padding="5dp"
+            android:padding="@dimen/commom_margin_5"
             android:layout_height="wrap_content">
 
             <TextView
@@ -41,7 +41,7 @@
                 android:id="@+id/active_enter_item_tv_active_time_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/commom_margin_5"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -52,13 +52,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/active_enter_item_layout_active_time_1"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/commom_margin_5">
 
             <TextView
                 android:id="@+id/active_enter_item_tv_active_time_2_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="@dimen/commom_margin_5"
                 android:text="@string/score_code_active_time" />
 
             <TextView
@@ -72,7 +72,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:padding="@dimen/commom_margin_5"
            >
 
             <TextView
@@ -83,7 +83,7 @@
 
                 android:clickable="true"
                 android:text="@string/look_active_record"
-                android:textSize="14sp" />
+                android:textSize="@dimen/commom_tv_size_14" />
 
             <TextView
                 android:id="@+id/active_enter_item_tv_look_web"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/look_official_web"
-                android:textSize="14sp" />
+                android:textSize="@dimen/commom_tv_size_14" />
         </LinearLayout>
 
 
@@ -99,10 +99,10 @@
             android:id="@+id/active_enter_item_tv_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:padding="5dp"
+            android:layout_marginRight="@dimen/commom_margin_10"
+            android:padding="@dimen/commom_margin_5"
             android:text="@string/i_want_active"
-            android:textColor="@color/red"
+            android:textColor="@color/common_tv_dark_red"
             android:textStyle="bold" />
 
     </LinearLayout>

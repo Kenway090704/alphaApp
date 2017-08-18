@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/commom_margin_5"
-        app:hint="@string/confirm_password"
+        app:hint="@string/insure_pw"
         app:input_type="password"
         app:icon_type="@drawable/icon_password" />
 

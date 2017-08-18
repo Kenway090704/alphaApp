@@ -23,7 +23,8 @@
         android:id="@+id/modify_pbph3_et_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hint="@string/pw_form"
+        app:hint="@string/pw"
+        app:hint_bracket_msg="@string/pw_form"
         app:icon_type="@drawable/icon_password" />
 
     <com.alpha.alphaapp.ui.widget.tx.ErrorTextView

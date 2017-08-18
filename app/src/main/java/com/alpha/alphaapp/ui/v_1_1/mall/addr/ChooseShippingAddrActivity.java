@@ -9,7 +9,7 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.OnModelCallback;
 import com.alpha.alphaapp.model.v_1_1.bean.ShippingAddrBean;
 import com.alpha.alphaapp.model.v_1_1.logic.ShippingAddrLogic;
-import com.alpha.alphaapp.ui.v_1_1.mall.cell.ShippingAddrCell;
+import com.alpha.alphaapp.ui.v_1_1.mall.cell.ChooseShippingAddrCell;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
@@ -31,7 +31,7 @@ public class ChooseShippingAddrActivity extends AbsBaseActivity {
     public void onRecyclerViewInitialized() {
         //初始化View和数据加载
         //设置刷新进度条颜色
-        setColorSchemeResources(R.color.colorAccent);
+        setColorSchemeResources(R.color.common_red);
         loadData();
     }
 
@@ -56,7 +56,7 @@ public class ChooseShippingAddrActivity extends AbsBaseActivity {
     public List<Cell> getCells(List list) {
         List<Cell> cells = new ArrayList<>();
       for (int i=0;i<list.size(); i++){
-          cells.add(new ShippingAddrCell((ShippingAddrBean) list.get(i)));
+          cells.add(new ChooseShippingAddrCell((ShippingAddrBean) list.get(i)));
       }
         return cells;
     }

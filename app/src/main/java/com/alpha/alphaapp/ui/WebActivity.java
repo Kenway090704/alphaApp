@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.ui.base.BaseActivity;
+import com.alpha.lib_sdk.app.log.LogUtils;
 
 
 /**
@@ -82,7 +83,7 @@ public class WebActivity extends BaseActivity {
         });
 //        url = getIntent().getStringExtra(EXTRA_URL);
         url = getIntent().getStringExtra("url");
-        Log.e("tag", "webactivity================" + url);
+        LogUtils.e("webactivity================" + url);
         WebSettings settings = webView.getSettings();
         //允许运行脚本语言
         settings.setJavaScriptEnabled(true);

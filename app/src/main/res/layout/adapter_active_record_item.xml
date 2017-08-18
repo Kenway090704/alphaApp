@@ -7,120 +7,120 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/commom_margin_5">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:text="@string/active_code_" />
 
         <TextView
             android:id="@+id/adapter_active_record_item_tv_active_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="B3ERFGDDDG" />
+            android:layout_marginLeft="@dimen/commom_margin_10"
+             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/commom_margin_5">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:text="@string/code_type_" />
 
         <TextView
             android:id="@+id/adapter_active_record_item_tv_code_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="B3ERFGDDDG" />
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/commom_margin_5">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:text="@string/belong_to_product_" />
 
         <TextView
             android:id="@+id/adapter_active_record_item_tv_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="爆裂飞车" />
+            android:layout_marginLeft="@dimen/commom_margin_10"
+             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/commom_margin_5">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:text="@string/active_time_" />
 
         <TextView
             android:id="@+id/adapter_active_record_item_tv_active_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="2018--10-18" />
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/commom_margin_5">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:text="@string/active_channer_" />
 
         <TextView
             android:id="@+id/adapter_active_record_item_tv_active_channel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
           />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/commom_margin_5">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
             android:text="@string/active_status_" />
 
         <TextView
             android:id="@+id/adapter_active_record_item_tv_active_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/commom_margin_10"
            />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="@dimen/commom_margin_5"
+        android:layout_marginTop="@dimen/commom_margin_5"
         android:background="@color/common_bg_light_gray" />
 </LinearLayout>

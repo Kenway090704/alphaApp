@@ -17,8 +17,8 @@
             android:layout_gravity="center_vertical"
             >
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/commom_length_40"
+                android:layout_height="@dimen/commom_height_40"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_launcher"
                 />
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="3"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/commom_margin_10"
+            android:paddingRight="@dimen/commom_margin_10"
             android:layout_gravity="center_vertical"
             >
             <TextView
@@ -38,22 +38,22 @@
                 android:text="正在下载：xxx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:textSize="14sp"
+                android:textColor="@color/common_tv_white"
+                android:textSize="@dimen/commom_tv_size_14"
                 />
             <TextView
                 android:id="@+id/bartext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0%"
-                android:textColor="#ffffff"
-                android:textSize="12sp"
+                android:textColor="@color/common_tv_white"
+                android:textSize="@dimen/commom_tv_size_12"
                 />
             <ProgressBar
                 android:id="@+id/progressBar1"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="5dp" />
+                android:layout_height="@dimen/commom_height_5" />
 
             <!--
             <LinearLayout

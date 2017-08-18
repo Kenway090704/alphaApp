@@ -132,7 +132,7 @@ public class EnAccountSetingNoPwActivity extends BaseActivity {
             public void onClick(View v) {
                 if (!StringUtils.isAccountLine(aet_account.getEditTextStr())) {
                     //验证帐号格式是否ok
-                    tv_error.setText(R.string.account_alpha_format);
+                    tv_error.setText(R.string.account_format);
                     tv_error.setVisibility(View.VISIBLE);
                     return;
                 }

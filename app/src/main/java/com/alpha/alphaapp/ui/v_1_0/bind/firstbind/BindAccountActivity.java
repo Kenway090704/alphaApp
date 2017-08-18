@@ -12,6 +12,7 @@ import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.base.adapter.BaseFragmentPageAdapter;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.Util;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +68,8 @@ public class BindAccountActivity extends BaseFragmentActivity {
     }
 
     private void initTabLayout() {
-        tabLayout.addTab(tabLayout.newTab().setText("帐号"));
-        tabLayout.addTab(tabLayout.newTab().setText("手机号"));
+        tabLayout.addTab(tabLayout.newTab().setText(ResourceUtil.resToStr(R.string.account)));
+        tabLayout.addTab(tabLayout.newTab().setText(ResourceUtil.resToStr(R.string.phone)));
 
     }
 

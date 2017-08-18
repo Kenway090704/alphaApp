@@ -7,8 +7,8 @@
     <TextView
         android:id="@+id/shcool_adapter_tv"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="@dimen/commom_height_30"
         android:gravity="center"
-        android:text="光中13中学"
+
         android:textColor="@color/common_tv_black" />
 </LinearLayout>

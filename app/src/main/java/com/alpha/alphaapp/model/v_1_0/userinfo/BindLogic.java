@@ -171,7 +171,7 @@ public class BindLogic {
 //                        手机验证码手机号错误
 
                 if (!Util.isNull(call))
-                    call.onModelFailed(ResourceUtil.resToStr(R.string.verify_get_two_much));
+                    call.onModelFailed(ResourceUtil.resToStr(R.string.verify_get_too_much));
                 break;
 //                    case  CommStants.BIND_ACOUNT_RESULT.RESULT_PHONE_IS_ERROR:
 //                        break;

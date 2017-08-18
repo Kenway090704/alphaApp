@@ -13,6 +13,7 @@ import com.alpha.alphaapp.ui.base.BaseFragmentNoBarActivity;
 import com.alpha.alphaapp.ui.base.adapter.BaseFragmentPageAdapter;
 import com.alpha.alphaapp.ui.v_1_0.login.qq.QQLoginManager;
 import com.alpha.lib_sdk.app.tool.Util;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
@@ -63,8 +64,8 @@ public class LoginActivity extends BaseFragmentNoBarActivity {
     }
 
     private void initTabLayout() {
-        tabLayout.addTab(tabLayout.newTab().setText("普通登录"));
-        tabLayout.addTab(tabLayout.newTab().setText("快速登录"));
+        tabLayout.addTab(tabLayout.newTab().setText(ResourceUtil.resToStr(this,R.string.normal_login)));
+        tabLayout.addTab(tabLayout.newTab().setText(ResourceUtil.resToStr(this,R.string.quick_login)));
     }
 
     @Override

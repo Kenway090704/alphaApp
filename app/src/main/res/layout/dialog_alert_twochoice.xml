@@ -23,11 +23,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/commom_margin_23"
         android:gravity="center"
-        android:text="该帐号么?" />
+        android:text="@string/this_account" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/commom_height_1"
         android:layout_marginLeft="@dimen/commom_margin_16"
         android:layout_marginRight="@dimen/commom_margin_16"
         android:background="@color/common_bound_line_gray" />

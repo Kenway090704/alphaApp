@@ -1,4 +1,4 @@
-package com.alpha.alphaapp.ui.v_1_2;
+package com.alpha.alphaapp.ui.v_1_2.test;
 
 /**
  * Created by kenway on 17/8/14 14:18

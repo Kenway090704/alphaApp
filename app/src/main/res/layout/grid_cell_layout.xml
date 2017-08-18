@@ -6,7 +6,6 @@
     <com.bigkoo.convenientbanner.ConvenientBanner
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:canLoop="true"
-        />
+        android:layout_height="@dimen/commom_heigth_200"
+        app:canLoop="true" />
 </LinearLayout>

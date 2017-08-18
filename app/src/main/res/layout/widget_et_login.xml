@@ -4,8 +4,8 @@
     android:layout_height="54dp"
     android:background="@color/common_bg_white"
     android:orientation="horizontal"
-    android:paddingLeft="14dp"
-    android:paddingRight="14dp">
+    android:paddingLeft="@dimen/commom_margin_14"
+    android:paddingRight="@dimen/commom_margin_14">
 
     <ImageView
         android:id="@+id/acc_edit_iv_lock"
@@ -30,8 +30,8 @@
 
     <ImageView
         android:id="@+id/acc_edit_iv_del"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/commom_length_20"
+        android:layout_height="@dimen/commom_height_20"
         android:layout_gravity="center"
         android:layout_marginRight="@dimen/commom_margin_12"
         android:clickable="true"

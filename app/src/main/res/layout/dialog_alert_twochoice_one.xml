@@ -14,12 +14,12 @@
         android:layout_marginTop="@dimen/commom_margin_42"
         android:layout_marginBottom="@dimen/commom_margin_23"
         android:gravity="center"
-        android:text="确定关联" />
+        android:text="@string/insure_bind_" />
 
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/commom_height_1"
         android:layout_marginLeft="@dimen/commom_margin_16"
         android:layout_marginRight="@dimen/commom_margin_16"
         android:background="@color/common_bound_line_gray" />

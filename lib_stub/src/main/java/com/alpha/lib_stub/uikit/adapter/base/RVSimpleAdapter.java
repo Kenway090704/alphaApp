@@ -6,6 +6,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.DensityUtils;
 import com.alpha.lib_stub.uikit.adapter.cell.EmptyCell;
 import com.alpha.lib_stub.uikit.adapter.cell.ErrorCell;
@@ -270,6 +271,8 @@ public class RVSimpleAdapter extends RVBaseAdapter{
      *
      */
     public void showLoadMore(){
+
+
        if(mData.contains(mLoadMoreCell)){
            return;
        }

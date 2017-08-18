@@ -13,24 +13,24 @@
     <EditText
         android:id="@+id/active_et_active_code"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
+        android:layout_height="@dimen/commom_height_50"
+        android:layout_margin="@dimen/commom_margin_5"
         android:background="@drawable/shape_et_bg_gray"
-        android:hint="请输入激活码"
-        android:padding="5dp" />
+        android:hint="@string/plz_input_active_code"
+        android:padding="@dimen/commom_margin_5" />
 
     <TextView
         android:id="@+id/active_tv_product_name"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:padding="5dp" />
+        android:layout_height="@dimen/commom_height_50"
+        android:layout_margin="@dimen/commom_margin_5"
+        android:padding="@dimen/commom_margin_5" />
 
     <Button
         android:id="@+id/active_btn_active"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/commom_margin_10"
         android:background="@drawable/shape_com_bg_red"
         android:text="@string/now_active" />
 </LinearLayout>

@@ -2,10 +2,16 @@ package com.alpha.alphaapp.ui.widget.et;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.alpha.alphaapp.R;
+import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_sdk.app.tool.Util;
 
 /**
@@ -28,7 +35,7 @@ public class AccountEditText extends LinearLayout {
     private EditText et;
     private ImageView iv_del, iv_icon;
     private Drawable icon_left;
-    private String txt_hint;
+    private String txt_hint,hint_msg;
     private String input_type;
     private boolean isHasIcon;
 
@@ -43,6 +50,7 @@ public class AccountEditText extends LinearLayout {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.AccountEditText);
         icon_left = array.getDrawable(R.styleable.AccountEditText_icon_type);
         txt_hint = array.getString(R.styleable.AccountEditText_hint);
+        hint_msg = array.getString(R.styleable.AccountEditText_hint_bracket_msg);
         input_type = array.getString(R.styleable.AccountEditText_input_type);
         array.recycle();
         initViews();
@@ -91,8 +99,16 @@ public class AccountEditText extends LinearLayout {
 
         if (!Util.isNull(icon_left))
             iv_icon.setImageDrawable(icon_left);
-        if (!Util.isNullOrBlank(txt_hint))
-            et.setHint(txt_hint);
+        if (!Util.isNullOrBlank(hint_msg)&&!Util.isNullOrBlank(txt_hint)){
+            StringUtils.setHintTxtBySpannableString(txt_hint,hint_msg,et);
+        }else {
+            if (!Util.isNullOrBlank(txt_hint))
+                et.setHint(txt_hint);
+        }
+
+
+
+
         if (!Util.isNull(input_type))
             et.setTransformationMethod(PasswordTransformationMethod.getInstance());
         iv_del.setOnClickListener(new OnClickListener() {

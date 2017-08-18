@@ -54,12 +54,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/common_bg_white"
         android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="@dimen/commom_height_1"
             android:background="@color/common_bound_line_gray" />
 
         <Button

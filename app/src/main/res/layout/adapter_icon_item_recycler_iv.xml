@@ -6,19 +6,19 @@
 
     <ImageView
         android:id="@+id/item_recycler_iv"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/commom_length_90"
+        android:layout_height="@dimen/commom_height_90"
         android:layout_gravity="center"
-        android:layout_margin="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_margin="@dimen/commom_margin_5"
+        android:layout_marginTop="@dimen/commom_margin_5"
         android:clickable="true"
         android:scaleType="fitCenter"
         android:src="@drawable/launcher" />
 
     <CheckBox
         android:id="@+id/item_recycler_cb"
-        android:layout_width="91dp"
-        android:layout_height="91dp"
+        android:layout_width="@dimen/commom_length_91"
+        android:layout_height="@dimen/commom_height_91"
         android:layout_gravity="center"
         android:button="@null"
         android:background="@drawable/shape_icon_red_bound"

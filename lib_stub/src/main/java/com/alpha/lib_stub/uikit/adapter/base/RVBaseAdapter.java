@@ -80,6 +80,11 @@ public abstract class RVBaseAdapter<C extends RVBaseCell> extends RecyclerView.A
         notifyItemChanged(index);
     }
 
+    /**
+     * 使用这个方法可以添加头或者尾
+     * @param index
+     * @param cell
+     */
     public void add(int index, C cell) {
         mData.add(index, cell);
         notifyItemChanged(index);
@@ -125,7 +130,10 @@ public abstract class RVBaseAdapter<C extends RVBaseCell> extends RecyclerView.A
             return;
         }
         LogUtils.e("addAll cell size:"+cells.size());
+
         mData.addAll(cells);
+
+        LogUtils.e("addAll mData size:"+mData.size());
         notifyItemRangeChanged(mData.size()-cells.size(),mData.size());
     }
 

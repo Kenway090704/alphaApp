@@ -10,5 +10,5 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="@color/common_tv_light_gray"
-        android:textSize="16sp" />
+        android:textSize="@dimen/commom_tv_size_16" />
 </LinearLayout>

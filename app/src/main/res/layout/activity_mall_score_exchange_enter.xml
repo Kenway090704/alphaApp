@@ -19,14 +19,14 @@
        android:layout_height="wrap_content"/>
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/commom_height_1"/>
     <com.alpha.alphaapp.ui.widget.mall.ScoreEnterItem
         android:id="@+id/score_exchange_enter_msi_speed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <com.alpha.alphaapp.ui.widget.LineView
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/commom_height_1"/>
     <com.alpha.alphaapp.ui.widget.mall.ScoreEnterItem
         android:id="@+id/score_exchange_enter_msi_super"
         android:layout_width="match_parent"

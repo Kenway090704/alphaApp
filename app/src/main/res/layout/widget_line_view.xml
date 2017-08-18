@@ -7,7 +7,7 @@
 
     <View
         android:layout_width="15dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/commom_height_1"
         android:background="@color/common_bg_white" />
 
     <View
@@ -18,6 +18,6 @@
 
     <View
         android:layout_width="15dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/commom_height_1"
         android:background="@color/common_bg_white" />
 </LinearLayout>

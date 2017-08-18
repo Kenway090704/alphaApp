@@ -8,8 +8,8 @@
     <RelativeLayout
 
 
-        android:layout_width="80dp"
-        android:layout_height="80dp">
+        android:layout_width="@dimen/commom_length_80"
+        android:layout_height="@dimen/commom_height_80">
 
         <ImageView
             android:id="@+id/dialog_loading_circle_iv"
@@ -22,10 +22,10 @@
 
     <TextView
         android:id="@+id/dialog_loading_tv_hint"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/commom_margin_10"
         android:gravity="center_horizontal"
         android:text="@string/logining" />
 
