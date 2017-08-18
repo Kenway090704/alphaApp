@@ -118,7 +118,7 @@ public class GetSchoolLogic {
                 .fontSize(18)
                 .showCount(5)
                 .select(0)
-                .setSelectLocation(false)
+
                 .listener(new WheelView.OnWheelViewItemSelectListener() {
                     @Override
                     public void onItemSelect(final int index) {

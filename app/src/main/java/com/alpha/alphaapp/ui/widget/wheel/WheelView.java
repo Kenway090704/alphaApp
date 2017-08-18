@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.DensityUtils;
 
 import java.util.ArrayList;
@@ -51,13 +52,13 @@ public class WheelView extends View {
     /**
      * 设置是否选中中间位置
      */
-    private boolean isCenter = true;
+    private boolean isCenter = false;
     //监听器
     private OnWheelViewItemSelectListener listener;
     /**
      * 选中的位置
      */
-    private int index;
+    private int index=1;
 
     private Context context;
 
@@ -196,6 +197,7 @@ public class WheelView extends View {
         if (isCenter) {
             selectLocation = showCount / 2 * itemHeight;
         }
+
         wheelSelect = new WheelSelect(selectLocation, width,
                 itemHeight, selectTip, fontColor, fontSize, padding);
         //得到所有的高度
@@ -217,7 +219,10 @@ public class WheelView extends View {
             if (stringIndex < 0) {
                 stringIndex = lists.size() + stringIndex;
             }
+
             wheelItems.add(new WheelItem(context, startY, width, itemHeight, fontColor, fontSize, lists.get(stringIndex)));
+
+
         }
     }
 
@@ -366,12 +371,13 @@ public class WheelView extends View {
         }
 //        //绘制每一项item
 //        for (WheelItem item : wheelItems) {
-//
 //            item.onDraw(canvas);
 //        }
 
         for (int i = 0; i < wheelItems.size(); i++) {
-            if (i == index) {
+            if (i==1){
+                wheelItems.get(i).onFirstItemDraw(canvas);
+            }else if (i == index) {
                 //将选中内容变为白色
                 wheelItems.get(i).onFirstItemDraw(canvas);
             } else {
