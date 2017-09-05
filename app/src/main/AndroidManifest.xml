@@ -6,7 +6,6 @@
     android:versionName="v 1.1.0">
 
 
-
     <meta-data android:name="UMENG_CHANNEL" android:value="${UMENG_CHANNEL_VALUE}" />
     
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,7 +21,7 @@
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/launcher"
+        android:icon="@drawable/alpha_logo_512"
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -41,9 +40,9 @@
         <activity android:name=".ui.v_1_0.register.phone.RegisterPhoneActivity2" />
         <activity android:name=".ui.v_1_0.register.phone.RegisterPhoneActivity3" />
         <activity android:name=".ui.v_1_0.register.UserAgreementActivity" />
-        <activity android:name=".ui.v_1_0.login.LoginActivity" />
+        <activity android:name=".ui.v_1_0.login.LoginActivity"  />
         <activity android:name=".ui.v_1_0.set.SettingsActivity" />
-        <activity android:name=".ui.v_1_0.modifypw.ModifyPwByPwActivity" />
+        <activity android:name=".ui.v_1_0.modifypw.ModifyPwByPwActivity"/>
         <activity android:name=".ui.v_1_0.modifypw.phone.ModifyPwByPhoneActivity1" />
         <activity android:name=".ui.v_1_0.modifypw.phone.ModifyPwByPhoneActivity2" />
         <activity android:name=".ui.v_1_0.modifypw.phone.ModifyPwByPhoneActivity3" />
@@ -75,7 +74,7 @@
         <!--修改个人信息-->
         <activity android:name=".ui.v_1_0.mine.MineInfoActivity" />
         <activity android:name=".ui.v_1_0.mine.addr.ModifyContactAddrActivity" />
-        <activity android:name=".ui.v_1_0.mine.school.ModifySchoolActivity" />
+        <activity android:name=".ui.v_1_0.mine.school.ModifySchoolActivity"/>
 
         <!--签到-->
         <activity android:name=".ui.v_1_0.sign.SignActivity" />
@@ -99,6 +98,10 @@
         <activity android:name=".ui.v_1_1.mall.active.ActiveEnterActivity" />
         <activity android:name=".ui.v_1_1.mall.active.ActiveActivity" />
         <activity android:name=".ui.v_1_1.mall.active.ActiveRecordActivity" />
+
+
+        <!--论坛-->
+        <activity android:name=".ui.v_1_2.web.ui.TestWebViewActivity"/>
         <!--版本更新的服务-->
         <service android:name=".version.UpdateVersionService" />
         <receiver android:name="com.alpha.lib_sdk.app.net.broadcast.NetWorkChangeBroadcasetReceiver">

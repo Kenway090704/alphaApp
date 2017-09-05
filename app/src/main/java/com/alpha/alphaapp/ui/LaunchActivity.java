@@ -13,6 +13,7 @@ import com.alpha.alphaapp.ui.v_1_0.login.LoginActivity;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.version.UpdateVersionUtil;
 import com.alpha.lib_sdk.app.core.thread.ThreadPool;
+import com.alpha.lib_stub.comm.URLConstans;
 import com.tencent.bugly.crashreport.CrashReport;
 
 
@@ -45,15 +46,9 @@ public class LaunchActivity extends AppCompatActivity {
             }, 3000);
         }
 
-        //测试版本更新
-        Button btn_version = (Button) findViewById(R.id.launch_btn_version);
-        btn_version.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //本地测试是否有新版本发布
-                UpdateVersionUtil.doCheckVersionUpdate(LaunchActivity.this, null, false);
-            }
-        });
+
+
+
 
 
     }

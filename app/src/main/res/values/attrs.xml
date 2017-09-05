@@ -81,4 +81,13 @@
         <attr name="gifViewStyle" format="reference" />
     </declare-styleable>
 
+
+
+    <!--***************AlphaWebview***************-->
+
+    <attr name="darkMode" format="boolean" />
+    <declare-styleable name="AlphaWebView">
+        <attr name="darkTheme" format="boolean" />
+    </declare-styleable>
+
 </resources>

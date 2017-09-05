@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/commom_margin_48"
             android:scaleType="centerCrop"
-            android:src="@drawable/alpha_logo" />
+            android:src="@drawable/alpha_logo_long" />
 
 
         <TextView

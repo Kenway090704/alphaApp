@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,19 +12,19 @@
     <com.alpha.alphaapp.ui.widget.et.AccountEditText
         android:id="@+id/log_ac_aet_accout"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         app:hint="@string/alpha_account_or_phonenumber"
         app:icon_type="@drawable/icon_user_super" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5.5dp"
+        android:layout_height="@dimen/commom_height_5"
         android:background="@color/common_bg_light_gray" />
 
     <com.alpha.alphaapp.ui.widget.et.PwInputEditText
         android:id="@+id/log_ac_piet_pw"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         app:hint="@string/input_pw"
         app:icon_type="@drawable/icon_password"
         app:input_type="password" />
@@ -55,7 +58,7 @@
               android:layout_width="0dp"
               android:layout_weight="1"
               android:textSize="@dimen/commom_tv_size_18"
-              android:textColor="@android:color/black"
+              android:textColor="@color/common_tv_black"
               android:text="@string/register"
               android:gravity="center"
               android:clickable="true"
@@ -75,7 +78,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/commom_margin_5"
         android:orientation="horizontal">
 
         <TextView

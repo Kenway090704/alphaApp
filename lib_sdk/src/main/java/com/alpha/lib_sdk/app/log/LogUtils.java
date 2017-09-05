@@ -28,6 +28,14 @@ public class LogUtils {
 
     public static final String SEPARATOR = ",";
 
+    /**
+     * 初始化log是否可以输出
+     * @param isdebug debug--true  release--false
+     */
+    public  static  void  initLog(boolean isdebug){
+        isDebug=isdebug;
+    }
+
     public static boolean setLogPrinter(ILogPrinter printer) {
         if (printer == null) {
             return false;

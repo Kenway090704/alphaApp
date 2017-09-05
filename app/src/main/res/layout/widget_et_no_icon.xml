@@ -30,6 +30,6 @@
         android:layout_gravity="center"
         android:layout_marginRight="@dimen/commom_margin_12"
         android:clickable="true"
-        android:src="@drawable/et_del"
+        android:src="@drawable/icon_et_del"
         android:visibility="invisible" />
 </LinearLayout>

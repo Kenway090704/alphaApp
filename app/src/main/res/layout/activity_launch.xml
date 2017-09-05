@@ -18,11 +18,7 @@
         android:layout_marginBottom="@dimen/commom_margin_100"
         android:textSize="@dimen/commom_tv_size_16" />
 
-    <Button
-        android:id="@+id/launch_btn_version"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/start_checkout_new_version" />
+
 
 
     <TextView

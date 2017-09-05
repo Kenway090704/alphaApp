@@ -11,7 +11,7 @@
         android:layout_height="@dimen/commom_height_46"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/commom_margin_22"
-        android:src="@drawable/alpha_logo" />
+        android:src="@drawable/alpha_logo_long" />
 
     <RelativeLayout
         android:layout_width="match_parent"

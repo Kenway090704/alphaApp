@@ -86,3 +86,38 @@ appChannel=c360
 appPackage=com.alpha.alphaapp
 appVersion=v 1.1.0
 
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/baidu/release/mapping.txt
+sha1=568b5f320b2a66c13e7869c3505aeb94143e5343
+appId=95a2a31773
+appChannel=baidu
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/baidu/release/mapping.txt
+sha1=013780834367fbdaad59e37b75518f9e2f152f39
+appId=95a2a31773
+appChannel=baidu
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/baidu/release/mapping.txt
+sha1=0a1d3eb3eca02ca6f14d12f6dec057fe710a1454
+appId=95a2a31773
+appChannel=baidu
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/baidu/release/mapping.txt
+sha1=776770db08db7dc150033ec3d8d6b95dc5ebe131
+appId=95a2a31773
+appChannel=baidu
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/baidu/release/mapping.txt
+sha1=5173a3ef1a3fcaa1466047feeb1016ab5b888eed
+appId=95a2a31773
+appChannel=baidu
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+

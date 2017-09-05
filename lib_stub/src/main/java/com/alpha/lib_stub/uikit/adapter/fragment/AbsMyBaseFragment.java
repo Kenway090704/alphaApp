@@ -20,6 +20,7 @@ import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_stub.R;
 import com.alpha.lib_stub.uikit.adapter.base.Cell;
 import com.alpha.lib_stub.uikit.adapter.base.RVSimpleAdapter;
+import com.alpha.lib_stub.uikit.adapter.decoration.SpacesItemDecoration;
 
 import java.util.List;
 
@@ -61,26 +62,26 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mToolbarContainer = (FrameLayout) view.findViewById(R.id.rv_my_base_fragment_toolbar_container);
-        mContentView = (FrameLayout) view.findViewById(R.id.rv_my_base_fragment_content);
-
+        mContentView = (FrameLayout) view.findViewById(R.id.rv_my_base_fragment_layout_content);
 
 
         //添加ToolBar
         View toolbarView = addToolbar();
-        if (toolbarView != null && mToolbarContainer != null && isHasToolBar()) {
+        if (toolbarView != null && mToolbarContainer != null) {
             mToolbarContainer.addView(toolbarView);
         }
 
         //添加主布局
 
-        View contentView=LayoutInflater.from(view.getContext()).inflate(getLayoutId(),null);
-        if (contentView!=null&&mContentView!=null){
+        View contentView = LayoutInflater.from(view.getContext()).inflate(getLayoutId(), null);
+        if (contentView != null && mContentView != null) {
             mContentView.addView(contentView);
         }
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(getSwipeRefreshLayout());
         mRecyclerView = (RecyclerView) view.findViewById(getRecyclerView());
         mRecyclerView.setLayoutManager(initLayoutManger());
+        mRecyclerView.addItemDecoration(addItemDecoration());
         mBaseAdapter = initAdapter();
         mRecyclerView.setAdapter(mBaseAdapter);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -114,7 +115,6 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
                 int topEdge = recyclerView.getPaddingTop();
                 //判断RecyclerView 的ItemView是否满屏，如果不满一屏，上拉不会触发加载更多
                 boolean isFullScreen = top < topEdge;
-
                 RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
                 int itemCount = manager.getItemCount();
 
@@ -129,9 +129,19 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
             }
         });
 
-
+        //初始化数据
         onRecyclerViewInitialized();
 
+    }
+
+    /**
+     * 添加分割线
+     *
+     * @return
+     */
+    protected RecyclerView.ItemDecoration addItemDecoration() {
+
+            return new SpacesItemDecoration(0);
     }
 
     /**
@@ -162,12 +172,10 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
     private void showLoadMore() {
         View loadMoreView = customLoadMoreView();
         if (loadMoreView == null) {
-
             mBaseAdapter.showLoadMore();
         } else {
             mBaseAdapter.showLoadMore(loadMoreView);
         }
-
     }
 
     protected View customLoadMoreView() {
@@ -262,7 +270,7 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
     }
 
     /**
-     * 子类自己指定RecyclerView的LayoutManager,如果不指定，默认为LinearLayoutManager,VERTICAL 方向
+     * 子类自己指定RecyclerView的LayoutManager,如果不指定，默认为LinearLayoutManager,VERTICAL方向
      *
      * @return
      */
@@ -279,15 +287,6 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
      */
     public abstract View addToolbar();
 
-    /**
-     * 是否有添加Toolbar,默认是有的,需要重写{@link #addToolbar()}
-     *
-     * @return
-     */
-    public boolean isHasToolBar() {
-        //
-        return true;
-    }
 
     /**
      * RecyclerView 初始化完毕，可以在这个方法里绑定数据

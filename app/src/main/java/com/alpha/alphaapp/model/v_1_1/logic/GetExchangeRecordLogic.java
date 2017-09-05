@@ -174,24 +174,19 @@ public class GetExchangeRecordLogic {
      */
     public static void doGetScoreExchangeRecord(long order_id, final int product_id, final OnModelCallback<OrderBean> callBack) {
         String data = null;
-        if (MyApplication.isDebug) {
-            //测试时,product_id为0
-            data = getJsonforGetExchangeRecord(order_id);
-        } else {
-            switch (product_id) {
-                case TypeConstants.PRODUCT_ID.NONE_PRODUCT:
-                    data = getJsonforGetExchangeRecord(order_id);
-                    break;
-                case TypeConstants.PRODUCT_ID.SPEED:
-                    data = getJsonforGetExchangeRecord(order_id, product_id);
-                    break;
-                case TypeConstants.PRODUCT_ID.TRANSFROM_CAR:
-                    data = getJsonforGetExchangeRecord(order_id, product_id);
-                    break;
-                case TypeConstants.PRODUCT_ID.SUPER_WAVING:
-                    data = getJsonforGetExchangeRecord(order_id, product_id);
-                    break;
-            }
+        switch (product_id) {
+            case TypeConstants.PRODUCT_ID.NONE_PRODUCT:
+                data = getJsonforGetExchangeRecord(order_id);
+                break;
+            case TypeConstants.PRODUCT_ID.SPEED:
+                data = getJsonforGetExchangeRecord(order_id, product_id);
+                break;
+            case TypeConstants.PRODUCT_ID.TRANSFROM_CAR:
+                data = getJsonforGetExchangeRecord(order_id, product_id);
+                break;
+            case TypeConstants.PRODUCT_ID.SUPER_WAVING:
+                data = getJsonforGetExchangeRecord(order_id, product_id);
+                break;
         }
 
         String json = JsonEncryptUtil.getPostJsonSignString(data);

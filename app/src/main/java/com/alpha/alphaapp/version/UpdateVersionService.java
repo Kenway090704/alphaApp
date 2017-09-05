@@ -53,7 +53,7 @@ public class UpdateVersionService extends Service {
 
         nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notification = new Notification();
-        notification.icon = R.drawable.ic_launcher;
+        notification.icon = R.drawable.alpha_logo_512;
         notification.tickerText = "开始下载";
         notification.when = System.currentTimeMillis();
         notification.contentView = new RemoteViews(getPackageName(), R.layout.notification_version);

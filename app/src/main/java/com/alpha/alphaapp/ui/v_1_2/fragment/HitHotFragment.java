@@ -95,13 +95,11 @@ public class HitHotFragment extends AbsMyBaseFragment<ForumBean> {
             public void onModelSuccessed(List<ForumBean> forumBeens) {
                 mBaseAdapter.hideLoading();
 
-                if (Util.isNull(forumBeens)&&forumBeens.size()==0){
-//                    mBaseAdapter.showEmpty();
+                if (Util.isNull(forumBeens)||forumBeens.size()==0){
+
+                    mBaseAdapter.showEmpty();
+//                    mBaseAdapter.showError();
                 }else {
-
-
-
-
                     mBaseAdapter.addAll(getCells(forumBeens));
                 }
 

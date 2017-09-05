@@ -53,9 +53,9 @@ public class UpdateVersionUtil {
      *
      * @param context
      * @param url      获取版本信息
-     * @param isRelese 是否为正式版
+     * @param isDebug 是否为正式版
      */
-    public static void doCheckVersionUpdate(final Context context, String url, boolean isRelese) {
+    public static void doCheckVersionUpdate(final Context context, String url, boolean isDebug) {
 
 
         //本地测试是否有新版本发布
@@ -103,12 +103,12 @@ public class UpdateVersionUtil {
             }
         };
 
-        if (isRelese) {
-            //正式版
-            checkVersion(context, url, listener);
-        } else {
+        if (isDebug) {
             //debug
             localCheckVersion(context, listener);
+        } else {
+            //正式版
+            checkVersion(context, url, listener);
         }
     }
 

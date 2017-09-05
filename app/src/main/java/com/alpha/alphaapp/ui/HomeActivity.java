@@ -9,12 +9,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
+import com.alpha.alphaapp.app.MyApplication;
 import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
 import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallFragment;
 import com.alpha.alphaapp.ui.v_1_0.mine.MineFragment;
 
 import com.alpha.alphaapp.ui.v_1_2.ui.ForumFragment;
 import com.alpha.alphaapp.ui.v_1_2.ui.SetingFragment;
+import com.alpha.alphaapp.version.UpdateVersionUtil;
 
 
 /**
@@ -34,14 +36,14 @@ public class HomeActivity extends BaseFragmentActivity {
     protected int getLayoutId() {
         return R.layout.activity_home;
     }
+
     @Override
     protected void initView() {
+
+        //本地测试是否有新版本发布
+//        UpdateVersionUtil.doCheckVersionUpdate(this, null,MyApplication.isDebug);
         radioGroup = (RadioGroup) findViewById(R.id.home_rg);
         rb_mine = (RadioButton) findViewById(R.id.home_rb_mine);
-//        //定义底部标签图片大小
-//        Drawable drawableWeiHui = getResources().getDrawable(R.drawable.icon_mine);
-//        drawableWeiHui.setBounds(2, 0, 30, 20);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-//        rb_mine.setCompoundDrawables(null, drawableWeiHui, null, null);//只放上面
     }
 
 
@@ -63,7 +65,7 @@ public class HomeActivity extends BaseFragmentActivity {
      */
     private void initFragments() {
         fragments = new Fragment[]{
-                new ForumFragment(),new SetingFragment(), new ScoreMallFragment(), new MineFragment()
+                new ForumFragment(), new SetingFragment(), new ScoreMallFragment(), new MineFragment()
         };
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
         for (Fragment frag : fragments) {
@@ -121,7 +123,6 @@ public class HomeActivity extends BaseFragmentActivity {
 
     /**
      * 从其它页面跳转到HomeActivity
-     *
      * @param context
      * @param data1
      * @param data2

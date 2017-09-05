@@ -9,7 +9,7 @@
         <!--添加Toolbar -->
     </FrameLayout>
     <FrameLayout
-        android:id="@+id/rv_my_base_fragment_content"
+        android:id="@+id/rv_my_base_fragment_layout_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

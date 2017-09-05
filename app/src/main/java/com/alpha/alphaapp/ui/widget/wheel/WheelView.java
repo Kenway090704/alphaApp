@@ -369,15 +369,10 @@ public class WheelView extends View {
         if (wheelSelect != null) {
             wheelSelect.onDraw(canvas);
         }
-//        //绘制每一项item
-//        for (WheelItem item : wheelItems) {
-//            item.onDraw(canvas);
-//        }
 
+        //绘制itemView
         for (int i = 0; i < wheelItems.size(); i++) {
-            if (i==1){
-                wheelItems.get(i).onFirstItemDraw(canvas);
-            }else if (i == index) {
+          if (i == index) {
                 //将选中内容变为白色
                 wheelItems.get(i).onFirstItemDraw(canvas);
             } else {

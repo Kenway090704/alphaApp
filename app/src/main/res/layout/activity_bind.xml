@@ -34,7 +34,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/commom_height_27"
         android:layout_toStartOf="@+id/bind_tv_user_center"
-        android:src="@drawable/alpha_logo" />
+        android:src="@drawable/alpha_logo_long" />
 
 
 </LinearLayout>

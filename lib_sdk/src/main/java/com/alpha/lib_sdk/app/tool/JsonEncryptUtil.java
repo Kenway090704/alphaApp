@@ -4,8 +4,10 @@ import android.content.Context;
 
 import com.alpha.lib_sdk.BuildConfig;
 import com.alpha.lib_sdk.R;
+import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.arithmetic.Base64Util;
 import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 
 /**
  * Created by kenway on 17/5/23 13:39
@@ -28,7 +30,7 @@ public class JsonEncryptUtil {
     private static String APPKEY = null;
     private static String APPID = null;
 
-    public static Context context;
+
 
     /**
      * hash_mac签名,签名后使用Base64编码为字符串
@@ -39,7 +41,7 @@ public class JsonEncryptUtil {
     public static String getPostJsonSignString(String data) {
         try {
             //初始化APPKEY,APPID
-            getDefaultKey();
+
             String sign = Base64Util.encodeToString(HmacSHA1.getSignature(APPID + data, APPKEY));
             StringBuffer sb = new StringBuffer();
             sb.append("{\"appid\":").append("\"" + APPID + "\",")
@@ -55,28 +57,27 @@ public class JsonEncryptUtil {
     }
 
     /**
-     * 这个方法可以写入.so库中
-     *
-     * @return
+     * 初始化appkey  和appid
+     * @param isdebug  根据当前是debug--true  release--false
      */
-    public static void getDefaultKey() {
 
-        if (true) {
+    public static void initAppkeyAndSercet(boolean isdebug) {
+
+        if (isdebug) {
             //debug
             APPKEY = "0lLYgBbML3axJk3z";
             APPID = "QmmVlsuaBMrnjKM2";
         } else {
             //release
-            APPKEY = "y0PB0CUDHldY8sOz";
+            //APPKEY = "y0PB0CUDHldY8sOz";
+            //APPID = "9FprO7RiGjFknxPo";
+
+            StringBuffer sb = new StringBuffer();
+            sb.append(getbk1()).append(getbk2()).append(getbk3()).append(getbk4());
+            APPKEY = sb.toString();
             APPID = "9FprO7RiGjFknxPo";
-
-            //release,发布前要修改
-//            StringBuffer sb = new StringBuffer();
-//            sb.append(getbk1()).append(getbk2()).append(getbk3()).append(getbk4());
-//            APPKEY = sb.toString();
-//            APPID = "9FprO7RiGjFknxPo";
         }
-
+        LogUtils.e("APPKEY=="+ APPKEY+",APPID=="+APPID);
     }
 
     /**
@@ -112,10 +113,8 @@ public class JsonEncryptUtil {
      * @return
      */
     private static String getbk4() {
-        if (Util.isNull(context)) {
-            return null;
-        }
-        return context.getResources().getString(R.string.bk4);
+
+        return ResourceUtil.resToStr(ApplicationContext.getApplication(), R.string.bk4);
     }
 
 

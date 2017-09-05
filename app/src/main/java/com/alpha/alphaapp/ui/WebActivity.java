@@ -35,6 +35,8 @@ public class WebActivity extends BaseActivity {
             //获取网页的标题
             String title = view.getTitle();
             tvTitle.setText(title);
+
+
         }
 
         @Override
@@ -94,6 +96,7 @@ public class WebActivity extends BaseActivity {
         webView.setWebViewClient(webViewClient);
         webView.setWebChromeClient(webChromeClient);
         webView.loadUrl(url);
+
     }
 
     @Override

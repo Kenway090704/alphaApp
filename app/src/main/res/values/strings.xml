@@ -96,9 +96,9 @@
     <string name="has_bind_phone_edit_pw">绑定手机修改密码</string>
 
     <!--ModifyPassword-->
-    <string name="by_password">密码验证</string>
+    <string name="by_password">密码修改及验证</string>
     <string name="old_password">旧密码</string>
-    <string name="new_password">新密码(6-12位字符)</string>
+    <string name="new_password">新密码</string>
     <string name="old_pw_format_error">旧密码输入错误</string>
 
     <!--Bind-->
@@ -348,4 +348,6 @@
     <string name="alert_notification">通知提醒</string>
     <string name="accept_notification_or_not">接受推送</string>
 
+    <!--web-->
+     <string name="no_browser_install_in_system">系统中没有安装浏览器</string>
 </resources>

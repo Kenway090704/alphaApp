@@ -18,8 +18,6 @@ import java.util.List;
  */
 
 public class ForumBean {
-
-
     private String url;
     private String title;
     private String space;

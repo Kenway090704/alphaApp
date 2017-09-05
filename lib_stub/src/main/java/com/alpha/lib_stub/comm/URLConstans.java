@@ -3,6 +3,7 @@ package com.alpha.lib_stub.comm;
 
 import android.content.Context;
 
+import com.alpha.lib_sdk.BuildConfig;
 import com.alpha.lib_sdk.app.app.ApplicationContext;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.NetUtils;
@@ -33,8 +34,22 @@ public class URLConstans {
 //    public static final String URL_ROOT = "Http://passport.gdalpha.com:9998/user/";
 
     //内网测试url,为了测试激活记录中有product_id
-    public static final String URL_ROOT = "http://192.168.199.102:8089/user/";
+    public static  String URL_ROOT = "http://192.168.199.102:8089/user/";
 
+    /**
+     *  初始化URL_ROOT,在APPLICATION中执行
+     * @param isDebug   前期测试可以自动输入值,后面release的时候可以使用BuildConfing.Debug
+     * @return
+     */
+    public  static  void    initURL_ROOT(boolean isDebug){
+        if (isDebug){
+           URL_ROOT="http://192.168.199.102:8089/user/";
+        }else {
+            URL_ROOT="Http://openapi.gdalpha.com:9998/user/";
+        }
+        LogUtils.e(URL_ROOT);
+
+    }
 
     /**
      * 获取省、市、县的url
@@ -155,6 +170,8 @@ public class URLConstans {
     }
 
     public interface URL {
+
+
         /**
          * (A)注册用户
          */

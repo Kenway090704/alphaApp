@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.WindowManager;
 
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.anim.GifView;
@@ -40,6 +41,7 @@ public class LoginActivity extends BaseFragmentNoBarActivity {
 
     @Override
     protected void initView() {
+
         gif_sheep = (GifView) findViewById(R.id.login_iv_sheep);
         gif_super = (GifView) findViewById(R.id.login_iv_super);
         tabLayout = (TabLayout) findViewById(R.id.login_tablayout);

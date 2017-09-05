@@ -10,6 +10,7 @@ import com.alpha.alphaapp.ui.base.BaseActivity;
 import com.alpha.alphaapp.ui.widget.TitleLayout;
 import com.alpha.lib_sdk.app.log.LogCatch;
 import com.alpha.lib_sdk.app.log.LogUtils;
+import com.alpha.lib_stub.comm.URLConstans;
 
 import java.io.File;
 
@@ -32,6 +33,7 @@ public class FeedbackActivity extends BaseActivity {
 
     @Override
     public void initData() {
+
 
     }
 

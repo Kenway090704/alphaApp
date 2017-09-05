@@ -20,7 +20,7 @@
                 android:layout_height="@dimen/commom_height_30"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/commom_margin_10"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/alpha_logo_512" />
 
             <TextView
                 android:layout_width="wrap_content"

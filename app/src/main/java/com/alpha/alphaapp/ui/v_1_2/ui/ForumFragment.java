@@ -17,6 +17,7 @@ import com.alpha.alphaapp.ui.v_1_2.cell.BannerCell;
 
 import com.alpha.alphaapp.ui.v_1_2.fragment.HitHotFragment;
 import com.alpha.alphaapp.ui.v_1_2.fragment.LastPostFragment;
+import com.alpha.alphaapp.ui.v_1_2.fragment.MyForumFragment;
 import com.alpha.lib_sdk.app.tool.Util;
 import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.uikit.adapter.base.Cell;
@@ -105,7 +106,7 @@ public class ForumFragment extends BaseFragment {
         fragments = new ArrayList<>();
         fragments.add(new HitHotFragment());
         fragments.add(new LastPostFragment());
-        fragments.add(new HitHotFragment());
+        fragments.add(new MyForumFragment());
 
         BaseFragmentPageAdapter  adapter=new BaseFragmentPageAdapter(getFragmentManager(), fragments);
         vp.setAdapter(adapter);

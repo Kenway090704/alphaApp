@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.model.v_1_2.bean.ForumBean;
 import com.alpha.alphaapp.ui.WebActivity;
+import com.alpha.alphaapp.ui.v_1_2.web.ui.TestWebViewActivity;
+import com.alpha.lib_sdk.app.net.RequestManager;
 import com.alpha.lib_sdk.app.tool.DateUtils;
 import com.alpha.lib_sdk.app.tool.SystemUtils;
 import com.alpha.lib_sdk.app.unitily.ResourceUtil;
@@ -35,7 +37,7 @@ public class HitHotCell extends RVBaseCell<ForumBean> {
     }
 
     @Override
-    public void onBindViewHolder(RVBaseViewHolder holder, int position) {
+    public void onBindViewHolder(final RVBaseViewHolder holder, int position) {
         holder.setText(R.id.cell_hothit_tv_title, mData.getTitle());
         holder.setText(R.id.cell_hothit_tv_author, mData.getAuthor());
         holder.setText(R.id.cell_hothit_tv_model, mData.getAuthor());
@@ -44,12 +46,13 @@ public class HitHotCell extends RVBaseCell<ForumBean> {
         holder.setText(R.id.cell_hothit_tv_like, mData.getLike());
         holder.setText(R.id.cell_hothit_tv_look_num, mData.getHits());
 
-
         TextView tv_hint = holder.getTextView(R.id.cell_hothit_tv_title);
         tv_hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebActivity.actionStart(v.getContext(), mData.getUrl());
+
+                TestWebViewActivity.actionStart(v.getContext(),mData.getUrl());
+//                WebActivity.actionStart(v.getContext(), mData.getUrl());
             }
         });
     }
