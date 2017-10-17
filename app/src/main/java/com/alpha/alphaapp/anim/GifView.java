@@ -31,7 +31,6 @@ public class GifView extends View {
     private float mTop;
 
     private float mScale;
-
     private int mMeasuredMovieWidth;
 
     private int mMeasuredMovieHeight;
