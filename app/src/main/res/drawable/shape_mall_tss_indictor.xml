@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+      <corners android:topLeftRadius="@dimen/commom_heigth_180"
+                android:topRightRadius="@dimen/commom_heigth_180"
+                 android:bottomLeftRadius="@dimen/commom_heigth_180"
+                 android:bottomRightRadius="@dimen/commom_heigth_180"
+          />
+    <solid android:color="@color/common_bg_dali_withe"/>
+</shape>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/commom_margin_10">
+
+    <TextView
+        android:id="@+id/cell_user_reply_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2017-09-21" />
+
+    <TextView
+        android:id="@+id/cell_user_reply_tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="真是太精彩了~谢谢大表姐。"
+        android:textColor="@color/common_tv_dali_black" />
+
+    <TextView
+        android:id="@+id/cell_user_reply_tv_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:text="主题:悠拳英雄。每日一弹。活动兑奖客服唯一联系方式"
+        android:textColor="@color/common_tv_dali_black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_1"
+        android:layout_marginTop="@dimen/commom_margin_10"
+        android:background="@color/common_bound_line_gray" />
+</LinearLayout>

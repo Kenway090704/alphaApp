@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg_white"
+    android:orientation="vertical">
+
+    <TextView
+
+        android:id="@+id/cell_user_topics_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/commom_margin_5"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:textColor="@color/common_tv_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/commom_margin_5">
+
+        <TextView
+            android:id="@+id/cell_user_topics_tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            />
+
+        <TextView
+            android:id="@+id/cell_user_topics_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+          />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/cell_user_topics_tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:drawableLeft="@drawable/icon_forum_love_red"
+            android:drawablePadding="@dimen/commom_margin_5"
+             />
+
+
+        <TextView
+            android:id="@+id/cell_user_topics_tv_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:drawableLeft="@drawable/icon_forum_eye_gray"
+            android:drawablePadding="@dimen/commom_margin_10"
+            />
+
+
+        <TextView
+            android:id="@+id/cell_user_topics_tv_look"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:layout_marginRight="@dimen/commom_margin_10"
+            android:drawableLeft="@drawable/icon_forum_eye_gray"
+            android:drawablePadding="@dimen/commom_margin_10"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/common_bg_light_gray"
+        android:layout_height="@dimen/commom_height_1"/>
+</LinearLayout>

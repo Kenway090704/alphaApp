@@ -84,12 +84,14 @@ public class ContentWebView extends AlphaWebView {
     protected String getThemeCssHtmlSlice(boolean isDarkTheme) {
 //        return isDarkTheme ?   LIGHT_THEME_CSS  : DARK_THEME_CSS;
         return isDarkTheme ? DARK_THEME_CSS : LIGHT_THEME_CSS;
+
+//        return DARK_THEME_CSS;
     }
 
     public void loadRenderedContent(String data) {
+//        String data_Test ="<img  class=\"J_post_img\" src=\"http://120.76.27.29:8090/attachment/1710/thread/2_40219_d3ca95a54a2de8e.png\"/>";
+//        data = HTML_0 + getThemeCssHtmlSlice(isDarkTheme()) + HTML_1 + data_Test + "\n" + HTML_2;
         data = HTML_0 + getThemeCssHtmlSlice(isDarkTheme()) + HTML_1 + data + "\n" + HTML_2;
-
         loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
     }
-
 }

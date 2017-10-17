@@ -3,6 +3,7 @@ package com.alpha.lib_stub.uikit.adapter.base;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +41,8 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder {
     public ImageView getImageView(int resId){
         return retrieveView(resId);
     }
+
+
 
     public Button getButton(int resId){
         return retrieveView(resId);

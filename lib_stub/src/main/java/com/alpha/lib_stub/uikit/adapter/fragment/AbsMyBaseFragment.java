@@ -28,7 +28,7 @@ import java.util.List;
  * Created by zhouwei on 17/2/3.
  */
 
-public abstract class AbsMyBaseFragment<T> extends Fragment {
+public abstract class AbsMyBaseFragment extends Fragment {
     public static final String TAG = "AbsBaseFragment";
 
     private FrameLayout mToolbarContainer;
@@ -52,9 +52,18 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
 
     public abstract int getLayoutId();
 
-    public abstract int getRecyclerView();
+    public abstract RecyclerView initRecyclerView(View view);
 
-    public abstract int getSwipeRefreshLayout();
+    public abstract SwipeRefreshLayout getSwipeRefreshLayout();
+
+    public  void initViews(View root){
+
+    }
+
+
+    public  void  initEnvent(){
+
+    }
 
 
     @Override
@@ -77,13 +86,14 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
         if (contentView != null && mContentView != null) {
             mContentView.addView(contentView);
         }
+        initViews(contentView);
+        mSwipeRefreshLayout = getSwipeRefreshLayout();
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(getSwipeRefreshLayout());
-        mRecyclerView = (RecyclerView) view.findViewById(getRecyclerView());
-        mRecyclerView.setLayoutManager(initLayoutManger());
-        mRecyclerView.addItemDecoration(addItemDecoration());
+        mRecyclerView = initRecyclerView(contentView);
         mBaseAdapter = initAdapter();
         mRecyclerView.setAdapter(mBaseAdapter);
+
+
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -131,18 +141,10 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
 
         //初始化数据
         onRecyclerViewInitialized();
-
+        initEnvent();
     }
 
-    /**
-     * 添加分割线
-     *
-     * @return
-     */
-    protected RecyclerView.ItemDecoration addItemDecoration() {
 
-            return new SpacesItemDecoration(0);
-    }
 
     /**
      * 判断是否可以显示LoadMore
@@ -269,15 +271,17 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
         return new RVSimpleAdapter();
     }
 
+
+
+
     /**
-     * 子类自己指定RecyclerView的LayoutManager,如果不指定，默认为LinearLayoutManager,VERTICAL方向
+     * 添加TitleBar
      *
      * @return
      */
-    protected RecyclerView.LayoutManager initLayoutManger() {
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        return manager;
+    protected View addToolbar() {
+        //如果需要Toolbar,子类返回ToolbarView
+        return null;
     }
 
     /**
@@ -285,7 +289,7 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
      *
      * @param
      */
-    public abstract View addToolbar();
+
 
 
     /**
@@ -309,6 +313,6 @@ public abstract class AbsMyBaseFragment<T> extends Fragment {
      * @param list 实体列表
      * @return cell列表
      */
-    protected abstract List<Cell> getCells(List<T> list);
+    protected abstract List<Cell> getCells(List list);
 
 }

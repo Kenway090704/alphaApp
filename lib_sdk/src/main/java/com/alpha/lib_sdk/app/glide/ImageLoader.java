@@ -19,6 +19,13 @@ public class ImageLoader {
                 .into(iv);
     }
 
+    public static void loadGif(Context context, String url, ImageView iv) {
+
+
+
+        Glide.with(context).load(url).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(iv);
+    }
+
     public static void loadCircle(Context context, String url, ImageView iv) {
         Glide.with(context)
                 .load(url)

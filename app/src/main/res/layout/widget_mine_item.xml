@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/mine_item_iv_icon"
+        android:layout_width="@dimen/commom_height_30"
+        android:layout_height="@dimen/commom_height_30"
+        android:layout_gravity="center_horizontal"
+         />
+
+    <TextView
+        android:id="@+id/mine_item_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/commom_tv_size_12"
+        android:textColor="@color/common_tv_dali_black"
+       />
+</LinearLayout>

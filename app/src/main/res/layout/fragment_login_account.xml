@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:clickable="true"
-                android:src="@drawable/icon_wx_black" />
+                android:src="@drawable/icon_wx" />
 
             <ImageView
                 android:id="@+id/log_ac_iv_auth_qq"

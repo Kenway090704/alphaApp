@@ -32,10 +32,7 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();//去掉标题栏
         setContentView(R.layout.activity_launch);
-
         initViews();
-
-
         //判断最近的一次登录是什么登录,如果是有密码的登录,如果有直接登录,如果没有三秒后跳转到登录界面
         if (!LoginLogic.isAutoLogin(this)) {
             ThreadPool.post(new Runnable() {
@@ -45,12 +42,6 @@ public class LaunchActivity extends AppCompatActivity {
                 }
             }, 3000);
         }
-
-
-
-
-
-
     }
 
     private void initViews() {

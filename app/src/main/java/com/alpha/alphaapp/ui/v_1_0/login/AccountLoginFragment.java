@@ -95,7 +95,6 @@ public class AccountLoginFragment extends BaseFragment {
                 } else {
                     laet_user.getImageViewRight().setVisibility(View.VISIBLE);
                 }
-
                 tv_error.setVisibility(View.INVISIBLE);
             }
 

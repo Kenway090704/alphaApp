@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+   <solid android:color="@color/common_bg_dali_withe"/>
+    <stroke android:color="@color/common_bg_dali_alpha50_orige" android:width="@dimen/commom_margin_1_2"/>
+</shape>

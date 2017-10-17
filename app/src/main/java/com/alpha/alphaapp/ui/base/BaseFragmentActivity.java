@@ -46,7 +46,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 //            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
 //            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
 //        }
-        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.common_red), false);
+        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.common_bg_red), false);
     }
     @Override
     protected void onStart() {

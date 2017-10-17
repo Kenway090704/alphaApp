@@ -5,18 +5,6 @@
     android:background="@color/common_bg_white"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/cell_hothit_tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/commom_margin_30"
-        android:layout_marginRight="@dimen/commom_margin_10"
-        android:layout_marginTop="@dimen/commom_margin_10"
-        android:clickable="true"
-        android:singleLine="true"
-        android:textColor="@color/common_tv_dark_red"
-        android:textSize="@dimen/commom_tv_size_18" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,8 +18,7 @@
             android:id="@+id/cell_hothit_tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/common_tv_blue"
-            />
+            android:textColor="@color/common_tv_blue" />
 
         <TextView
             android:id="@+id/cell_hothit_tv_time"
@@ -51,6 +38,27 @@
             android:textColor="@color/common_tv_light_gray" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/cell_hothit_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/commom_margin_30"
+        android:layout_marginRight="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_10"
+        android:clickable="true"
+        android:singleLine="true"
+        android:textColor="@color/common_tv_dark_red"
+        android:textSize="@dimen/commom_tv_size_18" />
+
+    <ImageView
+        android:id="@+id/cell_hothit_iv_aid"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/commom_margin_10"
+        android:layout_marginRight="@dimen/commom_margin_10"
+        android:layout_height="@dimen/commom_height_108"
+        android:scaleType="fitXY"
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,14 +66,11 @@
         android:layout_marginTop="@dimen/commom_margin_10"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
-
         <TextView
             android:id="@+id/cell_hothit_tv_commend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/common_tv_green"
-            />
+            android:textColor="@color/common_tv_green" />
 
         <TextView
             android:id="@+id/cell_hothit_tv_like"
@@ -81,15 +86,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/commom_margin_30"
-            android:drawablePadding="@dimen/commom_margin_7"
-
             android:drawableLeft="@drawable/icon_forum_eye_red"
+
+            android:drawablePadding="@dimen/commom_margin_7"
             android:textColor="@color/common_tv_dark_red" />
     </LinearLayout>
 
     <View
-        android:background="@color/common_bg_light_gray"
-        android:layout_marginTop="@dimen/commom_margin_5"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/commom_margin_5" />
+        android:layout_height="@dimen/commom_margin_5"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:background="@color/common_bg_light_gray" />
 </LinearLayout>

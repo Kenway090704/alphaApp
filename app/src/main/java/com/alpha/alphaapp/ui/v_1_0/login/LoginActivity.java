@@ -115,6 +115,11 @@ public class LoginActivity extends BaseFragmentNoBarActivity {
         context.startActivity(intent);
     }
 
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+
 
     public void stopNormalAnim() {
         gif_sheep.stop();

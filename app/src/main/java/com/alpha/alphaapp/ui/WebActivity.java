@@ -22,7 +22,7 @@ import com.alpha.lib_sdk.app.log.LogUtils;
  * Created by HP on 2016/8/25.
  */
 public class WebActivity extends BaseActivity {
-    public static final String EXTRA_URL = "http://club.auldey.com";
+
     private ImageView ivBack, ivShare;
     private TextView tvTitle;
     private ProgressBar progressBar;
@@ -35,8 +35,6 @@ public class WebActivity extends BaseActivity {
             //获取网页的标题
             String title = view.getTitle();
             tvTitle.setText(title);
-
-
         }
 
         @Override
@@ -83,9 +81,9 @@ public class WebActivity extends BaseActivity {
                 finish();
             }
         });
-//        url = getIntent().getStringExtra(EXTRA_URL);
+
         url = getIntent().getStringExtra("url");
-        LogUtils.e("webactivity================" + url);
+        LogUtils.e( url);
         WebSettings settings = webView.getSettings();
         //允许运行脚本语言
         settings.setJavaScriptEnabled(true);

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_56"
+        android:elevation="@dimen/commom_margin_4"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_tool_close"
+            android:layout_width="@dimen/commom_height_56"
+            android:layout_height="@dimen/commom_height_56"
+            android:padding="@dimen/commom_margin_10"
+            android:src="@drawable/ic_close_grey600_24dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/common_bg_dali_gray" />
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <include layout="@layout/widget_editor_bar" />
+        </HorizontalScrollView>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/common_bg_dali_gray" />
+
+        <ImageView
+            android:id="@+id/btn_tool_send"
+            android:layout_width="@dimen/commom_height_56"
+            android:layout_height="@dimen/commom_height_56"
+            android:clickable="true"
+            android:padding="@dimen/commom_margin_10"
+            android:src="@drawable/ic_send_grey600_24dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_bg_dali_green"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/commom_margin_16"
+            android:paddingBottom="@dimen/commom_margin_8"
+            android:paddingLeft="@dimen/commom_margin_16"
+            android:paddingTop="@dimen/commom_margin_8"
+            android:text="@string/reply_16_floor"
+            android:textColor="@color/common_tv_white"
+            android:textSize="@dimen/commom_tv_size_16" />
+
+        <ImageView
+            android:id="@+id/btn_clear_target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:adjustViewBounds="true"
+            android:padding="@dimen/commom_margin_8"
+            android:scaleType="center"
+            android:src="@drawable/ic_close_white_18dp" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="start"
+                android:hint="@string/speak_something"
+                android:minLines="12"
+                android:padding="@dimen/commom_margin_16"
+                android:textSize="@dimen/commom_tv_size_16" />
+            />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

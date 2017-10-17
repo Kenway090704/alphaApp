@@ -31,10 +31,10 @@ public class ScoreMallFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     protected void initViews(View root) {
-        btn_my_score = (Button) root.findViewById(R.id.fragment_score_mall_btn_my_score);
+        btn_my_score = (Button) root.findViewById(R.id.frag_score_mall_btn_my_score);
 
-        btn_shiping_addr = (Button) root.findViewById(R.id.fragment_score_mall_btn_shiping_addr);
-        btn_active = (Button) root.findViewById(R.id.fragment_score_mall_btn_active);
+        btn_shiping_addr = (Button) root.findViewById(R.id.frag_score_mall_btn_shiping_addr);
+        btn_active = (Button) root.findViewById(R.id.frag_score_mall_btn_active);
     }
 
     @Override
@@ -55,13 +55,13 @@ public class ScoreMallFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fragment_score_mall_btn_my_score:
+            case R.id.frag_score_mall_btn_my_score:
                 ScoreExchangeEnterActivity.actionStart(getActivity());
                 break;
-            case R.id.fragment_score_mall_btn_shiping_addr:
+            case R.id.frag_score_mall_btn_shiping_addr:
                 ShippingAddrActivity.actionStart(getActivity());
                 break;
-            case R.id.fragment_score_mall_btn_active:
+            case R.id.frag_score_mall_btn_active:
                 ActiveEnterActivity.actionStart(getActivity());
                 break;
         }

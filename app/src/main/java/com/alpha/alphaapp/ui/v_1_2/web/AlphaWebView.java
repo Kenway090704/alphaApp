@@ -37,9 +37,28 @@ public abstract class AlphaWebView extends WebView {
         @Override
         public void onPageFinished(WebView view, String url) {
             AlphaWebView.this.onPageFinished(url);
+            //  html加载完成之后，调用js的方法
+            imgReset();
         }
 
     };
+
+    /**
+     *這是一個有表情的帖子<img src="http://120.76.27.29:8090/res/images/emotion/feixia/08.gif" />
+     * <img class="J_post_img" src="http://120.76.27.29:8090/attachment/1710/thread/2_40219_d3ca95a54a2de8e.png" border="0" onload="if(this.offsetWidth>700)this.width=700;" style="max-width:700px;" /><img class="J_post_img" src="http://120.76.27.29:8090/attachment/1710/thread/2_40219_ff3ab09c991369c.png" border="0" onload="if(this.offsetWidth>700)this.width=700;" style="max-width:700px;" />'
+     */
+    private void imgReset() {
+
+        //class==J_post_img的图片使用自适应
+        loadUrl("javascript:(function(){"
+                + "var objs = document.getElementsByTagName('img'); "
+                + "for(var i=0;i<objs.length;i++)  " + "{"
+                + "var img = objs[i];"
+                + "if(img.className==\"J_post_img\"){img.style.width = '100%';   "
+                + "    img.style.height = 'auto'; } "
+                + "}" + "})()");
+    }
+
 
     private boolean darkTheme;
     private List<OnScrollListener> onScrollListenerList;
@@ -79,7 +98,8 @@ public abstract class AlphaWebView extends WebView {
         return darkTheme;
     }
 
-    protected void onPageFinished(String url) {}
+    protected void onPageFinished(String url) {
+    }
 
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {

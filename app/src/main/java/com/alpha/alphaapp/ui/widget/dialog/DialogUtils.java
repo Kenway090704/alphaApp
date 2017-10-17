@@ -174,7 +174,48 @@ public class DialogUtils {
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
     }
+    /**
+     * 有两行的提示
+     * "确认""取消"
+     *
+     * @param context
+     * @param str1
+     * @param str2
+     * @param insurelistener
+     * @return
+     */
+    public static Dialog createTwoChoiceDialog(Context context, String str1, String str2, View.OnClickListener insurelistener) {
+        final Dialog dialog = new Dialog(context, R.style.dialog_alert);
+        dialog.setContentView(R.layout.dialog_alert_twochoice);
 
+        TextView tv_msg1 = (TextView) dialog.findViewById(R.id.dialog_alert_two_tv_msg_1);
+        TextView tv_msg2 = (TextView) dialog.findViewById(R.id.dialog_alert_two_tv_msg_2);
+        Button btn_insure = (Button) dialog.findViewById(R.id.dialog_alert_two_btn_insure);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.dialog_alert_two_btn_cancel);
+        tv_msg1.setText(str1);
+        tv_msg2.setText(str2);
+        if (!Util.isNull(insurelistener)) {
+            btn_insure.setOnClickListener(insurelistener);
+        } else {
+            btn_insure.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!Util.isNull(dialog))
+                        dialog.dismiss();
+                }
+            });
+        }
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        //点击屏幕外不可取消
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
+    }
     /**
      *  有帐号的提示框(只在绑定页面有使用)
      * "确认""取消"

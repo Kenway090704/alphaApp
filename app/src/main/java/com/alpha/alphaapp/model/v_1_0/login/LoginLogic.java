@@ -6,6 +6,8 @@ import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.account.UserInfo;
 import com.alpha.alphaapp.model.OnModelCallback;
+import com.alpha.alphaapp.model.OnModelLoginForumCallback;
+import com.alpha.alphaapp.model.v_1_2.logic.login.ForumLoginLogic;
 import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.unitily.ResourceUtil;
 import com.alpha.lib_stub.comm.CommStants;
@@ -36,7 +38,6 @@ import com.alpha.lib_sdk.app.tool.Util;
 public class LoginLogic {
 
     private static final String TAG = "LoginLogic";
-
 
 
     /**
@@ -219,9 +220,9 @@ public class LoginLogic {
      * @param account_openid 帐号或者openid
      * @param pw_verify      密码或者验证码
      * @param loginType      登录类型
-     * @param callback  登录监听
+     * @param callback       登录监听
      */
-    public static void doLogin(final String account_openid, final String pw_verify, final int loginType, final OnModelCallback<String> callback)  {
+    public static void doLogin(final String account_openid, final String pw_verify, final int loginType, final OnModelCallback<String> callback) {
         String data = null;
         switch (loginType) {
             case TypeConstants.LOGIN_TYPE.ACCONUT_PW:
@@ -317,11 +318,41 @@ public class LoginLogic {
                 OnModelCallback<UserInfo> back = new OnModelCallback<UserInfo>() {
                     @Override
                     public void onModelSuccessed(UserInfo info) {
+//                        if (!Util.isNull(callback))
+//                        callback.onModelSuccessed(info2.getSskey());
+
+//                        登录奥飞用户后,登录论坛,当前只有kenway账号可以登录成功
+                        final OnModelLoginForumCallback<String> call = new OnModelLoginForumCallback<String>() {
+                            @Override
+                            public void onModelNoRegitser() {
+                                //进入到论坛注册页
+                                LogUtils.e("需要进入论坛注册页");
+                                //进入注册页面
+//                             ForumRegisterActivity.actionStart(context);
+                            }
+
+                            @Override
+                            public void onModelSuccessed(String uid) {
+
+                                if (!Util.isNull(callback) && !Util.isNull(uid)) {
+                                    AccountManager.getInstance().setUid(uid);
+                                    callback.onModelSuccessed(info2.getSskey());
+
+                                    LogUtils.e("奥飞用户中心与论坛登录成功");
+                                }
+
+                            }
+
+                            @Override
+                            public void onModelFailed(String failedMsg) {
+                                LogUtils.e(failedMsg);
+                                if (!Util.isNull(callback))
+                                    callback.onModelFailed(failedMsg);
+                            }
+                        };
+                        ForumLoginLogic.doLoginForum(call);
 
 
-
-                        if (!Util.isNull(callback))
-                            callback.onModelSuccessed(info2.getSskey());
                     }
 
                     @Override
@@ -332,6 +363,8 @@ public class LoginLogic {
                     }
                 };
                 GetUserInfoLogic.doGetUserInfo(info2.getSskey(), back);
+
+
                 break;
             case CommStants.LOGIN_RESULT.RESULT_ACCOUNT_NOHAD:
                 if (!Util.isNull(callback))
@@ -364,8 +397,6 @@ public class LoginLogic {
     }
 
 
-
-
     /**
      * 判断是否可以自动登录
      * 上一次使用帐号和密码(手机密码)登录后就可以使用自动登录
@@ -389,7 +420,7 @@ public class LoginLogic {
         }
 
 
-        OnModelCallback<String> callback=new OnModelCallback<String>() {
+        OnModelCallback<String> callback = new OnModelCallback<String>() {
             @Override
             public void onModelSuccessed(String s) {
                 //自动登录成功后进入到Home页面

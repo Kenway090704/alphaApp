@@ -4,6 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
+    <!--论坛回复-->
+    <color name="color_primary">#ff333333</color>
+    <color name="color_primary_dark">#ff222222</color>
+    <color name="color_accent">#ff80bd01</color>
+    <color name="list_divider_light">#ffe0e0e0</color>
+    <color name="selectable_item_background_general_normal_light">@android:color/white</color>
+    <color name="selectable_item_background_general_pressed_light">#ffeeeeee</color>
     <!--***************统一样式颜色***************-->
     <color name="common_red">#d54526</color>
     <color name="common_red_alpha_80">#ccd54526</color>
@@ -17,6 +25,21 @@
     <color name="common_tv_black">#000</color>
     <color name="common_tv_blue">#21a5ce</color>
     <color name="common_tv_green">#7dce21</color>
+
+
+    <!--**************大丽设计颜色*****************-->
+    <color name="common_tv_dali_black">#333333</color>
+    <color name="common_tv_dali_orige">#f5420e</color>
+    <color name="common_tv_dali_white">#ffffff</color>
+    <color name="common_tv_dali_light_yellow">#faf5f1</color>
+    <color name="common_tv_dali_alpha_white">#7fffffff</color>
+    <color name="common_bg_dali_withe">#f9f9f9</color>
+    <color name="common_bg_dali_gray_69">#999999</color>
+    <color name="common_bg_dali_light_gray">#eeeeee</color>
+    <color name="common_bg_dali_alpha">#00eeeeee</color>
+    <color name="common_bg_dali_gray">#cccccc</color>
+    <color name="common_bg_dali_alpha50_orige">#7ff5420e</color>
+    <color name="common_bg_dali_green">#8880bd01</color>
 
 
     <!--***************bound边界***************-->

@@ -203,24 +203,35 @@
         <item name="@android:windowExitAnimation">@anim/anim_bottomview_exit</item>
     </style>
 
-    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@android:color/black</item>
-    </style>
-
-
-    <!--***************toggle***************-->
-    <style name="MyToggleStyle" parent="@android:style/Widget.CompoundButton">
-        <item name="android:button">@drawable/selector_toggle_btn</item>
-    </style>
-
 
     <!--***************login_tab_textsize***************-->
     <style name="login_tab_txtSize">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Widget_GifView"></style>
 
 
+    <!--***********************论坛*************************-->
+    <!--评论dialog样式-->
+
+    <style name="BaseAppDialogLight" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:listDivider">@color/list_divider_light</item>
+        
+    </style>
+    <style name="AppDialogLight" parent="BaseAppDialogLight" />
+    <!-- App Animation -->
+    <style name="AppAnimation" parent="android:Animation" />
+    <style name="AppAnimation.BottomSheet">
+        <item name="android:windowEnterAnimation">@anim/bottom_sheet_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/bottom_sheet_slide_out</item>
+    </style>
+
+    <style name="AppDialogLight.TopicReply">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/AppAnimation.BottomSheet</item>
+    </style>
 </resources>

@@ -33,7 +33,7 @@ public abstract class BaseActivity extends Activity {
     }
 
     /**
-     * 设置全透明状态栏
+     * 设置状态栏
      */
     private void setAlphaToolbar() {
 

@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 public class GoodsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final String TAG = "StaggerRecylcerAdapter";
+
     private static final int VIEW_NO_DATA = -1;
     private Context context;
     private int product_id;
@@ -102,7 +102,7 @@ public class GoodsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         void setData(final GoodsBean bean) {
 
             tv_title.setText(bean.getGoods_name());
-            LogUtils.e(TAG,"picture==="+URLConstans.GOODS_PICTURE_URL.GOODS_ICON + bean.getPictures().get(0));
+
             ImageLoader.load(context, URLConstans.GOODS_PICTURE_URL.GOODS_ICON + bean.getPictures().get(0), iv_logo);
             tv_need_score_count.setText("兑换积分 : " + bean.getScore() + "分");
             tv_has_exchange_count.setText("已兑换 : " + bean.getExchange_count() + "件");

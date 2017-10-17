@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/commom_heigth_144"
+        android:layout_height="@dimen/commom_heigth_180"
         android:background="@color/common_bg_red">
 
         <LinearLayout
@@ -29,12 +29,13 @@
                     android:layout_height="@dimen/commom_radius_84"
                     android:layout_gravity="center"
                     android:src="@drawable/icon_photo_bg_circle" />
+
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/frag_mine_riv"
                     android:layout_width="@dimen/commom_radius_50"
                     android:layout_height="@dimen/commom_radius_50"
-                    android:scaleType="centerCrop"
                     android:layout_gravity="center"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/launcher"
                     app:riv_oval="true" />
 
@@ -61,8 +62,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
                     android:layout_marginTop="@dimen/commom_margin_3"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <TextView
@@ -80,29 +81,31 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-       <LinearLayout
-           android:id="@+id/frag_mine_layout_set"
-           android:layout_width="wrap_content"
-           android:layout_alignParentRight="true"
-           android:paddingLeft="@dimen/commom_margin_20"
-           android:paddingBottom="@dimen/commom_margin_20"
-           android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/frag_mine_iv_set"
+
+        <LinearLayout
+            android:id="@+id/frag_mine_layout_set"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/commom_margin_12"
-            android:layout_marginTop="@dimen/commom_margin_14"
-            android:clickable="true"
-            android:src="@drawable/icon_setting1_white" /></LinearLayout>
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/commom_margin_20"
+            android:paddingLeft="@dimen/commom_margin_20">
+
+            <ImageView
+                android:id="@+id/frag_mine_iv_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/commom_margin_12"
+                android:layout_marginTop="@dimen/commom_margin_28"
+                android:src="@drawable/icon_setting1_white" />
+        </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/frag_mine_layout_sign"
+        android:id="@+id/frag_mine_layout_mine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/commom_height_32"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -113,23 +116,185 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/commom_margin_20"
-            android:text="@string/sign"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:text="@string/mine"
             android:textColor="@color/common_tv_dark_gray"
             android:textSize="@dimen/commom_tv_size_12" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/commom_margin_12"
-            android:gravity="end"
-            android:text="@string/no_sign"
-            android:textColor="@color/common_tv_dark_gray"
-            android:textSize="@dimen/commom_tv_size_12" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/commom_height_1"
         android:background="@color/common_bound_line_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/commom_margin_20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+                android:id="@+id/frag_mine_mi_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/subject" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+                android:id="@+id/frag_mine_mi_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/reply" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+                android:id="@+id/frag_mine_mi_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/like" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+                android:id="@+id/frag_mine_mi_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/notice" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/commom_margin_10"
+            android:orientation="horizontal">
+
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+                android:id="@+id/frag_mine_mi_fans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/fans" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+                android:id="@+id/frag_mine_mi_attent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/attention" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+                android:id="@+id/frag_mine_mi_attent_topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/attention_topic" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.alpha.alphaapp.ui.widget.mine.MineItem
+
+                android:id="@+id/frag_mine_mi_look_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mi_icon="@drawable/ic_launcher"
+                app:mi_name="@string/look_history" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_1"
+        android:background="@color/common_bound_line_gray" />
+
+    <LinearLayout
+        android:id="@+id/frag_mine_layout_find"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_32"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_12"
+            android:src="@drawable/icon_sign" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:text="@string/find"
+            android:textColor="@color/common_tv_dark_gray"
+            android:textSize="@dimen/commom_tv_size_12" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_1"
+        android:background="@color/common_bound_line_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/commom_margin_10">
+
+        <com.alpha.alphaapp.ui.widget.mine.MineItem
+
+            android:id="@+id/frag_mine_mi_hot_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mi_icon="@drawable/ic_launcher"
+            app:mi_name="@string/hot_topic" />
+
+        <com.alpha.alphaapp.ui.widget.mine.MineItem
+            android:id="@+id/frag_mine_mi_everyone_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_20"
+            app:mi_icon="@drawable/ic_launcher"
+            app:mi_name="@string/everyone_like" />
+    </LinearLayout>
 </LinearLayout>

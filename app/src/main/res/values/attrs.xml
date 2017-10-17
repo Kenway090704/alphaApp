@@ -47,6 +47,11 @@
         <attr name="msv_txt_left" format="string|reference" />
     </declare-styleable>
 
+    <!--***************修改性别控件属性***************-->
+    <declare-styleable name="MineItem">
+        <attr name="mi_name" format="string|reference" />
+        <attr name="mi_icon" format="reference" />
+    </declare-styleable>
 
     <!--***************帐号验证码EditText***************-->
     <declare-styleable name="AccountEditText">

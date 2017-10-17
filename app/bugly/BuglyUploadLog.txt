@@ -121,3 +121,10 @@ appChannel=baidu
 appPackage=com.alpha.alphaapp
 appVersion=v 1.1.0
 
+file=/Users/xiaokai/Documents/Alpha gd project/git/alphaApp/app/build/outputs/mapping/baidu/release/mapping.txt
+sha1=77cc4388cac3956a81233c998436ddc646433f29
+appId=95a2a31773
+appChannel=baidu
+appPackage=com.alpha.alphaapp
+appVersion=v 1.1.0
+

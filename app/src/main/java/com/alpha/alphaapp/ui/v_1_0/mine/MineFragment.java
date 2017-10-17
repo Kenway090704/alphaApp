@@ -1,6 +1,5 @@
 package com.alpha.alphaapp.ui.v_1_0.mine;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import com.alpha.alphaapp.account.AccountManager;
 import com.alpha.alphaapp.R;
 import com.alpha.alphaapp.account.UserInfo;
-import com.alpha.lib_sdk.app.log.LogUtils;
 import com.alpha.lib_sdk.app.tool.StringUtils;
 import com.alpha.lib_stub.comm.TypeConstants;
 import com.alpha.lib_stub.comm.URLConstans;
@@ -17,7 +15,6 @@ import com.alpha.alphaapp.ui.AccountChangeFragment;
 import com.alpha.alphaapp.ui.v_1_0.set.SettingsActivity;
 import com.alpha.lib_sdk.app.glide.ImageLoader;
 import com.alpha.lib_sdk.app.tool.Util;
-import com.alpha.lib_sdk.app.unitily.ToastUtils;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 /**
@@ -25,7 +22,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
  * Email : xiaokai090704@126.com
  */
 
-public class MineFragment extends AccountChangeFragment {
+public class MineFragment extends AccountChangeFragment implements View.OnClickListener {
     private LinearLayout layout_userinfo, layout_sign;
     private RoundedImageView riv_icon;
     private TextView tv_name;
@@ -42,7 +39,7 @@ public class MineFragment extends AccountChangeFragment {
         layout_userinfo = (LinearLayout) root.findViewById(R.id.frag_mine_layout_userinfo);
         riv_icon = (RoundedImageView) root.findViewById(R.id.frag_mine_riv);
         tv_name = (TextView) root.findViewById(R.id.frag_mine_tv_name);
-        layout_sign = (LinearLayout) root.findViewById(R.id.frag_mine_layout_sign);
+        layout_sign = (LinearLayout) root.findViewById(R.id.frag_mine_layout_mine);
         iv_set = (ImageView) root.findViewById(R.id.frag_mine_iv_set);
         layout_set = (LinearLayout) root.findViewById(R.id.frag_mine_layout_set);
         UserInfo info = AccountManager.getInstance().getUserInfo();
@@ -51,35 +48,23 @@ public class MineFragment extends AccountChangeFragment {
 
     @Override
     protected void initEnvent() {
-        layout_userinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        layout_userinfo.setOnClickListener(this);
+        layout_set.setOnClickListener(this);
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.frag_mine_layout_userinfo:
                 //进入个人信息设置页面
                 MineInfoActivity.actionStart(getActivity(), null, null);
-            }
-        });
-        iv_set.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.frag_mine_layout_set:
                 SettingsActivity.actionStart(getActivity(), null, null);
-            }
-        });
-        layout_set.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SettingsActivity.actionStart(getActivity(), null, null);
-            }
-        });
-        layout_sign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //进入签到页面
-//                SignActivity.actionStart(getActivity());
-
-                //进入到demo页面
-//              StaggerActivity.actionStart(getActivity());
-            }
-        });
+                break;
+        }
     }
 
     @Override
@@ -102,7 +87,7 @@ public class MineFragment extends AccountChangeFragment {
         if (!Util.isNull(info)) {
             //使用Glide展示图片
             if (Util.isNullOrBlank(info.getIcon())) {
-                ImageLoader.loadCircle(getActivity(),URLConstans.getDefaultICONUrl(  getContext()) , riv_icon);
+                ImageLoader.loadCircle(getActivity(), URLConstans.getDefaultICONUrl(getContext()), riv_icon);
             } else {
                 ImageLoader.loadCircle(getActivity(), URLConstans.getICONUrl(getContext()) + info.getIcon(), riv_icon);
             }
@@ -129,4 +114,6 @@ public class MineFragment extends AccountChangeFragment {
         }
 
     }
+
+
 }

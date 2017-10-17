@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg_dali_withe"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_bg_red"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/acty_create_topic_tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_5"
+            android:clickable="true"
+            android:padding="@dimen/commom_margin_10"
+            android:text="@string/cancel"
+            android:textColor="@color/common_tv_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_5"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="@dimen/commom_margin_10"
+            android:text="@string/send_topic"
+            android:textColor="@color/common_tv_white"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/acty_create_topic_tv_nowcreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/commom_margin_5"
+            android:clickable="true"
+            android:padding="@dimen/commom_margin_10"
+            android:text="@string/send"
+            android:textColor="@color/common_tv_white" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/acty_create_topic_et_subject"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_30"
+        android:background="@color/common_bg_white"
+        android:gravity="left|center_vertical"
+        android:hint="@string/topic_must_write"
+        android:paddingLeft="@dimen/commom_margin_10"
+        android:textSize="@dimen/commom_tv_size_12" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_1_2"
+        android:background="@color/common_bg_dark_gray" />
+
+    <EditText
+        android:id="@+id/acty_create_topic_et_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_heigth_155"
+        android:background="@color/common_bg_white"
+        android:gravity="top"
+        android:hint="@string/plz_input_content"
+        android:paddingLeft="@dimen/commom_margin_10"
+        android:paddingTop="@dimen/commom_margin_5"
+        android:textSize="@dimen/commom_tv_size_12" />
+
+    <com.alpha.alphaapp.ui.widget.addtheme.AddThemeLayout
+        android:id="@+id/acty_create_topic_atl"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_1"
+        android:background="@color/common_bg_dark_gray" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/commom_margin_5"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/acty_create_topic_tv_emotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:background="@color/common_bg_dali_alpha50_orige"
+            android:padding="@dimen/commom_margin_5"
+            android:text="@string/emotion"
+            android:textSize="@dimen/commom_tv_size_14" />
+
+        <ImageView
+            android:id="@+id/acty_create_topic_iv_camera"
+            android:layout_width="@dimen/commom_height_30"
+            android:layout_height="@dimen/commom_height_30"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:background="@color/common_bg_white"
+            android:src="@drawable/icon_camera" />
+
+        <CheckBox
+            android:id="@+id/acty_create_topic_cb_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:background="@drawable/selector_create_topic_cb"
+            android:button="@null"
+            android:paddingBottom="@dimen/commom_margin_5"
+            android:paddingLeft="@dimen/commom_margin_15"
+            android:paddingRight="@dimen/commom_margin_15"
+            android:paddingTop="@dimen/commom_margin_5"
+            android:text="@string/bold"
+            android:textSize="@dimen/commom_tv_size_14"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:background="@drawable/selector_create_topic_cb"
+            android:button="@null"
+            android:padding="@dimen/commom_margin_5"
+            android:text="@string/txt_under_line"
+            android:textSize="@dimen/commom_tv_size_14" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <CheckBox
+            android:id="@+id/acty_create_topic_cb_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:background="@color/common_bg_dali_light_gray"
+            android:gravity="center"
+            android:padding="@dimen/commom_margin_5"
+            android:text="@string/add_topic"
+
+            android:button="@null"
+            android:textSize="@dimen/commom_tv_size_14" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_1"
+        android:background="@color/common_bg_dark_gray" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/acty_create_topic_rv_choose_pic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/commom_margin_10"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/acty_create_topic_rv_choose_emtion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/commom_margin_10"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

@@ -36,6 +36,8 @@ public class URLConstans {
     //内网测试url,为了测试激活记录中有product_id
     public static  String URL_ROOT = "http://192.168.199.102:8089/user/";
 
+
+
     /**
      *  初始化URL_ROOT,在APPLICATION中执行
      * @param isDebug   前期测试可以自动输入值,后面release的时候可以使用BuildConfing.Debug
@@ -318,28 +320,12 @@ public class URLConstans {
          * (BB)查询用户产品积分Log
          */
         String GET_SCORE_LOG = URL_ROOT + "getScoreLog";
-        /**
-         * (CI)用户中心签到
-         */
-        String SIGN = URL_ROOT + "sign";
-        /**
-         * (CJ)获取用户中心签到信息
-         */
-        String GET_SINGINFO = URL_ROOT + "getSignInfo";
+
         /**
          * (CS)验证验证码是否正确
          */
         String VERIFY_MSG_CODE = URL_ROOT + "checkVerify";
     }
 
-    /**
-     * 论坛使用URL
-     */
-    public interface  FORUM_URL{
-        /**
-         * 热门帖子的URL
-         */
-        String HOTHIT_POST_URL="http://club.auldey.com/index.php?m=design&c=api&token=npDH2bFWOP&id=13&format=json";
-    }
 
 }

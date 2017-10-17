@@ -14,6 +14,7 @@ import com.githang.statusbar.StatusBarCompat;
 /**
  * Created by kenway on 17/5/25 10:36
  * Email : xiaokai090704@126.com
+ * 没有状态栏
  */
 
 public abstract class BaseFragmentNoBarActivity extends FragmentActivity {
@@ -22,7 +23,6 @@ public abstract class BaseFragmentNoBarActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         //取消标题
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //取消状态栏

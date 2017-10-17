@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_bg_white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/widget_choose_tv_photo_album"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/commom_height_56"
+            android:background="@color/common_bg_white"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/photo_album"
+            android:textColor="@color/common_tv_black" />
+
+        <com.alpha.alphaapp.ui.widget.LineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/widget_choose_tv_take_phote"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/commom_height_56"
+            android:background="@color/common_bg_white"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/take_phote"
+            android:textColor="@color/common_tv_black" />
+
+        <com.alpha.alphaapp.ui.widget.LineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/widget_choose_btn_cancel"
+        style="@style/btn_one_com_red"
+        android:layout_marginTop="@dimen/commom_margin_3"
+        android:layout_marginBottom="@dimen/commom_margin_3"
+        android:text="@string/cancel" />
+</LinearLayout>

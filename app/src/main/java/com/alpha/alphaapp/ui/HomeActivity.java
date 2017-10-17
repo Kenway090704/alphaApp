@@ -9,14 +9,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alpha.alphaapp.R;
-import com.alpha.alphaapp.app.MyApplication;
-import com.alpha.alphaapp.ui.base.BaseFragmentActivity;
-import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallFragment;
+import com.alpha.alphaapp.ui.base.BaseFragmentAlphaBarActivity;
+import com.alpha.alphaapp.ui.v_1_1.mall.ScoreMallDaliFragment;
 import com.alpha.alphaapp.ui.v_1_0.mine.MineFragment;
 
-import com.alpha.alphaapp.ui.v_1_2.ui.ForumFragment;
-import com.alpha.alphaapp.ui.v_1_2.ui.SetingFragment;
-import com.alpha.alphaapp.version.UpdateVersionUtil;
+import com.alpha.alphaapp.ui.v_1_2.ui.ForumSetingFragment;
+import com.alpha.alphaapp.ui.v_1_2.ui.TodayHotFragment;
 
 
 /**
@@ -24,12 +22,12 @@ import com.alpha.alphaapp.version.UpdateVersionUtil;
  * Email : xiaokai090704@126.com
  */
 
-public class HomeActivity extends BaseFragmentActivity {
+public class HomeActivity extends BaseFragmentAlphaBarActivity {
     private static final String TAG = "HomeActivity";
     private RadioGroup radioGroup;
     private RadioButton rb_mine;
     private Fragment[] fragments;
-    private int lastIndex = 3;
+    private int lastIndex = 0;
 
 
     @Override
@@ -65,7 +63,7 @@ public class HomeActivity extends BaseFragmentActivity {
      */
     private void initFragments() {
         fragments = new Fragment[]{
-                new ForumFragment(), new SetingFragment(), new ScoreMallFragment(), new MineFragment()
+                new TodayHotFragment(), new ForumSetingFragment(), new ScoreMallDaliFragment(), new MineFragment()
         };
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
         for (Fragment frag : fragments) {
@@ -73,10 +71,10 @@ public class HomeActivity extends BaseFragmentActivity {
             tran.hide(frag);
         }
         // 默认显示第一个,这里显示的是最后一个
-        tran.show(fragments[3]);
+        tran.show(fragments[0]);
+
         // 提交事务
         tran.commit();
-
     }
 
     private void initRadioButton() {
@@ -123,6 +121,7 @@ public class HomeActivity extends BaseFragmentActivity {
 
     /**
      * 从其它页面跳转到HomeActivity
+     *
      * @param context
      * @param data1
      * @param data2

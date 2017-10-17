@@ -624,26 +624,8 @@ public class CommStants {
         int USER_NO_HAD = 1;
     }
 
-    /**
-     * (CI)用户中心签到
-     */
-    public interface SIGN_RESULT {
-        /**
-         * 签到成功
-         */
-        int RESULT_OK = 0;
-        /**
-         * 请明天再来吧
-         */
-        int RESULT_PLZ_TOMORROW = 345;
-    }
 
-    /**
-     * (CJ)获取用户中心签到信息
-     */
-    public interface GET_SIGNINFO_RESULT {
-        int RESULT_OK = 0;
-    }
+
 
     /**
      * (Cs)验证验证码是否正确

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_bg_white"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/cell_section_topic_tv_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/commom_margin_30"
+        android:layout_marginRight="@dimen/commom_margin_10"
+        android:layout_marginTop="@dimen/commom_margin_10"
+        android:clickable="true"
+        android:singleLine="true"
+        android:textColor="@color/common_tv_dark_red"
+        android:textSize="@dimen/commom_tv_size_18" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/cell_section_topic_iv_icon"
+            android:layout_width="@dimen/commom_height_60"
+            android:layout_height="@dimen/commom_height_60"
+            android:padding="@dimen/commom_margin_10"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/commom_margin_10"
+            android:src="@drawable/icon_section_logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/commom_margin_30"
+                android:layout_marginTop="@dimen/commom_margin_10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/cell_section_topic_tv_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/common_tv_blue" />
+
+                <TextView
+                    android:id="@+id/cell_section_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/commom_margin_10"
+                    android:drawableLeft="@drawable/icon_forum_time"
+                    android:drawablePadding="@dimen/commom_margin_3"
+                    android:textColor="@color/common_tv_light_gray" />
+
+                <TextView
+                    android:id="@+id/cell_section_topic_tv_model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/commom_margin_10"
+                    android:singleLine="true"
+                    android:textColor="@color/common_tv_light_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/commom_margin_30"
+                android:layout_marginTop="@dimen/commom_margin_10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/cell_section_topic_tv_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/common_tv_green" />
+
+                <TextView
+                    android:id="@+id/cell_section_topic_tv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/commom_margin_30"
+                    android:drawableLeft="@drawable/icon_forum_love_red"
+                    android:drawablePadding="@dimen/commom_margin_7"
+                    android:textColor="@color/common_tv_dark_red" />
+
+                <TextView
+                    android:id="@+id/cell_section_topic_tv_look_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/commom_margin_30"
+                    android:drawableLeft="@drawable/icon_forum_eye_red"
+                    android:drawablePadding="@dimen/commom_margin_7"
+                    android:textColor="@color/common_tv_dark_red" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_margin_5"
+        android:layout_marginTop="@dimen/commom_margin_5"
+        android:background="@color/common_bg_light_gray" />
+</LinearLayout>
+

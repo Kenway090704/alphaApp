@@ -6,3 +6,11 @@
 body {
     background-color: #3c3c3c;
 }
+
+//为了让图片适配手机
+/*
+.J_post_img{
+   max-width: 200px !important;
+      height:10px;
+}
+*/

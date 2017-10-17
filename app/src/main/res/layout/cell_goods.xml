@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/commom_length_169"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_cell_goods_stroke"
+    >
+
+    <ImageView
+        android:id="@+id/widget_goods_iv_goods"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_108"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/commom_margin_6"
+        android:layout_marginRight="@dimen/commom_margin_6"
+        android:layout_marginTop="@dimen/commom_margin_6"
+        android:background="@color/common_tv_dali_light_yellow"
+        android:src="@drawable/pic_shample_rv" />
+
+    <ImageView
+        android:id="@+id/widget_goods_iv_isRecom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tags_recommend_n" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/commom_margin_9"
+        android:layout_marginBottom="@dimen/commom_margin_8"
+        android:layout_below="@+id/widget_goods_iv_goods">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/commom_margin_7"
+            android:layout_marginRight="@dimen/commom_margin_7"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/widget_goods_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gift_name_abc"
+                android:textColor="@color/common_tv_dali_black"
+                android:textSize="@dimen/commom_tv_size_13" />
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:src="@drawable/icon_list_integral_n"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/widget_goods_tv_score"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/commom_margin_7"
+                android:text="@string/scrore_10000"
+                android:textColor="@color/common_tv_dali_orige"
+                android:textSize="@dimen/commom_tv_size_13"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginRight="@dimen/commom_margin_11"
+            android:layout_marginTop="@dimen/commom_margin_6"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/widget_goods_tv_exchange_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/commom_margin_8"
+                android:text="@string/has_exchange_10000"
+                android:textColor="@color/common_bg_dali_gray_69"
+                android:textSize="@dimen/commom_tv_size_9" />
+              <View
+                  android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/widget_goods_tv_remain_count"
+                android:layout_width="wrap_content"
+                android:text="@string/store_10000"
+                android:textColor="@color/common_bg_dali_gray_69"
+                android:textSize="@dimen/commom_tv_size_9"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

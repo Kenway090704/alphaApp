@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg_dali_withe"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/cell_topic_content_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/commom_margin_10"
+        android:lineSpacingExtra="@dimen/commom_margin_5"
+        android:text="我是文章标题"
+        android:textColor="@color/common_tv_black"
+        android:textSize="@dimen/commom_tv_size_18" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_height_2"
+        android:background="@color/common_bg_dali_light_gray" />
+
+    <com.alpha.alphaapp.ui.widget.forum.TopicUserInfoItem
+        android:id="@+id/cell_topic_content_tuii_userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.alpha.alphaapp.ui.v_1_2.web.ContentWebView
+        android:id="@+id/cell_topic_content_web_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp" />
+
+</LinearLayout>

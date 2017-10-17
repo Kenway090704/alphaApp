@@ -32,7 +32,6 @@ public class MyApplication extends Application {
     public static final String WX_APP_SECRET = "b0edfec14306808b50a7412aeda39dbe";
     //qq appid
     public static final String QQ_APP_ID = "1105613845";
-
     //bugly appkey
     public  static  final  String BUGLY_APPKEY="95a2a31773";
 
@@ -73,10 +72,10 @@ public class MyApplication extends Application {
 
 
         //URL_ROOT的初始化
-        URLConstans.initURL_ROOT(isDebug);
+        URLConstans.initURL_ROOT(false);
 
         //初始化appkey,appid
-        JsonEncryptUtil.initAppkeyAndSercet(isDebug);
+        JsonEncryptUtil.initAppkeyAndSercet(false);
 
     }
 

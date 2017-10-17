@@ -5,22 +5,18 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/fragment_score_mall_btn_my_score"
+        android:id="@+id/frag_score_mall_btn_my_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/my_score" />
-
-
-
-
     <Button
-        android:id="@+id/fragment_score_mall_btn_shiping_addr"
+        android:id="@+id/frag_score_mall_btn_shiping_addr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/shipping_addr" />
 
     <Button
-        android:id="@+id/fragment_score_mall_btn_active"
+        android:id="@+id/frag_score_mall_btn_active"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/do_active_code" />

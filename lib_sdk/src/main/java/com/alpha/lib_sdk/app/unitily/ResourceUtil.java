@@ -34,6 +34,8 @@ public class ResourceUtil {
         return ApplicationContext.getCurrentContext().getString(strId);
     }
 
+
+
     public static View inflate(Context context, int viewId, ViewGroup root) {
         return LayoutInflater.from(context).inflate(viewId, root, false);
     }

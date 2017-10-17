@@ -12,18 +12,23 @@
 
 
     <!--***************margin***************-->
+    <dimen name="commom_margin_1_2">0.5dp</dimen>
+    <dimen name="commom_margin_2">2dp</dimen>
     <dimen name="commom_margin_3">3dp</dimen>
     <dimen name="commom_margin_4">4dp</dimen>
     <dimen name="commom_margin_5">5dp</dimen>
     <dimen name="commom_margin_6">6dp</dimen>
     <dimen name="commom_margin_7">7dp</dimen>
     <dimen name="commom_margin_8">8dp</dimen>
+    <dimen name="commom_margin_9">9dp</dimen>
     <dimen name="commom_margin_10">10dp</dimen>
+    <dimen name="commom_margin_11">11dp</dimen>
     <dimen name="commom_margin_12">12dp</dimen>
     <dimen name="commom_margin_13">13dp</dimen>
     <dimen name="commom_margin_14">14dp</dimen>
     <dimen name="commom_margin_15">15dp</dimen>
     <dimen name="commom_margin_16">16dp</dimen>
+    <dimen name="commom_margin_17">17dp</dimen>
     <dimen name="commom_margin_18">18dp</dimen>
     <dimen name="commom_margin_20">20dp</dimen>
     <dimen name="commom_margin_22">22dp</dimen>
@@ -35,6 +40,7 @@
     <dimen name="commom_margin_30">30dp</dimen>
     <dimen name="commom_margin_33">33dp</dimen>
     <dimen name="commom_margin_35">35dp</dimen>
+    <dimen name="commom_margin_40">40dp</dimen>
     <dimen name="commom_margin_42">42dp</dimen>
     <dimen name="commom_margin_45">45dp</dimen>
     <dimen name="commom_margin_47">47dp</dimen>
@@ -42,6 +48,7 @@
     <dimen name="commom_margin_50">50dp</dimen>
     <dimen name="commom_margin_55">55dp</dimen>
     <dimen name="commom_margin_70">70dp</dimen>
+    <dimen name="commom_margin_73">73dp</dimen>
     <dimen name="commom_margin_80">80dp</dimen>
     <dimen name="commom_margin_89">89dp</dimen>
     <dimen name="commom_margin_100">100dp</dimen>
@@ -55,9 +62,12 @@
 
 
     <!--***************高度***************-->
+    <dimen name="commom_height_1_2">0.5dp</dimen>
     <dimen name="commom_height_1">1dp</dimen>
+    <dimen name="commom_height_2">2dp</dimen>
     <dimen name="commom_height_3">3dp</dimen>
     <dimen name="commom_height_5">5dp</dimen>
+    <dimen name="commom_height_7">7dp</dimen>
     <dimen name="commom_height_8">8dp</dimen>
     <dimen name="commom_height_20">20dp</dimen>
     <dimen name="commom_height_23">23dp</dimen>
@@ -70,25 +80,33 @@
     <dimen name="commom_height_46">46dp</dimen>
     <dimen name="commom_height_48">48dp</dimen>
     <dimen name="commom_height_50">50dp</dimen>
+    <dimen name="commom_height_53">53dp</dimen>
     <dimen name="commom_height_54">54dp</dimen>
     <dimen name="commom_heigth_55">55dp</dimen>
     <dimen name="commom_height_56">56dp</dimen>
     <dimen name="commom_height_60">60dp</dimen>
+    <dimen name="commom_height_65">65dp</dimen>
     <dimen name="commom_height_70">70dp</dimen>
+    <dimen name="commom_height_72">72dp</dimen>
+    <dimen name="commom_height_75">75dp</dimen>
     <dimen name="commom_height_80">80dp</dimen>
     <dimen name="commom_height_84">84dp</dimen>
     <dimen name="commom_height_90">90dp</dimen>
     <dimen name="commom_height_91">91dp</dimen>
+    <dimen name="commom_height_108">108dp</dimen>
     <dimen name="commom_heigth_140">140dp</dimen>
     <dimen name="commom_heigth_144">144dp</dimen>
     <dimen name="commom_heigth_147">147dp</dimen>
+    <dimen name="commom_heigth_155">155dp</dimen>
     <dimen name="commom_heigth_159">159dp</dimen>
     <dimen name="commom_heigth_180">180dp</dimen>
     <dimen name="commom_heigth_200">200dp</dimen>
     <dimen name="commom_heigth_220">220dp</dimen>
     <dimen name="commom_height_290">290dp</dimen>
     <!-- 长度-->
+    <dimen name="commom_length_2">2dp</dimen>
     <dimen name="commom_length_20">20dp</dimen>
+    <dimen name="commom_length_32">32dp</dimen>
     <dimen name="commom_length_40">40dp</dimen>
     <dimen name="commom_length_50">50dp</dimen>
 
@@ -102,19 +120,25 @@
     <dimen name="commom_length_118">118dp</dimen>
     <dimen name="commom_length_125">125dp</dimen>
     <dimen name="commom_length_140">140dp</dimen>
+    <dimen name="commom_length_159">159dp</dimen>
+    <dimen name="commom_length_169">169dp</dimen>
     <dimen name="commom_length_170">170dp</dimen>
     <dimen name="commom_length_207">207dp</dimen>
     <dimen name="commom_length_301">301dp</dimen>
 
     <!--***************字体***************-->
     <!--最小字号为12sp,10sp为tab文字-->
+    <dimen name="commom_tv_size_7">7sp</dimen>
+    <dimen name="commom_tv_size_9">9sp</dimen>
     <dimen name="commom_tv_size_10">10sp</dimen>
+    <dimen name="commom_tv_size_11">11sp</dimen>
     <dimen name="commom_tv_size_12">12sp</dimen>
     <dimen name="commom_tv_size_13">13sp</dimen>
     <dimen name="commom_tv_size_14">14sp</dimen>
     <dimen name="commom_tv_size_15">15sp</dimen>
     <dimen name="commom_tv_size_16">16sp</dimen>
     <dimen name="commom_tv_size_18">18sp</dimen>
+    <dimen name="commom_tv_size_20">20sp</dimen>
 
 
     <!--***************版本更新***************-->

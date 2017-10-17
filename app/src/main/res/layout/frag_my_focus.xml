@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--没有关注时的界面-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/commom_heigth_180"
+                android:gravity="center"
+                android:text="@string/now_no_have_focus_section"
+                android:textColor="@color/common_tv_dali_black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/commom_height_30"
+                android:text="@string/recom_section"
+                android:textColor="@color/common_tv_dali_black"
+                android:textSize="@dimen/commom_tv_size_16" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/frag_my_focus_rv_recom_seciton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/commom_margin_10"
+                android:layout_marginRight="@dimen/commom_margin_10"
+                android:layout_marginTop="@dimen/commom_margin_10" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

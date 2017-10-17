@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_bg_red"
+        android:padding="@dimen/commom_margin_10">
+
+        <ImageView
+            android:id="@+id/acty_send_message_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_title_back" />
+
+        <View
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/acty_send_message_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="写私信"
+            android:textColor="@color/common_tv_white"
+            android:textStyle="bold" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/acty_send_message_tv_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:text="发送"
+            android:textColor="@color/common_tv_white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/commom_margin_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收信人:" />
+
+        <TextView
+            android:id="@+id/acty_send_message_tv_targetuid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commom_margin_10"
+            android:text="大表姐" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/acty_send_message_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commom_heigth_200"
+        android:background="@drawable/shape_et_bg_red"
+        android:gravity="start"
+        android:hint="内容"
+        android:padding="@dimen/commom_margin_10" />
+
+</LinearLayout>
